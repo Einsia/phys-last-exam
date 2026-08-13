@@ -68,8 +68,8 @@ def main() -> int:
     timing: dict[str, float] = {}
     # Neural backends share one subprocess; classic ones are measured individually so
     # the reported seconds are per-backend in both cases.
-    neural = tuple(b for b in want if b in ("sam2", "cotracker"))
-    classic = tuple(b for b in want if b not in ("sam2", "cotracker"))
+    neural = tuple(b for b in want if b in ("sam2", "sam3", "cotracker"))
+    classic = tuple(b for b in want if b not in ("sam2", "sam3", "cotracker"))
     if len(neural) == 2:
         t0 = time.time()
         ts = run_tracks(frames, seed, backends=neural,
@@ -78,7 +78,7 @@ def main() -> int:
         for b, t in ts.tracks.items():
             tracks[b], timing[b] = t.xy, dt / 2
     elif neural:
-        raise SystemExit("pass both sam2 and cotracker, or neither")
+        raise SystemExit("pass two neural backends (e.g. sam3,cotracker), or neither")
     # Called directly rather than through run_tracks, which always runs a pair: timing
     # the pair and attributing it to one backend would overstate each by ~2x.
     for b in classic:

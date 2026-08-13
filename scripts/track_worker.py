@@ -246,7 +246,13 @@ def run_sam3(frames: np.ndarray, seed: dict, device: str, source_dir: str,
         )
 
     import torch
-    from sam3.model_builder import build_sam3_video_predictor
+    try:
+        from sam3.model_builder import build_sam3_video_predictor
+    except ModuleNotFoundError as exc:
+        raise RuntimeError(
+            "SAM3 Python package is unavailable. Check out Meta's SAM3 source at "
+            f"{source_dir or '<sam3 package>'} and run scripts/create_track_env.sh."
+        ) from exc
 
     n, h, w = frames.shape[:3]
     frame_path = Path(frame_dir or "sam3-frames")

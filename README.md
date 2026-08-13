@@ -132,7 +132,7 @@ Distinguishing a truncated clip from a ball that halts in mid-air needs one extr
 whether the ball was still moving at its last sighting. Both present as the same extraction
 failure, and they must not score the same way.
 
-## Tracking: two learned backends, and what switching to them proved
+## Tracking: learned backends, and what switching to them proved
 
 Two independent trackers run on every clip and their disagreement is a QC signal rather
 than a second opinion from the same source. The default pair is learned, which is what
