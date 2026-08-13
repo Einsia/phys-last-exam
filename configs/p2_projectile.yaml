@@ -1,0 +1,77 @@
+# P2 (prompt.txt row 3): ball launched at a stated angle.
+# Judge-free measurables: H/R = tan(theta)/4 and N_up/N_down = 1.
+task: P2_projectile
+
+# Tolerances on the log-ratio residual: 0.15 is "within about 15%".
+# Calibrated against the noise floor from scripts/validate_metrics.py, which on
+# exact-physics renders is <=0.013 clean and <=0.043 with motion blur and mp4
+# round-trip. The floor is a property of the tracker and the fits, not of any model.
+tol:
+  hr_nominal: 0.15
+  time_symmetry: 0.10
+  hr_selfconsistent: 0.15
+  space_symmetry: 0.12
+  parabolicity: 0.030
+  vx_conservation: 0.10
+  gravity_symmetry: 0.20
+  accel_geometry: 0.12
+
+# Which tracker pair runs. The default is learned, which is what proposal.md 3.3 asks
+# for: SAM2 propagation from one click on the first frame, CoTracker3 on a ring of
+# points, and their disagreement as the QC signal. Both are seeded only from the ball
+# centre/radius the spec already records, so nothing here is tuned per clip.
+#
+# Set backends: [color, bgsub] for the hand-tuned classic pair -- no GPU, ~3 s/clip
+# instead of ~16 s, and a tighter noise floor on clean synthetic renders. It is the
+# wrong default for real video because its thresholds assume a flat scene with one
+# high-chroma ball. See physbench/tracking.py for the measured comparison.
+tracking:
+  backends: [sam2, cotracker]
+  device: "6"
+  dtype: bfloat16
+  camera_shift_from_tracker: true
+
+# Observability only. Nothing here may consult whether the physics is right.
+gates:
+  min_coverage_overall: 0.80
+  min_coverage_flight: 0.90
+  min_flight_frames: 12
+  max_camera_drift: 0.02
+  max_tracker_disagree: 0.50
+  border_margin_radii: 1.5
+  max_detection_gap: 3
+  max_radius_cv: 0.45
+
+viol:
+  time_symmetry_factor: 2.0
+  hr_factor: 3.0
+  parabolicity_gross: 0.12
+
+# ---- generation ----
+canvas:
+  width: 1344      # 16:9, the model's native 1.03 MP canvas
+  height: 768
+num_frames: 124    # 17*7+5, the shortest legal value = 5.17 s at 24 fps
+angles_deg: [30, 45, 60]
+seeds: [42, 43]
+
+# Two phrasings per angle. `plain` is the neutral ask. `slowmo` stretches the flight
+# over more frames, which buys resolution on N_up/N_down at no cost to validity --
+# every invariant here is invariant to the time scale, so slowing the clip down cannot
+# flatter or penalise the result. Comparing the two also shows whether the phrasing
+# itself moves the physics.
+prompts:
+  plain: >
+    Locked-off static camera, side view. The red ball on the ground launches
+    immediately and flies through the air at {theta} degrees above the horizontal,
+    rising to the top of its arc and then falling back down to the ground in one
+    smooth continuous arc. The whole arc stays inside the frame. The camera does not
+    move, pan, or zoom. Plain flat background, no other objects, nothing enters the
+    frame.
+  slowmo: >
+    Slow motion, locked-off static camera, side view. The red ball on the ground
+    launches immediately and flies through the air at {theta} degrees above the
+    horizontal, rising to the top of its arc and then falling back down to the ground
+    in one smooth continuous arc. The whole arc stays inside the frame. The camera does
+    not move, pan, or zoom. Plain flat background, no other objects, nothing enters the
+    frame.

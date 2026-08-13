@@ -1,0 +1,24 @@
+{
+  "sample_id": "const_speed",
+  "task": "P2_projectile",
+  "width": 1344,
+  "height": 768,
+  "prompt": "synthetic const_speed, theta=45.0",
+  "first_frame": "data/first_frames_synthetic/const_speed.png",
+  "ball": {
+    "cx": 134.4,
+    "cy": 643.5840000000001,
+    "radius": 16.896,
+    "rgb": [
+      222,
+      74,
+      38
+    ]
+  },
+  "params": {
+    "theta_deg": 45.0,
+    "variant": "const_speed"
+  },
+  "ground_y": null,
+  "notes": "physics known by construction; constructed H/R=0.2500"
+}

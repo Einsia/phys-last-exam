@@ -1,0 +1,24 @@
+{
+  "sample_id": "no_gravity",
+  "task": "P2_projectile",
+  "width": 1344,
+  "height": 768,
+  "prompt": "synthetic no_gravity, theta=45.0",
+  "first_frame": "data/first_frames_synthetic/no_gravity.png",
+  "ball": {
+    "cx": 134.4,
+    "cy": 643.5840000000001,
+    "radius": 16.896,
+    "rgb": [
+      222,
+      74,
+      38
+    ]
+  },
+  "params": {
+    "theta_deg": 45.0,
+    "variant": "no_gravity"
+  },
+  "ground_y": null,
+  "notes": "physics known by construction; constructed H/R=0.5000"
+}

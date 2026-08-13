@@ -1,0 +1,110 @@
+{
+  "gt": {
+    "video": "data/videos/synthetic/gt.mp4",
+    "spec": "data/first_frames_synthetic/gt.spec.json",
+    "sample_id": "gt",
+    "theta_deg": 45.0,
+    "variant": "gt",
+    "model": "synthetic",
+    "constructed": {
+      "R": 833.28,
+      "H": 208.31999999999996,
+      "H_over_R": 0.24999999999999997,
+      "theta_deg": 45.0,
+      "n_up": 30.0,
+      "n_down": 30.0,
+      "vx": 13.888,
+      "g": 0.46293333333333325
+    }
+  },
+  "no_gravity": {
+    "video": "data/videos/synthetic/no_gravity.mp4",
+    "spec": "data/first_frames_synthetic/no_gravity.spec.json",
+    "sample_id": "no_gravity",
+    "theta_deg": 45.0,
+    "variant": "no_gravity",
+    "model": "synthetic",
+    "constructed": {
+      "R": 833.28,
+      "H": 208.31999999999996,
+      "H_over_R": 0.49999999999999994,
+      "theta_deg": 45.0,
+      "n_up": 30.0,
+      "n_down": 30.0,
+      "vx": 13.888,
+      "g": 0.46293333333333325
+    }
+  },
+  "time_warp": {
+    "video": "data/videos/synthetic/time_warp.mp4",
+    "spec": "data/first_frames_synthetic/time_warp.spec.json",
+    "sample_id": "time_warp",
+    "theta_deg": 45.0,
+    "variant": "time_warp",
+    "model": "synthetic",
+    "constructed": {
+      "R": 833.28,
+      "H": 208.31999999999996,
+      "H_over_R": 0.24999999999999997,
+      "theta_deg": 45.0,
+      "n_up": 39.0,
+      "n_down": 21.0,
+      "vx": 13.888,
+      "g": 0.46293333333333325
+    }
+  },
+  "wrong_angle": {
+    "video": "data/videos/synthetic/wrong_angle.mp4",
+    "spec": "data/first_frames_synthetic/wrong_angle.spec.json",
+    "sample_id": "wrong_angle",
+    "theta_deg": 45.0,
+    "variant": "wrong_angle",
+    "model": "synthetic",
+    "constructed": {
+      "R": 833.28,
+      "H": 120.27360807758282,
+      "H_over_R": 0.14433756729740643,
+      "theta_deg": 30.0,
+      "n_up": 30.0,
+      "n_down": 30.0,
+      "vx": 13.888,
+      "g": 0.46293333333333325
+    }
+  },
+  "const_speed": {
+    "video": "data/videos/synthetic/const_speed.mp4",
+    "spec": "data/first_frames_synthetic/const_speed.spec.json",
+    "sample_id": "const_speed",
+    "theta_deg": 45.0,
+    "variant": "const_speed",
+    "model": "synthetic",
+    "constructed": {
+      "R": 833.28,
+      "H": 208.31999999999996,
+      "H_over_R": 0.24999999999999997,
+      "theta_deg": 45.0,
+      "n_up": 30.0,
+      "n_down": 30.0,
+      "vx": 13.888,
+      "g": 0.46293333333333325
+    }
+  },
+  "gt_blur3": {
+    "video": "data/videos/synthetic/gt_blur3.mp4",
+    "spec": "data/first_frames_synthetic/gt_blur3.spec.json",
+    "sample_id": "gt_blur3",
+    "theta_deg": 45.0,
+    "variant": "gt",
+    "model": "synthetic",
+    "constructed": {
+      "R": 833.28,
+      "H": 208.31999999999996,
+      "H_over_R": 0.24999999999999997,
+      "theta_deg": 45.0,
+      "n_up": 30.0,
+      "n_down": 30.0,
+      "vx": 13.888,
+      "g": 0.46293333333333325
+    }
+  }
+}
