@@ -22,6 +22,17 @@ command -v uv >/dev/null || {
 uv venv --python 3.12 "$ENV_DIR"
 uv pip install --python "$ENV_DIR/bin/python" -r "$PROJ/envs/track-requirements.txt"
 
+# SAM3 is distributed as a source checkout plus an access-controlled checkpoint.
+# Keep it optional so the existing SAM2 + CoTracker setup remains reproducible; when
+# cache/sam3 (or SAM3_SRC) is present, install that checkout into the same worker env.
+SAM3_SRC="${SAM3_SRC:-$PROJ/cache/sam3}"
+if [[ -f "$SAM3_SRC/pyproject.toml" ]]; then
+  uv pip install --python "$ENV_DIR/bin/python" -e "$SAM3_SRC"
+  echo "SAM3 source installed from $SAM3_SRC"
+else
+  echo "SAM3 source not found at $SAM3_SRC (SAM3 backend will be unavailable)"
+fi
+
 "$ENV_DIR/bin/python" - <<'PY'
 import torch, transformers
 from transformers import Sam2VideoModel, Sam2VideoProcessor  # noqa: F401

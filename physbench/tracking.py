@@ -1,4 +1,4 @@
-"""Ball tracking. Four backends, two of them learned.
+"""Ball tracking. Five backends, three of them learned.
 
 Default pair is `sam2` + `cotracker`, which is what proposal.md 3.3 asks for
 directly ("SAM2/CoTracker disagreement" as the QC signal). Both are seeded with
@@ -11,6 +11,10 @@ there is no per-clip tuning anywhere on the default path:
   cotracker  a ring of points on the disc, tracked jointly; presence comes from the
              model's visibility head. A background grid rides along in the same call
              and yields camera translation as a by-product.
+  sam3       Meta SAM3 video propagation from a text-and-point prompt. The worker
+             converts its per-frame binary mask into a centroid, equivalent-disc
+             radius and presence score. It can be paired with CoTracker as
+             `backends: [sam3, cotracker]`.
 
 The classic pair is kept and still selectable:
 
@@ -78,7 +82,7 @@ from .first_frame import BallSeed
 # tracker inherits the same default.
 DEFAULT_BACKENDS: tuple[str, str] = ("sam2", "cotracker")
 CLASSIC_BACKENDS: tuple[str, str] = ("color", "bgsub")
-NEURAL_BACKENDS: frozenset[str] = frozenset({"sam2", "cotracker"})
+NEURAL_BACKENDS: frozenset[str] = frozenset({"sam2", "sam3", "cotracker"})
 
 
 @dataclass

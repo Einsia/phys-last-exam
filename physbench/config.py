@@ -13,6 +13,9 @@ from dataclasses import asdict, dataclass, field
 from pathlib import Path
 
 
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
+
+
 @dataclass
 class GateConfig:
     """Observability only. Nothing here may depend on whether the physics is right."""
@@ -52,21 +55,25 @@ class ViolationConfig:
 class TrackingConfig:
     """Which tracker pair runs, and how the camera shift is obtained.
 
-    The default pair is learned (SAM2 + CoTracker) because the gates have to survive
-    real video; `classic` reproduces the tighter synthetic noise floor and needs no
-    GPU. See physbench/tracking.py for the measured trade-off.
+    The default pair remains SAM2 + CoTracker for backwards-compatible runs. SAM3 +
+    CoTracker is also supported; point `sam3_src` at a checkout of Meta's SAM3 repo
+    and `sam3_checkpoint` at a local checkpoint, then select it in YAML. The classic
+    pair reproduces the tighter synthetic noise floor and needs no GPU.
     """
 
     backends: tuple[str, str] = ("sam2", "cotracker")
     device: str = "6"                      # CUDA_VISIBLE_DEVICES for the worker
     dtype: str = "bfloat16"
+    sam3_src: str = str(PROJECT_ROOT / "cache" / "sam3")
+    sam3_checkpoint: str = str(PROJECT_ROOT / "cache" / "sam3" / "sam3.pt")
+    sam3_prompt: str = "ball"
     # CoTracker's background grid gives translation directly. Off falls back to phase
     # correlation, which is what the classic pair uses anyway.
     camera_shift_from_tracker: bool = True
 
     @property
     def is_neural(self) -> bool:
-        return any(b in ("sam2", "cotracker") for b in self.backends)
+        return any(b in ("sam2", "sam3", "cotracker") for b in self.backends)
 
 
 @dataclass

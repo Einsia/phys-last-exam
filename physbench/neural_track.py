@@ -54,6 +54,9 @@ class TrackerBackendConfig:
     python: str = str(PROJ / "envs" / "track" / "bin" / "python")
     worker: str = str(PROJ / "scripts" / "track_worker.py")
     sam2_repo: str = "facebook/sam2.1-hiera-small"
+    sam3_src: str = str(CACHE / "sam3")
+    sam3_checkpoint: str = str(CACHE / "sam3" / "sam3.pt")
+    sam3_prompt: str = "ball"
     cotracker_ckpt: str = str(CACHE / "torch" / "hub" / "checkpoints" / "scaled_offline.pth")
     cotracker_src: str = str(CACHE / "cotracker")
     devices: str = "6"
@@ -104,6 +107,12 @@ def run_worker(frames: np.ndarray, seed: BallSeed, backends: tuple[str, ...],
         td = Path(td)
         fr = td / "frames.npy"
         np.save(fr, np.ascontiguousarray(frames))
+        sam3_src = Path(cfg.sam3_src).expanduser()
+        if not sam3_src.is_absolute():
+            sam3_src = PROJ / sam3_src
+        sam3_checkpoint = Path(cfg.sam3_checkpoint).expanduser()
+        if not sam3_checkpoint.is_absolute():
+            sam3_checkpoint = PROJ / sam3_checkpoint
         job = {
             "frames": str(fr),
             "seed": {"cx": float(seed.cx), "cy": float(seed.cy),
@@ -112,7 +121,12 @@ def run_worker(frames: np.ndarray, seed: BallSeed, backends: tuple[str, ...],
             "device": "cuda",
             "dtype": cfg.dtype,
             "bg_grid": bool(cfg.bg_grid),
-            "sam2_path": _sam2_snapshot(cfg.sam2_repo),
+            "sam2_path": (_sam2_snapshot(cfg.sam2_repo)
+                          if "sam2" in backends else None),
+            "sam3_src": str(sam3_src),
+            "sam3_checkpoint": str(sam3_checkpoint),
+            "sam3_prompt": cfg.sam3_prompt,
+            "sam3_frames": str(td / "sam3-frames"),
             "cotracker_ckpt": cfg.cotracker_ckpt,
             "cotracker_src": cfg.cotracker_src,
             "out": str(td / "track.npz"),

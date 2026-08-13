@@ -14,11 +14,13 @@ frame's spec:
   cotracker  CoTracker3 offline. Tracks a ring of points on the ball disc; the ball
              centre is their median. Also tracks a background grid, which yields
              camera translation as a by-product (see --bg-grid).
+  sam3       SAM3 video predictor. A text prompt plus the exact frame-0 point selects
+             the ball; each propagated mask becomes a centroid/radius/presence track.
 
 They fail differently -- CoTracker drifts under motion blur while keeping its point
-identity, SAM2 keeps sharp boundaries but can flip to a different object or drop the
-mask entirely -- so their disagreement is a real QC signal, which is what the
-proposal's "SAM2/CoTracker disagreement" gate asks for.
+identity, while a mask tracker can flip to a different object or drop the mask entirely
+-- so their disagreement is a real QC signal, which is what the proposal's
+"SAM2/CoTracker disagreement" gate asks for.
 
 Contract: read a job JSON on argv[1], write an npz to the path it names. Frames are
 passed as a .npy the parent already decoded, so both processes see identical pixels
@@ -136,6 +138,194 @@ def run_sam2(frames: np.ndarray, seed: dict, device: str, model_path: str,
 
     del model
     torch.cuda.empty_cache()
+    return {"xy": xy, "radius": rad, "score": sc}
+
+
+def _write_sam3_frames(frames: np.ndarray, out_dir: Path) -> str:
+    """Write the already-decoded clip in SAM3's JPEG-folder format.
+
+    SAM3's video predictor accepts either an MP4 or a directory containing numbered
+    JPEGs. The parent process deliberately hands us a numpy array so both trackers see
+    identical decoded pixels; writing the frames here keeps that contract while using
+    the predictor's supported input path.
+    """
+    from PIL import Image
+
+    out_dir.mkdir(parents=True, exist_ok=True)
+    for i, frame in enumerate(frames):
+        Image.fromarray(np.asarray(frame, dtype=np.uint8), mode="RGB").save(
+            out_dir / f"{i:05d}.jpg", quality=100, subsampling=0
+        )
+    return str(out_dir)
+
+
+def _as_numpy(value):
+    """Move a torch/numpy SAM3 output to a detached numpy array."""
+    if value is None:
+        return None
+    if hasattr(value, "detach"):
+        value = value.detach().cpu().numpy()
+    return np.asarray(value)
+
+
+def _sam3_mask_for_target(outputs: dict, target_id: int | None,
+                          previous: np.ndarray) -> tuple[np.ndarray | None, int | None,
+                                                          float]:
+    """Select the prompted object from one SAM3 frame output.
+
+    Text prompts can return more than one instance. The point prompt identifies the
+    ball on frame 0; after that, the persistent SAM3 object id is preferred. The
+    nearest-centroid fallback is only for older/alternate SAM3 output adapters that do
+    not return object ids.
+    """
+    masks = _as_numpy(outputs.get("out_binary_masks"))
+    if masks is None:
+        return None, target_id, float("nan")
+    masks = np.asarray(masks)
+    if masks.ndim == 2:
+        masks = masks[None, ...]
+    if masks.ndim == 4 and masks.shape[1] == 1:
+        masks = masks[:, 0]
+    if masks.ndim != 3 or masks.shape[0] == 0:
+        return None, target_id, float("nan")
+    masks = masks.astype(bool)
+
+    ids = _as_numpy(outputs.get("out_obj_ids"))
+    ids = np.asarray(ids).reshape(-1) if ids is not None else None
+    probs = _as_numpy(outputs.get("out_probs"))
+    probs = np.asarray(probs).reshape(-1) if probs is not None else None
+
+    candidate = np.flatnonzero(np.asarray([m.any() for m in masks]))
+    if len(candidate) == 0:
+        return None, target_id, float("nan")
+    if target_id is not None and ids is not None:
+        same = candidate[ids[candidate].astype(int) == int(target_id)]
+        if len(same):
+            candidate = same
+        else:
+            # Do not silently jump to another object after the prompted one vanishes.
+            return None, target_id, float("nan")
+
+    def centroid(i: int) -> np.ndarray:
+        yy, xx = np.nonzero(masks[i])
+        return np.array([float(xx.mean()), float(yy.mean())])
+
+    if len(candidate) == 1:
+        picked = int(candidate[0])
+    else:
+        ref = np.asarray(previous, dtype=float)
+        if not np.isfinite(ref).all():
+            picked = int(candidate[np.argmax([masks[i].sum() for i in candidate])])
+        else:
+            picked = int(min(candidate, key=lambda i: np.linalg.norm(centroid(int(i)) - ref)))
+
+    picked_id = int(ids[picked]) if ids is not None and picked < len(ids) else target_id
+    score = float(probs[picked]) if probs is not None and picked < len(probs) else 1.0
+    return masks[picked], picked_id, score
+
+
+def run_sam3(frames: np.ndarray, seed: dict, device: str, source_dir: str,
+             checkpoint_path: str, prompt: str = "ball",
+             frame_dir: str | None = None) -> dict:
+    """SAM3 video propagation from a text prompt plus an exact positive click.
+
+    The SAM3 predictor consumes a JPEG folder and yields per-frame masklets. We use the
+    object id selected on frame 0 to prevent a text prompt such as ``ball`` from
+    switching identities if another instance appears later. The returned interface is
+    deliberately identical to SAM2/CoTracker: ``xy``, equivalent-disc ``radius`` and
+    ``score`` arrays with NaN marking absent frames.
+    """
+    if source_dir:
+        source = Path(source_dir)
+        if source.is_dir():
+            sys.path.insert(0, str(source))
+    if not checkpoint_path or not Path(checkpoint_path).is_file():
+        raise FileNotFoundError(
+            f"SAM3 checkpoint not found: {checkpoint_path!r}. "
+            "Download an approved checkpoint and set tracking.sam3_checkpoint."
+        )
+
+    import torch
+    from sam3.model_builder import build_sam3_video_predictor
+
+    n, h, w = frames.shape[:3]
+    frame_path = Path(frame_dir or "sam3-frames")
+    resource_path = _write_sam3_frames(frames, frame_path)
+    xy = np.full((n, 2), np.nan)
+    rad = np.full(n, np.nan)
+    sc = np.full(n, np.nan)
+    predictor = None
+    session_id = None
+    target_id = None
+    previous = np.array([float(seed["cx"]), float(seed["cy"])])
+
+    try:
+        predictor = build_sam3_video_predictor(
+            checkpoint_path=checkpoint_path,
+        )
+        response = predictor.handle_request({
+            "type": "start_session",
+            "resource_path": resource_path,
+            "offload_video_to_cpu": False,
+            "offload_state_to_cpu": False,
+        })
+        session_id = response["session_id"]
+        # SAM3 expects relative point coordinates by default. Combining a point with
+        # the text prompt makes the target deterministic while retaining open-vocab
+        # prompting when the scene contains several balls.
+        prompt_response = predictor.handle_request({
+            "type": "add_prompt",
+            "session_id": session_id,
+            "frame_index": 0,
+            "obj_id": 1,
+            "text": prompt or None,
+            "points": [[float(seed["cx"]) / w, float(seed["cy"]) / h]],
+            "point_labels": [1],
+            "rel_coordinates": True,
+            "output_prob_thresh": 0.5,
+        })
+        pending = {0: prompt_response.get("outputs", {})}
+        for item in predictor.handle_stream_request({
+            "type": "propagate_in_video",
+            "session_id": session_id,
+            "propagation_direction": "forward",
+            "start_frame_index": 0,
+            "max_frame_num_to_track": n,
+            "output_prob_thresh": 0.5,
+        }):
+            pending[int(item["frame_index"])] = item.get("outputs", {})
+
+        for i in sorted(pending):
+            if i < 0 or i >= n:
+                continue
+            mask, target_id, score = _sam3_mask_for_target(
+                pending[i], target_id, previous
+            )
+            if mask is None:
+                continue
+            yy, xx = np.nonzero(mask)
+            if len(xx) == 0:
+                continue
+            xy[i] = (float(xx.mean()), float(yy.mean()))
+            rad[i] = float(np.sqrt(len(xx) / np.pi))
+            sc[i] = score
+            previous = xy[i]
+    finally:
+        if predictor is not None and session_id is not None:
+            try:
+                predictor.handle_request({
+                    "type": "close_session", "session_id": session_id
+                })
+            except Exception:
+                pass
+        if predictor is not None:
+            try:
+                predictor.shutdown()
+            except Exception:
+                pass
+        if torch.cuda.is_available():
+            torch.cuda.empty_cache()
+
     return {"xy": xy, "radius": rad, "score": sc}
 
 
@@ -266,6 +456,16 @@ def main() -> int:
         if backend == "sam2":
             r = run_sam2(frames, seed, device, job["sam2_path"],
                          dtype=job.get("dtype", "bfloat16"))
+        elif backend == "sam3":
+            r = run_sam3(
+                frames,
+                seed,
+                device,
+                job.get("sam3_src", ""),
+                job.get("sam3_checkpoint", ""),
+                prompt=job.get("sam3_prompt", "ball"),
+                frame_dir=job.get("sam3_frames"),
+            )
         elif backend == "cotracker":
             r = run_cotracker(frames, seed, device,
                               job["cotracker_ckpt"], job["cotracker_src"],

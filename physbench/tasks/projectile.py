@@ -159,7 +159,10 @@ def evaluate_projectile(clip: Clip, seed: BallSeed, theta_deg: float,
     tcfg = cfg.tracking
     ts = run_tracks(clip.frames, seed, backends=tuple(tcfg.backends),
                     backend_cfg=TrackerBackendConfig(devices=tcfg.device,
-                                                     dtype=tcfg.dtype))
+                                                     dtype=tcfg.dtype,
+                                                     sam3_src=tcfg.sam3_src,
+                                                     sam3_checkpoint=tcfg.sam3_checkpoint,
+                                                     sam3_prompt=tcfg.sam3_prompt))
     ta, tb = ts.pair
     primary = ts.primary
     # CoTracker's background grid measures translation directly from point

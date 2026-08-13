@@ -1,0 +1,15 @@
+# P2 projectile evaluation with SAM3 video masks + CoTracker point tracks.
+#
+# Install/check out Meta's SAM3 source under cache/sam3 and put the approved
+# checkpoint at cache/sam3/sam3.pt, or override these two paths below. All gate,
+# tolerance and violation defaults come from physbench.config.TaskConfig.
+task: P2_projectile
+
+tracking:
+  backends: [sam3, cotracker]
+  sam3_src: cache/sam3
+  sam3_checkpoint: cache/sam3/sam3.pt
+  sam3_prompt: ball
+  device: "6"
+  dtype: bfloat16
+  camera_shift_from_tracker: true

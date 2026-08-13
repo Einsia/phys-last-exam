@@ -1,1 +1,34 @@
+# Conda environments — rebuilt by scripts/create_env.sh and create_track_env.sh
 envs/
+
+# Python bytecode
+__pycache__/
+*.py[cod]
+*.egg-info/
+.ipynb_checkpoints/
+
+# Tracker weights, HF/torch caches, vendored CoTracker source, frame handoff.
+# Repopulated by scripts/fetch_tracker_weights.sh. cache/cotracker.rev pins the
+# revision and stays tracked, so the ignore is scoped to cache/* not cache/.
+cache/*
+!cache/cotracker.rev
+
+# Run logs
+logs/
+
+# Local debug scratch
+scratch/
+
+# Synthetic fixtures — regenerate with scripts/make_synth_dataset.py.
+# The .spec.json, manifest.json and *_summary.json alongside them stay tracked,
+# as do data/videos/minimax-h3/*.mp4 (model output, not reproducible locally).
+data/synthetic/*.mp4
+data/videos/synthetic/*.mp4
+
+# Stray screenshot in a typo'd directory; safe to delete
+Imges/
+
+# Editor and OS
+.vscode/
+.idea/
+.DS_Store

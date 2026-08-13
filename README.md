@@ -141,6 +141,7 @@ than a second opinion from the same source. The default pair is learned, which i
 | backend | seed | position from | presence from |
 |---|---|---|---|
 | **sam2** | one positive click at the ball centre, frame 0 | mask centroid, probability-weighted | the model's object-score logit |
+| **sam3** | text `ball` plus one positive point at frame 0 | binary-mask centroid, equivalent-disc radius | masklet/object presence |
 | **cotracker** | ring of 9 points on the disc, frame 0 | median of `point − frame-0 offset` | the model's visibility head |
 | color | seeded RGB | Lab-distance blob centroid | escalating distance thresholds |
 | bgsub | none | frame-difference blob centroid | MAD-scaled thresholds |
@@ -150,6 +151,16 @@ centre and radius the spec already records. The classic pair's five escalating L
 thresholds and MAD multipliers assume a flat scene with one high-chroma ball, and a VDM
 that recolours the ball or drifts the background walks out of that regime with no seed
 we can hand it to get back in.
+
+`SAM3 + CoTracker` is available as an opt-in pair with
+`--config configs/p2_projectile_sam3.yaml`. It uses Meta's video predictor on a temporary
+numbered-JPEG view of the already-decoded frames, combines a `ball` text prompt with the
+exact frame-0 point from the spec, and converts the selected masklet to the same
+`xy/radius/score` interface as SAM2. Install a local SAM3 checkout at `cache/sam3` and
+place its approved checkpoint at `cache/sam3/sam3.pt` (or override the two paths in YAML)
+before running it. The SAM3 source and checkpoint are deliberately not downloaded by the
+benchmark because checkpoint access is gated and the worker runs offline for
+reproducibility.
 
 CoTracker's call also carries a background grid with the ball's neighbourhood excluded,
 so camera translation comes from point correspondences instead of phase correlation —
