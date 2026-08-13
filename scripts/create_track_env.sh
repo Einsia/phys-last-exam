@@ -19,7 +19,7 @@ command -v uv >/dev/null || {
   exit 1
 }
 
-uv venv --python 3.12 "$ENV_DIR"
+uv venv --python 3.12 --allow-existing "$ENV_DIR"
 uv pip install --python "$ENV_DIR/bin/python" -r "$PROJ/envs/track-requirements.txt"
 
 # SAM3 is distributed as a source checkout plus an access-controlled checkpoint.

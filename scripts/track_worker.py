@@ -14,8 +14,9 @@ frame's spec:
   cotracker  CoTracker3 offline. Tracks a ring of points on the ball disc; the ball
              centre is their median. Also tracks a background grid, which yields
              camera translation as a by-product (see --bg-grid).
-  sam3       SAM3 video predictor. A text prompt plus the exact frame-0 point selects
-             the ball; each propagated mask becomes a centroid/radius/presence track.
+  sam3       SAM3 video predictor. A text prompt selects ball instances; the exact
+             frame-0 point chooses the nearest returned instance, whose propagated
+             mask becomes a centroid/radius/presence track.
 
 They fail differently -- CoTracker drifts under motion blur while keeping its point
 identity, while a mask tracker can flip to a different object or drop the mask entirely
@@ -227,13 +228,14 @@ def _sam3_mask_for_target(outputs: dict, target_id: int | None,
 def run_sam3(frames: np.ndarray, seed: dict, device: str, source_dir: str,
              checkpoint_path: str, prompt: str = "ball",
              frame_dir: str | None = None) -> dict:
-    """SAM3 video propagation from a text prompt plus an exact positive click.
+    """SAM3 video propagation from a text prompt or an exact positive click.
 
-    The SAM3 predictor consumes a JPEG folder and yields per-frame masklets. We use the
-    object id selected on frame 0 to prevent a text prompt such as ``ball`` from
-    switching identities if another instance appears later. The returned interface is
-    deliberately identical to SAM2/CoTracker: ``xy``, equivalent-disc ``radius`` and
-    ``score`` arrays with NaN marking absent frames.
+    The SAM3 predictor consumes a JPEG folder and yields per-frame masklets. Its current
+    API requires text and point prompts to be sent separately, so the text prompt
+    selects candidate ball instances and the known frame-0 seed chooses the nearest
+    one. Its persistent object id then prevents identity switches during propagation.
+    The returned interface is deliberately identical to SAM2/CoTracker: ``xy``,
+    equivalent-disc ``radius`` and ``score`` arrays with NaN marking absent frames.
     """
     if source_dir:
         source = Path(source_dir)
@@ -276,20 +278,26 @@ def run_sam3(frames: np.ndarray, seed: dict, device: str, source_dir: str,
             "offload_state_to_cpu": False,
         })
         session_id = response["session_id"]
-        # SAM3 expects relative point coordinates by default. Combining a point with
-        # the text prompt makes the target deterministic while retaining open-vocab
-        # prompting when the scene contains several balls.
-        prompt_response = predictor.handle_request({
+        # SAM3 does not allow text and point prompts in the same request. Use the
+        # configured open-vocabulary text prompt by default; _sam3_mask_for_target()
+        # uses the frame-0 seed as the deterministic nearest-instance selector. If a
+        # caller explicitly clears the text prompt, fall back to a positive point.
+        prompt_request = {
             "type": "add_prompt",
             "session_id": session_id,
             "frame_index": 0,
             "obj_id": 1,
-            "text": prompt or None,
-            "points": [[float(seed["cx"]) / w, float(seed["cy"]) / h]],
-            "point_labels": [1],
-            "rel_coordinates": True,
             "output_prob_thresh": 0.5,
-        })
+        }
+        if prompt:
+            prompt_request["text"] = prompt
+        else:
+            prompt_request.update({
+                "points": [[float(seed["cx"]) / w, float(seed["cy"]) / h]],
+                "point_labels": [1],
+                "rel_coordinates": True,
+            })
+        prompt_response = predictor.handle_request(prompt_request)
         pending = {0: prompt_response.get("outputs", {})}
         for item in predictor.handle_stream_request({
             "type": "propagate_in_video",

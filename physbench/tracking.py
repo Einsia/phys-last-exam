@@ -11,9 +11,10 @@ there is no per-clip tuning anywhere on the default path:
   cotracker  a ring of points on the disc, tracked jointly; presence comes from the
              model's visibility head. A background grid rides along in the same call
              and yields camera translation as a by-product.
-  sam3       Meta SAM3 video propagation from a text-and-point prompt. The worker
-             converts its per-frame binary mask into a centroid, equivalent-disc
-             radius and presence score. It can be paired with CoTracker as
+  sam3       Meta SAM3 video propagation from a text prompt. The worker selects the
+             instance nearest the frame-0 seed, then converts its per-frame binary
+             mask into a centroid, equivalent-disc radius and presence score. It can
+             be paired with CoTracker as
              `backends: [sam3, cotracker]`.
 
 The classic pair is kept and still selectable:

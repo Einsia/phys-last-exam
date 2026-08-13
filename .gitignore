@@ -4,6 +4,7 @@ envs/
 # Python bytecode
 __pycache__/
 *.py[cod]
+*.pth
 *.egg-info/
 .ipynb_checkpoints/
 
@@ -24,6 +25,7 @@ scratch/
 # as do data/videos/minimax-h3/*.mp4 (model output, not reproducible locally).
 data/synthetic/*.mp4
 data/videos/synthetic/*.mp4
+*.mp4
 
 # Stray screenshot in a typo'd directory; safe to delete
 Imges/
