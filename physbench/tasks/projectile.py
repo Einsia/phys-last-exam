@@ -162,7 +162,8 @@ def evaluate_projectile(clip: Clip, seed: BallSeed, theta_deg: float,
                                                      dtype=tcfg.dtype,
                                                      sam3_src=tcfg.sam3_src,
                                                      sam3_checkpoint=tcfg.sam3_checkpoint,
-                                                     sam3_prompt=tcfg.sam3_prompt))
+                                                     sam3_prompt=tcfg.sam3_prompt,
+                                                     sam3_detection_thresh=tcfg.sam3_detection_thresh))
     ta, tb = ts.pair
     primary = ts.primary
     # CoTracker's background grid measures translation directly from point

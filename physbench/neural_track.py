@@ -57,6 +57,7 @@ class TrackerBackendConfig:
     sam3_src: str = str(CACHE / "sam3")
     sam3_checkpoint: str = str(CACHE / "sam3" / "sam3.pt")
     sam3_prompt: str = "ball"
+    sam3_detection_thresh: float = 0.05
     cotracker_ckpt: str = str(CACHE / "torch" / "hub" / "checkpoints" / "scaled_offline.pth")
     cotracker_src: str = str(CACHE / "cotracker")
     devices: str = "6"
@@ -126,6 +127,7 @@ def run_worker(frames: np.ndarray, seed: BallSeed, backends: tuple[str, ...],
             "sam3_src": str(sam3_src),
             "sam3_checkpoint": str(sam3_checkpoint),
             "sam3_prompt": cfg.sam3_prompt,
+            "sam3_detection_thresh": float(cfg.sam3_detection_thresh),
             "sam3_frames": str(td / "sam3-frames"),
             "cotracker_ckpt": cfg.cotracker_ckpt,
             "cotracker_src": cfg.cotracker_src,

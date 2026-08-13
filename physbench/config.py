@@ -67,6 +67,10 @@ class TrackingConfig:
     sam3_src: str = str(PROJECT_ROOT / "cache" / "sam3")
     sam3_checkpoint: str = str(PROJECT_ROOT / "cache" / "sam3" / "sam3.pt")
     sam3_prompt: str = "ball"
+    # The generated ball is small in a 1344x768 frame; SAM3's stock 0.5 detector
+    # threshold suppresses it. Keep the lower score as a presence/QC signal rather
+    # than pretending the open-vocabulary detector is a calibrated classifier.
+    sam3_detection_thresh: float = 0.05
     # CoTracker's background grid gives translation directly. Off falls back to phase
     # correlation, which is what the classic pair uses anyway.
     camera_shift_from_tracker: bool = True

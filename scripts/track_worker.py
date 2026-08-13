@@ -5,7 +5,7 @@ Same argument as physbench/vdm.py: torch lives in its own env and is called, not
 imported, so the measurement env (numpy/opencv, no torch) and the tracker env never
 have to agree on a dependency set.
 
-Two backends, both seeded with nothing but the ball centre and radius from the first
+Three neural backends, all seeded with nothing but the ball centre and radius from the first
 frame's spec:
 
   sam2       SAM2.1 video propagation from a single positive click. Gives a mask per
@@ -227,6 +227,7 @@ def _sam3_mask_for_target(outputs: dict, target_id: int | None,
 
 def run_sam3(frames: np.ndarray, seed: dict, device: str, source_dir: str,
              checkpoint_path: str, prompt: str = "ball",
+             detection_thresh: float = 0.05,
              frame_dir: str | None = None) -> dict:
     """SAM3 video propagation from a text prompt or an exact positive click.
 
@@ -257,6 +258,7 @@ def run_sam3(frames: np.ndarray, seed: dict, device: str, source_dir: str,
         ) from exc
 
     n, h, w = frames.shape[:3]
+    detection_thresh = float(np.clip(detection_thresh, 0.0, 1.0))
     frame_path = Path(frame_dir or "sam3-frames")
     resource_path = _write_sam3_frames(frames, frame_path)
     xy = np.full((n, 2), np.nan)
@@ -271,6 +273,12 @@ def run_sam3(frames: np.ndarray, seed: dict, device: str, source_dir: str,
         predictor = build_sam3_video_predictor(
             checkpoint_path=checkpoint_path,
         )
+        # The official default (0.5) is tuned for generic objects and suppresses this
+        # benchmark's small ball. Keep the threshold explicit and shared by detector
+        # post-processing and the request-level output filter.
+        if hasattr(predictor, "model") and hasattr(predictor.model,
+                                                    "score_threshold_detection"):
+            predictor.model.score_threshold_detection = detection_thresh
         response = predictor.handle_request({
             "type": "start_session",
             "resource_path": resource_path,
@@ -287,7 +295,7 @@ def run_sam3(frames: np.ndarray, seed: dict, device: str, source_dir: str,
             "session_id": session_id,
             "frame_index": 0,
             "obj_id": 1,
-            "output_prob_thresh": 0.5,
+            "output_prob_thresh": detection_thresh,
         }
         if prompt:
             prompt_request["text"] = prompt
@@ -305,7 +313,7 @@ def run_sam3(frames: np.ndarray, seed: dict, device: str, source_dir: str,
             "propagation_direction": "forward",
             "start_frame_index": 0,
             "max_frame_num_to_track": n,
-            "output_prob_thresh": 0.5,
+            "output_prob_thresh": detection_thresh,
         }):
             pending[int(item["frame_index"])] = item.get("outputs", {})
 
@@ -478,6 +486,7 @@ def main() -> int:
                 job.get("sam3_src", ""),
                 job.get("sam3_checkpoint", ""),
                 prompt=job.get("sam3_prompt", "ball"),
+                detection_thresh=float(job.get("sam3_detection_thresh", 0.05)),
                 frame_dir=job.get("sam3_frames"),
             )
         elif backend == "cotracker":

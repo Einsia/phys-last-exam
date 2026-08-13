@@ -10,6 +10,7 @@ tracking:
   sam3_src: cache/sam3
   sam3_checkpoint: cache/sam3/sam3.pt
   sam3_prompt: ball
+  sam3_detection_thresh: 0.05
   device: "6"
   dtype: bfloat16
   camera_shift_from_tracker: true

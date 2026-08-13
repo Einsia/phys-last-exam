@@ -8,11 +8,9 @@ __pycache__/
 *.egg-info/
 .ipynb_checkpoints/
 
-# Tracker weights, HF/torch caches, vendored CoTracker source, frame handoff.
-# Repopulated by scripts/fetch_tracker_weights.sh. cache/cotracker.rev pins the
-# revision and stays tracked, so the ignore is scoped to cache/* not cache/.
-cache/*
-!cache/cotracker.rev
+# Tracker weights, HF/torch caches, vendored source, and frame handoff.
+# Repopulated by scripts/fetch_tracker_weights.sh / create_track_env.sh.
+cache/
 
 # Run logs
 logs/
@@ -26,6 +24,11 @@ scratch/
 data/synthetic/*.mp4
 data/videos/synthetic/*.mp4
 *.mp4
+*.pt
+*.safetensors
+*.ckpt
+*.onnx
+*.bin
 
 # Stray screenshot in a typo'd directory; safe to delete
 Imges/

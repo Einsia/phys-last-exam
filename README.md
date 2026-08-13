@@ -159,9 +159,11 @@ the returned instance nearest the exact frame-0 point from the spec, then conver
 selected masklet to the same `xy/radius/score` interface as SAM2. Install a local SAM3
 checkout at `cache/sam3` and
 place its approved checkpoint at `cache/sam3/sam3.pt` (or override the two paths in YAML)
-before running it. The SAM3 source and checkpoint are deliberately not downloaded by the
-benchmark because checkpoint access is gated and the worker runs offline for
-reproducibility.
+before running it. The opt-in config sets `sam3_detection_thresh: 0.05` because the
+small rendered ball scores below SAM3's generic-object default of 0.5; the score remains
+available to the normal presence/QC gates. The SAM3 source and checkpoint are deliberately
+not downloaded by the benchmark because checkpoint access is gated and the worker runs
+offline for reproducibility.
 
 CoTracker's call also carries a background grid with the ball's neighbourhood excluded,
 so camera translation comes from point correspondences instead of phase correlation —
