@@ -1,0 +1,71 @@
+{
+  "sample_id": "P2_theta30_plain_seed43",
+  "task": "P2_projectile",
+  "model": "minimax-h3",
+  "measurable": true,
+  "gate_reasons": [],
+  "residuals": [
+    {
+      "name": "M1_HR_nominal",
+      "measured": 0.4654815775601238,
+      "theory": 0.14433756729740643,
+      "residual": 1.1709177468099286,
+      "tol": 0.15,
+      "passed": false,
+      "primary": true,
+      "in_pe": true,
+      "kind": "log_ratio",
+      "note": "H/R vs tan(theta_prompt)/4"
+    }
+  ],
+  "violations": [],
+  "qc": {
+    "n_frames": 124,
+    "width": 1344,
+    "height": 768,
+    "backends": [
+      "sam3",
+      "cotracker"
+    ],
+    "coverage_sam3": 1.0,
+    "coverage_cotracker": 1.0,
+    "primary_backend": "sam3",
+    "tracker_disagreement_radii": 0.07566179303634213,
+    "camera_drift_norm": 0.0007797603939238935,
+    "camera_shift_source": "cotracker_bg_grid",
+    "max_detection_gap": 0,
+    "container_fps": 24.0,
+    "tracker_seconds": 59.85645580291748,
+    "radius_cv": 0.011976039938606565
+  },
+  "measured": {
+    "H_px": 513.8465029600343,
+    "R_px": 1103.9029850620961,
+    "H_over_R": 0.4654815775601238,
+    "n_up": 48.48857660927145,
+    "n_down": 47.53411366231652,
+    "n_up_int": 48,
+    "n_down_int": 47,
+    "t_launch": 7.955494556329802,
+    "t_apex": 56.44407116560125,
+    "t_land": 103.97818482791777,
+    "x_launch": 135.13834230160936,
+    "x_apex": 790.1153675112162,
+    "x_land": 1239.0413273637055,
+    "y_ref": 642.0324124730714,
+    "y_apex": 128.18590951303713,
+    "theta_nominal_deg": 30.0,
+    "flight_frames": 95,
+    "inner_coverage": 1.0,
+    "used_rest_level": true,
+    "land_extrapolated": true,
+    "theta_from_HR_deg": 61.76072471460285,
+    "fit_vx_px_per_frame": 11.820721014630749,
+    "fit_ay_px_per_frame2": 0.45046593662752865,
+    "fit_vy0_px_per_frame": 21.69588765443834,
+    "fit_rms_x_norm": 0.025469489890194465,
+    "fit_rms_y_norm": 0.01085170690310045
+  },
+  "scene_residual": 1.1709177468099286,
+  "passed_all": false
+}

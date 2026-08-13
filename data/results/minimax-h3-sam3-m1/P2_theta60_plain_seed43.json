@@ -1,0 +1,71 @@
+{
+  "sample_id": "P2_theta60_plain_seed43",
+  "task": "P2_projectile",
+  "model": "minimax-h3",
+  "measurable": true,
+  "gate_reasons": [],
+  "residuals": [
+    {
+      "name": "M1_HR_nominal",
+      "measured": 0.44661872355126864,
+      "theory": 0.4330127018922192,
+      "residual": 0.030938200986716752,
+      "tol": 0.15,
+      "passed": true,
+      "primary": true,
+      "in_pe": true,
+      "kind": "log_ratio",
+      "note": "H/R vs tan(theta_prompt)/4"
+    }
+  ],
+  "violations": [],
+  "qc": {
+    "n_frames": 124,
+    "width": 1344,
+    "height": 768,
+    "backends": [
+      "sam3",
+      "cotracker"
+    ],
+    "coverage_sam3": 1.0,
+    "coverage_cotracker": 1.0,
+    "primary_backend": "sam3",
+    "tracker_disagreement_radii": 0.07483621852288165,
+    "camera_drift_norm": 0.0010087361293791657,
+    "camera_shift_source": "cotracker_bg_grid",
+    "max_detection_gap": 0,
+    "container_fps": 24.0,
+    "tracker_seconds": 55.771833419799805,
+    "radius_cv": 0.014713981777017979
+  },
+  "measured": {
+    "H_px": 505.29498563242976,
+    "R_px": 1131.3788674478299,
+    "H_over_R": 0.44661872355126864,
+    "n_up": 54.73500950054591,
+    "n_down": 51.212718326723326,
+    "n_up_int": 55,
+    "n_down_int": 51,
+    "t_launch": 4.063463196595167,
+    "t_apex": 58.79847269714107,
+    "t_land": 110.0111910238644,
+    "x_launch": 133.64723481675793,
+    "x_apex": 838.7484196629376,
+    "x_land": 1265.0261022645877,
+    "y_ref": 642.145797094933,
+    "y_apex": 136.8508114625032,
+    "theta_nominal_deg": 60.0,
+    "flight_frames": 106,
+    "inner_coverage": 1.0,
+    "used_rest_level": true,
+    "land_extrapolated": true,
+    "theta_from_HR_deg": 60.761574204011666,
+    "fit_vx_px_per_frame": 10.706318429811065,
+    "fit_ay_px_per_frame2": 0.3638680627900965,
+    "fit_vy0_px_per_frame": 19.53159763737772,
+    "fit_rms_x_norm": 0.03163664666970765,
+    "fit_rms_y_norm": 0.01424017200541439
+  },
+  "scene_residual": 0.030938200986716752,
+  "passed_all": true
+}

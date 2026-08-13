@@ -1,0 +1,67 @@
+{
+  "sample_id": "P2_theta30_plain_seed42",
+  "task": "P2_projectile",
+  "model": "minimax-h3-sam3-m1-seed42",
+  "measurable": true,
+  "gate_reasons": [],
+  "residuals": [
+    {
+      "name": "M1_HR_nominal",
+      "measured": 0.43905527882097334,
+      "theory": 0.14433756729740643,
+      "residual": 1.112470551485282,
+      "tol": 0.15,
+      "passed": false,
+      "primary": true,
+      "in_pe": true,
+      "kind": "log_ratio",
+      "note": "H/R vs tan(theta_prompt)/4"
+    }
+  ],
+  "violations": [
+    {
+      "name": "hr_gross",
+      "detail": "H/R off by 3.04x"
+    }
+  ],
+  "qc": {
+    "n_frames": 124,
+    "width": 1344,
+    "height": 768,
+    "backends": [
+      "sam3",
+      "cotracker"
+    ],
+    "coverage_sam3": 1.0,
+    "coverage_cotracker": 1.0,
+    "primary_backend": "sam3",
+    "tracker_disagreement_radii": 0.07849480550114953,
+    "camera_drift_norm": 0.0008754648137009196,
+    "camera_shift_source": "cotracker_bg_grid",
+    "max_detection_gap": 0,
+    "container_fps": 24.0,
+    "tracker_seconds": 64.49796485900879,
+    "radius_cv": 0.01183281742983426
+  },
+  "measured": {
+    "H_px": 473.9833671936308,
+    "R_px": 1079.5528263922765,
+    "H_over_R": 0.43905527882097334,
+    "t_launch": 8.03400054703856,
+    "t_apex": 55.83637691015404,
+    "t_land": 106.09987713700998,
+    "x_launch": 132.6239029543916,
+    "x_apex": 785.5857031732661,
+    "x_land": 1212.1767293466683,
+    "y_ref": 642.1941836656717,
+    "y_apex": 168.21081647204096,
+    "theta_nominal_deg": 30.0,
+    "flight_frames": 98,
+    "inner_coverage": 1.0,
+    "used_rest_level": true,
+    "land_extrapolated": true,
+    "theta_from_HR_deg": 60.34262410745885
+  },
+  "scene_residual": 1.112470551485282,
+  "passed_all": false
+}

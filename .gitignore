@@ -30,6 +30,11 @@ data/videos/synthetic/*.mp4
 *.onnx
 *.bin
 
+# Generated visualizations and local run artifacts; JSON summaries/specs stay tracked.
+data/first_frames/*.png
+data/first_frames_synthetic/*.png
+data/results/**/*.png
+
 # Stray screenshot in a typo'd directory; safe to delete
 Imges/
 

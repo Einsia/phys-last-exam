@@ -28,7 +28,22 @@ from physbench.viz import save_overlay  # noqa: E402
 
 
 def collect(videos: Path, specs: Path) -> list[dict]:
-    """Pair every mp4 with its spec, from the manifest when there is one."""
+    """Pair one mp4 or every mp4 in a directory with its first-frame spec."""
+    if videos.is_file():
+        if videos.suffix.lower() != ".mp4":
+            return []
+        stem = videos.stem
+        cand = [p for p in specs.glob("*.spec.json")
+                if stem.startswith(SampleSpec.load(p).sample_id)]
+        if not cand:
+            print(f"  skip {videos.name}: no matching spec in {specs}")
+            return []
+        spec = SampleSpec.load(cand[0])
+        return [{"key": stem, "video": str(videos), "spec": str(cand[0]),
+                 "sample_id": spec.sample_id,
+                 "theta_deg": spec.params.get("theta_deg"),
+                 "variant": spec.params.get("variant")}]
+
     manifest = videos / "manifest.json"
     if manifest.exists():
         entries = []
@@ -65,7 +80,7 @@ def main() -> int:
 
     videos = Path(args.videos)
     cfg = TaskConfig.load(args.config)
-    model = args.model or videos.name
+    model = args.model or (videos.stem if videos.is_file() else videos.name)
     outdir = Path(args.outdir or f"data/results/{model}")
     outdir.mkdir(parents=True, exist_ok=True)
 

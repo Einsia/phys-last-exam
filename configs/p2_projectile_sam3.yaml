@@ -5,6 +5,10 @@
 # tolerance and violation defaults come from physbench.config.TaskConfig.
 task: P2_projectile
 
+# This benchmark run scores only the stated-angle/shape invariant. Coverage,
+# tracker disagreement, camera drift and a complete flight window remain gates.
+physics_metrics: [M1_HR_nominal]
+
 tracking:
   backends: [sam3, cotracker]
   sam3_src: cache/sam3

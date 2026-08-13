@@ -1,0 +1,71 @@
+{
+  "sample_id": "P2_theta45_plain_seed42",
+  "task": "P2_projectile",
+  "model": "minimax-h3",
+  "measurable": true,
+  "gate_reasons": [],
+  "residuals": [
+    {
+      "name": "M1_HR_nominal",
+      "measured": 0.5086536739571141,
+      "theory": 0.24999999999999997,
+      "residual": 0.7103064623084966,
+      "tol": 0.15,
+      "passed": false,
+      "primary": true,
+      "in_pe": true,
+      "kind": "log_ratio",
+      "note": "H/R vs tan(theta_prompt)/4"
+    }
+  ],
+  "violations": [],
+  "qc": {
+    "n_frames": 124,
+    "width": 1344,
+    "height": 768,
+    "backends": [
+      "sam3",
+      "cotracker"
+    ],
+    "coverage_sam3": 1.0,
+    "coverage_cotracker": 1.0,
+    "primary_backend": "sam3",
+    "tracker_disagreement_radii": 0.07489977827753005,
+    "camera_drift_norm": 0.0009740115267181974,
+    "camera_shift_source": "cotracker_bg_grid",
+    "max_detection_gap": 0,
+    "container_fps": 24.0,
+    "tracker_seconds": 67.73645257949829,
+    "radius_cv": 0.015989219130317613
+  },
+  "measured": {
+    "H_px": 530.4002296217627,
+    "R_px": 1042.7531673868968,
+    "H_over_R": 0.5086536739571141,
+    "n_up": 41.95397324071447,
+    "n_down": 40.4109985112983,
+    "n_up_int": 42,
+    "n_down_int": 40,
+    "t_launch": 9.992023529847549,
+    "t_apex": 51.94599677056202,
+    "t_land": 92.35699528186032,
+    "x_launch": 133.08411503010262,
+    "x_apex": 715.2880460142426,
+    "x_land": 1175.8372824169994,
+    "y_ref": 642.0460170213726,
+    "y_apex": 111.64578739960984,
+    "theta_nominal_deg": 45.0,
+    "flight_frames": 82,
+    "inner_coverage": 1.0,
+    "used_rest_level": true,
+    "land_extrapolated": true,
+    "theta_from_HR_deg": 63.82618090239993,
+    "fit_vx_px_per_frame": 13.018716815090007,
+    "fit_ay_px_per_frame2": 0.6405393995365168,
+    "fit_vy0_px_per_frame": 26.56981769147057,
+    "fit_rms_x_norm": 0.01426654944878304,
+    "fit_rms_y_norm": 0.014930401252644304
+  },
+  "scene_residual": 0.7103064623084966,
+  "passed_all": false
+}

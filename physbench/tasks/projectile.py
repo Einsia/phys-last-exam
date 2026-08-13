@@ -153,6 +153,7 @@ def evaluate_projectile(clip: Clip, seed: BallSeed, theta_deg: float,
     cfg = cfg or TaskConfig()
     res = SampleResult(sample_id=sample_id, task=cfg.task, model=model, measurable=False)
     dbg: dict = {}
+    m1_only = cfg.physics_metrics == ("M1_HR_nominal",)
 
     from ..neural_track import TrackerBackendConfig
 
@@ -219,6 +220,12 @@ def evaluate_projectile(clip: Clip, seed: BallSeed, theta_deg: float,
         # means the ball was tracked cleanly, stayed in frame, and still failed to rise
         # and come back down: that is measurable, and wrong.
         res.qc["flight_extract_reason"] = reason
+        if m1_only:
+            # M1 has no defined H/R without a contained rise-apex-fall window. In the
+            # M1-only benchmark this is an observability failure, not another physics
+            # metric or a hard violation.
+            res.gate_reasons = [f"flight_not_contained({reason})"]
+            return res, dbg
         our_limit = reason == "too_few_detections" or reason.startswith("flight_too_short")
         # Still airborne at the last sighting: the clip ended before the ball landed, so
         # the flight was never contained in the view. Covers both ways a truncated clip
@@ -273,7 +280,40 @@ def evaluate_projectile(clip: Clip, seed: BallSeed, theta_deg: float,
 
 def _measure(res: SampleResult, dbg: dict, xy: np.ndarray, flight, seed: BallSeed,
              theta_deg: float, cfg: TaskConfig) -> None:
-    """Fill in residuals and violations for a flight that passed the gates."""
+    """Fill in selected physical residuals for a flight that passed the gates."""
+    m1_only = cfg.physics_metrics == ("M1_HR_nominal",)
+    theta_nom = float(np.radians(theta_deg))
+    hr = flight.H / flight.R
+
+    # Geometry shared by the compact M1 evaluator and the full M1--M7 evaluator.
+    res.measured = {
+        "H_px": flight.H, "R_px": flight.R, "H_over_R": hr,
+        "t_launch": flight.t_launch, "t_apex": flight.t_apex, "t_land": flight.t_land,
+        "x_launch": flight.x_launch, "x_apex": flight.x_apex, "x_land": flight.x_land,
+        "y_ref": flight.y_ref, "y_apex": flight.y_apex,
+        "theta_nominal_deg": theta_deg,
+        "flight_frames": int(flight.n_land - flight.n_launch),
+        "inner_coverage": flight.inner_coverage,
+        "used_rest_level": flight.used_rest_level,
+        "land_extrapolated": flight.land_extrapolated,
+        "theta_from_HR_deg": float(np.degrees(np.arctan(4.0 * hr))),
+    }
+
+    res.residuals.append(make_residual(
+        "M1_HR_nominal", hr, np.tan(theta_nom) / 4.0, cfg.tol.hr_nominal,
+        primary=True, note="H/R vs tan(theta_prompt)/4"))
+
+    theory_hr = np.tan(theta_nom) / 4.0
+    if np.isfinite(hr) and theory_hr > 0 and (
+            hr / theory_hr >= cfg.viol.hr_factor
+            or hr / theory_hr <= 1.0 / cfg.viol.hr_factor):
+        res.violations.append(Violation("hr_gross", f"H/R off by {hr / theory_hr:.2f}x"))
+
+    # M1 only needs the launch/apex/landing geometry above. Avoid all velocity,
+    # acceleration and parabolicity fits when the configured benchmark is M1-only.
+    if m1_only:
+        return
+
     found = np.isfinite(xy[:, 0])
     inside = np.flatnonzero(found & (np.arange(len(xy)) >= flight.n_launch)
                             & (np.arange(len(xy)) <= flight.n_land))
@@ -285,37 +325,20 @@ def _measure(res: SampleResult, dbg: dict, xy: np.ndarray, flight, seed: BallSee
     halves = half_fits(t, x, y, flight.t_apex)
     dbg["fit"] = fit
     dbg["halves"] = halves
-    theta_nom = float(np.radians(theta_deg))
-    hr = flight.H / flight.R
     tsym = flight.n_up / flight.n_down if flight.n_down > 1e-9 else float("inf")
     ssym = ((flight.x_apex - flight.x_launch) / (flight.x_land - flight.x_apex)
             if abs(flight.x_land - flight.x_apex) > 1e-9 else float("inf"))
 
-    res.measured = {
-        "H_px": flight.H, "R_px": flight.R, "H_over_R": hr,
+    res.measured.update({
         "n_up": flight.n_up, "n_down": flight.n_down,
         "n_up_int": flight.n_apex - flight.n_launch,
         "n_down_int": flight.n_land - flight.n_apex,
-        "t_launch": flight.t_launch, "t_apex": flight.t_apex, "t_land": flight.t_land,
-        "x_launch": flight.x_launch, "x_apex": flight.x_apex, "x_land": flight.x_land,
-        "y_ref": flight.y_ref, "y_apex": flight.y_apex,
-        "theta_nominal_deg": theta_deg,
-        "flight_frames": int(flight.n_land - flight.n_launch),
-        "inner_coverage": flight.inner_coverage,
-        "used_rest_level": flight.used_rest_level,
-        "land_extrapolated": flight.land_extrapolated,
-        "theta_from_HR_deg": float(np.degrees(np.arctan(4.0 * hr))),
-    }
+    })
     if fit is not None:
         res.measured.update({"fit_vx_px_per_frame": fit.vx, "fit_ay_px_per_frame2": fit.ay,
                              "fit_vy0_px_per_frame": fit.vy0,
                              "fit_rms_x_norm": fit.rms_x_norm,
                              "fit_rms_y_norm": fit.rms_y_norm})
-
-    # M1 against the prompt's angle: instruction-following and shape together.
-    res.residuals.append(make_residual(
-        "M1_HR_nominal", hr, np.tan(theta_nom) / 4.0, cfg.tol.hr_nominal,
-        primary=True, note="H/R vs tan(theta_prompt)/4"))
 
     # M2: the one invariant that needs no angle and no length.
     res.residuals.append(make_residual(
@@ -379,7 +402,3 @@ def _measure(res: SampleResult, dbg: dict, xy: np.ndarray, flight, seed: BallSee
     if np.isfinite(tsym) and (tsym >= cfg.viol.time_symmetry_factor
                               or tsym <= 1.0 / cfg.viol.time_symmetry_factor):
         res.violations.append(Violation("time_asymmetry_gross", f"N_up/N_down = {tsym:.2f}"))
-    theory_hr = np.tan(theta_nom) / 4.0
-    if np.isfinite(hr) and theory_hr > 0 and (
-            hr / theory_hr >= cfg.viol.hr_factor or hr / theory_hr <= 1.0 / cfg.viol.hr_factor):
-        res.violations.append(Violation("hr_gross", f"H/R off by {hr / theory_hr:.2f}x"))

@@ -25,6 +25,20 @@ def save_overlay(path: str | Path, clip, seed, res, dbg, theta_deg: float) -> st
     fit = dbg.get("fit")
     shift = dbg.get("shift")
     xy = track.xy if shift is None else track.xy - shift
+    n = np.arange(clip.n)
+
+    # The reference is an ideal projectile with the prompt angle, anchored to the
+    # measured launch/landing positions and reference level. Its horizontal range is
+    # therefore the observed R, while its expected height is
+    # tan(theta_prompt) / 4 * R -- exactly the geometry tested by M1. It is a visual
+    # target, not hidden ground-truth trajectory data.
+    ref_t = ref_x = ref_y = None
+    if flight is not None:
+        ref_t = np.linspace(flight.t_launch, flight.t_land, 240)
+        u = (ref_t - flight.t_launch) / max(flight.t_land - flight.t_launch, 1e-9)
+        ref_x = flight.x_launch + u * (flight.x_land - flight.x_launch)
+        ref_h = np.tan(np.radians(theta_deg)) / 4.0 * flight.R
+        ref_y = flight.y_ref - 4.0 * ref_h * u * (1.0 - u)
 
     fig, axes = plt.subplots(2, 2, figsize=(17, 9))
     ax = axes[0, 0]
@@ -40,6 +54,16 @@ def save_overlay(path: str | Path, clip, seed, res, dbg, theta_deg: float) -> st
         ax.plot(other.xy[g2, 0], other.xy[g2, 1], ".", color="#ffb000", ms=2, alpha=0.6,
                 label=f"cross-check ({other.backend})")
     if flight:
+        # Convert the compensated reference back to the raw image coordinates used by
+        # imshow. The correction is tiny for locked-off clips, but this keeps the
+        # overlay correct when CoTracker reports camera translation.
+        if shift is not None:
+            ref_x_img = ref_x + np.interp(ref_t, n, shift[:, 0])
+            ref_y_img = ref_y + np.interp(ref_t, n, shift[:, 1])
+        else:
+            ref_x_img, ref_y_img = ref_x, ref_y
+        ax.plot(ref_x_img, ref_y_img, color="#20a464", lw=2.0, ls="--",
+                label=f"reference ({theta_deg:g}° prompt)")
         ax.axhline(flight.y_ref, color="#ff4d4d", lw=1.0, ls="--", label="reference level")
         ax.plot([flight.x_launch, flight.x_land], [flight.y_ref] * 2, "r|", ms=14, mew=2)
         ax.plot([flight.x_apex], [flight.y_apex], "r*", ms=13, label="apex")
@@ -49,27 +73,35 @@ def save_overlay(path: str | Path, clip, seed, res, dbg, theta_deg: float) -> st
     ax.legend(loc="upper right", fontsize=8)
     ax.set_xlim(0, clip.width); ax.set_ylim(clip.height, 0)
 
-    n = np.arange(clip.n)
     ax = axes[0, 1]
     ax.plot(n[good], xy[good, 1], ".", color="#2ec4ff", ms=4, label="y (drift-compensated)")
+    if flight is not None:
+        ax.plot(ref_t, ref_y, color="#20a464", lw=2.0, ls="--",
+                label=f"reference ({theta_deg:g}° prompt)")
     if flight and fit is not None:
         seg = np.linspace(flight.n_launch, flight.n_land, 200)
         inside = np.flatnonzero(good & (n >= flight.n_launch) & (n <= flight.n_land))
         py = np.polyfit(inside.astype(float), xy[inside, 1], 2)
         ax.plot(seg, np.polyval(py, seg), "-", color="#ff4d4d", lw=1.3, label="quadratic fit")
+        ax.set_title(f"y vs frame   N_up={flight.n_up:.2f}  N_down={flight.n_down:.2f}  "
+                     f"ratio={flight.n_up / flight.n_down:.4f} (theory 1)")
+    if flight:
         ax.axhline(flight.y_ref, color="#888", ls="--", lw=0.9)
         for tt, lab in ((flight.t_launch, "launch"), (flight.t_apex, "apex"),
                         (flight.t_land, "land")):
             ax.axvline(tt, color="#7a5cff", lw=0.9, ls=":")
             ax.text(tt, ax.get_ylim()[0], f" {lab}", fontsize=7, color="#7a5cff",
                     rotation=90, va="bottom")
-        ax.set_title(f"y vs frame   N_up={flight.n_up:.2f}  N_down={flight.n_down:.2f}  "
-                     f"ratio={flight.n_up / flight.n_down:.4f} (theory 1)")
+        if fit is None:
+            ax.set_title(f"y vs frame   reference: {theta_deg:g}° prompt, measured R")
     ax.invert_yaxis(); ax.set_xlabel("frame"); ax.set_ylabel("y (px, down)")
     ax.legend(fontsize=8); ax.grid(alpha=0.25)
 
     ax = axes[1, 0]
     ax.plot(n[good], xy[good, 0], ".", color="#2ec4ff", ms=4, label="x")
+    if flight is not None:
+        ax.plot(ref_t, ref_x, color="#20a464", lw=2.0, ls="--",
+                label=f"reference ({theta_deg:g}° prompt)")
     if flight and fit is not None:
         inside = np.flatnonzero(good & (n >= flight.n_launch) & (n <= flight.n_land))
         px = np.polyfit(inside.astype(float), xy[inside, 0], 1)
@@ -85,6 +117,8 @@ def save_overlay(path: str | Path, clip, seed, res, dbg, theta_deg: float) -> st
     ax.axis("off")
     lines = [f"model: {res.model}    theta_prompt: {theta_deg:g} deg",
              f"measurable: {res.measurable}"]
+    if flight is not None:
+        lines.append(f"reference curve: ideal {theta_deg:g}° parabola at measured R")
     if res.gate_reasons:
         lines.append("gate failures: " + ", ".join(res.gate_reasons))
     if res.measured.get("theta_measured_deg") is not None:

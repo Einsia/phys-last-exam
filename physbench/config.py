@@ -83,6 +83,10 @@ class TrackingConfig:
 @dataclass
 class TaskConfig:
     task: str = "P2_projectile"
+    # ``("all",)`` preserves the original M1--M7 evaluation. The SAM3 evaluation
+    # config narrows this to M1_HR_nominal: physics scoring is then only the stated
+    # launch-angle/shape invariant, while observability gates still run.
+    physics_metrics: tuple[str, ...] = ("all",)
     gates: GateConfig = field(default_factory=GateConfig)
     tol: ToleranceConfig = field(default_factory=ToleranceConfig)
     viol: ViolationConfig = field(default_factory=ViolationConfig)
@@ -106,6 +110,15 @@ class TaskConfig:
                 cur = getattr(obj, k)
                 # backends is a tuple in the dataclass but a list in YAML.
                 setattr(obj, k, tuple(v) if isinstance(cur, tuple) else type(cur)(v))
+        if "physics_metrics" in raw:
+            cfg.physics_metrics = tuple(raw["physics_metrics"])
+        allowed = {"all", "M1_HR_nominal", "M2_time_symmetry", "M1_HR_selfconsistent",
+                   "M3_space_symmetry", "M4_parabolicity", "M5_vx_conservation",
+                   "M6_gravity_symmetry", "M7_accel_geometry"}
+        if not cfg.physics_metrics or not set(cfg.physics_metrics) <= allowed:
+            raise ValueError(f"unknown physics_metrics: {cfg.physics_metrics}")
+        if "all" in cfg.physics_metrics and len(cfg.physics_metrics) != 1:
+            raise ValueError("physics_metrics='all' cannot be combined with named metrics")
         if len(cfg.tracking.backends) != 2:
             raise ValueError("tracking.backends must name exactly two backends "
                              f"(got {cfg.tracking.backends})")
