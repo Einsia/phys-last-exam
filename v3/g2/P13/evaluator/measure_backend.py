@@ -146,7 +146,10 @@ def hough_lines(frame: np.ndarray, min_length: int) -> list[tuple[np.ndarray, np
     if raw is None:
         return []
     out = []
-    for x1, y1, x2, y2 in raw[:, 0]:
+    # OpenCV has returned both (N, 1, 4) and (N, 4) layouts across builds.
+    # Normalizing here prevents a valid control video from becoming a runtime
+    # error merely because the installed OpenCV uses the latter layout.
+    for x1, y1, x2, y2 in np.asarray(raw).reshape(-1, 4):
         a = np.array([float(x1), float(y1)])
         b = np.array([float(x2), float(y2)])
         out.append((a, b, float(np.linalg.norm(b - a))))
@@ -301,7 +304,7 @@ def select_reflected_line(frame: np.ndarray, contact: np.ndarray,
                               maxLineGap=12)
         if raw is None:
             continue
-        for x1, y1, x2, y2 in raw[:, 0]:
+        for x1, y1, x2, y2 in np.asarray(raw).reshape(-1, 4):
             a = np.array([float(x1), float(y1)])
             b = np.array([float(x2), float(y2)])
             segment = b - a

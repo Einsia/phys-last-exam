@@ -22,7 +22,14 @@ ROOT = Path(__file__).resolve().parents[1]
 
 def digest(path):
     with Path(path).open('rb') as handle:
-        return hashlib.file_digest(handle, 'sha256').hexdigest()
+        # hashlib.file_digest was added in Python 3.11; the evaluator also
+        # supports the Python 3.10 environments used by the legacy task tests.
+        if hasattr(hashlib, 'file_digest'):
+            return hashlib.file_digest(handle, 'sha256').hexdigest()
+        digest_value = hashlib.sha256()
+        for chunk in iter(lambda: handle.read(1024 * 1024), b''):
+            digest_value.update(chunk)
+        return digest_value.hexdigest()
 
 
 def write_json(path, value):
@@ -207,6 +214,13 @@ def scoring_text(result):
                   scoring.get('proxy_formula', ''), scoring.get('proxy_calculation', ''), '']
     lines += ['Only defined indicators enter the denominator. A failed defined indicator contributes zero without redistributing its weight.',
               f"Total: {summary.get('formula')} = {summary.get('score')}", summary.get('calculation', ''), '']
+    if summary.get('measurement_status'):
+        lines += ['## Reliability measurement state', '',
+                  f"measurement_status = {summary.get('measurement_status')}",
+                  f"measurement_status_reason = {summary.get('measurement_status_reason')}",
+                  f"measurement_coverage = {summary.get('measurement_coverage')}",
+                  f"reliably_judged = {summary.get('reliably_judged')}",
+                  'Task failure is emitted only when explicit event/condition evidence exists; extraction failure alone is evidence_insufficient.', '']
     return '\n'.join(lines)
 
 

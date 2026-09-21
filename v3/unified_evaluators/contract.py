@@ -3,6 +3,13 @@ from copy import deepcopy
 import math
 from pathlib import Path
 
+try:
+    from reliability.protocol import get_protocol
+    from reliability.status import classify_result_status, status_summary
+except ImportError:  # direct module execution from the unified_evaluators folder
+    from ..reliability.protocol import get_protocol
+    from ..reliability.status import classify_result_status, status_summary
+
 SCHEMA = 'physical-bench-result-v2-g1-g9'
 VERSION = 'physical-bench-proxy-v2-recognition015-arithmetic-defined-metrics'
 V3_VERSION = 'physical-bench-v3-consistency015-physics085'
@@ -381,8 +388,58 @@ def finalize_v3(task_id, metadata, metrics, blocks, evidence, provenance, consis
             block['measurement_steps'] = []
         elif flag is False:
             block.setdefault('failure_reason', 'Required physical quantities could not be measured.')
+    # Reliability state is intentionally separate from score_status.  In
+    # particular, a false extraction flag becomes evidence_insufficient unless
+    # the backend supplied explicit event/condition evidence for task failure.
+    protocol = get_protocol(task_id)
+    try:
+        threshold = float(provenance.get('measurement_pass_threshold', protocol.get('pass_threshold', 0.80)))
+    except (TypeError, ValueError):
+        threshold = float(protocol.get('pass_threshold', 0.80))
+    threshold = min(1.0, max(0.0, threshold))
+    measurement_status, measurement_reason, metric_statuses = classify_result_status(
+        metrics, out, physics_attempted=bool(physics_attempted), threshold=threshold)
+    defined_count = len(defined)
+    reliably_measured_count = sum(1 for key in defined if metrics[key].get('extract_success') is True)
+    reliability = status_summary(measurement_status, metric_statuses,
+                                 defined_count=defined_count,
+                                 reliable_count=reliably_measured_count)
+    reliability.update({
+        'protocol_version': 'measurement-protocol-v1',
+        'task_id': task_id,
+        'pass_threshold': threshold,
+        'metric_statuses': {
+            key: {'measurement_status': value[0], 'reason': value[1]}
+            for key, value in metric_statuses.items()
+        },
+        'event_failure_inference_rule': 'never infer task failure from extraction failure alone',
+    })
+    summary.update({
+        'measurement_status': measurement_status,
+        'measurement_status_reason': measurement_reason,
+        'measurement_coverage': reliability['measurement_coverage'],
+        'reliably_judged': reliability['reliably_judged'],
+        'measurement_pass_threshold': threshold,
+        'measurement_decision_policy': 'task_failed only with explicit event/condition evidence; otherwise score threshold or evidence_insufficient',
+    })
+    for key in KEYS:
+        block = out.setdefault(key, {})
+        status_item = metric_statuses.get(key)
+        if status_item:
+            block['measurement_status'] = status_item[0]
+            block['measurement_status_reason'] = status_item[1]
+        elif block.get('defined') is False:
+            block['measurement_status'] = 'evidence_insufficient'
+            block['measurement_status_reason'] = '指标不适用于本题，不参与判断。'
     out['M1'].update(_scoring_summary=summary, _consistency=consistency,
+                     _reliability=reliability,
                      _provenance=deepcopy(provenance), _sample_id=metadata.get('sample_id'))
     return finite({'task_id': task_id, 'video_path': _public_video_path(metadata),
                    'image_path': _public_image_path(metadata), 'video_prompt': metadata.get('video_prompt'),
-                   'model': _public_model(metadata), 'seed': metadata.get('seed'), 'metrics': public, 'verbose': out})
+                   'model': _public_model(metadata), 'seed': metadata.get('seed'), 'metrics': public,
+                   'measurement_status': measurement_status,
+                   'measurement_status_reason': measurement_reason,
+                   'measurement_coverage': reliability['measurement_coverage'],
+                   'reliably_judged': reliability['reliably_judged'],
+                   'reliability': reliability,
+                   'verbose': out})
