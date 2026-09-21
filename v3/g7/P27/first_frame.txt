@@ -1,0 +1,11 @@
+Use case: scientific-educational
+Asset type: photorealistic first frame for an image-to-video physics benchmark
+Primary request: create one physically legible laboratory first frame from the task below.
+Style/medium: realistic laboratory photography, clean materials, credible support/contact geometry.
+Composition/framing: locked-off exact front view; both beakers fully in frame from floor to rim; ice occupying only the lower part of each beaker.
+Lighting/mood: even diffuse laboratory lighting; ice clearly brighter than a dark background.
+Constraints: two identical straight-walled transparent beakers; left holds one compact ice block, right holds crushed ice of the same total amount; both beakers dry, no liquid water yet; background and bench dark, not white or pale.
+Avoid: a white or pale background, liquid water, wet or dripping ice, tapered beaker walls, text, labels, equations, arrows, people, logos, watermarks, decorative clutter.
+
+TASK:
+Locked-off static camera, front view. Two identical transparent containers sit side by side. One contains many small pieces of crushed ice and the other contains one compact solid ice block, with exactly the same total ice mass in both containers. Both containers remain fully visible. The camera does not move, pan, or zoom. Plain dark background.

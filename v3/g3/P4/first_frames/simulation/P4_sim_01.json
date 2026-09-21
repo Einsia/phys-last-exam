@@ -1,0 +1,71 @@
+{
+  "task_id": "P4",
+  "candidate": 1,
+  "variant": {
+    "theme": "modern",
+    "name": "modern_university_lab",
+    "description": "Contemporary university laboratory, cool daylight and a right three-quarter camera.",
+    "index": 1
+  },
+  "method": "procedural_simulation_source",
+  "version": "high_standard_v1",
+  "file": "external_materials/sop_delivery/P4/high_standard_v1/simulation/sim_01.png",
+  "width": 2048,
+  "height": 1152,
+  "sha256": "6407f5a4c9b347d101b0f02ea7a238260ee2b93d345a4cdec1b45be5c4112ce6",
+  "renderer": "Blender Python 5.0.1 / cycles",
+  "render_device": "CPU",
+  "samples": 128,
+  "denoising_enabled": true,
+  "adaptive_threshold": 0.01,
+  "denoiser": "OPENIMAGEDENOISE",
+  "denoising_input_passes": "RGB_ALBEDO_NORMAL",
+  "elapsed_seconds": 8.918,
+  "initial_state_only": true,
+  "camera": {
+    "type": "PERSP",
+    "lens_mm": 58.0,
+    "location": [
+      7.4,
+      -18.299999,
+      6.1
+    ],
+    "rotation_euler_degrees": [
+      80.4977,
+      4e-06,
+      22.686533
+    ],
+    "dof_enabled": false
+  },
+  "physical_parameters": {
+    "ball_center_m": [
+      -0.75,
+      -0.04,
+      4.92
+    ],
+    "ball_radius_m": 0.34,
+    "impact_plate_top_z_m": 0.64,
+    "clear_vertical_corridor_m": 3.94,
+    "magnet_center_m": [
+      -0.75,
+      -0.04,
+      5.44
+    ],
+    "magnet_depth_m": 0.36,
+    "magnet_ball_contact_error_m": 1.9e-08
+  },
+  "hard_constraints": {
+    "exactly_one_orange_rubber_ball": true,
+    "ball_held_by_small_electromagnetic_release": true,
+    "magnet_ball_contact_exact": true,
+    "ball_not_yet_released": true,
+    "complete_clear_fall_and_rebound_corridor_visible": true,
+    "complete_hard_impact_plate_visible": true,
+    "text_arrows_formulas_trajectories_absent": true,
+    "motion_blur_absent": true
+  },
+  "external_assets": [],
+  "code": "external_materials/simulation/high_standard_p4_p6.py",
+  "code_sha256": "f9625e98cee22d4680b564ee875dcb8c3673916d9598a6042316778859453e07",
+  "created_utc": "2026-08-24T15:06:22.643869+00:00"
+}

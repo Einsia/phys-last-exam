@@ -1,0 +1,19 @@
+{
+  "samples": [
+    {
+      "sample_id": "sample_00",
+      "video_path": "output_videos/minimax_h3/sample_00.mp4",
+      "source_video_path": "output_videos/minimax_h3/sample_00.mp4",
+      "image_path": "first_frames/provided/first_frame_01.png",
+      "video_prompt": "Locked-off static camera, front view. Continue from the supplied first frame. A solid conducting plate and a slotted conducting plate, matched in total mass and rotational inertia, are released simultaneously from the same initial angle with zero initial speed and swing through equivalent magnetic-field regions. Both oscillations remain fully visible for multiple cycles. The camera does not move, pan, or zoom. Plain background.",
+      "model": "minimax_h3",
+      "model_folder": "minimax_h3",
+      "seed": null,
+      "source_result": "eval_results/minimax_h3/result_sample_00.json",
+      "previous_result": "work/g1_g9_v2_20260911/before/g8/P38/eval_results/minimax_h3/result_sample_00.json",
+      "video_sha256": "17b028785265d2329f346c783564b1fbdbb57b61a62e8bf5e30d00db83dbb8db",
+      "image_sha256": "71ba8e61cd81dec5a35d746abd76c55a7b575d0103139bd5bc580c76abe2d490",
+      "annotation": "first_frame_annotations.json"
+    }
+  ]
+}

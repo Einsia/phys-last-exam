@@ -1,0 +1,3 @@
+{
+  "samples": [{"sample_id": "sample_00", "video_path": "continuation.mp4", "image_path": "first_frame.png", "video_prompt_file": "video.txt", "model": null, "seed": null}]
+}

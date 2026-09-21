@@ -1,0 +1,1 @@
+Locked-off static camera, side view. A small ball is released from rest and falls straight downward under gravity. The entire measured fall stays inside the frame, and the ball does not reach or touch the ground during the clip. The camera does not move, pan, or zoom. Plain flat background, no other objects, nothing enters the frame.

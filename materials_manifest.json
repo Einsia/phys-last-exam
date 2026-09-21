@@ -1,0 +1,1518 @@
+{
+  "schema_version": 1,
+  "description": "First-frame and task-side material shipped with the V3 evaluator; generated videos are external inputs.",
+  "material_files": 302,
+  "first_frame_images": 138,
+  "files": [
+    {
+      "path": "v3/g1/P1/first_frames/gpt/gpt_01.png",
+      "bytes": 326109,
+      "sha256": "ce079e9782c39b89c5d295e8827b551c38801a177244d29d54f3882bbfcb293a"
+    },
+    {
+      "path": "v3/g1/P1/first_frames/gpt/gpt_02.png",
+      "bytes": 906908,
+      "sha256": "ef91d4c5e858db080e4057b657e5c8acdecd20912f6d9f7012e5ef76d26f6d4f"
+    },
+    {
+      "path": "v3/g1/P1/first_frames/gpt/gpt_03.png",
+      "bytes": 870320,
+      "sha256": "a0319678ae695880f4f92dff36d677b8fd066ad1a3f161aaef568e8adf054893"
+    },
+    {
+      "path": "v3/g1/P1/first_frames/gpt/prompt.txt",
+      "bytes": 511,
+      "sha256": "636999826fb597878c2cb8d853984c8406b287b986551592c53494840b967256"
+    },
+    {
+      "path": "v3/g1/P1/first_frames/simulation/sim_01.png",
+      "bytes": 841468,
+      "sha256": "46d0233e1b41877a9402b591b6feb08e6a8e8b12403192c5d6df5a72f52b4168"
+    },
+    {
+      "path": "v3/g1/P1/first_frames/simulation/sim_02.png",
+      "bytes": 662072,
+      "sha256": "a9a0b135daff933b038ad2e647ef107e67194bef23749e4f18daf9d045d9b818"
+    },
+    {
+      "path": "v3/g1/P1/first_frames/simulation/sim_03.png",
+      "bytes": 662072,
+      "sha256": "a9a0b135daff933b038ad2e647ef107e67194bef23749e4f18daf9d045d9b818"
+    },
+    {
+      "path": "v3/g1/P2/first_frames/gpt/gpt_01.png",
+      "bytes": 900172,
+      "sha256": "0b2a62e740ca94a7f3c2639a52de6f40b857ad1397b282b1f01b2c607de2df87"
+    },
+    {
+      "path": "v3/g1/P2/first_frames/gpt/gpt_02.png",
+      "bytes": 1405926,
+      "sha256": "ba62e329c06e12037bfba06a4ad1212e923a1d4e792d2d9bd45ec0364585dfdb"
+    },
+    {
+      "path": "v3/g1/P2/first_frames/gpt/gpt_03.png",
+      "bytes": 901786,
+      "sha256": "db11ddd0a0d218d215463f018268a9eaf7ade9ea1423db81895234e3929df8c1"
+    },
+    {
+      "path": "v3/g1/P2/first_frames/gpt/prompt.txt",
+      "bytes": 1238,
+      "sha256": "186a374ba6b887265efffcfe2a370e79fa2638832a082f2969b11a72a741bebd"
+    },
+    {
+      "path": "v3/g1/P2/first_frames/simulation/sim_01.png",
+      "bytes": 1131915,
+      "sha256": "38663525c693a20698ffae9479d8367fc365abe5fdd768467058feb29c4dff62"
+    },
+    {
+      "path": "v3/g1/P2/first_frames/simulation/sim_02.png",
+      "bytes": 662165,
+      "sha256": "ce29681155e4eef137951b8c5baef4ab37c4cbc48c0a004db4622f89e8b3ef97"
+    },
+    {
+      "path": "v3/g1/P2/first_frames/simulation/sim_03.png",
+      "bytes": 662165,
+      "sha256": "ce29681155e4eef137951b8c5baef4ab37c4cbc48c0a004db4622f89e8b3ef97"
+    },
+    {
+      "path": "v3/g1/P5/first_frames/gpt/gpt_01.png",
+      "bytes": 1233758,
+      "sha256": "c78e1cc8c0716405a86ad135fadabb4d98be0ee3b53a66c17744936905b3b021"
+    },
+    {
+      "path": "v3/g1/P5/first_frames/gpt/gpt_02.png",
+      "bytes": 854539,
+      "sha256": "8a902f301debb4529e0763232fde2d9ada6d3b8d9eda206a69c55826f8844608"
+    },
+    {
+      "path": "v3/g1/P5/first_frames/gpt/prompt.txt",
+      "bytes": 775,
+      "sha256": "fc7f8f45155e6a420d72cdbc7fee635cc1cb0ea3daa9c46f1436dd7e1559bfd4"
+    },
+    {
+      "path": "v3/g1/P5/first_frames/simulation/sim_01.png",
+      "bytes": 660071,
+      "sha256": "c854fb1d6f4d061636f4436667f1df5bbe0c1eea84816d2900b9d26b6999412c"
+    },
+    {
+      "path": "v3/g1/P8a/first_frames/gpt/gpt_01.png",
+      "bytes": 968608,
+      "sha256": "004f8ddad01bbbdc4e2da0135ecf0613da088f17f86740be099b1a7465001eca"
+    },
+    {
+      "path": "v3/g1/P8a/first_frames/gpt/gpt_02.png",
+      "bytes": 833398,
+      "sha256": "a4b72b2db8771688c98192c0202fb071e02ef09a330a3392e9198526383662e7"
+    },
+    {
+      "path": "v3/g1/P8a/first_frames/gpt/prompt.txt",
+      "bytes": 813,
+      "sha256": "53ec25b83d13c87911108fb12ca3077f654c8ec9a176d21696a6b1ecf1502c2a"
+    },
+    {
+      "path": "v3/g1/P8a/first_frames/simulation/sim_01.png",
+      "bytes": 665944,
+      "sha256": "ae438d20d328682400cd746edc18329cce6cb5a9241adf1da2ff6de72fddf4a6"
+    },
+    {
+      "path": "v3/g2/P13/first_frames/gpt/gpt_01.png",
+      "bytes": 2314991,
+      "sha256": "5f86f687b68b85333b9742ebc49132ac6d73828368bf18976ea83cd39d17e0f5"
+    },
+    {
+      "path": "v3/g2/P13/first_frames/gpt/gpt_02.png",
+      "bytes": 2667319,
+      "sha256": "5dd70238cd6836765335ee150897cb0f683dfa21920be63a87e92bc8793fba24"
+    },
+    {
+      "path": "v3/g2/P13/first_frames/gpt/gpt_03.png",
+      "bytes": 2264100,
+      "sha256": "d5620dc6ea67e0a1e0f58a9009759a116c44ef13df9210fe315e334acd20b9af"
+    },
+    {
+      "path": "v3/g2/P13/first_frames/gpt/prompt.txt",
+      "bytes": 624,
+      "sha256": "7b2702aad8bd8844b2f9589e1fbba22831240970269acb6bff388cb216861496"
+    },
+    {
+      "path": "v3/g2/P13/first_frames/real/.gitkeep",
+      "bytes": 1,
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "v3/g2/P13/first_frames/simulation/code/__init__.py",
+      "bytes": 49,
+      "sha256": "a84741c16d4026296c54d36b19384c96c9e7c444d84bec672fb67a3930e0223b"
+    },
+    {
+      "path": "v3/g2/P13/first_frames/simulation/code/builders_induction_surface.py",
+      "bytes": 36012,
+      "sha256": "675b993d1b2cdcf9ec06a9d4f2912674cf799180b42f6efe0643124145a7fa40"
+    },
+    {
+      "path": "v3/g2/P13/first_frames/simulation/code/builders_mech_optics.py",
+      "bytes": 29925,
+      "sha256": "c4eedefb754fb3686ceafe331fb5b6c0a1d11398b0b1e60473f269f4319a80de"
+    },
+    {
+      "path": "v3/g2/P13/first_frames/simulation/code/builders_thermal_em.py",
+      "bytes": 22481,
+      "sha256": "e42db4785b825fc2d9b1873ce75cc01b648aba51fb28e89e66de520c656fd4a6"
+    },
+    {
+      "path": "v3/g2/P13/first_frames/simulation/code/common.py",
+      "bytes": 21075,
+      "sha256": "e4c4e1d7b9a7f12bc709007f57695ddab90241768d08b84a48a41c820f651a6d"
+    },
+    {
+      "path": "v3/g2/P13/first_frames/simulation/code/render.py",
+      "bytes": 1319,
+      "sha256": "b7e2294a833b71366dc892ca991e2850999673a2531002133f138c517ddf0c71"
+    },
+    {
+      "path": "v3/g2/P13/first_frames/simulation/code/render_all.py",
+      "bytes": 6440,
+      "sha256": "38cbe13a012bbff0615b0c89aa2cc136137fefb2349be7bf91a47f9ac5867629"
+    },
+    {
+      "path": "v3/g2/P13/first_frames/simulation/code/requirements.txt",
+      "bytes": 215,
+      "sha256": "eff134b4236c025695c3a36e37a757d6a940d2e4a648689ac4478bcd1092a264"
+    },
+    {
+      "path": "v3/g2/P13/first_frames/simulation/code/tasks.json",
+      "bytes": 51,
+      "sha256": "baa7dd938bf41c38b5a5f2f58346386623d00981dda08611a916859a1fa5fcb6"
+    },
+    {
+      "path": "v3/g2/P13/first_frames/simulation/sim_01.png",
+      "bytes": 898282,
+      "sha256": "2fb6a2f33732be5f5f2411ff6d96fb1961fa46e48bc925059012e2d307a6fc64"
+    },
+    {
+      "path": "v3/g2/P19/first_frames/gpt/gpt_01.png",
+      "bytes": 1924937,
+      "sha256": "b35363f065cb81a690be45d0e78215223109f0b3dc7e59f27e22d96b142e13b6"
+    },
+    {
+      "path": "v3/g2/P19/first_frames/gpt/gpt_02.png",
+      "bytes": 2722189,
+      "sha256": "0388cc4468be81ce6772946e010dbd1412c193ad09f9fd5b17511ed1d6ba736b"
+    },
+    {
+      "path": "v3/g2/P19/first_frames/gpt/gpt_03.png",
+      "bytes": 2690175,
+      "sha256": "3573e67eb5902f7172f1f859b8f907c06e1c629cdad4f5a8b064ae93449f3e12"
+    },
+    {
+      "path": "v3/g2/P19/first_frames/gpt/prompt.txt",
+      "bytes": 615,
+      "sha256": "71f29796c69cbd566c9daa2e382afa7b535ce6cc20e62d89a2f973c19ebec903"
+    },
+    {
+      "path": "v3/g2/P19/first_frames/real/.gitkeep",
+      "bytes": 1,
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "v3/g2/P19/first_frames/simulation/code/__init__.py",
+      "bytes": 49,
+      "sha256": "a84741c16d4026296c54d36b19384c96c9e7c444d84bec672fb67a3930e0223b"
+    },
+    {
+      "path": "v3/g2/P19/first_frames/simulation/code/builders_induction_surface.py",
+      "bytes": 36012,
+      "sha256": "675b993d1b2cdcf9ec06a9d4f2912674cf799180b42f6efe0643124145a7fa40"
+    },
+    {
+      "path": "v3/g2/P19/first_frames/simulation/code/builders_mech_optics.py",
+      "bytes": 29925,
+      "sha256": "c4eedefb754fb3686ceafe331fb5b6c0a1d11398b0b1e60473f269f4319a80de"
+    },
+    {
+      "path": "v3/g2/P19/first_frames/simulation/code/builders_thermal_em.py",
+      "bytes": 22481,
+      "sha256": "e42db4785b825fc2d9b1873ce75cc01b648aba51fb28e89e66de520c656fd4a6"
+    },
+    {
+      "path": "v3/g2/P19/first_frames/simulation/code/common.py",
+      "bytes": 21075,
+      "sha256": "e4c4e1d7b9a7f12bc709007f57695ddab90241768d08b84a48a41c820f651a6d"
+    },
+    {
+      "path": "v3/g2/P19/first_frames/simulation/code/render.py",
+      "bytes": 1319,
+      "sha256": "a2e2d67d8800c2e35dbd35e234f67240643d3d8baa776817de1782348ab7f3e8"
+    },
+    {
+      "path": "v3/g2/P19/first_frames/simulation/code/render_all.py",
+      "bytes": 6440,
+      "sha256": "38cbe13a012bbff0615b0c89aa2cc136137fefb2349be7bf91a47f9ac5867629"
+    },
+    {
+      "path": "v3/g2/P19/first_frames/simulation/code/requirements.txt",
+      "bytes": 215,
+      "sha256": "eff134b4236c025695c3a36e37a757d6a940d2e4a648689ac4478bcd1092a264"
+    },
+    {
+      "path": "v3/g2/P19/first_frames/simulation/code/tasks.json",
+      "bytes": 51,
+      "sha256": "3c66c94c2fc76091a3c5396da95d4f5ea8282eb93de8b6bdae1d84023735053a"
+    },
+    {
+      "path": "v3/g2/P19/first_frames/simulation/sim_01.png",
+      "bytes": 875922,
+      "sha256": "9f4495e6ddfb6bdcd389f1d814dff228bb2d0eacf97ec375856bf8b4e2ce517a"
+    },
+    {
+      "path": "v3/g2/P28/first_frames/gpt/gpt_01.png",
+      "bytes": 2070962,
+      "sha256": "ba07b99fb10b4160dfb3d77dfee571fd9e2976fc9eb96f1c7d7d137e6507e357"
+    },
+    {
+      "path": "v3/g2/P28/first_frames/gpt/gpt_02.png",
+      "bytes": 2347593,
+      "sha256": "6c262a7c844a41232f6c535d4c8a3e8ade28103db903e2c86ba9d076fd68cbac"
+    },
+    {
+      "path": "v3/g2/P28/first_frames/gpt/gpt_03.png",
+      "bytes": 2480353,
+      "sha256": "5105799f452710b3f18898490b09686c5327020d619f3e4e672095e8b7a2dccb"
+    },
+    {
+      "path": "v3/g2/P28/first_frames/gpt/prompt.txt",
+      "bytes": 376,
+      "sha256": "2272d7fba3e7717302ab32c9b3cd5161b7946e46d29b5c58207c3728e9927f73"
+    },
+    {
+      "path": "v3/g2/P28/first_frames/real/.gitkeep",
+      "bytes": 1,
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "v3/g2/P28/first_frames/simulation/code/__init__.py",
+      "bytes": 49,
+      "sha256": "a84741c16d4026296c54d36b19384c96c9e7c444d84bec672fb67a3930e0223b"
+    },
+    {
+      "path": "v3/g2/P28/first_frames/simulation/code/builders_induction_surface.py",
+      "bytes": 36012,
+      "sha256": "675b993d1b2cdcf9ec06a9d4f2912674cf799180b42f6efe0643124145a7fa40"
+    },
+    {
+      "path": "v3/g2/P28/first_frames/simulation/code/builders_mech_optics.py",
+      "bytes": 29925,
+      "sha256": "c4eedefb754fb3686ceafe331fb5b6c0a1d11398b0b1e60473f269f4319a80de"
+    },
+    {
+      "path": "v3/g2/P28/first_frames/simulation/code/builders_thermal_em.py",
+      "bytes": 22481,
+      "sha256": "e42db4785b825fc2d9b1873ce75cc01b648aba51fb28e89e66de520c656fd4a6"
+    },
+    {
+      "path": "v3/g2/P28/first_frames/simulation/code/common.py",
+      "bytes": 21075,
+      "sha256": "e4c4e1d7b9a7f12bc709007f57695ddab90241768d08b84a48a41c820f651a6d"
+    },
+    {
+      "path": "v3/g2/P28/first_frames/simulation/code/render.py",
+      "bytes": 1319,
+      "sha256": "13ae028c6ad6b07d9176ce5d056da99e39d8de4c58135b6cea78908c3a6b7bcb"
+    },
+    {
+      "path": "v3/g2/P28/first_frames/simulation/code/render_all.py",
+      "bytes": 6440,
+      "sha256": "38cbe13a012bbff0615b0c89aa2cc136137fefb2349be7bf91a47f9ac5867629"
+    },
+    {
+      "path": "v3/g2/P28/first_frames/simulation/code/requirements.txt",
+      "bytes": 215,
+      "sha256": "eff134b4236c025695c3a36e37a757d6a940d2e4a648689ac4478bcd1092a264"
+    },
+    {
+      "path": "v3/g2/P28/first_frames/simulation/code/tasks.json",
+      "bytes": 51,
+      "sha256": "e6359df0746459e2903c276062ad135e14873fb98db796e138e9e516d613c9b4"
+    },
+    {
+      "path": "v3/g2/P28/first_frames/simulation/sim_01.png",
+      "bytes": 862539,
+      "sha256": "4142625a47ce8d0be9e9b6c387488ff495fe1e1b2a22262b062fbfefc513fae5"
+    },
+    {
+      "path": "v3/g2/P40/first_frames/gpt/gpt_01.png",
+      "bytes": 2375508,
+      "sha256": "fdd4bee407dd9cd682a5692fd3736587975f75330d789e348176e6406c00df80"
+    },
+    {
+      "path": "v3/g2/P40/first_frames/gpt/gpt_02.png",
+      "bytes": 2228514,
+      "sha256": "b4ff2acf8986a0eca145b0a69385911fc8e1e76c285c5c8ccc6f449eaf68c9d7"
+    },
+    {
+      "path": "v3/g2/P40/first_frames/gpt/gpt_03.png",
+      "bytes": 2656925,
+      "sha256": "de92cf78165c9de38d5d44dd0613cb74a7ebd62f48f961cae4592bf2f469c7c5"
+    },
+    {
+      "path": "v3/g2/P40/first_frames/gpt/prompt.txt",
+      "bytes": 1928,
+      "sha256": "abb6acd4fff0ee7e0b309df1ddf9487ad41b9711b710ac4693293e034fef5566"
+    },
+    {
+      "path": "v3/g2/P40/first_frames/real/.gitkeep",
+      "bytes": 1,
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "v3/g2/P40/first_frames/simulation/code/__init__.py",
+      "bytes": 49,
+      "sha256": "a84741c16d4026296c54d36b19384c96c9e7c444d84bec672fb67a3930e0223b"
+    },
+    {
+      "path": "v3/g2/P40/first_frames/simulation/code/builders_induction_surface.py",
+      "bytes": 36012,
+      "sha256": "675b993d1b2cdcf9ec06a9d4f2912674cf799180b42f6efe0643124145a7fa40"
+    },
+    {
+      "path": "v3/g2/P40/first_frames/simulation/code/builders_mech_optics.py",
+      "bytes": 29925,
+      "sha256": "c4eedefb754fb3686ceafe331fb5b6c0a1d11398b0b1e60473f269f4319a80de"
+    },
+    {
+      "path": "v3/g2/P40/first_frames/simulation/code/builders_thermal_em.py",
+      "bytes": 22481,
+      "sha256": "e42db4785b825fc2d9b1873ce75cc01b648aba51fb28e89e66de520c656fd4a6"
+    },
+    {
+      "path": "v3/g2/P40/first_frames/simulation/code/common.py",
+      "bytes": 21075,
+      "sha256": "e4c4e1d7b9a7f12bc709007f57695ddab90241768d08b84a48a41c820f651a6d"
+    },
+    {
+      "path": "v3/g2/P40/first_frames/simulation/code/render.py",
+      "bytes": 1319,
+      "sha256": "27925942cc0c78f8f33451321c03485388fcffd710a83409a24248b219a2420a"
+    },
+    {
+      "path": "v3/g2/P40/first_frames/simulation/code/render_all.py",
+      "bytes": 6440,
+      "sha256": "38cbe13a012bbff0615b0c89aa2cc136137fefb2349be7bf91a47f9ac5867629"
+    },
+    {
+      "path": "v3/g2/P40/first_frames/simulation/code/requirements.txt",
+      "bytes": 215,
+      "sha256": "eff134b4236c025695c3a36e37a757d6a940d2e4a648689ac4478bcd1092a264"
+    },
+    {
+      "path": "v3/g2/P40/first_frames/simulation/code/tasks.json",
+      "bytes": 51,
+      "sha256": "63a3599adaff17e0c76adfc7856d2aca0aeaed822089c8637eacfd0a1e730649"
+    },
+    {
+      "path": "v3/g2/P40/first_frames/simulation/sim_01.png",
+      "bytes": 902356,
+      "sha256": "1080f0a976e826bc002fce881ce2cf23e6fea37f02307ee0b5857ce9e9885869"
+    },
+    {
+      "path": "v3/g2/P42/first_frames/gpt/gpt_01.png",
+      "bytes": 1480893,
+      "sha256": "3b2b8fe06bdeb7c04f318f704359c94304a37cc990b3e78855bbcffd88b2b2bd"
+    },
+    {
+      "path": "v3/g2/P42/first_frames/gpt/gpt_02.png",
+      "bytes": 3337909,
+      "sha256": "29ad2904b0b33da8689474e3669d2fafc86af892b71837b6f1db8b06d43241ad"
+    },
+    {
+      "path": "v3/g2/P42/first_frames/gpt/gpt_03.png",
+      "bytes": 2238117,
+      "sha256": "8d0bc6c4c582354119954ce6034f7146effd59d06916c5e4e8d2f54f36b10f3e"
+    },
+    {
+      "path": "v3/g2/P42/first_frames/gpt/prompt.txt",
+      "bytes": 2248,
+      "sha256": "aab719086c58bb4d895f5d99a4b579e612051a03a8d11e8613fa94d5ab2c7892"
+    },
+    {
+      "path": "v3/g2/P42/first_frames/real/.gitkeep",
+      "bytes": 1,
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "v3/g2/P42/first_frames/simulation/code/__init__.py",
+      "bytes": 49,
+      "sha256": "a84741c16d4026296c54d36b19384c96c9e7c444d84bec672fb67a3930e0223b"
+    },
+    {
+      "path": "v3/g2/P42/first_frames/simulation/code/builders_induction_surface.py",
+      "bytes": 36012,
+      "sha256": "675b993d1b2cdcf9ec06a9d4f2912674cf799180b42f6efe0643124145a7fa40"
+    },
+    {
+      "path": "v3/g2/P42/first_frames/simulation/code/builders_mech_optics.py",
+      "bytes": 29925,
+      "sha256": "c4eedefb754fb3686ceafe331fb5b6c0a1d11398b0b1e60473f269f4319a80de"
+    },
+    {
+      "path": "v3/g2/P42/first_frames/simulation/code/builders_thermal_em.py",
+      "bytes": 22481,
+      "sha256": "e42db4785b825fc2d9b1873ce75cc01b648aba51fb28e89e66de520c656fd4a6"
+    },
+    {
+      "path": "v3/g2/P42/first_frames/simulation/code/common.py",
+      "bytes": 21075,
+      "sha256": "e4c4e1d7b9a7f12bc709007f57695ddab90241768d08b84a48a41c820f651a6d"
+    },
+    {
+      "path": "v3/g2/P42/first_frames/simulation/code/render.py",
+      "bytes": 1319,
+      "sha256": "4043b6fb99dff728f72fcd32826a1c3a5997fcbf466e8e27a06c786551ca00d2"
+    },
+    {
+      "path": "v3/g2/P42/first_frames/simulation/code/render_all.py",
+      "bytes": 6440,
+      "sha256": "38cbe13a012bbff0615b0c89aa2cc136137fefb2349be7bf91a47f9ac5867629"
+    },
+    {
+      "path": "v3/g2/P42/first_frames/simulation/code/requirements.txt",
+      "bytes": 215,
+      "sha256": "eff134b4236c025695c3a36e37a757d6a940d2e4a648689ac4478bcd1092a264"
+    },
+    {
+      "path": "v3/g2/P42/first_frames/simulation/code/tasks.json",
+      "bytes": 51,
+      "sha256": "2ba098a79ccabe833e03c4a8daba23d316edba569fa5180c60249657bd25d40d"
+    },
+    {
+      "path": "v3/g2/P42/first_frames/simulation/sim_01.png",
+      "bytes": 884031,
+      "sha256": "278fa4c524d4c8f86554eca375bf458ed54e60921e3914eda6eccf664e19add3"
+    },
+    {
+      "path": "v3/g3/P11/first_frames/gpt/P11_gpt_01_30deg.png",
+      "bytes": 2308121,
+      "sha256": "9bc5008e0a46058780dd49c51b6e57157190befcfd51ba03ff7858d35bac8a63"
+    },
+    {
+      "path": "v3/g3/P11/first_frames/gpt/P11_gpt_02_45deg.png",
+      "bytes": 4044940,
+      "sha256": "4c2726b7db408713eaf72e6d7a75a9e5bb6128fa9d85dcf8c2cff21e9edc50b5"
+    },
+    {
+      "path": "v3/g3/P11/first_frames/gpt/P11_gpt_03_60deg.png",
+      "bytes": 2143677,
+      "sha256": "2854f43bef2e816c7533b2f4dc28b4b274f0c25897d3b8505d354555236d1f31"
+    },
+    {
+      "path": "v3/g3/P11/first_frames/gpt/source_manifest.json",
+      "bytes": 1932,
+      "sha256": "182bf7f747396e6591fcaddcd56171eb60b742615a68f21e4b56421172fe4a07"
+    },
+    {
+      "path": "v3/g3/P11/first_frames/manifest.json",
+      "bytes": 2240,
+      "sha256": "1f8c1ac3126358991964cd1fc845139399f4387b189ef0da88f4419ffe600ea9"
+    },
+    {
+      "path": "v3/g3/P11/first_frames/simulation/P11_sim_01_30deg.json",
+      "bytes": 2457,
+      "sha256": "3d9ca75e2b98b0d0134eff7435b0dfe1d6ec9f5d8cdb04b3dfff411eaa7d2912"
+    },
+    {
+      "path": "v3/g3/P11/first_frames/simulation/P11_sim_01_30deg.png",
+      "bytes": 7090936,
+      "sha256": "ae8ddd427ff7677391dfd024e26262a3fcde0e0a86b225d399293834e0e85552"
+    },
+    {
+      "path": "v3/g3/P11/first_frames/simulation/P11_sim_02_45deg.json",
+      "bytes": 2458,
+      "sha256": "6643b920b447d4a0b3d6d5e2bc381f5313dbc6245b10007a2a4a9f820d96b189"
+    },
+    {
+      "path": "v3/g3/P11/first_frames/simulation/P11_sim_02_45deg.png",
+      "bytes": 7090936,
+      "sha256": "73f633b8f97ece550796af98f5824fb3e3bf3b5ab21cb0d2beb2dfcdddaed83c"
+    },
+    {
+      "path": "v3/g3/P11/first_frames/simulation/P11_sim_03_60deg.json",
+      "bytes": 2467,
+      "sha256": "482597a39a9a68539ffbe4a74403c51cf58242512397e2258b57b71533805732"
+    },
+    {
+      "path": "v3/g3/P11/first_frames/simulation/P11_sim_03_60deg.png",
+      "bytes": 7090936,
+      "sha256": "bf3f30acc0472f8d54af3681a4163e65d4001037151b55a281476c3548760bb7"
+    },
+    {
+      "path": "v3/g3/P11/first_frames/simulation/code/current_v3_p11_laser.py",
+      "bytes": 20197,
+      "sha256": "abb3b850057d0233e214c4d19ac048b880915fb9db419b5ddbcd0e771151ef7d"
+    },
+    {
+      "path": "v3/g3/P11/first_frames/simulation/code/simulation/__init__.py",
+      "bytes": 49,
+      "sha256": "a84741c16d4026296c54d36b19384c96c9e7c444d84bec672fb67a3930e0223b"
+    },
+    {
+      "path": "v3/g3/P11/first_frames/simulation/code/simulation/common.py",
+      "bytes": 21075,
+      "sha256": "e4c4e1d7b9a7f12bc709007f57695ddab90241768d08b84a48a41c820f651a6d"
+    },
+    {
+      "path": "v3/g3/P11/first_frames/simulation/source_manifest.json",
+      "bytes": 1932,
+      "sha256": "182bf7f747396e6591fcaddcd56171eb60b742615a68f21e4b56421172fe4a07"
+    },
+    {
+      "path": "v3/g3/P3/first_frames/gpt/P3_gpt_01_modern.png",
+      "bytes": 2530449,
+      "sha256": "e325910e13f1407ed0c3527caaf2db6280a9e0dab3184b1bdebcc9ec40197572"
+    },
+    {
+      "path": "v3/g3/P3/first_frames/gpt/P3_gpt_02_classic.png",
+      "bytes": 3085367,
+      "sha256": "7ffa2eb279ef970f0415896e6a6d7cb7bb9586f36a09146ede9835d7eb2b2311"
+    },
+    {
+      "path": "v3/g3/P3/first_frames/gpt/P3_gpt_03_industrial.png",
+      "bytes": 2985710,
+      "sha256": "4bce722c9ef0a66b7320d090d7ea541a87a5ba3172f4b2ce3638a72d95f0d99d"
+    },
+    {
+      "path": "v3/g3/P3/first_frames/gpt/source_manifest.json",
+      "bytes": 6250,
+      "sha256": "5e8bd536b436f70724d7f92ee7b3169a7999be06d710f55ed57eb058ee20a1c5"
+    },
+    {
+      "path": "v3/g3/P3/first_frames/manifest.json",
+      "bytes": 2029,
+      "sha256": "1540e881d6b0aaa28e78df9e5ac9cf26479d3c9b2683487d8c010080879f8ba1"
+    },
+    {
+      "path": "v3/g3/P3/first_frames/simulation/P3_sim_01.json",
+      "bytes": 2892,
+      "sha256": "4300a27721bdc370b083f7579a60d3fabb8530687770f331f6180e43edb6d40f"
+    },
+    {
+      "path": "v3/g3/P3/first_frames/simulation/P3_sim_01.png",
+      "bytes": 7090936,
+      "sha256": "78344e452d3ad4729260a6e9ede69b42cf55aae3d4ded42c2c3bc3cbeeda93aa"
+    },
+    {
+      "path": "v3/g3/P3/first_frames/simulation/P3_sim_02.json",
+      "bytes": 2892,
+      "sha256": "07392b2550a56537475001eac14ffd422117a07eba0f748a525c0244dd848beb"
+    },
+    {
+      "path": "v3/g3/P3/first_frames/simulation/P3_sim_02.png",
+      "bytes": 7090936,
+      "sha256": "f00ca2606e22d28f61409094732b13df43a40624eb5eacd7caf66053ccde3135"
+    },
+    {
+      "path": "v3/g3/P3/first_frames/simulation/P3_sim_03.json",
+      "bytes": 2882,
+      "sha256": "f1485841f57d74932859ab159e19360d9508ea7a2bf61b7a4feccc1c8b69cb5d"
+    },
+    {
+      "path": "v3/g3/P3/first_frames/simulation/P3_sim_03.png",
+      "bytes": 7090936,
+      "sha256": "589f6f852e99f5005b2f411fdfbe280c97a01315f9276272bbb2358b1640eeb1"
+    },
+    {
+      "path": "v3/g3/P3/first_frames/simulation/code/p3_sop_variants.py",
+      "bytes": 22085,
+      "sha256": "81b8d05deac2086614ce84089d932559d581711cd0d90d316fe53aea17d4e97b"
+    },
+    {
+      "path": "v3/g3/P3/first_frames/simulation/code/simulation/__init__.py",
+      "bytes": 49,
+      "sha256": "a84741c16d4026296c54d36b19384c96c9e7c444d84bec672fb67a3930e0223b"
+    },
+    {
+      "path": "v3/g3/P3/first_frames/simulation/code/simulation/common.py",
+      "bytes": 21075,
+      "sha256": "e4c4e1d7b9a7f12bc709007f57695ddab90241768d08b84a48a41c820f651a6d"
+    },
+    {
+      "path": "v3/g3/P3/first_frames/simulation/code/tasks_all.json",
+      "bytes": 142150,
+      "sha256": "bcb2c65cbef787ca60a5f293a6a110630054721dfc5d8b663d85cc9dec816cc3"
+    },
+    {
+      "path": "v3/g3/P3/first_frames/simulation/source_manifest.json",
+      "bytes": 4048,
+      "sha256": "c650c2f6e47b831c57b04d528c6adb0cfcafaa7c0ef0a46ac63275401c8c3e3d"
+    },
+    {
+      "path": "v3/g3/P4/first_frames/gpt/P4_gpt_01_modern.png",
+      "bytes": 3429242,
+      "sha256": "75aa584e089c15e3767f2972e587f2854ecfa474e41623fefaf5e0772f790c90"
+    },
+    {
+      "path": "v3/g3/P4/first_frames/gpt/P4_gpt_02_classic.png",
+      "bytes": 2709396,
+      "sha256": "62060ba0507d90f49df4ed2f9b7db68af68336607fca9bef09fefd688928256e"
+    },
+    {
+      "path": "v3/g3/P4/first_frames/gpt/P4_gpt_03_industrial.png",
+      "bytes": 2990807,
+      "sha256": "a5b86251c5da3e08cb42773788db859846b2f03b19048a5c1f73f3f5295f05dd"
+    },
+    {
+      "path": "v3/g3/P4/first_frames/gpt/source_manifest.json",
+      "bytes": 12401,
+      "sha256": "ef4b603fa7219dd667818875fda19485e9cd18ed47c0445dc0257f25156e1600"
+    },
+    {
+      "path": "v3/g3/P4/first_frames/manifest.json",
+      "bytes": 2076,
+      "sha256": "51ef45a330de6ddad7fc1ab06b14ac5f314147be79ecbb296495e01804de8046"
+    },
+    {
+      "path": "v3/g3/P4/first_frames/simulation/P4_sim_01.json",
+      "bytes": 2010,
+      "sha256": "d1cec08b44083ab65c075a2c43e30eb6294e09141472fe5fc62892acb714370e"
+    },
+    {
+      "path": "v3/g3/P4/first_frames/simulation/P4_sim_01.png",
+      "bytes": 7090937,
+      "sha256": "6407f5a4c9b347d101b0f02ea7a238260ee2b93d345a4cdec1b45be5c4112ce6"
+    },
+    {
+      "path": "v3/g3/P4/first_frames/simulation/P4_sim_02.json",
+      "bytes": 2000,
+      "sha256": "ea17e7525d01dd688a5ecffd48a8c7858287f537874d966f19c9950b7be1f7d2"
+    },
+    {
+      "path": "v3/g3/P4/first_frames/simulation/P4_sim_02.png",
+      "bytes": 7090937,
+      "sha256": "1770043062f58208637309f5bf2b97f87ce7e411c259099d35af0ce77047aeb9"
+    },
+    {
+      "path": "v3/g3/P4/first_frames/simulation/P4_sim_03.json",
+      "bytes": 2013,
+      "sha256": "af17d2eecf8991393962041a912527f2c38d38f0c08f510556d1e6a6e4549a39"
+    },
+    {
+      "path": "v3/g3/P4/first_frames/simulation/P4_sim_03.png",
+      "bytes": 7090937,
+      "sha256": "30bcd747efb046671747a785422fce43dd1a94a2fe5cbba02420f3c6f6a05a8f"
+    },
+    {
+      "path": "v3/g3/P4/first_frames/simulation/code/high_standard_p4_p6.py",
+      "bytes": 36156,
+      "sha256": "f9625e98cee22d4680b564ee875dcb8c3673916d9598a6042316778859453e07"
+    },
+    {
+      "path": "v3/g3/P4/first_frames/simulation/code/simulation/__init__.py",
+      "bytes": 49,
+      "sha256": "a84741c16d4026296c54d36b19384c96c9e7c444d84bec672fb67a3930e0223b"
+    },
+    {
+      "path": "v3/g3/P4/first_frames/simulation/code/simulation/common.py",
+      "bytes": 21075,
+      "sha256": "e4c4e1d7b9a7f12bc709007f57695ddab90241768d08b84a48a41c820f651a6d"
+    },
+    {
+      "path": "v3/g3/P4/first_frames/simulation/code/tasks_all.json",
+      "bytes": 142150,
+      "sha256": "bcb2c65cbef787ca60a5f293a6a110630054721dfc5d8b663d85cc9dec816cc3"
+    },
+    {
+      "path": "v3/g3/P4/first_frames/simulation/source_manifest.json",
+      "bytes": 7224,
+      "sha256": "b9f5fc46791053eedb565de47d6e55df4a73e31ef98ee6229d4f9740f62ca3ed"
+    },
+    {
+      "path": "v3/g3/P6/first_frames/gpt/P6_gpt_01_modern.png",
+      "bytes": 3568412,
+      "sha256": "f8d7a6852248e4c0312f27ff71c113723e1371b07baa9d819b84677a8aa12303"
+    },
+    {
+      "path": "v3/g3/P6/first_frames/gpt/P6_gpt_02_classic.png",
+      "bytes": 4396433,
+      "sha256": "4033a01a9d97cdbb95eda668738808402a88acb26593e779a48548ae3ed5ed2f"
+    },
+    {
+      "path": "v3/g3/P6/first_frames/gpt/P6_gpt_03_industrial.png",
+      "bytes": 3980250,
+      "sha256": "333464ccdf58b27fecbafdcc78ec2f429b5398381028f46aa8af3f561f8cff7f"
+    },
+    {
+      "path": "v3/g3/P6/first_frames/gpt/source_manifest.json",
+      "bytes": 13989,
+      "sha256": "05b58f97d453f3779b54e8e63c0480c301a96c8e7f5b655b9df9d0f9b8aa260f"
+    },
+    {
+      "path": "v3/g3/P6/first_frames/manifest.json",
+      "bytes": 2075,
+      "sha256": "95d55c71d830545daa221f907f8fd7e3f99e098824ea2397ab55c2a23857349e"
+    },
+    {
+      "path": "v3/g3/P6/first_frames/simulation/P6_sim_01.json",
+      "bytes": 2318,
+      "sha256": "6ae687d0aeeae007390e8adea7eff590c848dfa276cf89ac9344cd6cb1c481e4"
+    },
+    {
+      "path": "v3/g3/P6/first_frames/simulation/P6_sim_01.png",
+      "bytes": 7090937,
+      "sha256": "24161e92c4a129555b74cecefa365ae514182adcbc7e651b3f5fdda130805670"
+    },
+    {
+      "path": "v3/g3/P6/first_frames/simulation/P6_sim_02.json",
+      "bytes": 2312,
+      "sha256": "5c3ef777141d8410c08297da4658087defaa17eb7b103ca49e4cbbb307a1125e"
+    },
+    {
+      "path": "v3/g3/P6/first_frames/simulation/P6_sim_02.png",
+      "bytes": 7090937,
+      "sha256": "4d2d462860c612bd816996115dac822f52bea18eab1de0016597f1adc791de95"
+    },
+    {
+      "path": "v3/g3/P6/first_frames/simulation/P6_sim_03.json",
+      "bytes": 2327,
+      "sha256": "6dd215ceb2d206cd2c8bc72b6ee605de459f7b2cc4e9fbe98f215545ceaa0c03"
+    },
+    {
+      "path": "v3/g3/P6/first_frames/simulation/P6_sim_03.png",
+      "bytes": 7090937,
+      "sha256": "1f874154076e30e6e5e0f01ce9e26f3268ca1bd389a941a8a5a3f8940353211d"
+    },
+    {
+      "path": "v3/g3/P6/first_frames/simulation/code/high_standard_p4_p6.py",
+      "bytes": 36156,
+      "sha256": "f9625e98cee22d4680b564ee875dcb8c3673916d9598a6042316778859453e07"
+    },
+    {
+      "path": "v3/g3/P6/first_frames/simulation/code/simulation/__init__.py",
+      "bytes": 49,
+      "sha256": "a84741c16d4026296c54d36b19384c96c9e7c444d84bec672fb67a3930e0223b"
+    },
+    {
+      "path": "v3/g3/P6/first_frames/simulation/code/simulation/common.py",
+      "bytes": 21075,
+      "sha256": "e4c4e1d7b9a7f12bc709007f57695ddab90241768d08b84a48a41c820f651a6d"
+    },
+    {
+      "path": "v3/g3/P6/first_frames/simulation/code/tasks_all.json",
+      "bytes": 142150,
+      "sha256": "bcb2c65cbef787ca60a5f293a6a110630054721dfc5d8b663d85cc9dec816cc3"
+    },
+    {
+      "path": "v3/g3/P6/first_frames/simulation/source_manifest.json",
+      "bytes": 8302,
+      "sha256": "aa24accd151f6edebd22771bc5e8829b61962d460dbe51d9f23262495060de4a"
+    },
+    {
+      "path": "v3/g3/P9/first_frames/gpt/P9_gpt_01_modern.png",
+      "bytes": 3367038,
+      "sha256": "a94939eead3291f426584bab33486188ef88b52fc7f712585fd481fc1ed10ffc"
+    },
+    {
+      "path": "v3/g3/P9/first_frames/gpt/P9_gpt_02_classic.png",
+      "bytes": 2774912,
+      "sha256": "ee55de74604a8c48462ce8548d6e7d0fe43677790949ef78a46c1e55bcceb801"
+    },
+    {
+      "path": "v3/g3/P9/first_frames/gpt/P9_gpt_03_industrial.png",
+      "bytes": 2262272,
+      "sha256": "244a01d4a591e254ae5a35ad40b80a938892b37c92064d81d6e35b2e94f214d5"
+    },
+    {
+      "path": "v3/g3/P9/first_frames/gpt/source_manifest.json",
+      "bytes": 4142,
+      "sha256": "0280e7d86f62e907409c1218b27d0227e29f123172a2c9d8dd364f51779662a3"
+    },
+    {
+      "path": "v3/g3/P9/first_frames/manifest.json",
+      "bytes": 2039,
+      "sha256": "cf7bb5edcbd6fcb7f31e73a6691e1666b3e673baece716191611d6aefd369540"
+    },
+    {
+      "path": "v3/g3/P9/first_frames/simulation/P9_sim_01.json",
+      "bytes": 2946,
+      "sha256": "96075282ae7f487858beb7334266b7c7a03845fa9abc0a65b4b5c0d90c63e8fe"
+    },
+    {
+      "path": "v3/g3/P9/first_frames/simulation/P9_sim_01.png",
+      "bytes": 7090936,
+      "sha256": "035eb5bd08368904c645453d52ea94868b6992d9b557ef56c7c96c0fe6974b09"
+    },
+    {
+      "path": "v3/g3/P9/first_frames/simulation/P9_sim_02.json",
+      "bytes": 2977,
+      "sha256": "16f95901a207fa55f9904babf2dc80bd717c8de492a157d2a2df993a2278b693"
+    },
+    {
+      "path": "v3/g3/P9/first_frames/simulation/P9_sim_02.png",
+      "bytes": 7090936,
+      "sha256": "bbde9d5c8a7fd0d40c91c461a27e0ee7233d4c1ceeb5fdb222b405e75dcf6e3e"
+    },
+    {
+      "path": "v3/g3/P9/first_frames/simulation/P9_sim_03.json",
+      "bytes": 2952,
+      "sha256": "ae3b33ec99fd17954363004f462c4674fd78537e0e398ccafd48ec1600cf49fd"
+    },
+    {
+      "path": "v3/g3/P9/first_frames/simulation/P9_sim_03.png",
+      "bytes": 7090936,
+      "sha256": "fa88fcfb2781f024db3232b6f7d89ed19de901b1c0b500c8ea5c66c0d414a45b"
+    },
+    {
+      "path": "v3/g3/P9/first_frames/simulation/code/high_standard_p9_v2.py",
+      "bytes": 18623,
+      "sha256": "cc4d203eb8876efbaf43f2f6b9abf0ad9c2745abd1bc328dcc9adcac54923b85"
+    },
+    {
+      "path": "v3/g3/P9/first_frames/simulation/code/simulation/__init__.py",
+      "bytes": 49,
+      "sha256": "a84741c16d4026296c54d36b19384c96c9e7c444d84bec672fb67a3930e0223b"
+    },
+    {
+      "path": "v3/g3/P9/first_frames/simulation/code/simulation/common.py",
+      "bytes": 21075,
+      "sha256": "e4c4e1d7b9a7f12bc709007f57695ddab90241768d08b84a48a41c820f651a6d"
+    },
+    {
+      "path": "v3/g3/P9/first_frames/simulation/code/tasks_all.json",
+      "bytes": 142150,
+      "sha256": "bcb2c65cbef787ca60a5f293a6a110630054721dfc5d8b663d85cc9dec816cc3"
+    },
+    {
+      "path": "v3/g3/P9/first_frames/simulation/source_manifest.json",
+      "bytes": 10508,
+      "sha256": "492e68ac91396cb145c50b0db876022835d97c1d55461ecd5e40c048dec90c55"
+    },
+    {
+      "path": "v3/g4/P14/first_frames/gpt/gpt_01.png",
+      "bytes": 1752315,
+      "sha256": "5f493de4ef76431daa19b7c7d7d1bd78b2dab5640ab113549a91ca193d769c2d"
+    },
+    {
+      "path": "v3/g4/P14/first_frames/gpt/gpt_02.png",
+      "bytes": 1738852,
+      "sha256": "bc6dc8e9dc51664f5e29b4ba4ef39ec4834cd54a6ab2ae185e7ff8fd3d1609a1"
+    },
+    {
+      "path": "v3/g4/P14/first_frames/gpt/prompt.txt",
+      "bytes": 985,
+      "sha256": "5d8ab58ad9d0f1200956b1407d4f9384b8509111aa0426868bad6b5482b22384"
+    },
+    {
+      "path": "v3/g4/P14/first_frames/simulation/sim_01.png",
+      "bytes": 802700,
+      "sha256": "b4e8daedb3ae969a3e47aa35bfe866909d197a61dbf4d43881c038b2166b461f"
+    },
+    {
+      "path": "v3/g4/P16/first_frames/gpt/gpt_01.png",
+      "bytes": 1135232,
+      "sha256": "5c196d4e1bee21294f76e3ac13f841643f4ee37394ffc129af9c292e514daed8"
+    },
+    {
+      "path": "v3/g4/P16/first_frames/gpt/prompt.txt",
+      "bytes": 551,
+      "sha256": "b6503cef7491ceeadea06b05024b5021ae8db24e917b6be3b1a8df95c60b3152"
+    },
+    {
+      "path": "v3/g4/P16/first_frames/simulation/sim_01.png",
+      "bytes": 672499,
+      "sha256": "49db55d4f08cbfb57c1c52ab44d45637146a0a41ed3b7c43bfd66815c0b5db3e"
+    },
+    {
+      "path": "v3/g4/P18/first_frames/gpt/gpt_01.png",
+      "bytes": 1110131,
+      "sha256": "035cbf76e76749ab80867c307be88a19beb80df4cee6afd9de8a4ab4e7062df8"
+    },
+    {
+      "path": "v3/g4/P18/first_frames/gpt/prompt.txt",
+      "bytes": 564,
+      "sha256": "58dec50411eb5744fe8e26b6493ed4bebc86f622cbd5588bcd0a22b9425b351e"
+    },
+    {
+      "path": "v3/g4/P18/first_frames/simulation/sim_01.png",
+      "bytes": 688981,
+      "sha256": "93295cafe18be53110653a7c0264b18b32af8b10f23c09cc1c190a990a1e71c0"
+    },
+    {
+      "path": "v3/g4/P20/first_frames/gpt/gpt_01.png",
+      "bytes": 1217944,
+      "sha256": "d807f5ac827e00a572521fc2dfa0bd61f1d2338db5ab4f26df4232769373d00e"
+    },
+    {
+      "path": "v3/g4/P20/first_frames/gpt/prompt.txt",
+      "bytes": 450,
+      "sha256": "9170c3b2ae753a3c431f75f8639d420a17efec5b51c0bebb64132b666f2e990c"
+    },
+    {
+      "path": "v3/g4/P21/first_frames/gpt/gpt_01.png",
+      "bytes": 931024,
+      "sha256": "5175aa51afe30287f89ec323a68354aa874cd1bbf2c09eff187b649580ac4bf5"
+    },
+    {
+      "path": "v3/g4/P21/first_frames/gpt/gpt_02.png",
+      "bytes": 1561887,
+      "sha256": "2ed89d47ab872f40ee00c9c5f6214cea94c32f8496a47fee82181b60bcd1fe87"
+    },
+    {
+      "path": "v3/g4/P21/first_frames/gpt/gpt_03.png",
+      "bytes": 1589470,
+      "sha256": "42991a26e93a7e799b12ac5dc0d15e2df04d6d4609c303c76ba8262e8f39b3d1"
+    },
+    {
+      "path": "v3/g4/P21/first_frames/gpt/prompt.txt",
+      "bytes": 2071,
+      "sha256": "8fe303e979e12a509d5d1e4b4871dc7a41600872ea1f6ab8ea0641aeb75b0ea0"
+    },
+    {
+      "path": "v3/g4/P21/first_frames/simulation/sim_01.png",
+      "bytes": 644306,
+      "sha256": "692d9361c2640cd8e88adc1791460eb883e6448c76bced173cec33ccf8b8741d"
+    },
+    {
+      "path": "v3/g5/P21b/first_frames/gpt/gpt_01.png",
+      "bytes": 1074653,
+      "sha256": "df69d7eee2dd7d4da3d23db2a85b0b7acca78774d045f1415db03e733073ac40"
+    },
+    {
+      "path": "v3/g5/P21b/first_frames/gpt/prompt.txt",
+      "bytes": 429,
+      "sha256": "4155518017518639ef6ed65a07a150e6b0b4b381b184a5844baac6bc3874417c"
+    },
+    {
+      "path": "v3/g5/P21b/first_frames/real/.gitkeep",
+      "bytes": 1,
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "v3/g5/P21b/first_frames/simulation/README.md",
+      "bytes": 155,
+      "sha256": "f4f0135c11d7057c6beadb4992d6d6bef4f3b4fc725a592aa27e0c6e7dc90387"
+    },
+    {
+      "path": "v3/g5/P21b/first_frames/simulation/code/README.md",
+      "bytes": 51,
+      "sha256": "0d03911a5939152a5093238500f27a3361c60ea82f066691ccc1935579ae574c"
+    },
+    {
+      "path": "v3/g5/P21c/first_frames/gpt/gpt_01.png",
+      "bytes": 968395,
+      "sha256": "7d36906afaf02a0af2d5907372ce065b217da7c6e3f1c590dd6baab8f521d2b4"
+    },
+    {
+      "path": "v3/g5/P21c/first_frames/gpt/prompt.txt",
+      "bytes": 457,
+      "sha256": "cf9f758660b2bd70d845955d0705500b106860bd42228116f30179a8b00ecdfd"
+    },
+    {
+      "path": "v3/g5/P21c/first_frames/real/.gitkeep",
+      "bytes": 1,
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "v3/g5/P21c/first_frames/simulation/README.md",
+      "bytes": 155,
+      "sha256": "68f61b16bd34cfe581ec264e55e9586db6dcca2e594722e8130e84bd1238fc2e"
+    },
+    {
+      "path": "v3/g5/P21c/first_frames/simulation/code/README.md",
+      "bytes": 51,
+      "sha256": "0d03911a5939152a5093238500f27a3361c60ea82f066691ccc1935579ae574c"
+    },
+    {
+      "path": "v3/g5/P23/first_frames/gpt/gpt_01.png",
+      "bytes": 1600392,
+      "sha256": "c9fcc69fe676345809cefea183ce037e711e2f4ec0b88d0bdf9243ebaed3cf1d"
+    },
+    {
+      "path": "v3/g5/P23/first_frames/gpt/prompt.txt",
+      "bytes": 2226,
+      "sha256": "c4112af39a87b81ead8380173b61ad5e32288ea1137289f77a67edeba614bbfc"
+    },
+    {
+      "path": "v3/g5/P23/first_frames/real/.gitkeep",
+      "bytes": 1,
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "v3/g5/P23/first_frames/simulation/README.md",
+      "bytes": 154,
+      "sha256": "e1b0fa61c55ae6a0a886959c7e9a7df71a295072eed94d4cf79093b3585df82d"
+    },
+    {
+      "path": "v3/g5/P23/first_frames/simulation/code/README.md",
+      "bytes": 51,
+      "sha256": "0d03911a5939152a5093238500f27a3361c60ea82f066691ccc1935579ae574c"
+    },
+    {
+      "path": "v3/g5/P36/first_frames/gpt/gpt_01.png",
+      "bytes": 2079646,
+      "sha256": "b088755ee7a6f4ef62acd9a359aced98ac5444b3fa15031945da7ea2f9f5bc35"
+    },
+    {
+      "path": "v3/g5/P36/first_frames/gpt/prompt.txt",
+      "bytes": 2872,
+      "sha256": "9d4fc1c179f577af6bc26809887ecc4d535c05aead5795972e145a57ae2a37cc"
+    },
+    {
+      "path": "v3/g5/P36/first_frames/real/.gitkeep",
+      "bytes": 1,
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "v3/g5/P36/first_frames/simulation/README.md",
+      "bytes": 215,
+      "sha256": "8aa7e9a247fd5b3f5fb6686c1c593792edcee3e940399bada801a36568bebc99"
+    },
+    {
+      "path": "v3/g5/P36/first_frames/simulation/code/README.md",
+      "bytes": 87,
+      "sha256": "4d92f12e3c5178f7cd974c4dc3a7036d71fc2d298ba9ae85238fb66755036fda"
+    },
+    {
+      "path": "v3/g5/P36/first_frames/simulation/sim_01.png",
+      "bytes": 1376986,
+      "sha256": "04d56aaa094640dc5e1ff3035126e29ed49889b76b41f8155438b5148ec7838a"
+    },
+    {
+      "path": "v3/g5/P44/first_frames/gpt/gpt_01.png",
+      "bytes": 1253091,
+      "sha256": "ac4c6bbc47dc1477428ff0cd7a11faa70acd7fc4fcab3111b8d47c531e6474a8"
+    },
+    {
+      "path": "v3/g5/P44/first_frames/gpt/prompt.txt",
+      "bytes": 2192,
+      "sha256": "5e6a1fa236b26bd3b648f9d2039c7fe9347ab4bff596e787e27c5185cd1f5b75"
+    },
+    {
+      "path": "v3/g5/P44/first_frames/real/.gitkeep",
+      "bytes": 1,
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "v3/g5/P44/first_frames/simulation/README.md",
+      "bytes": 215,
+      "sha256": "8aa7e9a247fd5b3f5fb6686c1c593792edcee3e940399bada801a36568bebc99"
+    },
+    {
+      "path": "v3/g5/P44/first_frames/simulation/code/README.md",
+      "bytes": 87,
+      "sha256": "4d92f12e3c5178f7cd974c4dc3a7036d71fc2d298ba9ae85238fb66755036fda"
+    },
+    {
+      "path": "v3/g5/P44/first_frames/simulation/sim_01.png",
+      "bytes": 821763,
+      "sha256": "c75fc3a9ca72fad5e7d2c590b918720317eff56cee8127377970a5e2d1506212"
+    },
+    {
+      "path": "v3/g6/P45/first_frames/gpt/gpt_01.png",
+      "bytes": 995457,
+      "sha256": "12d0807aff06bf4cbca8d189f186c38dc3eeaf53f79ecb5f46d93d779e905981"
+    },
+    {
+      "path": "v3/g6/P45/first_frames/gpt/gpt_02.png",
+      "bytes": 1507238,
+      "sha256": "581d2840ec31f3e36adc58b3c706a68f28e7eea3b61a61107a5dfe2b709d9656"
+    },
+    {
+      "path": "v3/g6/P45/first_frames/gpt/gpt_03.png",
+      "bytes": 1475610,
+      "sha256": "be303e6c438493527b2a7a84afa398c8b6b7b9a7d278882734196258a6ae7b2e"
+    },
+    {
+      "path": "v3/g6/P45/first_frames/gpt/prompt.txt",
+      "bytes": 2175,
+      "sha256": "09be754c5319ff8f02cd9ff325a3604e2fda20bb7ae8c2b57fb5b3098ed40d60"
+    },
+    {
+      "path": "v3/g6/P48/first_frames/gpt/gpt_01.png",
+      "bytes": 1349377,
+      "sha256": "57a3f21f738ee00f4428b8d791ef4f15acc3df517d5afabb651c537e469acc24"
+    },
+    {
+      "path": "v3/g6/P48/first_frames/gpt/prompt.txt",
+      "bytes": 464,
+      "sha256": "95e2783b81278caa98ea82ee91904c61b6c377d807ba0cc7d0eec766545b5d08"
+    },
+    {
+      "path": "v3/g6/P48/first_frames/simulation/sim_01.png",
+      "bytes": 1003384,
+      "sha256": "7239e923f0fc14bb3d193042a33d03158abb586fb90013986114b4fdbdef0b4c"
+    },
+    {
+      "path": "v3/g6/P8b/first_frames/gpt/gpt_01.png",
+      "bytes": 1060747,
+      "sha256": "f5a6cae654179f408593e8ce075e3609fe87a4b035d4cad21cec793d50160bca"
+    },
+    {
+      "path": "v3/g6/P8b/first_frames/gpt/gpt_02.png",
+      "bytes": 1297921,
+      "sha256": "de0d4610ed5ca3f2b78e762cc1bfecbbe022cd5698330d90c08cfcec7bd28d4c"
+    },
+    {
+      "path": "v3/g6/P8b/first_frames/gpt/prompt.txt",
+      "bytes": 801,
+      "sha256": "545bc8f9075da48592a5e8034b35ace5641923fe8c0080edb7bad2c72480c1b8"
+    },
+    {
+      "path": "v3/g6/P8b/first_frames/simulation/sim_01.png",
+      "bytes": 665983,
+      "sha256": "965c1c2e673a3c95887ec679de58154922585e257a53ccfeb97d593c219c761a"
+    },
+    {
+      "path": "v3/g7/P10/first_frames/gpt/gpt_01.png",
+      "bytes": 1922052,
+      "sha256": "41f9c6a50c456abccfb6a4fa30d876c90aabeecaa91f992c530790a1eac93d63"
+    },
+    {
+      "path": "v3/g7/P10/first_frames/gpt/gpt_02.png",
+      "bytes": 1999585,
+      "sha256": "2f1da90f30b0a572d4d0a02c2eb65437e59c1902f540915b040418a025c807d8"
+    },
+    {
+      "path": "v3/g7/P10/first_frames/gpt/gpt_03.png",
+      "bytes": 1989426,
+      "sha256": "1d3d54a6e22a975e6e717596fd47cec03a50fd3a1e87279c0ac2e0e68dfd13ea"
+    },
+    {
+      "path": "v3/g7/P10/first_frames/gpt/prompt.txt",
+      "bytes": 1536,
+      "sha256": "a86a9387f630dbacd5d2e3827ad303e20fa8b7cf9fe685b24278ecb9e4dc0e10"
+    },
+    {
+      "path": "v3/g7/P10/first_frames/gpt/video_prompt.txt",
+      "bytes": 502,
+      "sha256": "f4e3e1b92aecdadeba575273ca38f2f62864a6ebee37ddb8b526215086c569e0"
+    },
+    {
+      "path": "v3/g7/P10/first_frames/provided/first_frame_01.png",
+      "bytes": 2073447,
+      "sha256": "190a54a6857c78974e1e03213675d08a790962739dc85101e3621aa06eee5ca2"
+    },
+    {
+      "path": "v3/g7/P10/first_frames/simulation/code/render.py",
+      "bytes": 28543,
+      "sha256": "eae15422fe8a7adccc473c6e308fbc1f689ba0c901019c4a23bb4748a56f44d5"
+    },
+    {
+      "path": "v3/g7/P10/first_frames/simulation/code/requirements.txt",
+      "bytes": 55,
+      "sha256": "29e02783cbef957e333158ba7e73aec5b901d010795f4c494dfff1a0898c2c26"
+    },
+    {
+      "path": "v3/g7/P10/first_frames/simulation/sim_01.png",
+      "bytes": 1418685,
+      "sha256": "02eb699f145ad2134da1b56be39de72a1757ed1f86df6eed49bc80477cfead33"
+    },
+    {
+      "path": "v3/g7/P10/first_frames/simulation/sim_02.png",
+      "bytes": 1472103,
+      "sha256": "cebfe1e094975a86c2e296c4945f276e23e1d1ad89b1a11f973d5d0d9f3a8df2"
+    },
+    {
+      "path": "v3/g7/P10/first_frames/simulation/sim_03.png",
+      "bytes": 1468433,
+      "sha256": "b3bbefa4c3e0e9ce17c0a1a048d2b4c819d2e7285f17d1ef715bf39cb2c4a731"
+    },
+    {
+      "path": "v3/g7/P12/first_frames/gpt/gpt_01.png",
+      "bytes": 1819725,
+      "sha256": "6bbf975208700aa75168cc47e7ad291569b5b305acb01ae092546e20790704af"
+    },
+    {
+      "path": "v3/g7/P12/first_frames/gpt/gpt_02.png",
+      "bytes": 1743413,
+      "sha256": "14e2e908f1e8fa6e42eff1a710796efcf17d5360ebaf01096b1284a20f205bca"
+    },
+    {
+      "path": "v3/g7/P12/first_frames/gpt/gpt_03.png",
+      "bytes": 1668994,
+      "sha256": "d48f586d117ad812adb2b331cc753da704385f5604054a16e198ab7c3e6372b7"
+    },
+    {
+      "path": "v3/g7/P12/first_frames/gpt/prompt.txt",
+      "bytes": 7258,
+      "sha256": "18b7194bc218f4a52325f088631b76f3eeaf5e5de75f5c9c9c0423652153d900"
+    },
+    {
+      "path": "v3/g7/P12/first_frames/gpt/video_prompt.txt",
+      "bytes": 4555,
+      "sha256": "d9c02a44bec6ecddfdfbf9f806ad9fa0f7e1bf87a7c8f070663fa938fee75eb6"
+    },
+    {
+      "path": "v3/g7/P12/first_frames/provided/first_frame_01.png",
+      "bytes": 1642773,
+      "sha256": "d6c69f1935d9bb4727e8bfe82e20230d8ae9b36417fdf96d3ad4a04ffc5bac07"
+    },
+    {
+      "path": "v3/g7/P12/first_frames/simulation/code/render.py",
+      "bytes": 28543,
+      "sha256": "eae15422fe8a7adccc473c6e308fbc1f689ba0c901019c4a23bb4748a56f44d5"
+    },
+    {
+      "path": "v3/g7/P12/first_frames/simulation/code/requirements.txt",
+      "bytes": 55,
+      "sha256": "29e02783cbef957e333158ba7e73aec5b901d010795f4c494dfff1a0898c2c26"
+    },
+    {
+      "path": "v3/g7/P12/first_frames/simulation/sim_01.png",
+      "bytes": 1557326,
+      "sha256": "609c18c7bd9f5a1010cc6056ba7e575079650e51444850e4a98ae13a860c6a76"
+    },
+    {
+      "path": "v3/g7/P12/first_frames/simulation/sim_02.png",
+      "bytes": 1555218,
+      "sha256": "9a03c9ad61e233d542d119da19e438e2d7f79c23af31c88a7350ca11265cbd15"
+    },
+    {
+      "path": "v3/g7/P12/first_frames/simulation/sim_03.png",
+      "bytes": 1556267,
+      "sha256": "25547921aa49c33c9a37c55e79f2dcf277f6373e587036268d3d9fd2df696d19"
+    },
+    {
+      "path": "v3/g7/P27/first_frames/gpt/gpt_01.png",
+      "bytes": 1635176,
+      "sha256": "3e9f7423bd6dcb72cde4c60ab5dd991183b02ee3e96eca2445d79e81b09871ae"
+    },
+    {
+      "path": "v3/g7/P27/first_frames/gpt/gpt_02.png",
+      "bytes": 1617555,
+      "sha256": "fb62935c580ead71cea87a59b5763b7e0f9821d955bebb580d36c6711df90bb0"
+    },
+    {
+      "path": "v3/g7/P27/first_frames/gpt/gpt_03.png",
+      "bytes": 1538899,
+      "sha256": "dd711252ffca95051ff82e0794dfe44137eddac4ef206977a02adb28b55f249e"
+    },
+    {
+      "path": "v3/g7/P27/first_frames/gpt/prompt.txt",
+      "bytes": 1305,
+      "sha256": "e910f620604ff2eca12a03e6714013d6f3d1e8233808186f0af3b3ecf00b03c8"
+    },
+    {
+      "path": "v3/g7/P27/first_frames/gpt/video_prompt.txt",
+      "bytes": 464,
+      "sha256": "9e13c6726850625c71cd2aa0177a58865dbe174b59e2f9a9bdc12ac90f2ce0c5"
+    },
+    {
+      "path": "v3/g7/P27/first_frames/provided/first_frame_01.png",
+      "bytes": 1090724,
+      "sha256": "043098595e68f1351f8f81446640c708217b84e4e6cf7e5795afa3a1ce1dfe0b"
+    },
+    {
+      "path": "v3/g7/P27/first_frames/simulation/code/render.py",
+      "bytes": 28543,
+      "sha256": "eae15422fe8a7adccc473c6e308fbc1f689ba0c901019c4a23bb4748a56f44d5"
+    },
+    {
+      "path": "v3/g7/P27/first_frames/simulation/code/requirements.txt",
+      "bytes": 55,
+      "sha256": "29e02783cbef957e333158ba7e73aec5b901d010795f4c494dfff1a0898c2c26"
+    },
+    {
+      "path": "v3/g7/P27/first_frames/simulation/sim_01.png",
+      "bytes": 1413655,
+      "sha256": "a019e5e1d402fbbd4d3758f6ac3bf8a677e4303ebe1d2b1442965e6b6d6ade67"
+    },
+    {
+      "path": "v3/g7/P27/first_frames/simulation/sim_02.png",
+      "bytes": 1415351,
+      "sha256": "d05e58040dac2aff1100edccf5085733c6b2ee3077af1b70957a6b80af66a92a"
+    },
+    {
+      "path": "v3/g7/P27/first_frames/simulation/sim_03.png",
+      "bytes": 1415289,
+      "sha256": "f1e434028e7cdd2c369be617b68454fa0c3122e674451c4dd77812cb4860c014"
+    },
+    {
+      "path": "v3/g7/P7/first_frames/gpt/gpt_01.png",
+      "bytes": 1982585,
+      "sha256": "9eafd34a35525048d715825a4194c7490e7ab14b70d32b0f577a4f995bd9686e"
+    },
+    {
+      "path": "v3/g7/P7/first_frames/gpt/gpt_02.png",
+      "bytes": 1887454,
+      "sha256": "7e31bab856d5e94f0a37af447fbd843d6f0160d39dbd6b99a321c433636cc175"
+    },
+    {
+      "path": "v3/g7/P7/first_frames/gpt/gpt_03.png",
+      "bytes": 1800773,
+      "sha256": "e52c89a53a407717ea431fc8cd9f6afbb1d1ed69df991c5e17c649be6ba06877"
+    },
+    {
+      "path": "v3/g7/P7/first_frames/gpt/prompt.txt",
+      "bytes": 1470,
+      "sha256": "f7083909b97da42e3cf5575593dd76f559a668fd0d05b6e67e17754225025500"
+    },
+    {
+      "path": "v3/g7/P7/first_frames/gpt/video_prompt.txt",
+      "bytes": 436,
+      "sha256": "814acd1492e4b3fe5b93ac9bd228a9393bd58c6f622efbdcb0d9a5bf55443f8d"
+    },
+    {
+      "path": "v3/g7/P7/first_frames/provided/first_frame_01.png",
+      "bytes": 1847786,
+      "sha256": "d538885523bbec43b41169d8c91e3ab3453abd9cec232ed91e781a6a3a820c1e"
+    },
+    {
+      "path": "v3/g7/P7/first_frames/simulation/code/render.py",
+      "bytes": 28543,
+      "sha256": "eae15422fe8a7adccc473c6e308fbc1f689ba0c901019c4a23bb4748a56f44d5"
+    },
+    {
+      "path": "v3/g7/P7/first_frames/simulation/code/requirements.txt",
+      "bytes": 55,
+      "sha256": "29e02783cbef957e333158ba7e73aec5b901d010795f4c494dfff1a0898c2c26"
+    },
+    {
+      "path": "v3/g7/P7/first_frames/simulation/sim_01.png",
+      "bytes": 1441060,
+      "sha256": "3eb2469408f2841c8e0add20070d31f8e453a6b7b054bd2559167e60cb51a86e"
+    },
+    {
+      "path": "v3/g7/P7/first_frames/simulation/sim_02.png",
+      "bytes": 1469810,
+      "sha256": "3ed6c2cc02870c0f1a6b0949d8ed41aad060a70a1f1ab419c2434391ebb969b2"
+    },
+    {
+      "path": "v3/g7/P7/first_frames/simulation/sim_03.png",
+      "bytes": 1467766,
+      "sha256": "9447962d43d7c00dff549ed8891f69791a6d2576f543b06f658b6d3864e2cdfb"
+    },
+    {
+      "path": "v3/g7/P8c/first_frames/gpt/gpt_01.png",
+      "bytes": 1581198,
+      "sha256": "8c601b89ea96d9502865c8dba607ffa8142e7b9f41cd80fabc8fa928cde2cfac"
+    },
+    {
+      "path": "v3/g7/P8c/first_frames/gpt/gpt_02.png",
+      "bytes": 1467047,
+      "sha256": "e1d22a4517e5bb815546f6f9c6c714c9418386c49a72692d30221f7a8d052956"
+    },
+    {
+      "path": "v3/g7/P8c/first_frames/gpt/gpt_03.png",
+      "bytes": 1665985,
+      "sha256": "d256674bffb5cf01743f503d999625d89fa5da870f5a399b136e82725f4eeada"
+    },
+    {
+      "path": "v3/g7/P8c/first_frames/gpt/prompt.txt",
+      "bytes": 1564,
+      "sha256": "56ca00582d209ee781229803a44c8cb3765b9ab67d6d9de144644eacebf1e2a6"
+    },
+    {
+      "path": "v3/g7/P8c/first_frames/gpt/video_prompt.txt",
+      "bytes": 622,
+      "sha256": "f1561cf429ff35a60a517efca325bf8d63445cd39173058e007274e6d401c495"
+    },
+    {
+      "path": "v3/g7/P8c/first_frames/provided/first_frame_01.png",
+      "bytes": 1067263,
+      "sha256": "5dba99bedad67745f54ce7ae99588b53037084056ed242008b7a09676094b768"
+    },
+    {
+      "path": "v3/g7/P8c/first_frames/simulation/code/render.py",
+      "bytes": 28543,
+      "sha256": "eae15422fe8a7adccc473c6e308fbc1f689ba0c901019c4a23bb4748a56f44d5"
+    },
+    {
+      "path": "v3/g7/P8c/first_frames/simulation/code/requirements.txt",
+      "bytes": 55,
+      "sha256": "29e02783cbef957e333158ba7e73aec5b901d010795f4c494dfff1a0898c2c26"
+    },
+    {
+      "path": "v3/g7/P8c/first_frames/simulation/sim_01.png",
+      "bytes": 1189113,
+      "sha256": "6bbeaf8666766e3b448c16a526ca1f754e6315d50bd3cf3a4b94767c005582a0"
+    },
+    {
+      "path": "v3/g7/P8c/first_frames/simulation/sim_02.png",
+      "bytes": 1189648,
+      "sha256": "509d8434b15c208e46230026637816ae6cf056da64e0ac1db285e7b818c4bfa6"
+    },
+    {
+      "path": "v3/g7/P8c/first_frames/simulation/sim_03.png",
+      "bytes": 1189739,
+      "sha256": "f332dce0ebd455599a51f470fe2eaa7a438f54528cc96e491bcfd711ef6578fb"
+    },
+    {
+      "path": "v3/g8/P34/first_frames/provided/first_frame_01.png",
+      "bytes": 2178452,
+      "sha256": "f24300c837f959ebdcabe54f20bdac487d6cc80d02e4e761ca42210bfa180e9d"
+    },
+    {
+      "path": "v3/g8/P34/first_frames/provided/prompt.txt",
+      "bytes": 1311,
+      "sha256": "f4af519a469dce195a9137f28599c6152fb6edcc9692c54b7ce88782f9e723e8"
+    },
+    {
+      "path": "v3/g8/P37/first_frames/provided/first_frame_01.png",
+      "bytes": 1610386,
+      "sha256": "60294fd77093cd544166c184f6b5b25d0d67d5ca24637b01bd083520e4806294"
+    },
+    {
+      "path": "v3/g8/P37/first_frames/provided/prompt.txt",
+      "bytes": 1796,
+      "sha256": "3ad974296fef286cc01031ec14d65157e61e17e0b40a86d556cf42e119316769"
+    },
+    {
+      "path": "v3/g8/P38/first_frames/provided/first_frame_01.png",
+      "bytes": 1558248,
+      "sha256": "71ba8e61cd81dec5a35d746abd76c55a7b575d0103139bd5bc580c76abe2d490"
+    },
+    {
+      "path": "v3/g8/P38/first_frames/provided/prompt.txt",
+      "bytes": 3818,
+      "sha256": "e38077e45f668a6b5f0f8950d9b81dff7238bc8facf7d12bb798503d0091a2ab"
+    },
+    {
+      "path": "v3/g8/P39/first_frames/provided/first_frame_01.png",
+      "bytes": 91742,
+      "sha256": "11be4e0afbe664f3660376886174453d9f36a7c579b927d4cf49b99922e9975e"
+    },
+    {
+      "path": "v3/g8/P39/first_frames/provided/prompt.txt",
+      "bytes": 1304,
+      "sha256": "5d499e71036962f15422f8c4ae0c5d92fc1633d42c300534feb48bbc5d20c325"
+    },
+    {
+      "path": "v3/g8/P41/first_frames/provided/first_frame_01.png",
+      "bytes": 1621487,
+      "sha256": "cf55a31eeb0944425f0d8585aabf7bf7d5741ff1a5a787564dfbd0c8c97ce5cf"
+    },
+    {
+      "path": "v3/g8/P41/first_frames/provided/prompt.txt",
+      "bytes": 1304,
+      "sha256": "3147ba842ee3422a6c829afc1a6becdaebf4721fcbe7f2925b0b86d3689cdeff"
+    },
+    {
+      "path": "v3/g9/P43/first_frames/provided/first_frame_01.png",
+      "bytes": 2470411,
+      "sha256": "8739550a35917071f6ad0c0e8cc9139cd467fa3c2f43d41d805dc7adcfdbf6ed"
+    },
+    {
+      "path": "v3/g9/P43/first_frames/provided/prompt.txt",
+      "bytes": 3800,
+      "sha256": "e2dab3e5edb5e295acd3df1ab978469e06524e9babd78f3ac53786c83a8bb252"
+    },
+    {
+      "path": "v3/g9/P47/first_frames/provided/first_frame_01.png",
+      "bytes": 3048584,
+      "sha256": "3fab06e8b9efbccc90714ceedb8497990303d76c58ce82836ac68e32df31626c"
+    },
+    {
+      "path": "v3/g9/P47/first_frames/provided/prompt.txt",
+      "bytes": 4214,
+      "sha256": "0fdd7da29c97ed36ed746f15659c6dad775f609849ad5fcfb406dd0b8eee44e4"
+    },
+    {
+      "path": "v3/g9/P49/first_frames/provided/first_frame_01.png",
+      "bytes": 2190413,
+      "sha256": "6bf62da13d4e5e546fd57ce9b952aea4a8af626bbb30ac35c323c7218d118b75"
+    },
+    {
+      "path": "v3/g9/P49/first_frames/provided/prompt.txt",
+      "bytes": 4853,
+      "sha256": "a9262ee675907e0eeafa7c46d0f5b8603da1bdd43eb8bb8b490ab814646102e2"
+    }
+  ]
+}

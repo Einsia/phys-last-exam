@@ -1,0 +1,71 @@
+{
+  "task_id": "P4",
+  "candidate": 2,
+  "variant": {
+    "theme": "classic",
+    "name": "classic_teaching_lab",
+    "description": "Older teaching laboratory, warm window light and an opposite-side camera.",
+    "index": 2
+  },
+  "method": "procedural_simulation_source",
+  "version": "high_standard_v1",
+  "file": "external_materials/sop_delivery/P4/high_standard_v1/simulation/sim_02.png",
+  "width": 2048,
+  "height": 1152,
+  "sha256": "1770043062f58208637309f5bf2b97f87ce7e411c259099d35af0ce77047aeb9",
+  "renderer": "Blender Python 5.0.1 / cycles",
+  "render_device": "CPU",
+  "samples": 128,
+  "denoising_enabled": true,
+  "adaptive_threshold": 0.01,
+  "denoiser": "OPENIMAGEDENOISE",
+  "denoising_input_passes": "RGB_ALBEDO_NORMAL",
+  "elapsed_seconds": 9.74,
+  "initial_state_only": true,
+  "camera": {
+    "type": "PERSP",
+    "lens_mm": 56.0,
+    "location": [
+      -8.2,
+      -18.5,
+      5.65
+    ],
+    "rotation_euler_degrees": [
+      81.712927,
+      -1e-06,
+      -23.123795
+    ],
+    "dof_enabled": false
+  },
+  "physical_parameters": {
+    "ball_center_m": [
+      -0.75,
+      -0.04,
+      4.92
+    ],
+    "ball_radius_m": 0.34,
+    "impact_plate_top_z_m": 0.64,
+    "clear_vertical_corridor_m": 3.94,
+    "magnet_center_m": [
+      -0.75,
+      -0.04,
+      5.44
+    ],
+    "magnet_depth_m": 0.36,
+    "magnet_ball_contact_error_m": 1.9e-08
+  },
+  "hard_constraints": {
+    "exactly_one_orange_rubber_ball": true,
+    "ball_held_by_small_electromagnetic_release": true,
+    "magnet_ball_contact_exact": true,
+    "ball_not_yet_released": true,
+    "complete_clear_fall_and_rebound_corridor_visible": true,
+    "complete_hard_impact_plate_visible": true,
+    "text_arrows_formulas_trajectories_absent": true,
+    "motion_blur_absent": true
+  },
+  "external_assets": [],
+  "code": "external_materials/simulation/high_standard_p4_p6.py",
+  "code_sha256": "f9625e98cee22d4680b564ee875dcb8c3673916d9598a6042316778859453e07",
+  "created_utc": "2026-08-24T15:06:32.385249+00:00"
+}

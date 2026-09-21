@@ -1,0 +1,18 @@
+{
+  "samples": [
+    {
+      "sample_id": "sample_00",
+      "video_path": "output_videos/minimax_h3/sample_00.mp4",
+      "source_video_path": "output_videos/minimax_h3/sample_00.mp4",
+      "image_path": "first_frames/gpt/gpt_01.png",
+      "video_prompt": "Locked-off static camera, front view. Continue from the supplied first frame. Two piles of the same dry non-cohesive sand stand at rest on the same flat horizontal bench, the left pile clearly larger than the right one. A thin steady stream of the same dry sand begins to fall straight down onto the apex of each pile from above the top edge of the frame, at the same steady rate for both. Each pile grows as the sand lands, and the loose grains keep running down its slope faces and settling, so both piles stay conical and keep their slope faces clean and continuous down to the bench line. The two piles stay separate and never merge. The sand source stays outside the frame; no hopper, funnel, tube, container or hand ever enters the frame. Both complete pile profiles and the straight horizontal bench line remain clearly visible for the whole clip. The bench, the background and the camera stay exactly as in the first frame. The camera does not move, pan, or zoom. Plain background, no other objects.",
+      "model": "minimax_h3",
+      "model_folder": "minimax_h3",
+      "seed": null,
+      "source_result": "eval_results/minimax_h3/result_sample_00.json",
+      "previous_result": "work/g1_g9_v2_20260911/before/g2/P40/eval_results/minimax_h3/result_sample_00.json",
+      "video_sha256": "898f52b860a743d6ef995b72e93061ba2589dc3ae0bd5ed5df808c0715edea33",
+      "image_sha256": "fdd4bee407dd9cd682a5692fd3736587975f75330d789e348176e6406c00df80"
+    }
+  ]
+}

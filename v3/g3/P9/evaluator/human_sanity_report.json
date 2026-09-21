@@ -1,0 +1,13 @@
+{
+  "reviewed_videos": 24,
+  "review_artifact": "sanity_24.jpg",
+  "sampled_frames_per_video": [0, 62, 123],
+  "full_alignment_pass": 22,
+  "partial_tracking_dropout": 2,
+  "invalidated_dropout_videos": [
+    "P9_gpt_03_industrial_seed43.mp4",
+    "P9_gpt_03_industrial_seed44.mp4"
+  ],
+  "identity_swaps_observed": 0,
+  "review_conclusion": "All 24 overlays were visually checked. The two partial short-bob dropouts are conservatively marked measurement_valid=false with null M1; the remaining 22 show correct bob identity and overlay alignment at sampled start/mid/end frames."
+}

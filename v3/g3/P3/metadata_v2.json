@@ -1,0 +1,1254 @@
+{
+  "samples": [
+    {
+      "sample_id": "sample_00",
+      "video_path": "output_videos/minimax_h3/sample_00.mp4",
+      "source_video_path": "minimax_h3/videos/P3_gpt_01_modern_seed42.mp4",
+      "image_path": "first_frames/gpt/P3_gpt_01_modern.png",
+      "video_prompt": "A single continuous real-time shot from a locked-off, slightly elevated near-orthographic side camera, matching the input first frame.\n\nPreserve the exact two-lane parallel layout and all existing apparatus. Exactly two identical, rigidly mounted launchers release exactly two identical balls simultaneously toward the right with exactly the same initial speed. One launcher is oriented at 30 degrees above the horizontal, and the other is oriented at 60 degrees above the horizontal. Preserve each launcher's existing angle and lane assignment from the input first frame. Do not swap, rotate, move, or reorder either launcher.\n\nAfter release, both balls move freely through the air under gravity. Each ball remains a distinct rigid sphere and lands on its own corresponding horizontal landing lane. At first landing contact, the center of each ball returns to the same vertical level as its center at launch. Both complete flights and both first landing points remain visible inside the frame.\n\nThe launchers, lanes, supports, background, and camera remain stationary. Preserve the appearance and geometry of the input frame. No camera movement, panning, zooming, cuts, slow motion, pauses, or time jumps. No new objects or people. No trajectory lines, annotations, motion trails, ghost images, duplicated balls, disappearing balls, or collisions between the two balls. End shortly after both balls make their first landing contact.",
+      "model": "minimax-h3",
+      "model_folder": "minimax_h3",
+      "seed": 42,
+      "source_result": "eval_results/minimax_h3/result_P3__formal_v1__P3_gpt_01_modern_seed42.json",
+      "previous_result": "work/g1_g9_v2_20260911/before/g3/P3/eval_results/minimax_h3/result_P3__formal_v1__P3_gpt_01_modern_seed42.json",
+      "video_sha256": "a97f75df608f84ea055a82cb802993871b93bf41c586f2a43b0d3d54fb34a4ef",
+      "image_sha256": "e325910e13f1407ed0c3527caaf2db6280a9e0dab3184b1bdebcc9ec40197572",
+      "source_metadata": {
+        "record_id": "P3:formal_v1:P3_gpt_01_modern_seed42",
+        "sample_id": "P3_gpt_01_modern",
+        "video_id": "P3_gpt_01_modern_seed42",
+        "batch_id": "formal_v1",
+        "source_method": "gpt",
+        "raw_metrics": {
+          "M1": -0.018861008432110804,
+          "M2": {
+            "trajectory_30deg_parabola_rmse_d": 0.022115102229677726,
+            "trajectory_60deg_parabola_rmse_d": 0.0314940297114681,
+            "initial_speed_magnitude_error": 0.012862110351903988
+          }
+        },
+        "metric_validity": {
+          "M1": true,
+          "M2": true
+        },
+        "diagnostic_status": {
+          "extract_success": true,
+          "structural_ok": true,
+          "measurement_valid": true
+        },
+        "failure_reason": null,
+        "warnings": [],
+        "artifacts": {
+          "raw": "../P3/minimax_h3/videos/P3_gpt_01_modern_seed42.mp4",
+          "video": "../P3/minimax_h3/videos/P3_gpt_01_modern_seed42.mp4",
+          "overlay": "../P3/eval_results/debug/P3_gpt_01_modern_seed42/overlay.mp4",
+          "plot": "../P3/eval_results/debug/P3_gpt_01_modern_seed42/plot.png",
+          "json": "../P3/eval_results/json/P3__formal_v1__P3_gpt_01_modern_seed42.json",
+          "extra": {
+            "raw_tracks": "../P3/eval_results/debug/P3_gpt_01_modern_seed42/tracks_raw.npz"
+          }
+        },
+        "source_result_path": "P3/eval_results/json/P3__formal_v1__P3_gpt_01_modern_seed42.json",
+        "source_result_sha256": "4e746ce44598f0f576d8814e9b8845725160b22be84c0623ec072a28c9da30bd"
+      }
+    },
+    {
+      "sample_id": "sample_01",
+      "video_path": "output_videos/minimax_h3/sample_01.mp4",
+      "source_video_path": "minimax_h3/videos/P3_gpt_01_modern_seed43.mp4",
+      "image_path": "first_frames/gpt/P3_gpt_01_modern.png",
+      "video_prompt": "A single continuous real-time shot from a locked-off, slightly elevated near-orthographic side camera, matching the input first frame.\n\nPreserve the exact two-lane parallel layout and all existing apparatus. Exactly two identical, rigidly mounted launchers release exactly two identical balls simultaneously toward the right with exactly the same initial speed. One launcher is oriented at 30 degrees above the horizontal, and the other is oriented at 60 degrees above the horizontal. Preserve each launcher's existing angle and lane assignment from the input first frame. Do not swap, rotate, move, or reorder either launcher.\n\nAfter release, both balls move freely through the air under gravity. Each ball remains a distinct rigid sphere and lands on its own corresponding horizontal landing lane. At first landing contact, the center of each ball returns to the same vertical level as its center at launch. Both complete flights and both first landing points remain visible inside the frame.\n\nThe launchers, lanes, supports, background, and camera remain stationary. Preserve the appearance and geometry of the input frame. No camera movement, panning, zooming, cuts, slow motion, pauses, or time jumps. No new objects or people. No trajectory lines, annotations, motion trails, ghost images, duplicated balls, disappearing balls, or collisions between the two balls. End shortly after both balls make their first landing contact.",
+      "model": "minimax-h3",
+      "model_folder": "minimax_h3",
+      "seed": 43,
+      "source_result": "eval_results/minimax_h3/result_P3__formal_v1__P3_gpt_01_modern_seed43.json",
+      "previous_result": "work/g1_g9_v2_20260911/before/g3/P3/eval_results/minimax_h3/result_P3__formal_v1__P3_gpt_01_modern_seed43.json",
+      "video_sha256": "3af37e9fa89daf4e9859bc9a3a7fe6efce43cfe75044f17f3dde5d7159f5bc9f",
+      "image_sha256": "e325910e13f1407ed0c3527caaf2db6280a9e0dab3184b1bdebcc9ec40197572",
+      "source_metadata": {
+        "record_id": "P3:formal_v1:P3_gpt_01_modern_seed43",
+        "sample_id": "P3_gpt_01_modern",
+        "video_id": "P3_gpt_01_modern_seed43",
+        "batch_id": "formal_v1",
+        "source_method": "gpt",
+        "raw_metrics": {
+          "M1": 0.010449040342279448,
+          "M2": {
+            "trajectory_30deg_parabola_rmse_d": 0.028582723438753465,
+            "trajectory_60deg_parabola_rmse_d": 0.04269352516513904,
+            "initial_speed_magnitude_error": 0.07086089824177044
+          }
+        },
+        "metric_validity": {
+          "M1": true,
+          "M2": true
+        },
+        "diagnostic_status": {
+          "extract_success": true,
+          "structural_ok": true,
+          "measurement_valid": true
+        },
+        "failure_reason": null,
+        "warnings": [],
+        "artifacts": {
+          "raw": "../P3/minimax_h3/videos/P3_gpt_01_modern_seed43.mp4",
+          "video": "../P3/minimax_h3/videos/P3_gpt_01_modern_seed43.mp4",
+          "overlay": "../P3/eval_results/debug/P3_gpt_01_modern_seed43/overlay.mp4",
+          "plot": "../P3/eval_results/debug/P3_gpt_01_modern_seed43/plot.png",
+          "json": "../P3/eval_results/json/P3__formal_v1__P3_gpt_01_modern_seed43.json",
+          "extra": {
+            "raw_tracks": "../P3/eval_results/debug/P3_gpt_01_modern_seed43/tracks_raw.npz"
+          }
+        },
+        "source_result_path": "P3/eval_results/json/P3__formal_v1__P3_gpt_01_modern_seed43.json",
+        "source_result_sha256": "39c75507bbe9fa941a1eb019201b24aa66c56c3f398ebb63911a2c9b62b8fc61"
+      }
+    },
+    {
+      "sample_id": "sample_02",
+      "video_path": "output_videos/minimax_h3/sample_02.mp4",
+      "source_video_path": "minimax_h3/videos/P3_gpt_01_modern_seed44.mp4",
+      "image_path": "first_frames/gpt/P3_gpt_01_modern.png",
+      "video_prompt": "A single continuous real-time shot from a locked-off, slightly elevated near-orthographic side camera, matching the input first frame.\n\nPreserve the exact two-lane parallel layout and all existing apparatus. Exactly two identical, rigidly mounted launchers release exactly two identical balls simultaneously toward the right with exactly the same initial speed. One launcher is oriented at 30 degrees above the horizontal, and the other is oriented at 60 degrees above the horizontal. Preserve each launcher's existing angle and lane assignment from the input first frame. Do not swap, rotate, move, or reorder either launcher.\n\nAfter release, both balls move freely through the air under gravity. Each ball remains a distinct rigid sphere and lands on its own corresponding horizontal landing lane. At first landing contact, the center of each ball returns to the same vertical level as its center at launch. Both complete flights and both first landing points remain visible inside the frame.\n\nThe launchers, lanes, supports, background, and camera remain stationary. Preserve the appearance and geometry of the input frame. No camera movement, panning, zooming, cuts, slow motion, pauses, or time jumps. No new objects or people. No trajectory lines, annotations, motion trails, ghost images, duplicated balls, disappearing balls, or collisions between the two balls. End shortly after both balls make their first landing contact.",
+      "model": "minimax-h3",
+      "model_folder": "minimax_h3",
+      "seed": 44,
+      "source_result": "eval_results/minimax_h3/result_P3__formal_v1__P3_gpt_01_modern_seed44.json",
+      "previous_result": "work/g1_g9_v2_20260911/before/g3/P3/eval_results/minimax_h3/result_P3__formal_v1__P3_gpt_01_modern_seed44.json",
+      "video_sha256": "26322a1024a357fe86ecd1d4693223776f10a2887f2e62c43246fe74799c21cd",
+      "image_sha256": "e325910e13f1407ed0c3527caaf2db6280a9e0dab3184b1bdebcc9ec40197572",
+      "source_metadata": {
+        "record_id": "P3:formal_v1:P3_gpt_01_modern_seed44",
+        "sample_id": "P3_gpt_01_modern",
+        "video_id": "P3_gpt_01_modern_seed44",
+        "batch_id": "formal_v1",
+        "source_method": "gpt",
+        "raw_metrics": {
+          "M1": -0.07501655552908748,
+          "M2": {
+            "trajectory_30deg_parabola_rmse_d": 0.09104099456683494,
+            "trajectory_60deg_parabola_rmse_d": 0.09975526662705292,
+            "initial_speed_magnitude_error": 0.019689177348678477
+          }
+        },
+        "metric_validity": {
+          "M1": true,
+          "M2": true
+        },
+        "diagnostic_status": {
+          "extract_success": true,
+          "structural_ok": true,
+          "measurement_valid": true
+        },
+        "failure_reason": null,
+        "warnings": [],
+        "artifacts": {
+          "raw": "../P3/minimax_h3/videos/P3_gpt_01_modern_seed44.mp4",
+          "video": "../P3/minimax_h3/videos/P3_gpt_01_modern_seed44.mp4",
+          "overlay": "../P3/eval_results/debug/P3_gpt_01_modern_seed44/overlay.mp4",
+          "plot": "../P3/eval_results/debug/P3_gpt_01_modern_seed44/plot.png",
+          "json": "../P3/eval_results/json/P3__formal_v1__P3_gpt_01_modern_seed44.json",
+          "extra": {
+            "raw_tracks": "../P3/eval_results/debug/P3_gpt_01_modern_seed44/tracks_raw.npz"
+          }
+        },
+        "source_result_path": "P3/eval_results/json/P3__formal_v1__P3_gpt_01_modern_seed44.json",
+        "source_result_sha256": "3f98eedce55d654359d4b5ca747d025808f55bed0cc99e2b1cf66381032c0ffc"
+      }
+    },
+    {
+      "sample_id": "sample_03",
+      "video_path": "output_videos/minimax_h3/sample_03.mp4",
+      "source_video_path": "minimax_h3/videos/P3_gpt_01_modern_seed45.mp4",
+      "image_path": "first_frames/gpt/P3_gpt_01_modern.png",
+      "video_prompt": "A single continuous real-time shot from a locked-off, slightly elevated near-orthographic side camera, matching the input first frame.\n\nPreserve the exact two-lane parallel layout and all existing apparatus. Exactly two identical, rigidly mounted launchers release exactly two identical balls simultaneously toward the right with exactly the same initial speed. One launcher is oriented at 30 degrees above the horizontal, and the other is oriented at 60 degrees above the horizontal. Preserve each launcher's existing angle and lane assignment from the input first frame. Do not swap, rotate, move, or reorder either launcher.\n\nAfter release, both balls move freely through the air under gravity. Each ball remains a distinct rigid sphere and lands on its own corresponding horizontal landing lane. At first landing contact, the center of each ball returns to the same vertical level as its center at launch. Both complete flights and both first landing points remain visible inside the frame.\n\nThe launchers, lanes, supports, background, and camera remain stationary. Preserve the appearance and geometry of the input frame. No camera movement, panning, zooming, cuts, slow motion, pauses, or time jumps. No new objects or people. No trajectory lines, annotations, motion trails, ghost images, duplicated balls, disappearing balls, or collisions between the two balls. End shortly after both balls make their first landing contact.",
+      "model": "minimax-h3",
+      "model_folder": "minimax_h3",
+      "seed": 45,
+      "source_result": "eval_results/minimax_h3/result_P3__formal_v1__P3_gpt_01_modern_seed45.json",
+      "previous_result": "work/g1_g9_v2_20260911/before/g3/P3/eval_results/minimax_h3/result_P3__formal_v1__P3_gpt_01_modern_seed45.json",
+      "video_sha256": "a7c72a2576108205cfe0ce8798b2d6304793036d2314908191fdb5f4fa63217c",
+      "image_sha256": "e325910e13f1407ed0c3527caaf2db6280a9e0dab3184b1bdebcc9ec40197572",
+      "source_metadata": {
+        "record_id": "P3:formal_v1:P3_gpt_01_modern_seed45",
+        "sample_id": "P3_gpt_01_modern",
+        "video_id": "P3_gpt_01_modern_seed45",
+        "batch_id": "formal_v1",
+        "source_method": "gpt",
+        "raw_metrics": {
+          "M1": 0.1339354574008449,
+          "M2": {
+            "trajectory_30deg_parabola_rmse_d": 0.04129174504074325,
+            "trajectory_60deg_parabola_rmse_d": 0.021087049658256054,
+            "initial_speed_magnitude_error": 0.09081939659469374
+          }
+        },
+        "metric_validity": {
+          "M1": true,
+          "M2": true
+        },
+        "diagnostic_status": {
+          "extract_success": true,
+          "structural_ok": true,
+          "measurement_valid": true
+        },
+        "failure_reason": null,
+        "warnings": [],
+        "artifacts": {
+          "raw": "../P3/minimax_h3/videos/P3_gpt_01_modern_seed45.mp4",
+          "video": "../P3/minimax_h3/videos/P3_gpt_01_modern_seed45.mp4",
+          "overlay": "../P3/eval_results/debug/P3_gpt_01_modern_seed45/overlay.mp4",
+          "plot": "../P3/eval_results/debug/P3_gpt_01_modern_seed45/plot.png",
+          "json": "../P3/eval_results/json/P3__formal_v1__P3_gpt_01_modern_seed45.json",
+          "extra": {
+            "raw_tracks": "../P3/eval_results/debug/P3_gpt_01_modern_seed45/tracks_raw.npz"
+          }
+        },
+        "source_result_path": "P3/eval_results/json/P3__formal_v1__P3_gpt_01_modern_seed45.json",
+        "source_result_sha256": "51dcdbf960dc321b06691ef97dbc596d19ddbe4f3bd07c6adffacd9fe6df2ca1"
+      }
+    },
+    {
+      "sample_id": "sample_04",
+      "video_path": "output_videos/minimax_h3/sample_04.mp4",
+      "source_video_path": "minimax_h3/videos/P3_gpt_02_classic_seed42.mp4",
+      "image_path": "first_frames/gpt/P3_gpt_02_classic.png",
+      "video_prompt": "A single continuous real-time shot from a locked-off, slightly elevated near-orthographic side camera, matching the input first frame.\n\nPreserve the exact two-lane parallel layout and all existing apparatus. Exactly two identical, rigidly mounted launchers release exactly two identical balls simultaneously toward the right with exactly the same initial speed. One launcher is oriented at 30 degrees above the horizontal, and the other is oriented at 60 degrees above the horizontal. Preserve each launcher's existing angle and lane assignment from the input first frame. Do not swap, rotate, move, or reorder either launcher.\n\nAfter release, both balls move freely through the air under gravity. Each ball remains a distinct rigid sphere and lands on its own corresponding horizontal landing lane. At first landing contact, the center of each ball returns to the same vertical level as its center at launch. Both complete flights and both first landing points remain visible inside the frame.\n\nThe launchers, lanes, supports, background, and camera remain stationary. Preserve the appearance and geometry of the input frame. No camera movement, panning, zooming, cuts, slow motion, pauses, or time jumps. No new objects or people. No trajectory lines, annotations, motion trails, ghost images, duplicated balls, disappearing balls, or collisions between the two balls. End shortly after both balls make their first landing contact.",
+      "model": "minimax-h3",
+      "model_folder": "minimax_h3",
+      "seed": 42,
+      "source_result": "eval_results/minimax_h3/result_P3__formal_v1__P3_gpt_02_classic_seed42.json",
+      "previous_result": "work/g1_g9_v2_20260911/before/g3/P3/eval_results/minimax_h3/result_P3__formal_v1__P3_gpt_02_classic_seed42.json",
+      "video_sha256": "739f41c1d28bddbd42c5d68d3a276b21241abc1be77b3881aec9f374510a5b17",
+      "image_sha256": "7ffa2eb279ef970f0415896e6a6d7cb7bb9586f36a09146ede9835d7eb2b2311",
+      "source_metadata": {
+        "record_id": "P3:formal_v1:P3_gpt_02_classic_seed42",
+        "sample_id": "P3_gpt_02_classic",
+        "video_id": "P3_gpt_02_classic_seed42",
+        "batch_id": "formal_v1",
+        "source_method": "gpt",
+        "raw_metrics": {
+          "M1": 0.21959401036124815,
+          "M2": {
+            "trajectory_30deg_parabola_rmse_d": 0.014022248151201067,
+            "trajectory_60deg_parabola_rmse_d": 0.016835203627094612,
+            "initial_speed_magnitude_error": 0.07047006757397467
+          }
+        },
+        "metric_validity": {
+          "M1": true,
+          "M2": true
+        },
+        "diagnostic_status": {
+          "extract_success": true,
+          "structural_ok": true,
+          "measurement_valid": true
+        },
+        "failure_reason": null,
+        "warnings": [],
+        "artifacts": {
+          "raw": "../P3/minimax_h3/videos/P3_gpt_02_classic_seed42.mp4",
+          "video": "../P3/minimax_h3/videos/P3_gpt_02_classic_seed42.mp4",
+          "overlay": "../P3/eval_results/debug/P3_gpt_02_classic_seed42/overlay.mp4",
+          "plot": "../P3/eval_results/debug/P3_gpt_02_classic_seed42/plot.png",
+          "json": "../P3/eval_results/json/P3__formal_v1__P3_gpt_02_classic_seed42.json",
+          "extra": {
+            "raw_tracks": "../P3/eval_results/debug/P3_gpt_02_classic_seed42/tracks_raw.npz"
+          }
+        },
+        "source_result_path": "P3/eval_results/json/P3__formal_v1__P3_gpt_02_classic_seed42.json",
+        "source_result_sha256": "53b748dd00b47451fb062e2a350be3332b70d9d22ef0b2ddb41faa843e664cbf"
+      }
+    },
+    {
+      "sample_id": "sample_05",
+      "video_path": "output_videos/minimax_h3/sample_05.mp4",
+      "source_video_path": "minimax_h3/videos/P3_gpt_02_classic_seed43.mp4",
+      "image_path": "first_frames/gpt/P3_gpt_02_classic.png",
+      "video_prompt": "A single continuous real-time shot from a locked-off, slightly elevated near-orthographic side camera, matching the input first frame.\n\nPreserve the exact two-lane parallel layout and all existing apparatus. Exactly two identical, rigidly mounted launchers release exactly two identical balls simultaneously toward the right with exactly the same initial speed. One launcher is oriented at 30 degrees above the horizontal, and the other is oriented at 60 degrees above the horizontal. Preserve each launcher's existing angle and lane assignment from the input first frame. Do not swap, rotate, move, or reorder either launcher.\n\nAfter release, both balls move freely through the air under gravity. Each ball remains a distinct rigid sphere and lands on its own corresponding horizontal landing lane. At first landing contact, the center of each ball returns to the same vertical level as its center at launch. Both complete flights and both first landing points remain visible inside the frame.\n\nThe launchers, lanes, supports, background, and camera remain stationary. Preserve the appearance and geometry of the input frame. No camera movement, panning, zooming, cuts, slow motion, pauses, or time jumps. No new objects or people. No trajectory lines, annotations, motion trails, ghost images, duplicated balls, disappearing balls, or collisions between the two balls. End shortly after both balls make their first landing contact.",
+      "model": "minimax-h3",
+      "model_folder": "minimax_h3",
+      "seed": 43,
+      "source_result": "eval_results/minimax_h3/result_P3__formal_v1__P3_gpt_02_classic_seed43.json",
+      "previous_result": "work/g1_g9_v2_20260911/before/g3/P3/eval_results/minimax_h3/result_P3__formal_v1__P3_gpt_02_classic_seed43.json",
+      "video_sha256": "5c4432032ca2853adf33ad84d163f2b2a2537db98d1318512b873f3bf1835467",
+      "image_sha256": "7ffa2eb279ef970f0415896e6a6d7cb7bb9586f36a09146ede9835d7eb2b2311",
+      "source_metadata": {
+        "record_id": "P3:formal_v1:P3_gpt_02_classic_seed43",
+        "sample_id": "P3_gpt_02_classic",
+        "video_id": "P3_gpt_02_classic_seed43",
+        "batch_id": "formal_v1",
+        "source_method": "gpt",
+        "raw_metrics": {
+          "M1": -0.12111324622090003,
+          "M2": {
+            "trajectory_30deg_parabola_rmse_d": 0.007380188207542091,
+            "trajectory_60deg_parabola_rmse_d": 0.017955642824950744,
+            "initial_speed_magnitude_error": 0.05609366320410625
+          }
+        },
+        "metric_validity": {
+          "M1": true,
+          "M2": true
+        },
+        "diagnostic_status": {
+          "extract_success": true,
+          "structural_ok": true,
+          "measurement_valid": true
+        },
+        "failure_reason": null,
+        "warnings": [],
+        "artifacts": {
+          "raw": "../P3/minimax_h3/videos/P3_gpt_02_classic_seed43.mp4",
+          "video": "../P3/minimax_h3/videos/P3_gpt_02_classic_seed43.mp4",
+          "overlay": "../P3/eval_results/debug/P3_gpt_02_classic_seed43/overlay.mp4",
+          "plot": "../P3/eval_results/debug/P3_gpt_02_classic_seed43/plot.png",
+          "json": "../P3/eval_results/json/P3__formal_v1__P3_gpt_02_classic_seed43.json",
+          "extra": {
+            "raw_tracks": "../P3/eval_results/debug/P3_gpt_02_classic_seed43/tracks_raw.npz"
+          }
+        },
+        "source_result_path": "P3/eval_results/json/P3__formal_v1__P3_gpt_02_classic_seed43.json",
+        "source_result_sha256": "53052f023c44c406b767defc84b41f738c164b98f81897c8d37f4d5cf62af8f2"
+      }
+    },
+    {
+      "sample_id": "sample_06",
+      "video_path": "output_videos/minimax_h3/sample_06.mp4",
+      "source_video_path": "minimax_h3/videos/P3_gpt_02_classic_seed44.mp4",
+      "image_path": "first_frames/gpt/P3_gpt_02_classic.png",
+      "video_prompt": "A single continuous real-time shot from a locked-off, slightly elevated near-orthographic side camera, matching the input first frame.\n\nPreserve the exact two-lane parallel layout and all existing apparatus. Exactly two identical, rigidly mounted launchers release exactly two identical balls simultaneously toward the right with exactly the same initial speed. One launcher is oriented at 30 degrees above the horizontal, and the other is oriented at 60 degrees above the horizontal. Preserve each launcher's existing angle and lane assignment from the input first frame. Do not swap, rotate, move, or reorder either launcher.\n\nAfter release, both balls move freely through the air under gravity. Each ball remains a distinct rigid sphere and lands on its own corresponding horizontal landing lane. At first landing contact, the center of each ball returns to the same vertical level as its center at launch. Both complete flights and both first landing points remain visible inside the frame.\n\nThe launchers, lanes, supports, background, and camera remain stationary. Preserve the appearance and geometry of the input frame. No camera movement, panning, zooming, cuts, slow motion, pauses, or time jumps. No new objects or people. No trajectory lines, annotations, motion trails, ghost images, duplicated balls, disappearing balls, or collisions between the two balls. End shortly after both balls make their first landing contact.",
+      "model": "minimax-h3",
+      "model_folder": "minimax_h3",
+      "seed": 44,
+      "source_result": "eval_results/minimax_h3/result_P3__formal_v1__P3_gpt_02_classic_seed44.json",
+      "previous_result": "work/g1_g9_v2_20260911/before/g3/P3/eval_results/minimax_h3/result_P3__formal_v1__P3_gpt_02_classic_seed44.json",
+      "video_sha256": "868a36e150335336cb78e6a877bb6817c2e6ac8b2804aee52c6afa0d8b62b2e0",
+      "image_sha256": "7ffa2eb279ef970f0415896e6a6d7cb7bb9586f36a09146ede9835d7eb2b2311",
+      "source_metadata": {
+        "record_id": "P3:formal_v1:P3_gpt_02_classic_seed44",
+        "sample_id": "P3_gpt_02_classic",
+        "video_id": "P3_gpt_02_classic_seed44",
+        "batch_id": "formal_v1",
+        "source_method": "gpt",
+        "raw_metrics": {
+          "M1": -0.10333656730308904,
+          "M2": {
+            "trajectory_30deg_parabola_rmse_d": 0.04684115330765838,
+            "trajectory_60deg_parabola_rmse_d": 0.04630026374738813,
+            "initial_speed_magnitude_error": 0.0987142611830929
+          }
+        },
+        "metric_validity": {
+          "M1": true,
+          "M2": true
+        },
+        "diagnostic_status": {
+          "extract_success": true,
+          "structural_ok": true,
+          "measurement_valid": true
+        },
+        "failure_reason": null,
+        "warnings": [],
+        "artifacts": {
+          "raw": "../P3/minimax_h3/videos/P3_gpt_02_classic_seed44.mp4",
+          "video": "../P3/minimax_h3/videos/P3_gpt_02_classic_seed44.mp4",
+          "overlay": "../P3/eval_results/debug/P3_gpt_02_classic_seed44/overlay.mp4",
+          "plot": "../P3/eval_results/debug/P3_gpt_02_classic_seed44/plot.png",
+          "json": "../P3/eval_results/json/P3__formal_v1__P3_gpt_02_classic_seed44.json",
+          "extra": {
+            "raw_tracks": "../P3/eval_results/debug/P3_gpt_02_classic_seed44/tracks_raw.npz"
+          }
+        },
+        "source_result_path": "P3/eval_results/json/P3__formal_v1__P3_gpt_02_classic_seed44.json",
+        "source_result_sha256": "80bbaab910874f1429c4a87fbd96be7fc0e302c70dd965ff4d8ac667f44356dc"
+      }
+    },
+    {
+      "sample_id": "sample_07",
+      "video_path": "output_videos/minimax_h3/sample_07.mp4",
+      "source_video_path": "minimax_h3/videos/P3_gpt_02_classic_seed45.mp4",
+      "image_path": "first_frames/gpt/P3_gpt_02_classic.png",
+      "video_prompt": "A single continuous real-time shot from a locked-off, slightly elevated near-orthographic side camera, matching the input first frame.\n\nPreserve the exact two-lane parallel layout and all existing apparatus. Exactly two identical, rigidly mounted launchers release exactly two identical balls simultaneously toward the right with exactly the same initial speed. One launcher is oriented at 30 degrees above the horizontal, and the other is oriented at 60 degrees above the horizontal. Preserve each launcher's existing angle and lane assignment from the input first frame. Do not swap, rotate, move, or reorder either launcher.\n\nAfter release, both balls move freely through the air under gravity. Each ball remains a distinct rigid sphere and lands on its own corresponding horizontal landing lane. At first landing contact, the center of each ball returns to the same vertical level as its center at launch. Both complete flights and both first landing points remain visible inside the frame.\n\nThe launchers, lanes, supports, background, and camera remain stationary. Preserve the appearance and geometry of the input frame. No camera movement, panning, zooming, cuts, slow motion, pauses, or time jumps. No new objects or people. No trajectory lines, annotations, motion trails, ghost images, duplicated balls, disappearing balls, or collisions between the two balls. End shortly after both balls make their first landing contact.",
+      "model": "minimax-h3",
+      "model_folder": "minimax_h3",
+      "seed": 45,
+      "source_result": "eval_results/minimax_h3/result_P3__formal_v1__P3_gpt_02_classic_seed45.json",
+      "previous_result": "work/g1_g9_v2_20260911/before/g3/P3/eval_results/minimax_h3/result_P3__formal_v1__P3_gpt_02_classic_seed45.json",
+      "video_sha256": "b499a11ffd2739938caa405c3416c79e3ca62837712e8db904cc4800bd3d6a09",
+      "image_sha256": "7ffa2eb279ef970f0415896e6a6d7cb7bb9586f36a09146ede9835d7eb2b2311",
+      "source_metadata": {
+        "record_id": "P3:formal_v1:P3_gpt_02_classic_seed45",
+        "sample_id": "P3_gpt_02_classic",
+        "video_id": "P3_gpt_02_classic_seed45",
+        "batch_id": "formal_v1",
+        "source_method": "gpt",
+        "raw_metrics": {
+          "M1": 0.01461333611016058,
+          "M2": {
+            "trajectory_30deg_parabola_rmse_d": 0.1980824604291389,
+            "trajectory_60deg_parabola_rmse_d": 0.18576046820725836,
+            "initial_speed_magnitude_error": 0.05116775553983721
+          }
+        },
+        "metric_validity": {
+          "M1": true,
+          "M2": true
+        },
+        "diagnostic_status": {
+          "extract_success": true,
+          "structural_ok": false,
+          "measurement_valid": true
+        },
+        "failure_reason": "CAMERA_TRANSLATION",
+        "warnings": [
+          "CAMERA_TRANSLATION"
+        ],
+        "artifacts": {
+          "raw": "../P3/minimax_h3/videos/P3_gpt_02_classic_seed45.mp4",
+          "video": "../P3/minimax_h3/videos/P3_gpt_02_classic_seed45.mp4",
+          "overlay": "../P3/eval_results/debug/P3_gpt_02_classic_seed45/overlay.mp4",
+          "plot": "../P3/eval_results/debug/P3_gpt_02_classic_seed45/plot.png",
+          "json": "../P3/eval_results/json/P3__formal_v1__P3_gpt_02_classic_seed45.json",
+          "extra": {
+            "raw_tracks": "../P3/eval_results/debug/P3_gpt_02_classic_seed45/tracks_raw.npz"
+          }
+        },
+        "source_result_path": "P3/eval_results/json/P3__formal_v1__P3_gpt_02_classic_seed45.json",
+        "source_result_sha256": "18e03431ed57c25e88ec715ad9da147d7c6a88ea4718a6fd7b6bf1b834113ef5"
+      }
+    },
+    {
+      "sample_id": "sample_08",
+      "video_path": "output_videos/minimax_h3/sample_08.mp4",
+      "source_video_path": "minimax_h3/videos/P3_gpt_03_industrial_seed42.mp4",
+      "image_path": "first_frames/gpt/P3_gpt_03_industrial.png",
+      "video_prompt": "A single continuous real-time shot from a locked-off, slightly elevated near-orthographic side camera, matching the input first frame.\n\nPreserve the exact two-lane parallel layout and all existing apparatus. Exactly two identical, rigidly mounted launchers release exactly two identical balls simultaneously toward the right with exactly the same initial speed. One launcher is oriented at 30 degrees above the horizontal, and the other is oriented at 60 degrees above the horizontal. Preserve each launcher's existing angle and lane assignment from the input first frame. Do not swap, rotate, move, or reorder either launcher.\n\nAfter release, both balls move freely through the air under gravity. Each ball remains a distinct rigid sphere and lands on its own corresponding horizontal landing lane. At first landing contact, the center of each ball returns to the same vertical level as its center at launch. Both complete flights and both first landing points remain visible inside the frame.\n\nThe launchers, lanes, supports, background, and camera remain stationary. Preserve the appearance and geometry of the input frame. No camera movement, panning, zooming, cuts, slow motion, pauses, or time jumps. No new objects or people. No trajectory lines, annotations, motion trails, ghost images, duplicated balls, disappearing balls, or collisions between the two balls. End shortly after both balls make their first landing contact.",
+      "model": "minimax-h3",
+      "model_folder": "minimax_h3",
+      "seed": 42,
+      "source_result": "eval_results/minimax_h3/result_P3__formal_v1__P3_gpt_03_industrial_seed42.json",
+      "previous_result": "work/g1_g9_v2_20260911/before/g3/P3/eval_results/minimax_h3/result_P3__formal_v1__P3_gpt_03_industrial_seed42.json",
+      "video_sha256": "6222e1ef876cb8033e61dace95bb7c230b5164e1934afa7190f75d5f957acc49",
+      "image_sha256": "4bce722c9ef0a66b7320d090d7ea541a87a5ba3172f4b2ce3638a72d95f0d99d",
+      "source_metadata": {
+        "record_id": "P3:formal_v1:P3_gpt_03_industrial_seed42",
+        "sample_id": "P3_gpt_03_industrial",
+        "video_id": "P3_gpt_03_industrial_seed42",
+        "batch_id": "formal_v1",
+        "source_method": "gpt",
+        "raw_metrics": {
+          "M1": 0.17036245905461622,
+          "M2": {
+            "trajectory_30deg_parabola_rmse_d": 0.09082485903045055,
+            "trajectory_60deg_parabola_rmse_d": 0.03131892919609806,
+            "initial_speed_magnitude_error": 0.05922973834032108
+          }
+        },
+        "metric_validity": {
+          "M1": true,
+          "M2": true
+        },
+        "diagnostic_status": {
+          "extract_success": true,
+          "structural_ok": true,
+          "measurement_valid": true
+        },
+        "failure_reason": null,
+        "warnings": [],
+        "artifacts": {
+          "raw": "../P3/minimax_h3/videos/P3_gpt_03_industrial_seed42.mp4",
+          "video": "../P3/minimax_h3/videos/P3_gpt_03_industrial_seed42.mp4",
+          "overlay": "../P3/eval_results/debug/P3_gpt_03_industrial_seed42/overlay.mp4",
+          "plot": "../P3/eval_results/debug/P3_gpt_03_industrial_seed42/plot.png",
+          "json": "../P3/eval_results/json/P3__formal_v1__P3_gpt_03_industrial_seed42.json",
+          "extra": {
+            "raw_tracks": "../P3/eval_results/debug/P3_gpt_03_industrial_seed42/tracks_raw.npz"
+          }
+        },
+        "source_result_path": "P3/eval_results/json/P3__formal_v1__P3_gpt_03_industrial_seed42.json",
+        "source_result_sha256": "ffa4145c181f32eda2fa635cf3fa6867e22116d78f772c449fcfbe899dfcf739"
+      }
+    },
+    {
+      "sample_id": "sample_09",
+      "video_path": "output_videos/minimax_h3/sample_09.mp4",
+      "source_video_path": "minimax_h3/videos/P3_gpt_03_industrial_seed43.mp4",
+      "image_path": "first_frames/gpt/P3_gpt_03_industrial.png",
+      "video_prompt": "A single continuous real-time shot from a locked-off, slightly elevated near-orthographic side camera, matching the input first frame.\n\nPreserve the exact two-lane parallel layout and all existing apparatus. Exactly two identical, rigidly mounted launchers release exactly two identical balls simultaneously toward the right with exactly the same initial speed. One launcher is oriented at 30 degrees above the horizontal, and the other is oriented at 60 degrees above the horizontal. Preserve each launcher's existing angle and lane assignment from the input first frame. Do not swap, rotate, move, or reorder either launcher.\n\nAfter release, both balls move freely through the air under gravity. Each ball remains a distinct rigid sphere and lands on its own corresponding horizontal landing lane. At first landing contact, the center of each ball returns to the same vertical level as its center at launch. Both complete flights and both first landing points remain visible inside the frame.\n\nThe launchers, lanes, supports, background, and camera remain stationary. Preserve the appearance and geometry of the input frame. No camera movement, panning, zooming, cuts, slow motion, pauses, or time jumps. No new objects or people. No trajectory lines, annotations, motion trails, ghost images, duplicated balls, disappearing balls, or collisions between the two balls. End shortly after both balls make their first landing contact.",
+      "model": "minimax-h3",
+      "model_folder": "minimax_h3",
+      "seed": 43,
+      "source_result": "eval_results/minimax_h3/result_P3__formal_v1__P3_gpt_03_industrial_seed43.json",
+      "previous_result": "work/g1_g9_v2_20260911/before/g3/P3/eval_results/minimax_h3/result_P3__formal_v1__P3_gpt_03_industrial_seed43.json",
+      "video_sha256": "edfab48a9fa9b1a48d3992756bf4c8d3ce0dd149b965389d961da9fad188bb3e",
+      "image_sha256": "4bce722c9ef0a66b7320d090d7ea541a87a5ba3172f4b2ce3638a72d95f0d99d",
+      "source_metadata": {
+        "record_id": "P3:formal_v1:P3_gpt_03_industrial_seed43",
+        "sample_id": "P3_gpt_03_industrial",
+        "video_id": "P3_gpt_03_industrial_seed43",
+        "batch_id": "formal_v1",
+        "source_method": "gpt",
+        "raw_metrics": {
+          "M1": 0.1335201382212694,
+          "M2": {
+            "trajectory_30deg_parabola_rmse_d": 0.06193643270514377,
+            "trajectory_60deg_parabola_rmse_d": 0.049373573082303494,
+            "initial_speed_magnitude_error": 0.009991604821311562
+          }
+        },
+        "metric_validity": {
+          "M1": true,
+          "M2": true
+        },
+        "diagnostic_status": {
+          "extract_success": true,
+          "structural_ok": true,
+          "measurement_valid": true
+        },
+        "failure_reason": null,
+        "warnings": [],
+        "artifacts": {
+          "raw": "../P3/minimax_h3/videos/P3_gpt_03_industrial_seed43.mp4",
+          "video": "../P3/minimax_h3/videos/P3_gpt_03_industrial_seed43.mp4",
+          "overlay": "../P3/eval_results/debug/P3_gpt_03_industrial_seed43/overlay.mp4",
+          "plot": "../P3/eval_results/debug/P3_gpt_03_industrial_seed43/plot.png",
+          "json": "../P3/eval_results/json/P3__formal_v1__P3_gpt_03_industrial_seed43.json",
+          "extra": {
+            "raw_tracks": "../P3/eval_results/debug/P3_gpt_03_industrial_seed43/tracks_raw.npz"
+          }
+        },
+        "source_result_path": "P3/eval_results/json/P3__formal_v1__P3_gpt_03_industrial_seed43.json",
+        "source_result_sha256": "49246a45743a41d570efed596312dc95553b173d902990993b0b8a5c06836bd7"
+      }
+    },
+    {
+      "sample_id": "sample_10",
+      "video_path": "output_videos/minimax_h3/sample_10.mp4",
+      "source_video_path": "minimax_h3/videos/P3_gpt_03_industrial_seed44.mp4",
+      "image_path": "first_frames/gpt/P3_gpt_03_industrial.png",
+      "video_prompt": "A single continuous real-time shot from a locked-off, slightly elevated near-orthographic side camera, matching the input first frame.\n\nPreserve the exact two-lane parallel layout and all existing apparatus. Exactly two identical, rigidly mounted launchers release exactly two identical balls simultaneously toward the right with exactly the same initial speed. One launcher is oriented at 30 degrees above the horizontal, and the other is oriented at 60 degrees above the horizontal. Preserve each launcher's existing angle and lane assignment from the input first frame. Do not swap, rotate, move, or reorder either launcher.\n\nAfter release, both balls move freely through the air under gravity. Each ball remains a distinct rigid sphere and lands on its own corresponding horizontal landing lane. At first landing contact, the center of each ball returns to the same vertical level as its center at launch. Both complete flights and both first landing points remain visible inside the frame.\n\nThe launchers, lanes, supports, background, and camera remain stationary. Preserve the appearance and geometry of the input frame. No camera movement, panning, zooming, cuts, slow motion, pauses, or time jumps. No new objects or people. No trajectory lines, annotations, motion trails, ghost images, duplicated balls, disappearing balls, or collisions between the two balls. End shortly after both balls make their first landing contact.",
+      "model": "minimax-h3",
+      "model_folder": "minimax_h3",
+      "seed": 44,
+      "source_result": "eval_results/minimax_h3/result_P3__formal_v1__P3_gpt_03_industrial_seed44.json",
+      "previous_result": "work/g1_g9_v2_20260911/before/g3/P3/eval_results/minimax_h3/result_P3__formal_v1__P3_gpt_03_industrial_seed44.json",
+      "video_sha256": "09b71cf05aa7fb948e1b74455049cf17a20ef426969e45405282a454e16b0da1",
+      "image_sha256": "4bce722c9ef0a66b7320d090d7ea541a87a5ba3172f4b2ce3638a72d95f0d99d",
+      "source_metadata": {
+        "record_id": "P3:formal_v1:P3_gpt_03_industrial_seed44",
+        "sample_id": "P3_gpt_03_industrial",
+        "video_id": "P3_gpt_03_industrial_seed44",
+        "batch_id": "formal_v1",
+        "source_method": "gpt",
+        "raw_metrics": {
+          "M1": 0.101462818642583,
+          "M2": {
+            "trajectory_30deg_parabola_rmse_d": 0.07050505730902137,
+            "trajectory_60deg_parabola_rmse_d": 0.03558144870239719,
+            "initial_speed_magnitude_error": 0.0329436468873352
+          }
+        },
+        "metric_validity": {
+          "M1": true,
+          "M2": true
+        },
+        "diagnostic_status": {
+          "extract_success": true,
+          "structural_ok": true,
+          "measurement_valid": true
+        },
+        "failure_reason": null,
+        "warnings": [],
+        "artifacts": {
+          "raw": "../P3/minimax_h3/videos/P3_gpt_03_industrial_seed44.mp4",
+          "video": "../P3/minimax_h3/videos/P3_gpt_03_industrial_seed44.mp4",
+          "overlay": "../P3/eval_results/debug/P3_gpt_03_industrial_seed44/overlay.mp4",
+          "plot": "../P3/eval_results/debug/P3_gpt_03_industrial_seed44/plot.png",
+          "json": "../P3/eval_results/json/P3__formal_v1__P3_gpt_03_industrial_seed44.json",
+          "extra": {
+            "raw_tracks": "../P3/eval_results/debug/P3_gpt_03_industrial_seed44/tracks_raw.npz"
+          }
+        },
+        "source_result_path": "P3/eval_results/json/P3__formal_v1__P3_gpt_03_industrial_seed44.json",
+        "source_result_sha256": "1dfe229c24d0a1ec1bc1bd75208c7e021b08aa8126cee720988eaa42ca9ffa40"
+      }
+    },
+    {
+      "sample_id": "sample_11",
+      "video_path": "output_videos/minimax_h3/sample_11.mp4",
+      "source_video_path": "minimax_h3/videos/P3_gpt_03_industrial_seed45.mp4",
+      "image_path": "first_frames/gpt/P3_gpt_03_industrial.png",
+      "video_prompt": "A single continuous real-time shot from a locked-off, slightly elevated near-orthographic side camera, matching the input first frame.\n\nPreserve the exact two-lane parallel layout and all existing apparatus. Exactly two identical, rigidly mounted launchers release exactly two identical balls simultaneously toward the right with exactly the same initial speed. One launcher is oriented at 30 degrees above the horizontal, and the other is oriented at 60 degrees above the horizontal. Preserve each launcher's existing angle and lane assignment from the input first frame. Do not swap, rotate, move, or reorder either launcher.\n\nAfter release, both balls move freely through the air under gravity. Each ball remains a distinct rigid sphere and lands on its own corresponding horizontal landing lane. At first landing contact, the center of each ball returns to the same vertical level as its center at launch. Both complete flights and both first landing points remain visible inside the frame.\n\nThe launchers, lanes, supports, background, and camera remain stationary. Preserve the appearance and geometry of the input frame. No camera movement, panning, zooming, cuts, slow motion, pauses, or time jumps. No new objects or people. No trajectory lines, annotations, motion trails, ghost images, duplicated balls, disappearing balls, or collisions between the two balls. End shortly after both balls make their first landing contact.",
+      "model": "minimax-h3",
+      "model_folder": "minimax_h3",
+      "seed": 45,
+      "source_result": "eval_results/minimax_h3/result_P3__formal_v1__P3_gpt_03_industrial_seed45.json",
+      "previous_result": "work/g1_g9_v2_20260911/before/g3/P3/eval_results/minimax_h3/result_P3__formal_v1__P3_gpt_03_industrial_seed45.json",
+      "video_sha256": "0a092547737313565e2a95c6d49ffc3bd3df5651ab4f47d30f12bf5e324873c2",
+      "image_sha256": "4bce722c9ef0a66b7320d090d7ea541a87a5ba3172f4b2ce3638a72d95f0d99d",
+      "source_metadata": {
+        "record_id": "P3:formal_v1:P3_gpt_03_industrial_seed45",
+        "sample_id": "P3_gpt_03_industrial",
+        "video_id": "P3_gpt_03_industrial_seed45",
+        "batch_id": "formal_v1",
+        "source_method": "gpt",
+        "raw_metrics": {
+          "M1": -0.0661973678721679,
+          "M2": {
+            "trajectory_30deg_parabola_rmse_d": 0.10563834289669026,
+            "trajectory_60deg_parabola_rmse_d": 0.22648659239063865,
+            "initial_speed_magnitude_error": 0.11057036871296377
+          }
+        },
+        "metric_validity": {
+          "M1": true,
+          "M2": true
+        },
+        "diagnostic_status": {
+          "extract_success": true,
+          "structural_ok": true,
+          "measurement_valid": true
+        },
+        "failure_reason": null,
+        "warnings": [],
+        "artifacts": {
+          "raw": "../P3/minimax_h3/videos/P3_gpt_03_industrial_seed45.mp4",
+          "video": "../P3/minimax_h3/videos/P3_gpt_03_industrial_seed45.mp4",
+          "overlay": "../P3/eval_results/debug/P3_gpt_03_industrial_seed45/overlay.mp4",
+          "plot": "../P3/eval_results/debug/P3_gpt_03_industrial_seed45/plot.png",
+          "json": "../P3/eval_results/json/P3__formal_v1__P3_gpt_03_industrial_seed45.json",
+          "extra": {
+            "raw_tracks": "../P3/eval_results/debug/P3_gpt_03_industrial_seed45/tracks_raw.npz"
+          }
+        },
+        "source_result_path": "P3/eval_results/json/P3__formal_v1__P3_gpt_03_industrial_seed45.json",
+        "source_result_sha256": "5978c1be84b4d5df188d3b1ae833ebbcf4eb6bfd5b0066601c11f59a5c184ebf"
+      }
+    },
+    {
+      "sample_id": "sample_12",
+      "video_path": "output_videos/minimax_h3/sample_12.mp4",
+      "source_video_path": "minimax_h3/videos/P3_sim_01_seed42.mp4",
+      "image_path": "first_frames/simulation/P3_sim_01.png",
+      "video_prompt": "A single continuous real-time shot from a locked-off, slightly elevated near-orthographic side camera, matching the input first frame.\n\nPreserve the exact two-lane parallel layout and all existing apparatus. Exactly two identical, rigidly mounted launchers release exactly two identical balls simultaneously toward the right with exactly the same initial speed. One launcher is oriented at 30 degrees above the horizontal, and the other is oriented at 60 degrees above the horizontal. Preserve each launcher's existing angle and lane assignment from the input first frame. Do not swap, rotate, move, or reorder either launcher.\n\nAfter release, both balls move freely through the air under gravity. Each ball remains a distinct rigid sphere and lands on its own corresponding horizontal landing lane. At first landing contact, the center of each ball returns to the same vertical level as its center at launch. Both complete flights and both first landing points remain visible inside the frame.\n\nThe launchers, lanes, supports, background, and camera remain stationary. Preserve the appearance and geometry of the input frame. No camera movement, panning, zooming, cuts, slow motion, pauses, or time jumps. No new objects or people. No trajectory lines, annotations, motion trails, ghost images, duplicated balls, disappearing balls, or collisions between the two balls. End shortly after both balls make their first landing contact.",
+      "model": "minimax-h3",
+      "model_folder": "minimax_h3",
+      "seed": 42,
+      "source_result": "eval_results/minimax_h3/result_P3__formal_v1__P3_sim_01_seed42.json",
+      "previous_result": "work/g1_g9_v2_20260911/before/g3/P3/eval_results/minimax_h3/result_P3__formal_v1__P3_sim_01_seed42.json",
+      "video_sha256": "19c9646be8f11eea1aa71af1eb46fc7083ffbb22c8c277fec2a227ee314b83f3",
+      "image_sha256": "78344e452d3ad4729260a6e9ede69b42cf55aae3d4ded42c2c3bc3cbeeda93aa",
+      "source_metadata": {
+        "record_id": "P3:formal_v1:P3_sim_01_seed42",
+        "sample_id": "P3_sim_01",
+        "video_id": "P3_sim_01_seed42",
+        "batch_id": "formal_v1",
+        "source_method": "simulation",
+        "raw_metrics": {
+          "M1": 0.07379204866218436,
+          "M2": {
+            "trajectory_30deg_parabola_rmse_d": 0.06185658537235618,
+            "trajectory_60deg_parabola_rmse_d": 0.07804385119786791,
+            "initial_speed_magnitude_error": 0.03449093065484621
+          }
+        },
+        "metric_validity": {
+          "M1": true,
+          "M2": true
+        },
+        "diagnostic_status": {
+          "extract_success": true,
+          "structural_ok": true,
+          "measurement_valid": true
+        },
+        "failure_reason": null,
+        "warnings": [],
+        "artifacts": {
+          "raw": "../P3/minimax_h3/videos/P3_sim_01_seed42.mp4",
+          "video": "../P3/minimax_h3/videos/P3_sim_01_seed42.mp4",
+          "overlay": "../P3/eval_results/debug/P3_sim_01_seed42/overlay.mp4",
+          "plot": "../P3/eval_results/debug/P3_sim_01_seed42/plot.png",
+          "json": "../P3/eval_results/json/P3__formal_v1__P3_sim_01_seed42.json",
+          "extra": {
+            "raw_tracks": "../P3/eval_results/debug/P3_sim_01_seed42/tracks_raw.npz"
+          }
+        },
+        "source_result_path": "P3/eval_results/json/P3__formal_v1__P3_sim_01_seed42.json",
+        "source_result_sha256": "573509d29ac9481b00cb862d1d41a38e008ea65f425a1b9721e78a1e6f206869"
+      }
+    },
+    {
+      "sample_id": "sample_13",
+      "video_path": "output_videos/minimax_h3/sample_13.mp4",
+      "source_video_path": "minimax_h3/videos/P3_sim_01_seed43.mp4",
+      "image_path": "first_frames/simulation/P3_sim_01.png",
+      "video_prompt": "A single continuous real-time shot from a locked-off, slightly elevated near-orthographic side camera, matching the input first frame.\n\nPreserve the exact two-lane parallel layout and all existing apparatus. Exactly two identical, rigidly mounted launchers release exactly two identical balls simultaneously toward the right with exactly the same initial speed. One launcher is oriented at 30 degrees above the horizontal, and the other is oriented at 60 degrees above the horizontal. Preserve each launcher's existing angle and lane assignment from the input first frame. Do not swap, rotate, move, or reorder either launcher.\n\nAfter release, both balls move freely through the air under gravity. Each ball remains a distinct rigid sphere and lands on its own corresponding horizontal landing lane. At first landing contact, the center of each ball returns to the same vertical level as its center at launch. Both complete flights and both first landing points remain visible inside the frame.\n\nThe launchers, lanes, supports, background, and camera remain stationary. Preserve the appearance and geometry of the input frame. No camera movement, panning, zooming, cuts, slow motion, pauses, or time jumps. No new objects or people. No trajectory lines, annotations, motion trails, ghost images, duplicated balls, disappearing balls, or collisions between the two balls. End shortly after both balls make their first landing contact.",
+      "model": "minimax-h3",
+      "model_folder": "minimax_h3",
+      "seed": 43,
+      "source_result": "eval_results/minimax_h3/result_P3__formal_v1__P3_sim_01_seed43.json",
+      "previous_result": "work/g1_g9_v2_20260911/before/g3/P3/eval_results/minimax_h3/result_P3__formal_v1__P3_sim_01_seed43.json",
+      "video_sha256": "438f0aff30aad17b60d1c83c99d737bd686f2897663c7f0fc88e91bcc3db0703",
+      "image_sha256": "78344e452d3ad4729260a6e9ede69b42cf55aae3d4ded42c2c3bc3cbeeda93aa",
+      "source_metadata": {
+        "record_id": "P3:formal_v1:P3_sim_01_seed43",
+        "sample_id": "P3_sim_01",
+        "video_id": "P3_sim_01_seed43",
+        "batch_id": "formal_v1",
+        "source_method": "simulation",
+        "raw_metrics": {
+          "M1": 0.08229252383417052,
+          "M2": {
+            "trajectory_30deg_parabola_rmse_d": 0.08192389628005203,
+            "trajectory_60deg_parabola_rmse_d": 0.06961297811218027,
+            "initial_speed_magnitude_error": 0.13269993657996326
+          }
+        },
+        "metric_validity": {
+          "M1": true,
+          "M2": true
+        },
+        "diagnostic_status": {
+          "extract_success": true,
+          "structural_ok": true,
+          "measurement_valid": true
+        },
+        "failure_reason": null,
+        "warnings": [],
+        "artifacts": {
+          "raw": "../P3/minimax_h3/videos/P3_sim_01_seed43.mp4",
+          "video": "../P3/minimax_h3/videos/P3_sim_01_seed43.mp4",
+          "overlay": "../P3/eval_results/debug/P3_sim_01_seed43/overlay.mp4",
+          "plot": "../P3/eval_results/debug/P3_sim_01_seed43/plot.png",
+          "json": "../P3/eval_results/json/P3__formal_v1__P3_sim_01_seed43.json",
+          "extra": {
+            "raw_tracks": "../P3/eval_results/debug/P3_sim_01_seed43/tracks_raw.npz"
+          }
+        },
+        "source_result_path": "P3/eval_results/json/P3__formal_v1__P3_sim_01_seed43.json",
+        "source_result_sha256": "e257d2fc99ddf4f603e090ec4c0f1c8baae919ce739caf42055f1075e828edb0"
+      }
+    },
+    {
+      "sample_id": "sample_14",
+      "video_path": "output_videos/minimax_h3/sample_14.mp4",
+      "source_video_path": "minimax_h3/videos/P3_sim_01_seed44.mp4",
+      "image_path": "first_frames/simulation/P3_sim_01.png",
+      "video_prompt": "A single continuous real-time shot from a locked-off, slightly elevated near-orthographic side camera, matching the input first frame.\n\nPreserve the exact two-lane parallel layout and all existing apparatus. Exactly two identical, rigidly mounted launchers release exactly two identical balls simultaneously toward the right with exactly the same initial speed. One launcher is oriented at 30 degrees above the horizontal, and the other is oriented at 60 degrees above the horizontal. Preserve each launcher's existing angle and lane assignment from the input first frame. Do not swap, rotate, move, or reorder either launcher.\n\nAfter release, both balls move freely through the air under gravity. Each ball remains a distinct rigid sphere and lands on its own corresponding horizontal landing lane. At first landing contact, the center of each ball returns to the same vertical level as its center at launch. Both complete flights and both first landing points remain visible inside the frame.\n\nThe launchers, lanes, supports, background, and camera remain stationary. Preserve the appearance and geometry of the input frame. No camera movement, panning, zooming, cuts, slow motion, pauses, or time jumps. No new objects or people. No trajectory lines, annotations, motion trails, ghost images, duplicated balls, disappearing balls, or collisions between the two balls. End shortly after both balls make their first landing contact.",
+      "model": "minimax-h3",
+      "model_folder": "minimax_h3",
+      "seed": 44,
+      "source_result": "eval_results/minimax_h3/result_P3__formal_v1__P3_sim_01_seed44.json",
+      "previous_result": "work/g1_g9_v2_20260911/before/g3/P3/eval_results/minimax_h3/result_P3__formal_v1__P3_sim_01_seed44.json",
+      "video_sha256": "99915a16617b11243ce826fe8c5036ffdcce80f23fba86d22822aa327a9fbce5",
+      "image_sha256": "78344e452d3ad4729260a6e9ede69b42cf55aae3d4ded42c2c3bc3cbeeda93aa",
+      "source_metadata": {
+        "record_id": "P3:formal_v1:P3_sim_01_seed44",
+        "sample_id": "P3_sim_01",
+        "video_id": "P3_sim_01_seed44",
+        "batch_id": "formal_v1",
+        "source_method": "simulation",
+        "raw_metrics": {
+          "M1": 0.12116771642263258,
+          "M2": {
+            "trajectory_30deg_parabola_rmse_d": 0.11240149318861166,
+            "trajectory_60deg_parabola_rmse_d": 0.11084081459559914,
+            "initial_speed_magnitude_error": 0.15528663775692197
+          }
+        },
+        "metric_validity": {
+          "M1": true,
+          "M2": true
+        },
+        "diagnostic_status": {
+          "extract_success": true,
+          "structural_ok": true,
+          "measurement_valid": true
+        },
+        "failure_reason": null,
+        "warnings": [],
+        "artifacts": {
+          "raw": "../P3/minimax_h3/videos/P3_sim_01_seed44.mp4",
+          "video": "../P3/minimax_h3/videos/P3_sim_01_seed44.mp4",
+          "overlay": "../P3/eval_results/debug/P3_sim_01_seed44/overlay.mp4",
+          "plot": "../P3/eval_results/debug/P3_sim_01_seed44/plot.png",
+          "json": "../P3/eval_results/json/P3__formal_v1__P3_sim_01_seed44.json",
+          "extra": {
+            "raw_tracks": "../P3/eval_results/debug/P3_sim_01_seed44/tracks_raw.npz"
+          }
+        },
+        "source_result_path": "P3/eval_results/json/P3__formal_v1__P3_sim_01_seed44.json",
+        "source_result_sha256": "55759328a611830a31af8a7a5de61ffd05053b14eea82d9f81391c8e646eb5bb"
+      }
+    },
+    {
+      "sample_id": "sample_15",
+      "video_path": "output_videos/minimax_h3/sample_15.mp4",
+      "source_video_path": "minimax_h3/videos/P3_sim_01_seed45.mp4",
+      "image_path": "first_frames/simulation/P3_sim_01.png",
+      "video_prompt": "A single continuous real-time shot from a locked-off, slightly elevated near-orthographic side camera, matching the input first frame.\n\nPreserve the exact two-lane parallel layout and all existing apparatus. Exactly two identical, rigidly mounted launchers release exactly two identical balls simultaneously toward the right with exactly the same initial speed. One launcher is oriented at 30 degrees above the horizontal, and the other is oriented at 60 degrees above the horizontal. Preserve each launcher's existing angle and lane assignment from the input first frame. Do not swap, rotate, move, or reorder either launcher.\n\nAfter release, both balls move freely through the air under gravity. Each ball remains a distinct rigid sphere and lands on its own corresponding horizontal landing lane. At first landing contact, the center of each ball returns to the same vertical level as its center at launch. Both complete flights and both first landing points remain visible inside the frame.\n\nThe launchers, lanes, supports, background, and camera remain stationary. Preserve the appearance and geometry of the input frame. No camera movement, panning, zooming, cuts, slow motion, pauses, or time jumps. No new objects or people. No trajectory lines, annotations, motion trails, ghost images, duplicated balls, disappearing balls, or collisions between the two balls. End shortly after both balls make their first landing contact.",
+      "model": "minimax-h3",
+      "model_folder": "minimax_h3",
+      "seed": 45,
+      "source_result": "eval_results/minimax_h3/result_P3__formal_v1__P3_sim_01_seed45.json",
+      "previous_result": "work/g1_g9_v2_20260911/before/g3/P3/eval_results/minimax_h3/result_P3__formal_v1__P3_sim_01_seed45.json",
+      "video_sha256": "9b89dbb457e67b8c63e9fd200c2c64614530c1253aab513b96418b5e8b1315d7",
+      "image_sha256": "78344e452d3ad4729260a6e9ede69b42cf55aae3d4ded42c2c3bc3cbeeda93aa",
+      "source_metadata": {
+        "record_id": "P3:formal_v1:P3_sim_01_seed45",
+        "sample_id": "P3_sim_01",
+        "video_id": "P3_sim_01_seed45",
+        "batch_id": "formal_v1",
+        "source_method": "simulation",
+        "raw_metrics": {
+          "M1": -0.05345531332989739,
+          "M2": {
+            "trajectory_30deg_parabola_rmse_d": 0.050211120611525065,
+            "trajectory_60deg_parabola_rmse_d": 0.15797493426005021,
+            "initial_speed_magnitude_error": 0.04627291233271047
+          }
+        },
+        "metric_validity": {
+          "M1": true,
+          "M2": true
+        },
+        "diagnostic_status": {
+          "extract_success": true,
+          "structural_ok": true,
+          "measurement_valid": true
+        },
+        "failure_reason": null,
+        "warnings": [],
+        "artifacts": {
+          "raw": "../P3/minimax_h3/videos/P3_sim_01_seed45.mp4",
+          "video": "../P3/minimax_h3/videos/P3_sim_01_seed45.mp4",
+          "overlay": "../P3/eval_results/debug/P3_sim_01_seed45/overlay.mp4",
+          "plot": "../P3/eval_results/debug/P3_sim_01_seed45/plot.png",
+          "json": "../P3/eval_results/json/P3__formal_v1__P3_sim_01_seed45.json",
+          "extra": {
+            "raw_tracks": "../P3/eval_results/debug/P3_sim_01_seed45/tracks_raw.npz"
+          }
+        },
+        "source_result_path": "P3/eval_results/json/P3__formal_v1__P3_sim_01_seed45.json",
+        "source_result_sha256": "65c41357e2d516aad2d210fb7b153f85ea4c017aba7fe5b07f80b62535a81f00"
+      }
+    },
+    {
+      "sample_id": "sample_16",
+      "video_path": "output_videos/minimax_h3/sample_16.mp4",
+      "source_video_path": "minimax_h3/videos/P3_sim_02_seed42.mp4",
+      "image_path": "first_frames/simulation/P3_sim_02.png",
+      "video_prompt": "A single continuous real-time shot from a locked-off, slightly elevated near-orthographic side camera, matching the input first frame.\n\nPreserve the exact two-lane parallel layout and all existing apparatus. Exactly two identical, rigidly mounted launchers release exactly two identical balls simultaneously toward the right with exactly the same initial speed. One launcher is oriented at 30 degrees above the horizontal, and the other is oriented at 60 degrees above the horizontal. Preserve each launcher's existing angle and lane assignment from the input first frame. Do not swap, rotate, move, or reorder either launcher.\n\nAfter release, both balls move freely through the air under gravity. Each ball remains a distinct rigid sphere and lands on its own corresponding horizontal landing lane. At first landing contact, the center of each ball returns to the same vertical level as its center at launch. Both complete flights and both first landing points remain visible inside the frame.\n\nThe launchers, lanes, supports, background, and camera remain stationary. Preserve the appearance and geometry of the input frame. No camera movement, panning, zooming, cuts, slow motion, pauses, or time jumps. No new objects or people. No trajectory lines, annotations, motion trails, ghost images, duplicated balls, disappearing balls, or collisions between the two balls. End shortly after both balls make their first landing contact.",
+      "model": "minimax-h3",
+      "model_folder": "minimax_h3",
+      "seed": 42,
+      "source_result": "eval_results/minimax_h3/result_P3__formal_v1__P3_sim_02_seed42.json",
+      "previous_result": "work/g1_g9_v2_20260911/before/g3/P3/eval_results/minimax_h3/result_P3__formal_v1__P3_sim_02_seed42.json",
+      "video_sha256": "3c3de8f9f85a0bafbb2bd08d954d1e3ed6bf2b3bb9f6efb66c091c83a49552c8",
+      "image_sha256": "f00ca2606e22d28f61409094732b13df43a40624eb5eacd7caf66053ccde3135",
+      "source_metadata": {
+        "record_id": "P3:formal_v1:P3_sim_02_seed42",
+        "sample_id": "P3_sim_02",
+        "video_id": "P3_sim_02_seed42",
+        "batch_id": "formal_v1",
+        "source_method": "simulation",
+        "raw_metrics": {
+          "M1": 0.10541875813208335,
+          "M2": {
+            "trajectory_30deg_parabola_rmse_d": 0.08511236176644861,
+            "trajectory_60deg_parabola_rmse_d": 0.05979807758083937,
+            "initial_speed_magnitude_error": 0.1041380969855712
+          }
+        },
+        "metric_validity": {
+          "M1": true,
+          "M2": true
+        },
+        "diagnostic_status": {
+          "extract_success": true,
+          "structural_ok": true,
+          "measurement_valid": true
+        },
+        "failure_reason": null,
+        "warnings": [],
+        "artifacts": {
+          "raw": "../P3/minimax_h3/videos/P3_sim_02_seed42.mp4",
+          "video": "../P3/minimax_h3/videos/P3_sim_02_seed42.mp4",
+          "overlay": "../P3/eval_results/debug/P3_sim_02_seed42/overlay.mp4",
+          "plot": "../P3/eval_results/debug/P3_sim_02_seed42/plot.png",
+          "json": "../P3/eval_results/json/P3__formal_v1__P3_sim_02_seed42.json",
+          "extra": {
+            "raw_tracks": "../P3/eval_results/debug/P3_sim_02_seed42/tracks_raw.npz"
+          }
+        },
+        "source_result_path": "P3/eval_results/json/P3__formal_v1__P3_sim_02_seed42.json",
+        "source_result_sha256": "b3b36a259b7f2bf8a5fd35c8c346bf7ffbbbfe24191aa3bf860100cc24e8c850"
+      }
+    },
+    {
+      "sample_id": "sample_17",
+      "video_path": "output_videos/minimax_h3/sample_17.mp4",
+      "source_video_path": "minimax_h3/videos/P3_sim_02_seed43.mp4",
+      "image_path": "first_frames/simulation/P3_sim_02.png",
+      "video_prompt": "A single continuous real-time shot from a locked-off, slightly elevated near-orthographic side camera, matching the input first frame.\n\nPreserve the exact two-lane parallel layout and all existing apparatus. Exactly two identical, rigidly mounted launchers release exactly two identical balls simultaneously toward the right with exactly the same initial speed. One launcher is oriented at 30 degrees above the horizontal, and the other is oriented at 60 degrees above the horizontal. Preserve each launcher's existing angle and lane assignment from the input first frame. Do not swap, rotate, move, or reorder either launcher.\n\nAfter release, both balls move freely through the air under gravity. Each ball remains a distinct rigid sphere and lands on its own corresponding horizontal landing lane. At first landing contact, the center of each ball returns to the same vertical level as its center at launch. Both complete flights and both first landing points remain visible inside the frame.\n\nThe launchers, lanes, supports, background, and camera remain stationary. Preserve the appearance and geometry of the input frame. No camera movement, panning, zooming, cuts, slow motion, pauses, or time jumps. No new objects or people. No trajectory lines, annotations, motion trails, ghost images, duplicated balls, disappearing balls, or collisions between the two balls. End shortly after both balls make their first landing contact.",
+      "model": "minimax-h3",
+      "model_folder": "minimax_h3",
+      "seed": 43,
+      "source_result": "eval_results/minimax_h3/result_P3__formal_v1__P3_sim_02_seed43.json",
+      "previous_result": "work/g1_g9_v2_20260911/before/g3/P3/eval_results/minimax_h3/result_P3__formal_v1__P3_sim_02_seed43.json",
+      "video_sha256": "2e2740d63ac11717542277b5f757e672e1df654bb95669e0d98ac4cb726635f5",
+      "image_sha256": "f00ca2606e22d28f61409094732b13df43a40624eb5eacd7caf66053ccde3135",
+      "source_metadata": {
+        "record_id": "P3:formal_v1:P3_sim_02_seed43",
+        "sample_id": "P3_sim_02",
+        "video_id": "P3_sim_02_seed43",
+        "batch_id": "formal_v1",
+        "source_method": "simulation",
+        "raw_metrics": {
+          "M1": 0.2180714216840225,
+          "M2": {
+            "trajectory_30deg_parabola_rmse_d": 0.16589859082898611,
+            "trajectory_60deg_parabola_rmse_d": 0.05880945108391,
+            "initial_speed_magnitude_error": 0.03579593414424642
+          }
+        },
+        "metric_validity": {
+          "M1": true,
+          "M2": true
+        },
+        "diagnostic_status": {
+          "extract_success": true,
+          "structural_ok": true,
+          "measurement_valid": true
+        },
+        "failure_reason": null,
+        "warnings": [],
+        "artifacts": {
+          "raw": "../P3/minimax_h3/videos/P3_sim_02_seed43.mp4",
+          "video": "../P3/minimax_h3/videos/P3_sim_02_seed43.mp4",
+          "overlay": "../P3/eval_results/debug/P3_sim_02_seed43/overlay.mp4",
+          "plot": "../P3/eval_results/debug/P3_sim_02_seed43/plot.png",
+          "json": "../P3/eval_results/json/P3__formal_v1__P3_sim_02_seed43.json",
+          "extra": {
+            "raw_tracks": "../P3/eval_results/debug/P3_sim_02_seed43/tracks_raw.npz"
+          }
+        },
+        "source_result_path": "P3/eval_results/json/P3__formal_v1__P3_sim_02_seed43.json",
+        "source_result_sha256": "db4fa889f100b58e206c929b675548d40d8c1155ccafb953dac01dae4398f6dc"
+      }
+    },
+    {
+      "sample_id": "sample_18",
+      "video_path": "output_videos/minimax_h3/sample_18.mp4",
+      "source_video_path": "minimax_h3/videos/P3_sim_02_seed44.mp4",
+      "image_path": "first_frames/simulation/P3_sim_02.png",
+      "video_prompt": "A single continuous real-time shot from a locked-off, slightly elevated near-orthographic side camera, matching the input first frame.\n\nPreserve the exact two-lane parallel layout and all existing apparatus. Exactly two identical, rigidly mounted launchers release exactly two identical balls simultaneously toward the right with exactly the same initial speed. One launcher is oriented at 30 degrees above the horizontal, and the other is oriented at 60 degrees above the horizontal. Preserve each launcher's existing angle and lane assignment from the input first frame. Do not swap, rotate, move, or reorder either launcher.\n\nAfter release, both balls move freely through the air under gravity. Each ball remains a distinct rigid sphere and lands on its own corresponding horizontal landing lane. At first landing contact, the center of each ball returns to the same vertical level as its center at launch. Both complete flights and both first landing points remain visible inside the frame.\n\nThe launchers, lanes, supports, background, and camera remain stationary. Preserve the appearance and geometry of the input frame. No camera movement, panning, zooming, cuts, slow motion, pauses, or time jumps. No new objects or people. No trajectory lines, annotations, motion trails, ghost images, duplicated balls, disappearing balls, or collisions between the two balls. End shortly after both balls make their first landing contact.",
+      "model": "minimax-h3",
+      "model_folder": "minimax_h3",
+      "seed": 44,
+      "source_result": "eval_results/minimax_h3/result_P3__formal_v1__P3_sim_02_seed44.json",
+      "previous_result": "work/g1_g9_v2_20260911/before/g3/P3/eval_results/minimax_h3/result_P3__formal_v1__P3_sim_02_seed44.json",
+      "video_sha256": "33a99db9df8e60066f74652cab5cb048c21316bea78b776a58971b2cd6f603a9",
+      "image_sha256": "f00ca2606e22d28f61409094732b13df43a40624eb5eacd7caf66053ccde3135",
+      "source_metadata": {
+        "record_id": "P3:formal_v1:P3_sim_02_seed44",
+        "sample_id": "P3_sim_02",
+        "video_id": "P3_sim_02_seed44",
+        "batch_id": "formal_v1",
+        "source_method": "simulation",
+        "raw_metrics": {
+          "M1": 0.604526304324051,
+          "M2": {
+            "trajectory_30deg_parabola_rmse_d": 0.8249500936432077,
+            "trajectory_60deg_parabola_rmse_d": 0.05605684396873074,
+            "initial_speed_magnitude_error": 0.3306110344112585
+          }
+        },
+        "metric_validity": {
+          "M1": true,
+          "M2": true
+        },
+        "diagnostic_status": {
+          "extract_success": true,
+          "structural_ok": true,
+          "measurement_valid": true
+        },
+        "failure_reason": null,
+        "warnings": [],
+        "artifacts": {
+          "raw": "../P3/minimax_h3/videos/P3_sim_02_seed44.mp4",
+          "video": "../P3/minimax_h3/videos/P3_sim_02_seed44.mp4",
+          "overlay": "../P3/eval_results/debug/P3_sim_02_seed44/overlay.mp4",
+          "plot": "../P3/eval_results/debug/P3_sim_02_seed44/plot.png",
+          "json": "../P3/eval_results/json/P3__formal_v1__P3_sim_02_seed44.json",
+          "extra": {
+            "raw_tracks": "../P3/eval_results/debug/P3_sim_02_seed44/tracks_raw.npz"
+          }
+        },
+        "source_result_path": "P3/eval_results/json/P3__formal_v1__P3_sim_02_seed44.json",
+        "source_result_sha256": "c75e9207d60db19eeb35c66d4a9a0d7a0d9711170c6b2b81a067358b177bda8e"
+      }
+    },
+    {
+      "sample_id": "sample_19",
+      "video_path": "output_videos/minimax_h3/sample_19.mp4",
+      "source_video_path": "minimax_h3/videos/P3_sim_02_seed45.mp4",
+      "image_path": "first_frames/simulation/P3_sim_02.png",
+      "video_prompt": "A single continuous real-time shot from a locked-off, slightly elevated near-orthographic side camera, matching the input first frame.\n\nPreserve the exact two-lane parallel layout and all existing apparatus. Exactly two identical, rigidly mounted launchers release exactly two identical balls simultaneously toward the right with exactly the same initial speed. One launcher is oriented at 30 degrees above the horizontal, and the other is oriented at 60 degrees above the horizontal. Preserve each launcher's existing angle and lane assignment from the input first frame. Do not swap, rotate, move, or reorder either launcher.\n\nAfter release, both balls move freely through the air under gravity. Each ball remains a distinct rigid sphere and lands on its own corresponding horizontal landing lane. At first landing contact, the center of each ball returns to the same vertical level as its center at launch. Both complete flights and both first landing points remain visible inside the frame.\n\nThe launchers, lanes, supports, background, and camera remain stationary. Preserve the appearance and geometry of the input frame. No camera movement, panning, zooming, cuts, slow motion, pauses, or time jumps. No new objects or people. No trajectory lines, annotations, motion trails, ghost images, duplicated balls, disappearing balls, or collisions between the two balls. End shortly after both balls make their first landing contact.",
+      "model": "minimax-h3",
+      "model_folder": "minimax_h3",
+      "seed": 45,
+      "source_result": "eval_results/minimax_h3/result_P3__formal_v1__P3_sim_02_seed45.json",
+      "previous_result": "work/g1_g9_v2_20260911/before/g3/P3/eval_results/minimax_h3/result_P3__formal_v1__P3_sim_02_seed45.json",
+      "video_sha256": "f7e6b6a975ff7d83fbf1997f9ec262fc25adb54899f7c5f3f4f8523977a8ba57",
+      "image_sha256": "f00ca2606e22d28f61409094732b13df43a40624eb5eacd7caf66053ccde3135",
+      "source_metadata": {
+        "record_id": "P3:formal_v1:P3_sim_02_seed45",
+        "sample_id": "P3_sim_02",
+        "video_id": "P3_sim_02_seed45",
+        "batch_id": "formal_v1",
+        "source_method": "simulation",
+        "raw_metrics": {
+          "M1": 0.0889448170565248,
+          "M2": {
+            "trajectory_30deg_parabola_rmse_d": 0.15805717538280822,
+            "trajectory_60deg_parabola_rmse_d": 0.09151974169495856,
+            "initial_speed_magnitude_error": 0.061277261568588814
+          }
+        },
+        "metric_validity": {
+          "M1": true,
+          "M2": true
+        },
+        "diagnostic_status": {
+          "extract_success": true,
+          "structural_ok": true,
+          "measurement_valid": true
+        },
+        "failure_reason": null,
+        "warnings": [],
+        "artifacts": {
+          "raw": "../P3/minimax_h3/videos/P3_sim_02_seed45.mp4",
+          "video": "../P3/minimax_h3/videos/P3_sim_02_seed45.mp4",
+          "overlay": "../P3/eval_results/debug/P3_sim_02_seed45/overlay.mp4",
+          "plot": "../P3/eval_results/debug/P3_sim_02_seed45/plot.png",
+          "json": "../P3/eval_results/json/P3__formal_v1__P3_sim_02_seed45.json",
+          "extra": {
+            "raw_tracks": "../P3/eval_results/debug/P3_sim_02_seed45/tracks_raw.npz"
+          }
+        },
+        "source_result_path": "P3/eval_results/json/P3__formal_v1__P3_sim_02_seed45.json",
+        "source_result_sha256": "6c216873e5c090b0ff308d5b1dc35f3d5c4b30c7475ac9af4fe9aaf8a713f82b"
+      }
+    },
+    {
+      "sample_id": "sample_20",
+      "video_path": "output_videos/minimax_h3/sample_20.mp4",
+      "source_video_path": "minimax_h3/videos/P3_sim_03_seed42.mp4",
+      "image_path": "first_frames/simulation/P3_sim_03.png",
+      "video_prompt": "A single continuous real-time shot from a locked-off, slightly elevated near-orthographic side camera, matching the input first frame.\n\nPreserve the exact two-lane parallel layout and all existing apparatus. Exactly two identical, rigidly mounted launchers release exactly two identical balls simultaneously toward the right with exactly the same initial speed. One launcher is oriented at 30 degrees above the horizontal, and the other is oriented at 60 degrees above the horizontal. Preserve each launcher's existing angle and lane assignment from the input first frame. Do not swap, rotate, move, or reorder either launcher.\n\nAfter release, both balls move freely through the air under gravity. Each ball remains a distinct rigid sphere and lands on its own corresponding horizontal landing lane. At first landing contact, the center of each ball returns to the same vertical level as its center at launch. Both complete flights and both first landing points remain visible inside the frame.\n\nThe launchers, lanes, supports, background, and camera remain stationary. Preserve the appearance and geometry of the input frame. No camera movement, panning, zooming, cuts, slow motion, pauses, or time jumps. No new objects or people. No trajectory lines, annotations, motion trails, ghost images, duplicated balls, disappearing balls, or collisions between the two balls. End shortly after both balls make their first landing contact.",
+      "model": "minimax-h3",
+      "model_folder": "minimax_h3",
+      "seed": 42,
+      "source_result": "eval_results/minimax_h3/result_P3__formal_v1__P3_sim_03_seed42.json",
+      "previous_result": "work/g1_g9_v2_20260911/before/g3/P3/eval_results/minimax_h3/result_P3__formal_v1__P3_sim_03_seed42.json",
+      "video_sha256": "6bd6108147d60bd6aff2be7f7b973af2278a4bff0396872658fbed439768efe8",
+      "image_sha256": "589f6f852e99f5005b2f411fdfbe280c97a01315f9276272bbb2358b1640eeb1",
+      "source_metadata": {
+        "record_id": "P3:formal_v1:P3_sim_03_seed42",
+        "sample_id": "P3_sim_03",
+        "video_id": "P3_sim_03_seed42",
+        "batch_id": "formal_v1",
+        "source_method": "simulation",
+        "raw_metrics": {
+          "M1": -0.04624127732529515,
+          "M2": {
+            "trajectory_30deg_parabola_rmse_d": 0.07579298525255436,
+            "trajectory_60deg_parabola_rmse_d": 0.11564661789944529,
+            "initial_speed_magnitude_error": 0.1062546233771855
+          }
+        },
+        "metric_validity": {
+          "M1": true,
+          "M2": true
+        },
+        "diagnostic_status": {
+          "extract_success": true,
+          "structural_ok": true,
+          "measurement_valid": true
+        },
+        "failure_reason": null,
+        "warnings": [],
+        "artifacts": {
+          "raw": "../P3/minimax_h3/videos/P3_sim_03_seed42.mp4",
+          "video": "../P3/minimax_h3/videos/P3_sim_03_seed42.mp4",
+          "overlay": "../P3/eval_results/debug/P3_sim_03_seed42/overlay.mp4",
+          "plot": "../P3/eval_results/debug/P3_sim_03_seed42/plot.png",
+          "json": "../P3/eval_results/json/P3__formal_v1__P3_sim_03_seed42.json",
+          "extra": {
+            "raw_tracks": "../P3/eval_results/debug/P3_sim_03_seed42/tracks_raw.npz"
+          }
+        },
+        "source_result_path": "P3/eval_results/json/P3__formal_v1__P3_sim_03_seed42.json",
+        "source_result_sha256": "473bcd6732c1ad9425bf66e016385174ebfa56dc0d075b56cfd7d3cdffc9cb55"
+      }
+    },
+    {
+      "sample_id": "sample_21",
+      "video_path": "output_videos/minimax_h3/sample_21.mp4",
+      "source_video_path": "minimax_h3/videos/P3_sim_03_seed43.mp4",
+      "image_path": "first_frames/simulation/P3_sim_03.png",
+      "video_prompt": "A single continuous real-time shot from a locked-off, slightly elevated near-orthographic side camera, matching the input first frame.\n\nPreserve the exact two-lane parallel layout and all existing apparatus. Exactly two identical, rigidly mounted launchers release exactly two identical balls simultaneously toward the right with exactly the same initial speed. One launcher is oriented at 30 degrees above the horizontal, and the other is oriented at 60 degrees above the horizontal. Preserve each launcher's existing angle and lane assignment from the input first frame. Do not swap, rotate, move, or reorder either launcher.\n\nAfter release, both balls move freely through the air under gravity. Each ball remains a distinct rigid sphere and lands on its own corresponding horizontal landing lane. At first landing contact, the center of each ball returns to the same vertical level as its center at launch. Both complete flights and both first landing points remain visible inside the frame.\n\nThe launchers, lanes, supports, background, and camera remain stationary. Preserve the appearance and geometry of the input frame. No camera movement, panning, zooming, cuts, slow motion, pauses, or time jumps. No new objects or people. No trajectory lines, annotations, motion trails, ghost images, duplicated balls, disappearing balls, or collisions between the two balls. End shortly after both balls make their first landing contact.",
+      "model": "minimax-h3",
+      "model_folder": "minimax_h3",
+      "seed": 43,
+      "source_result": "eval_results/minimax_h3/result_P3__formal_v1__P3_sim_03_seed43.json",
+      "previous_result": "work/g1_g9_v2_20260911/before/g3/P3/eval_results/minimax_h3/result_P3__formal_v1__P3_sim_03_seed43.json",
+      "video_sha256": "e88bea0f53228c8ddadb290976b9bb1a0a2a9ea2c630fba64e625fb9928d87ae",
+      "image_sha256": "589f6f852e99f5005b2f411fdfbe280c97a01315f9276272bbb2358b1640eeb1",
+      "source_metadata": {
+        "record_id": "P3:formal_v1:P3_sim_03_seed43",
+        "sample_id": "P3_sim_03",
+        "video_id": "P3_sim_03_seed43",
+        "batch_id": "formal_v1",
+        "source_method": "simulation",
+        "raw_metrics": {
+          "M1": -0.16369528001341915,
+          "M2": {
+            "trajectory_30deg_parabola_rmse_d": 0.06839149989129147,
+            "trajectory_60deg_parabola_rmse_d": 0.11791009716259651,
+            "initial_speed_magnitude_error": 0.06269981177259243
+          }
+        },
+        "metric_validity": {
+          "M1": true,
+          "M2": true
+        },
+        "diagnostic_status": {
+          "extract_success": true,
+          "structural_ok": true,
+          "measurement_valid": true
+        },
+        "failure_reason": null,
+        "warnings": [],
+        "artifacts": {
+          "raw": "../P3/minimax_h3/videos/P3_sim_03_seed43.mp4",
+          "video": "../P3/minimax_h3/videos/P3_sim_03_seed43.mp4",
+          "overlay": "../P3/eval_results/debug/P3_sim_03_seed43/overlay.mp4",
+          "plot": "../P3/eval_results/debug/P3_sim_03_seed43/plot.png",
+          "json": "../P3/eval_results/json/P3__formal_v1__P3_sim_03_seed43.json",
+          "extra": {
+            "raw_tracks": "../P3/eval_results/debug/P3_sim_03_seed43/tracks_raw.npz"
+          }
+        },
+        "source_result_path": "P3/eval_results/json/P3__formal_v1__P3_sim_03_seed43.json",
+        "source_result_sha256": "07b6755a5438f74a5908fda59996af54b36b87c0d71efb4d07bedeedbce0e5cd"
+      }
+    },
+    {
+      "sample_id": "sample_22",
+      "video_path": "output_videos/minimax_h3/sample_22.mp4",
+      "source_video_path": "minimax_h3/videos/P3_sim_03_seed44.mp4",
+      "image_path": "first_frames/simulation/P3_sim_03.png",
+      "video_prompt": "A single continuous real-time shot from a locked-off, slightly elevated near-orthographic side camera, matching the input first frame.\n\nPreserve the exact two-lane parallel layout and all existing apparatus. Exactly two identical, rigidly mounted launchers release exactly two identical balls simultaneously toward the right with exactly the same initial speed. One launcher is oriented at 30 degrees above the horizontal, and the other is oriented at 60 degrees above the horizontal. Preserve each launcher's existing angle and lane assignment from the input first frame. Do not swap, rotate, move, or reorder either launcher.\n\nAfter release, both balls move freely through the air under gravity. Each ball remains a distinct rigid sphere and lands on its own corresponding horizontal landing lane. At first landing contact, the center of each ball returns to the same vertical level as its center at launch. Both complete flights and both first landing points remain visible inside the frame.\n\nThe launchers, lanes, supports, background, and camera remain stationary. Preserve the appearance and geometry of the input frame. No camera movement, panning, zooming, cuts, slow motion, pauses, or time jumps. No new objects or people. No trajectory lines, annotations, motion trails, ghost images, duplicated balls, disappearing balls, or collisions between the two balls. End shortly after both balls make their first landing contact.",
+      "model": "minimax-h3",
+      "model_folder": "minimax_h3",
+      "seed": 44,
+      "source_result": "eval_results/minimax_h3/result_P3__formal_v1__P3_sim_03_seed44.json",
+      "previous_result": "work/g1_g9_v2_20260911/before/g3/P3/eval_results/minimax_h3/result_P3__formal_v1__P3_sim_03_seed44.json",
+      "video_sha256": "dc23c0e4e6bef50e6e894b5c754b7165357f7d68b714a769fed93e459a8bf786",
+      "image_sha256": "589f6f852e99f5005b2f411fdfbe280c97a01315f9276272bbb2358b1640eeb1",
+      "source_metadata": {
+        "record_id": "P3:formal_v1:P3_sim_03_seed44",
+        "sample_id": "P3_sim_03",
+        "video_id": "P3_sim_03_seed44",
+        "batch_id": "formal_v1",
+        "source_method": "simulation",
+        "raw_metrics": {
+          "M1": -0.11896332273428678,
+          "M2": {
+            "trajectory_30deg_parabola_rmse_d": 0.09291535654972713,
+            "trajectory_60deg_parabola_rmse_d": 0.10923241609121374,
+            "initial_speed_magnitude_error": 0.05822340919754332
+          }
+        },
+        "metric_validity": {
+          "M1": true,
+          "M2": true
+        },
+        "diagnostic_status": {
+          "extract_success": true,
+          "structural_ok": true,
+          "measurement_valid": true
+        },
+        "failure_reason": null,
+        "warnings": [],
+        "artifacts": {
+          "raw": "../P3/minimax_h3/videos/P3_sim_03_seed44.mp4",
+          "video": "../P3/minimax_h3/videos/P3_sim_03_seed44.mp4",
+          "overlay": "../P3/eval_results/debug/P3_sim_03_seed44/overlay.mp4",
+          "plot": "../P3/eval_results/debug/P3_sim_03_seed44/plot.png",
+          "json": "../P3/eval_results/json/P3__formal_v1__P3_sim_03_seed44.json",
+          "extra": {
+            "raw_tracks": "../P3/eval_results/debug/P3_sim_03_seed44/tracks_raw.npz"
+          }
+        },
+        "source_result_path": "P3/eval_results/json/P3__formal_v1__P3_sim_03_seed44.json",
+        "source_result_sha256": "4f336a324b99c659caf62bd27d6c406c7535a01854f8b292d97e2bf6b630f341"
+      }
+    },
+    {
+      "sample_id": "sample_23",
+      "video_path": "output_videos/minimax_h3/sample_23.mp4",
+      "source_video_path": "minimax_h3/videos/P3_sim_03_seed45.mp4",
+      "image_path": "first_frames/simulation/P3_sim_03.png",
+      "video_prompt": "A single continuous real-time shot from a locked-off, slightly elevated near-orthographic side camera, matching the input first frame.\n\nPreserve the exact two-lane parallel layout and all existing apparatus. Exactly two identical, rigidly mounted launchers release exactly two identical balls simultaneously toward the right with exactly the same initial speed. One launcher is oriented at 30 degrees above the horizontal, and the other is oriented at 60 degrees above the horizontal. Preserve each launcher's existing angle and lane assignment from the input first frame. Do not swap, rotate, move, or reorder either launcher.\n\nAfter release, both balls move freely through the air under gravity. Each ball remains a distinct rigid sphere and lands on its own corresponding horizontal landing lane. At first landing contact, the center of each ball returns to the same vertical level as its center at launch. Both complete flights and both first landing points remain visible inside the frame.\n\nThe launchers, lanes, supports, background, and camera remain stationary. Preserve the appearance and geometry of the input frame. No camera movement, panning, zooming, cuts, slow motion, pauses, or time jumps. No new objects or people. No trajectory lines, annotations, motion trails, ghost images, duplicated balls, disappearing balls, or collisions between the two balls. End shortly after both balls make their first landing contact.",
+      "model": "minimax-h3",
+      "model_folder": "minimax_h3",
+      "seed": 45,
+      "source_result": "eval_results/minimax_h3/result_P3__formal_v1__P3_sim_03_seed45.json",
+      "previous_result": "work/g1_g9_v2_20260911/before/g3/P3/eval_results/minimax_h3/result_P3__formal_v1__P3_sim_03_seed45.json",
+      "video_sha256": "24651753f4424fc7a7398ac99f223470c73afe2ef785d887206abd9709721cff",
+      "image_sha256": "589f6f852e99f5005b2f411fdfbe280c97a01315f9276272bbb2358b1640eeb1",
+      "source_metadata": {
+        "record_id": "P3:formal_v1:P3_sim_03_seed45",
+        "sample_id": "P3_sim_03",
+        "video_id": "P3_sim_03_seed45",
+        "batch_id": "formal_v1",
+        "source_method": "simulation",
+        "raw_metrics": {
+          "M1": -0.054366717944145604,
+          "M2": {
+            "trajectory_30deg_parabola_rmse_d": 0.13796927771194378,
+            "trajectory_60deg_parabola_rmse_d": 0.12241958219102216,
+            "initial_speed_magnitude_error": 0.12267133780436079
+          }
+        },
+        "metric_validity": {
+          "M1": true,
+          "M2": true
+        },
+        "diagnostic_status": {
+          "extract_success": true,
+          "structural_ok": true,
+          "measurement_valid": true
+        },
+        "failure_reason": null,
+        "warnings": [],
+        "artifacts": {
+          "raw": "../P3/minimax_h3/videos/P3_sim_03_seed45.mp4",
+          "video": "../P3/minimax_h3/videos/P3_sim_03_seed45.mp4",
+          "overlay": "../P3/eval_results/debug/P3_sim_03_seed45/overlay.mp4",
+          "plot": "../P3/eval_results/debug/P3_sim_03_seed45/plot.png",
+          "json": "../P3/eval_results/json/P3__formal_v1__P3_sim_03_seed45.json",
+          "extra": {
+            "raw_tracks": "../P3/eval_results/debug/P3_sim_03_seed45/tracks_raw.npz"
+          }
+        },
+        "source_result_path": "P3/eval_results/json/P3__formal_v1__P3_sim_03_seed45.json",
+        "source_result_sha256": "d125de442929b8ddf79a53126e15b3a90e03221452a7d3677fbed67483ac1f84"
+      }
+    }
+  ]
+}

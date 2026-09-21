@@ -1,0 +1,7 @@
+A single continuous real-time shot from a locked-off, slightly elevated near-orthographic side camera, matching the input first frame.
+
+Preserve the exact two-lane parallel layout and all existing apparatus. Exactly two identical, rigidly mounted launchers release exactly two identical balls simultaneously toward the right with exactly the same initial speed. One launcher is oriented at 30 degrees above the horizontal, and the other is oriented at 60 degrees above the horizontal. Preserve each launcher's existing angle and lane assignment from the input first frame. Do not swap, rotate, move, or reorder either launcher.
+
+After release, both balls move freely through the air under gravity. Each ball remains a distinct rigid sphere and lands on its own corresponding horizontal landing lane. At first landing contact, the center of each ball returns to the same vertical level as its center at launch. Both complete flights and both first landing points remain visible inside the frame.
+
+The launchers, lanes, supports, background, and camera remain stationary. Preserve the appearance and geometry of the input frame. No camera movement, panning, zooming, cuts, slow motion, pauses, or time jumps. No new objects or people. No trajectory lines, annotations, motion trails, ghost images, duplicated balls, disappearing balls, or collisions between the two balls. End shortly after both balls make their first landing contact.

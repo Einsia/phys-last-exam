@@ -1,0 +1,32 @@
+{
+  "samples": [
+    {
+      "sample_id": "sample_00",
+      "video_path": "output_videos/minimax_h3/sample_00.mp4",
+      "source_video_path": "output_videos/minimax_h3/sample_00.mp4",
+      "image_path": "first_frames/gpt/gpt_01.png",
+      "video_prompt": "A single continuous real-time shot from a locked-off, exact front near-orthographic camera, matching the input first frame.\n\nThe input first frame captures the instant immediately after a temporary constraint has been removed. No hand, tool, magnet, or temporary support remains visible. The first and last links stay fixed to the two equal-height anchors, while the rest of the chain immediately begins moving freely under gravity from its existing non-equilibrium shape.\n\nPreserve the existing support frame, the two equal-height fixed anchors, the complete chain, its material and link structure, the camera view, framing, and background. The first and last links remain fixed to their existing anchors throughout the shot.\n\nThe chain swings and oscillates naturally as the motion gradually damps, then settles into one smooth, stable, deep hanging shape. The chain remains one continuous flexible chain of rigid interlocked links, with unchanged total length. No link detaches, stretches, fuses, duplicates, disappears, or changes material.\n\nKeep the complete chain, both anchors, and the full motion visible inside the frame. The support frame, anchors, background, and camera remain stationary. No camera movement, cuts, slow motion, time jumps, hands, people, added supports, external forces, text, formulas, plotted curves, arrows, or annotations.\n\nEnd after the chain has settled and remained essentially motionless for a short moment.",
+      "model": "minimax_h3",
+      "model_folder": "minimax_h3",
+      "seed": null,
+      "source_result": "eval_results/minimax_h3/result_sample_00.json",
+      "previous_result": "work/g1_g9_v2_20260911/before/g5/P44/eval_results/minimax_h3/result_sample_00.json",
+      "video_sha256": "32307e7d20d12a88287df95b84520352e257ee52182b3c4a68762222f38b1d4c",
+      "image_sha256": "ac4c6bbc47dc1477428ff0cd7a11faa70acd7fc4fcab3111b8d47c531e6474a8"
+    },
+    {
+      "sample_id": "sample_01",
+      "video_path": "output_videos/minimax_h3/sample_01.mp4",
+      "source_video_path": "output_videos/minimax_h3/sample_01.mp4",
+      "image_path": "first_frames/simulation/sim_01.png",
+      "video_prompt": "A single continuous real-time shot from a locked-off, exact front near-orthographic camera, matching the input first frame.\n\nThe input first frame captures the instant immediately after a temporary constraint has been removed. No hand, tool, magnet, or temporary support remains visible. The first and last links stay fixed to the two equal-height anchors, while the rest of the chain immediately begins moving freely under gravity from its existing non-equilibrium shape.\n\nPreserve the existing support frame, the two equal-height fixed anchors, the complete chain, its material and link structure, the camera view, framing, and background. The first and last links remain fixed to their existing anchors throughout the shot.\n\nThe chain swings and oscillates naturally as the motion gradually damps, then settles into one smooth, stable, deep hanging shape. The chain remains one continuous flexible chain of rigid interlocked links, with unchanged total length. No link detaches, stretches, fuses, duplicates, disappears, or changes material.\n\nKeep the complete chain, both anchors, and the full motion visible inside the frame. The support frame, anchors, background, and camera remain stationary. No camera movement, cuts, slow motion, time jumps, hands, people, added supports, external forces, text, formulas, plotted curves, arrows, or annotations.\n\nEnd after the chain has settled and remained essentially motionless for a short moment.",
+      "model": "minimax_h3",
+      "model_folder": "minimax_h3",
+      "seed": null,
+      "source_result": "eval_results/minimax_h3/result_sample_01.json",
+      "previous_result": "work/g1_g9_v2_20260911/before/g5/P44/eval_results/minimax_h3/result_sample_01.json",
+      "video_sha256": "7207b58aada7c5f67c140ac75ab0bea6a9fbf6953d32dd56f25200212d7a9810",
+      "image_sha256": "c75fc3a9ca72fad5e7d2c590b918720317eff56cee8127377970a5e2d1506212"
+    }
+  ]
+}

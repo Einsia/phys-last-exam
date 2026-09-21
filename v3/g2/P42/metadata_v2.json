@@ -1,0 +1,18 @@
+{
+  "samples": [
+    {
+      "sample_id": "sample_00",
+      "video_path": "output_videos/minimax_h3/sample_00.mp4",
+      "source_video_path": "output_videos/minimax_h3/sample_00.mp4",
+      "image_path": "first_frames/gpt/gpt_01.png",
+      "video_prompt": "Locked-off static camera, side view. Continue from the supplied first frame. The board starts lying almost flat with the two blocks resting side by side on it. The screw jack under the free end then extends steadily and the board is tilted up: its free end rises continuously and the tilt angle grows smoothly from nearly horizontal at the start of the clip to steeply inclined by the end. This lifting never stops, never pauses, never reverses and never jumps — the board is visibly at a larger angle in every later frame than in every earlier one. The hinged end stays fixed on the bench the whole time. While the board is still shallow both blocks stay exactly where they are on it, and each block starts to slide down the board on its own once the board has become steep enough; keep filming until both blocks have clearly broken away and are sliding. Nothing is added to or removed from either block and no hand ever enters the frame. Both blocks and the full board stay inside the frame. The camera does not move, pan, or zoom. Plain background, no other objects.",
+      "model": "minimax_h3",
+      "model_folder": "minimax_h3",
+      "seed": null,
+      "source_result": "eval_results/minimax_h3/result_sample_00.json",
+      "previous_result": "work/g1_g9_v2_20260911/before/g2/P42/eval_results/minimax_h3/result_sample_00.json",
+      "video_sha256": "6b9d9b98c736c49c15c8506a04d52db777e271d8e40b8f9fb4155e4db9076ce1",
+      "image_sha256": "3b2b8fe06bdeb7c04f318f704359c94304a37cc990b3e78855bbcffd88b2b2bd"
+    }
+  ]
+}

@@ -1,0 +1,1364 @@
+{
+  "samples": [
+    {
+      "sample_id": "sample_00",
+      "video_path": "output_videos/minimax_h3/sample_00.mp4",
+      "source_video_path": "minimax_h3/videos/P4_gpt_01_modern_seed42.mp4",
+      "image_path": "first_frames/gpt/P4_gpt_01_modern.png",
+      "video_prompt": "A single continuous real-time shot from a locked-off, near-orthographic side camera, matching the input first frame.\n\nPreserve the exact apparatus, ball, electromagnetic holder, hard horizontal impact plate, camera view, framing, and background from the input first frame. Exactly one ball is initially motionless at its existing release position, directly above the impact plate.\n\nAt the beginning of the shot, the existing electromagnetic holder releases the ball cleanly without moving, falling, or following the ball. The ball then falls vertically under gravity, strikes the hard plate, and makes at least four clear consecutive bounces, with each rebound reaching a lower height than the previous one. All impacts occur at approximately the same horizontal position, with no noticeable sideways drift.\n\nThe complete motion remains visible inside the frame: the initial release point, every impact, every rebound apex, and the full ball must never be cropped or occluded. The ball remains exactly one intact sphere throughout the shot, without duplication, disappearance, morphing, or permanent deformation.\n\nThe holder, support frame, impact plate, table, background, and camera remain stationary. No camera movement, panning, zooming, cuts, slow motion, pauses, or time jumps. No hands or people. No additional balls, ghost images, motion trails, trajectory lines, arrows, measurements, annotations, or new objects. End shortly after the ball completes its fourth clearly visible rebound arc and returns to the plate.",
+      "model": "minimax-h3",
+      "model_folder": "minimax_h3",
+      "seed": 42,
+      "source_result": "eval_results/minimax_h3/result_P4__prompt_v2_20260826__P4_gpt_01_modern_seed42.json",
+      "previous_result": "work/g1_g9_v2_20260911/before/g3/P4/eval_results/minimax_h3/result_P4__prompt_v2_20260826__P4_gpt_01_modern_seed42.json",
+      "video_sha256": "bca35650e9fee15557fc4eb5b55742931a14b331dd029564a45cb64720e4fd56",
+      "image_sha256": "75aa584e089c15e3767f2972e587f2854ecfa474e41623fefaf5e0772f790c90",
+      "source_metadata": {
+        "record_id": "P4:prompt_v2_20260826:P4_gpt_01_modern_seed42",
+        "sample_id": "P4_gpt_01_modern",
+        "video_id": "P4_gpt_01_modern_seed42",
+        "batch_id": "prompt_v2_20260826",
+        "source_method": "gpt",
+        "raw_metrics": {
+          "M1": 0.05305385576513344,
+          "M2": {
+            "height_decrease_checks": [
+              true,
+              true
+            ],
+            "height_decrease_fraction": 1.0,
+            "adjacent_restitution_coefficient_cv": 0.13204599114334828
+          }
+        },
+        "metric_validity": {
+          "M1": true,
+          "M2": true
+        },
+        "diagnostic_status": {
+          "extract_success": true,
+          "structural_ok": false,
+          "measurement_valid": true
+        },
+        "failure_reason": "only_3_complete_rebound_arcs_detected;_need_4",
+        "warnings": [],
+        "artifacts": {
+          "raw": "../P4/minimax_h3/videos/P4_gpt_01_modern_seed42.mp4",
+          "video": "../P4/minimax_h3/videos/P4_gpt_01_modern_seed42.mp4",
+          "overlay": "../P4/eval_results/debug/P4_gpt_01_modern_seed42/overlay.mp4",
+          "plot": "../P4/eval_results/debug/P4_gpt_01_modern_seed42/trajectory_plot.png",
+          "json": "../P4/eval_results/json/P4__prompt_v2_20260826__P4_gpt_01_modern_seed42.json",
+          "extra": {
+            "extra": "../P4/eval_results/debug/P4_gpt_01_modern_seed42/keyframes.jpg",
+            "track_csv": "../P4/eval_results/debug/P4_gpt_01_modern_seed42/fused_track.csv"
+          }
+        },
+        "source_result_path": "P4/eval_results/json/P4__prompt_v2_20260826__P4_gpt_01_modern_seed42.json",
+        "source_result_sha256": "4cbf4aaa3e8d78a4df94573c78ca42e74eab8502c8820dc23897cba6e4751fe6"
+      }
+    },
+    {
+      "sample_id": "sample_01",
+      "video_path": "output_videos/minimax_h3/sample_01.mp4",
+      "source_video_path": "minimax_h3/videos/P4_gpt_01_modern_seed43.mp4",
+      "image_path": "first_frames/gpt/P4_gpt_01_modern.png",
+      "video_prompt": "A single continuous real-time shot from a locked-off, near-orthographic side camera, matching the input first frame.\n\nPreserve the exact apparatus, ball, electromagnetic holder, hard horizontal impact plate, camera view, framing, and background from the input first frame. Exactly one ball is initially motionless at its existing release position, directly above the impact plate.\n\nAt the beginning of the shot, the existing electromagnetic holder releases the ball cleanly without moving, falling, or following the ball. The ball then falls vertically under gravity, strikes the hard plate, and makes at least four clear consecutive bounces, with each rebound reaching a lower height than the previous one. All impacts occur at approximately the same horizontal position, with no noticeable sideways drift.\n\nThe complete motion remains visible inside the frame: the initial release point, every impact, every rebound apex, and the full ball must never be cropped or occluded. The ball remains exactly one intact sphere throughout the shot, without duplication, disappearance, morphing, or permanent deformation.\n\nThe holder, support frame, impact plate, table, background, and camera remain stationary. No camera movement, panning, zooming, cuts, slow motion, pauses, or time jumps. No hands or people. No additional balls, ghost images, motion trails, trajectory lines, arrows, measurements, annotations, or new objects. End shortly after the ball completes its fourth clearly visible rebound arc and returns to the plate.",
+      "model": "minimax-h3",
+      "model_folder": "minimax_h3",
+      "seed": 43,
+      "source_result": "eval_results/minimax_h3/result_P4__prompt_v2_20260826__P4_gpt_01_modern_seed43.json",
+      "previous_result": "work/g1_g9_v2_20260911/before/g3/P4/eval_results/minimax_h3/result_P4__prompt_v2_20260826__P4_gpt_01_modern_seed43.json",
+      "video_sha256": "609019885fc391123584082209277bbc0896e0eb72549c37104494b6f685cb95",
+      "image_sha256": "75aa584e089c15e3767f2972e587f2854ecfa474e41623fefaf5e0772f790c90",
+      "source_metadata": {
+        "record_id": "P4:prompt_v2_20260826:P4_gpt_01_modern_seed43",
+        "sample_id": "P4_gpt_01_modern",
+        "video_id": "P4_gpt_01_modern_seed43",
+        "batch_id": "prompt_v2_20260826",
+        "source_method": "gpt",
+        "raw_metrics": {
+          "M1": 0.03005347692566211,
+          "M2": {
+            "height_decrease_checks": [
+              true,
+              true,
+              false
+            ],
+            "height_decrease_fraction": 0.6666666666666666,
+            "adjacent_restitution_coefficient_cv": 0.18814842451975658
+          }
+        },
+        "metric_validity": {
+          "M1": true,
+          "M2": true
+        },
+        "diagnostic_status": {
+          "extract_success": true,
+          "structural_ok": true,
+          "measurement_valid": true
+        },
+        "failure_reason": "rebound_heights_not_strictly_decreasing",
+        "warnings": [],
+        "artifacts": {
+          "raw": "../P4/minimax_h3/videos/P4_gpt_01_modern_seed43.mp4",
+          "video": "../P4/minimax_h3/videos/P4_gpt_01_modern_seed43.mp4",
+          "overlay": "../P4/eval_results/debug/P4_gpt_01_modern_seed43/overlay.mp4",
+          "plot": "../P4/eval_results/debug/P4_gpt_01_modern_seed43/trajectory_plot.png",
+          "json": "../P4/eval_results/json/P4__prompt_v2_20260826__P4_gpt_01_modern_seed43.json",
+          "extra": {
+            "extra": "../P4/eval_results/debug/P4_gpt_01_modern_seed43/keyframes.jpg",
+            "track_csv": "../P4/eval_results/debug/P4_gpt_01_modern_seed43/fused_track.csv"
+          }
+        },
+        "source_result_path": "P4/eval_results/json/P4__prompt_v2_20260826__P4_gpt_01_modern_seed43.json",
+        "source_result_sha256": "ae0bd02aba2c71257982723a23f34d0d7be4e72882e176352a043b530e832a17"
+      }
+    },
+    {
+      "sample_id": "sample_02",
+      "video_path": "output_videos/minimax_h3/sample_02.mp4",
+      "source_video_path": "minimax_h3/videos/P4_gpt_01_modern_seed44.mp4",
+      "image_path": "first_frames/gpt/P4_gpt_01_modern.png",
+      "video_prompt": "A single continuous real-time shot from a locked-off, near-orthographic side camera, matching the input first frame.\n\nPreserve the exact apparatus, ball, electromagnetic holder, hard horizontal impact plate, camera view, framing, and background from the input first frame. Exactly one ball is initially motionless at its existing release position, directly above the impact plate.\n\nAt the beginning of the shot, the existing electromagnetic holder releases the ball cleanly without moving, falling, or following the ball. The ball then falls vertically under gravity, strikes the hard plate, and makes at least four clear consecutive bounces, with each rebound reaching a lower height than the previous one. All impacts occur at approximately the same horizontal position, with no noticeable sideways drift.\n\nThe complete motion remains visible inside the frame: the initial release point, every impact, every rebound apex, and the full ball must never be cropped or occluded. The ball remains exactly one intact sphere throughout the shot, without duplication, disappearance, morphing, or permanent deformation.\n\nThe holder, support frame, impact plate, table, background, and camera remain stationary. No camera movement, panning, zooming, cuts, slow motion, pauses, or time jumps. No hands or people. No additional balls, ghost images, motion trails, trajectory lines, arrows, measurements, annotations, or new objects. End shortly after the ball completes its fourth clearly visible rebound arc and returns to the plate.",
+      "model": "minimax-h3",
+      "model_folder": "minimax_h3",
+      "seed": 44,
+      "source_result": "eval_results/minimax_h3/result_P4__prompt_v2_20260826__P4_gpt_01_modern_seed44.json",
+      "previous_result": "work/g1_g9_v2_20260911/before/g3/P4/eval_results/minimax_h3/result_P4__prompt_v2_20260826__P4_gpt_01_modern_seed44.json",
+      "video_sha256": "261b1eee554ffb5758b7fb49819675c71fb7793692ad0021355c598be895c178",
+      "image_sha256": "75aa584e089c15e3767f2972e587f2854ecfa474e41623fefaf5e0772f790c90",
+      "source_metadata": {
+        "record_id": "P4:prompt_v2_20260826:P4_gpt_01_modern_seed44",
+        "sample_id": "P4_gpt_01_modern",
+        "video_id": "P4_gpt_01_modern_seed44",
+        "batch_id": "prompt_v2_20260826",
+        "source_method": "gpt",
+        "raw_metrics": {
+          "M1": 0.047843084682822314,
+          "M2": {
+            "height_decrease_checks": [
+              true,
+              true,
+              true
+            ],
+            "height_decrease_fraction": 1.0,
+            "adjacent_restitution_coefficient_cv": 0.053435725644409994
+          }
+        },
+        "metric_validity": {
+          "M1": true,
+          "M2": true
+        },
+        "diagnostic_status": {
+          "extract_success": true,
+          "structural_ok": true,
+          "measurement_valid": true
+        },
+        "failure_reason": null,
+        "warnings": [],
+        "artifacts": {
+          "raw": "../P4/minimax_h3/videos/P4_gpt_01_modern_seed44.mp4",
+          "video": "../P4/minimax_h3/videos/P4_gpt_01_modern_seed44.mp4",
+          "overlay": "../P4/eval_results/debug/P4_gpt_01_modern_seed44/overlay.mp4",
+          "plot": "../P4/eval_results/debug/P4_gpt_01_modern_seed44/trajectory_plot.png",
+          "json": "../P4/eval_results/json/P4__prompt_v2_20260826__P4_gpt_01_modern_seed44.json",
+          "extra": {
+            "extra": "../P4/eval_results/debug/P4_gpt_01_modern_seed44/keyframes.jpg",
+            "track_csv": "../P4/eval_results/debug/P4_gpt_01_modern_seed44/fused_track.csv"
+          }
+        },
+        "source_result_path": "P4/eval_results/json/P4__prompt_v2_20260826__P4_gpt_01_modern_seed44.json",
+        "source_result_sha256": "4c5d97c4423423399fdf91881e17dd3b51c303a3b5681a9781fb0b77d589a7f3"
+      }
+    },
+    {
+      "sample_id": "sample_03",
+      "video_path": "output_videos/minimax_h3/sample_03.mp4",
+      "source_video_path": "minimax_h3/videos/P4_gpt_01_modern_seed45.mp4",
+      "image_path": "first_frames/gpt/P4_gpt_01_modern.png",
+      "video_prompt": "A single continuous real-time shot from a locked-off, near-orthographic side camera, matching the input first frame.\n\nPreserve the exact apparatus, ball, electromagnetic holder, hard horizontal impact plate, camera view, framing, and background from the input first frame. Exactly one ball is initially motionless at its existing release position, directly above the impact plate.\n\nAt the beginning of the shot, the existing electromagnetic holder releases the ball cleanly without moving, falling, or following the ball. The ball then falls vertically under gravity, strikes the hard plate, and makes at least four clear consecutive bounces, with each rebound reaching a lower height than the previous one. All impacts occur at approximately the same horizontal position, with no noticeable sideways drift.\n\nThe complete motion remains visible inside the frame: the initial release point, every impact, every rebound apex, and the full ball must never be cropped or occluded. The ball remains exactly one intact sphere throughout the shot, without duplication, disappearance, morphing, or permanent deformation.\n\nThe holder, support frame, impact plate, table, background, and camera remain stationary. No camera movement, panning, zooming, cuts, slow motion, pauses, or time jumps. No hands or people. No additional balls, ghost images, motion trails, trajectory lines, arrows, measurements, annotations, or new objects. End shortly after the ball completes its fourth clearly visible rebound arc and returns to the plate.",
+      "model": "minimax-h3",
+      "model_folder": "minimax_h3",
+      "seed": 45,
+      "source_result": "eval_results/minimax_h3/result_P4__prompt_v2_20260826__P4_gpt_01_modern_seed45.json",
+      "previous_result": "work/g1_g9_v2_20260911/before/g3/P4/eval_results/minimax_h3/result_P4__prompt_v2_20260826__P4_gpt_01_modern_seed45.json",
+      "video_sha256": "004382879d9800fb940077f8d12e28484c466c1730d809a2de346f16bf408148",
+      "image_sha256": "75aa584e089c15e3767f2972e587f2854ecfa474e41623fefaf5e0772f790c90",
+      "source_metadata": {
+        "record_id": "P4:prompt_v2_20260826:P4_gpt_01_modern_seed45",
+        "sample_id": "P4_gpt_01_modern",
+        "video_id": "P4_gpt_01_modern_seed45",
+        "batch_id": "prompt_v2_20260826",
+        "source_method": "gpt",
+        "raw_metrics": {
+          "M1": 0.01983278234810219,
+          "M2": {
+            "height_decrease_checks": [
+              true,
+              true,
+              true
+            ],
+            "height_decrease_fraction": 1.0,
+            "adjacent_restitution_coefficient_cv": 0.06657655854399264
+          }
+        },
+        "metric_validity": {
+          "M1": true,
+          "M2": true
+        },
+        "diagnostic_status": {
+          "extract_success": true,
+          "structural_ok": true,
+          "measurement_valid": true
+        },
+        "failure_reason": null,
+        "warnings": [],
+        "artifacts": {
+          "raw": "../P4/minimax_h3/videos/P4_gpt_01_modern_seed45.mp4",
+          "video": "../P4/minimax_h3/videos/P4_gpt_01_modern_seed45.mp4",
+          "overlay": "../P4/eval_results/debug/P4_gpt_01_modern_seed45/overlay.mp4",
+          "plot": "../P4/eval_results/debug/P4_gpt_01_modern_seed45/trajectory_plot.png",
+          "json": "../P4/eval_results/json/P4__prompt_v2_20260826__P4_gpt_01_modern_seed45.json",
+          "extra": {
+            "extra": "../P4/eval_results/debug/P4_gpt_01_modern_seed45/keyframes.jpg",
+            "track_csv": "../P4/eval_results/debug/P4_gpt_01_modern_seed45/fused_track.csv"
+          }
+        },
+        "source_result_path": "P4/eval_results/json/P4__prompt_v2_20260826__P4_gpt_01_modern_seed45.json",
+        "source_result_sha256": "8533d056aa458001adc7c338da002a902ccd4dc18a8900efaabbb03a88e244b5"
+      }
+    },
+    {
+      "sample_id": "sample_04",
+      "video_path": "output_videos/minimax_h3/sample_04.mp4",
+      "source_video_path": "minimax_h3/videos/P4_gpt_02_classic_seed42.mp4",
+      "image_path": "first_frames/gpt/P4_gpt_02_classic.png",
+      "video_prompt": "A single continuous real-time shot from a locked-off, near-orthographic side camera, matching the input first frame.\n\nPreserve the exact apparatus, ball, electromagnetic holder, hard horizontal impact plate, camera view, framing, and background from the input first frame. Exactly one ball is initially motionless at its existing release position, directly above the impact plate.\n\nAt the beginning of the shot, the existing electromagnetic holder releases the ball cleanly without moving, falling, or following the ball. The ball then falls vertically under gravity, strikes the hard plate, and makes at least four clear consecutive bounces, with each rebound reaching a lower height than the previous one. All impacts occur at approximately the same horizontal position, with no noticeable sideways drift.\n\nThe complete motion remains visible inside the frame: the initial release point, every impact, every rebound apex, and the full ball must never be cropped or occluded. The ball remains exactly one intact sphere throughout the shot, without duplication, disappearance, morphing, or permanent deformation.\n\nThe holder, support frame, impact plate, table, background, and camera remain stationary. No camera movement, panning, zooming, cuts, slow motion, pauses, or time jumps. No hands or people. No additional balls, ghost images, motion trails, trajectory lines, arrows, measurements, annotations, or new objects. End shortly after the ball completes its fourth clearly visible rebound arc and returns to the plate.",
+      "model": "minimax-h3",
+      "model_folder": "minimax_h3",
+      "seed": 42,
+      "source_result": "eval_results/minimax_h3/result_P4__prompt_v2_20260826__P4_gpt_02_classic_seed42.json",
+      "previous_result": "work/g1_g9_v2_20260911/before/g3/P4/eval_results/minimax_h3/result_P4__prompt_v2_20260826__P4_gpt_02_classic_seed42.json",
+      "video_sha256": "016acb7ca5feefa16338dbf721c9cfd0c4b063781c947c1b8db9f138988ab9b1",
+      "image_sha256": "62060ba0507d90f49df4ed2f9b7db68af68336607fca9bef09fefd688928256e",
+      "source_metadata": {
+        "record_id": "P4:prompt_v2_20260826:P4_gpt_02_classic_seed42",
+        "sample_id": "P4_gpt_02_classic",
+        "video_id": "P4_gpt_02_classic_seed42",
+        "batch_id": "prompt_v2_20260826",
+        "source_method": "gpt",
+        "raw_metrics": {
+          "M1": 0.04577575564543601,
+          "M2": {
+            "height_decrease_checks": [
+              true,
+              true,
+              true
+            ],
+            "height_decrease_fraction": 1.0,
+            "adjacent_restitution_coefficient_cv": 0.052499596015178285
+          }
+        },
+        "metric_validity": {
+          "M1": true,
+          "M2": true
+        },
+        "diagnostic_status": {
+          "extract_success": true,
+          "structural_ok": true,
+          "measurement_valid": true
+        },
+        "failure_reason": null,
+        "warnings": [],
+        "artifacts": {
+          "raw": "../P4/minimax_h3/videos/P4_gpt_02_classic_seed42.mp4",
+          "video": "../P4/minimax_h3/videos/P4_gpt_02_classic_seed42.mp4",
+          "overlay": "../P4/eval_results/debug/P4_gpt_02_classic_seed42/overlay.mp4",
+          "plot": "../P4/eval_results/debug/P4_gpt_02_classic_seed42/trajectory_plot.png",
+          "json": "../P4/eval_results/json/P4__prompt_v2_20260826__P4_gpt_02_classic_seed42.json",
+          "extra": {
+            "extra": "../P4/eval_results/debug/P4_gpt_02_classic_seed42/keyframes.jpg",
+            "track_csv": "../P4/eval_results/debug/P4_gpt_02_classic_seed42/fused_track.csv"
+          }
+        },
+        "source_result_path": "P4/eval_results/json/P4__prompt_v2_20260826__P4_gpt_02_classic_seed42.json",
+        "source_result_sha256": "1a2849f8113b79aeab16d67bc65d916de1ff324fe9ed83f0389e25c058c4fabc"
+      }
+    },
+    {
+      "sample_id": "sample_05",
+      "video_path": "output_videos/minimax_h3/sample_05.mp4",
+      "source_video_path": "minimax_h3/videos/P4_gpt_02_classic_seed43.mp4",
+      "image_path": "first_frames/gpt/P4_gpt_02_classic.png",
+      "video_prompt": "A single continuous real-time shot from a locked-off, near-orthographic side camera, matching the input first frame.\n\nPreserve the exact apparatus, ball, electromagnetic holder, hard horizontal impact plate, camera view, framing, and background from the input first frame. Exactly one ball is initially motionless at its existing release position, directly above the impact plate.\n\nAt the beginning of the shot, the existing electromagnetic holder releases the ball cleanly without moving, falling, or following the ball. The ball then falls vertically under gravity, strikes the hard plate, and makes at least four clear consecutive bounces, with each rebound reaching a lower height than the previous one. All impacts occur at approximately the same horizontal position, with no noticeable sideways drift.\n\nThe complete motion remains visible inside the frame: the initial release point, every impact, every rebound apex, and the full ball must never be cropped or occluded. The ball remains exactly one intact sphere throughout the shot, without duplication, disappearance, morphing, or permanent deformation.\n\nThe holder, support frame, impact plate, table, background, and camera remain stationary. No camera movement, panning, zooming, cuts, slow motion, pauses, or time jumps. No hands or people. No additional balls, ghost images, motion trails, trajectory lines, arrows, measurements, annotations, or new objects. End shortly after the ball completes its fourth clearly visible rebound arc and returns to the plate.",
+      "model": "minimax-h3",
+      "model_folder": "minimax_h3",
+      "seed": 43,
+      "source_result": "eval_results/minimax_h3/result_P4__prompt_v2_20260826__P4_gpt_02_classic_seed43.json",
+      "previous_result": "work/g1_g9_v2_20260911/before/g3/P4/eval_results/minimax_h3/result_P4__prompt_v2_20260826__P4_gpt_02_classic_seed43.json",
+      "video_sha256": "3e9cc28f6d0c85aab7cdc9cff63a8ada4a773497dc5b2160b1511468e43051f0",
+      "image_sha256": "62060ba0507d90f49df4ed2f9b7db68af68336607fca9bef09fefd688928256e",
+      "source_metadata": {
+        "record_id": "P4:prompt_v2_20260826:P4_gpt_02_classic_seed43",
+        "sample_id": "P4_gpt_02_classic",
+        "video_id": "P4_gpt_02_classic_seed43",
+        "batch_id": "prompt_v2_20260826",
+        "source_method": "gpt",
+        "raw_metrics": {
+          "M1": 0.00939026697272353,
+          "M2": {
+            "height_decrease_checks": [
+              true,
+              true,
+              true
+            ],
+            "height_decrease_fraction": 1.0,
+            "adjacent_restitution_coefficient_cv": 0.028226261924279128
+          }
+        },
+        "metric_validity": {
+          "M1": true,
+          "M2": true
+        },
+        "diagnostic_status": {
+          "extract_success": true,
+          "structural_ok": true,
+          "measurement_valid": true
+        },
+        "failure_reason": null,
+        "warnings": [],
+        "artifacts": {
+          "raw": "../P4/minimax_h3/videos/P4_gpt_02_classic_seed43.mp4",
+          "video": "../P4/minimax_h3/videos/P4_gpt_02_classic_seed43.mp4",
+          "overlay": "../P4/eval_results/debug/P4_gpt_02_classic_seed43/overlay.mp4",
+          "plot": "../P4/eval_results/debug/P4_gpt_02_classic_seed43/trajectory_plot.png",
+          "json": "../P4/eval_results/json/P4__prompt_v2_20260826__P4_gpt_02_classic_seed43.json",
+          "extra": {
+            "extra": "../P4/eval_results/debug/P4_gpt_02_classic_seed43/keyframes.jpg",
+            "track_csv": "../P4/eval_results/debug/P4_gpt_02_classic_seed43/fused_track.csv"
+          }
+        },
+        "source_result_path": "P4/eval_results/json/P4__prompt_v2_20260826__P4_gpt_02_classic_seed43.json",
+        "source_result_sha256": "a69d285ad8dccab098a769dcf31df0603b112970dad8beef245d5284eb8eb4e0"
+      }
+    },
+    {
+      "sample_id": "sample_06",
+      "video_path": "output_videos/minimax_h3/sample_06.mp4",
+      "source_video_path": "minimax_h3/videos/P4_gpt_02_classic_seed44.mp4",
+      "image_path": "first_frames/gpt/P4_gpt_02_classic.png",
+      "video_prompt": "A single continuous real-time shot from a locked-off, near-orthographic side camera, matching the input first frame.\n\nPreserve the exact apparatus, ball, electromagnetic holder, hard horizontal impact plate, camera view, framing, and background from the input first frame. Exactly one ball is initially motionless at its existing release position, directly above the impact plate.\n\nAt the beginning of the shot, the existing electromagnetic holder releases the ball cleanly without moving, falling, or following the ball. The ball then falls vertically under gravity, strikes the hard plate, and makes at least four clear consecutive bounces, with each rebound reaching a lower height than the previous one. All impacts occur at approximately the same horizontal position, with no noticeable sideways drift.\n\nThe complete motion remains visible inside the frame: the initial release point, every impact, every rebound apex, and the full ball must never be cropped or occluded. The ball remains exactly one intact sphere throughout the shot, without duplication, disappearance, morphing, or permanent deformation.\n\nThe holder, support frame, impact plate, table, background, and camera remain stationary. No camera movement, panning, zooming, cuts, slow motion, pauses, or time jumps. No hands or people. No additional balls, ghost images, motion trails, trajectory lines, arrows, measurements, annotations, or new objects. End shortly after the ball completes its fourth clearly visible rebound arc and returns to the plate.",
+      "model": "minimax-h3",
+      "model_folder": "minimax_h3",
+      "seed": 44,
+      "source_result": "eval_results/minimax_h3/result_P4__prompt_v2_20260826__P4_gpt_02_classic_seed44.json",
+      "previous_result": "work/g1_g9_v2_20260911/before/g3/P4/eval_results/minimax_h3/result_P4__prompt_v2_20260826__P4_gpt_02_classic_seed44.json",
+      "video_sha256": "24b3323bc5b87e54419fefd5a2c4e93e67a3ac41833e41c41f89defb5a6fecc2",
+      "image_sha256": "62060ba0507d90f49df4ed2f9b7db68af68336607fca9bef09fefd688928256e",
+      "source_metadata": {
+        "record_id": "P4:prompt_v2_20260826:P4_gpt_02_classic_seed44",
+        "sample_id": "P4_gpt_02_classic",
+        "video_id": "P4_gpt_02_classic_seed44",
+        "batch_id": "prompt_v2_20260826",
+        "source_method": "gpt",
+        "raw_metrics": {
+          "M1": 0.07344175839828859,
+          "M2": {
+            "height_decrease_checks": [
+              true,
+              true,
+              true
+            ],
+            "height_decrease_fraction": 1.0,
+            "adjacent_restitution_coefficient_cv": 0.153757698955424
+          }
+        },
+        "metric_validity": {
+          "M1": true,
+          "M2": true
+        },
+        "diagnostic_status": {
+          "extract_success": true,
+          "structural_ok": true,
+          "measurement_valid": true
+        },
+        "failure_reason": null,
+        "warnings": [],
+        "artifacts": {
+          "raw": "../P4/minimax_h3/videos/P4_gpt_02_classic_seed44.mp4",
+          "video": "../P4/minimax_h3/videos/P4_gpt_02_classic_seed44.mp4",
+          "overlay": "../P4/eval_results/debug/P4_gpt_02_classic_seed44/overlay.mp4",
+          "plot": "../P4/eval_results/debug/P4_gpt_02_classic_seed44/trajectory_plot.png",
+          "json": "../P4/eval_results/json/P4__prompt_v2_20260826__P4_gpt_02_classic_seed44.json",
+          "extra": {
+            "extra": "../P4/eval_results/debug/P4_gpt_02_classic_seed44/keyframes.jpg",
+            "track_csv": "../P4/eval_results/debug/P4_gpt_02_classic_seed44/fused_track.csv"
+          }
+        },
+        "source_result_path": "P4/eval_results/json/P4__prompt_v2_20260826__P4_gpt_02_classic_seed44.json",
+        "source_result_sha256": "0a833fffca717167f40eb0d63f9dea495b358faad90c74280742d04e05ee3ae8"
+      }
+    },
+    {
+      "sample_id": "sample_07",
+      "video_path": "output_videos/minimax_h3/sample_07.mp4",
+      "source_video_path": "minimax_h3/videos/P4_gpt_02_classic_seed45.mp4",
+      "image_path": "first_frames/gpt/P4_gpt_02_classic.png",
+      "video_prompt": "A single continuous real-time shot from a locked-off, near-orthographic side camera, matching the input first frame.\n\nPreserve the exact apparatus, ball, electromagnetic holder, hard horizontal impact plate, camera view, framing, and background from the input first frame. Exactly one ball is initially motionless at its existing release position, directly above the impact plate.\n\nAt the beginning of the shot, the existing electromagnetic holder releases the ball cleanly without moving, falling, or following the ball. The ball then falls vertically under gravity, strikes the hard plate, and makes at least four clear consecutive bounces, with each rebound reaching a lower height than the previous one. All impacts occur at approximately the same horizontal position, with no noticeable sideways drift.\n\nThe complete motion remains visible inside the frame: the initial release point, every impact, every rebound apex, and the full ball must never be cropped or occluded. The ball remains exactly one intact sphere throughout the shot, without duplication, disappearance, morphing, or permanent deformation.\n\nThe holder, support frame, impact plate, table, background, and camera remain stationary. No camera movement, panning, zooming, cuts, slow motion, pauses, or time jumps. No hands or people. No additional balls, ghost images, motion trails, trajectory lines, arrows, measurements, annotations, or new objects. End shortly after the ball completes its fourth clearly visible rebound arc and returns to the plate.",
+      "model": "minimax-h3",
+      "model_folder": "minimax_h3",
+      "seed": 45,
+      "source_result": "eval_results/minimax_h3/result_P4__prompt_v2_20260826__P4_gpt_02_classic_seed45.json",
+      "previous_result": "work/g1_g9_v2_20260911/before/g3/P4/eval_results/minimax_h3/result_P4__prompt_v2_20260826__P4_gpt_02_classic_seed45.json",
+      "video_sha256": "143884521ff64146768bf3ce7af47d8ed572840c6aa42c34d509b617706ff496",
+      "image_sha256": "62060ba0507d90f49df4ed2f9b7db68af68336607fca9bef09fefd688928256e",
+      "source_metadata": {
+        "record_id": "P4:prompt_v2_20260826:P4_gpt_02_classic_seed45",
+        "sample_id": "P4_gpt_02_classic",
+        "video_id": "P4_gpt_02_classic_seed45",
+        "batch_id": "prompt_v2_20260826",
+        "source_method": "gpt",
+        "raw_metrics": {
+          "M1": 0.01624453720614923,
+          "M2": {
+            "height_decrease_checks": [
+              true,
+              true,
+              false
+            ],
+            "height_decrease_fraction": 0.6666666666666666,
+            "adjacent_restitution_coefficient_cv": 0.08873479705170013
+          }
+        },
+        "metric_validity": {
+          "M1": true,
+          "M2": true
+        },
+        "diagnostic_status": {
+          "extract_success": true,
+          "structural_ok": true,
+          "measurement_valid": true
+        },
+        "failure_reason": "rebound_heights_not_strictly_decreasing",
+        "warnings": [],
+        "artifacts": {
+          "raw": "../P4/minimax_h3/videos/P4_gpt_02_classic_seed45.mp4",
+          "video": "../P4/minimax_h3/videos/P4_gpt_02_classic_seed45.mp4",
+          "overlay": "../P4/eval_results/debug/P4_gpt_02_classic_seed45/overlay.mp4",
+          "plot": "../P4/eval_results/debug/P4_gpt_02_classic_seed45/trajectory_plot.png",
+          "json": "../P4/eval_results/json/P4__prompt_v2_20260826__P4_gpt_02_classic_seed45.json",
+          "extra": {
+            "extra": "../P4/eval_results/debug/P4_gpt_02_classic_seed45/keyframes.jpg",
+            "track_csv": "../P4/eval_results/debug/P4_gpt_02_classic_seed45/fused_track.csv"
+          }
+        },
+        "source_result_path": "P4/eval_results/json/P4__prompt_v2_20260826__P4_gpt_02_classic_seed45.json",
+        "source_result_sha256": "42a0c30fe5ac48f873dd44cbbaeab8b6a5c7c075dd9edb238c9ad6d634a2dd02"
+      }
+    },
+    {
+      "sample_id": "sample_08",
+      "video_path": "output_videos/minimax_h3/sample_08.mp4",
+      "source_video_path": "minimax_h3/videos/P4_gpt_03_industrial_seed42.mp4",
+      "image_path": "first_frames/gpt/P4_gpt_03_industrial.png",
+      "video_prompt": "A single continuous real-time shot from a locked-off, near-orthographic side camera, matching the input first frame.\n\nPreserve the exact apparatus, ball, electromagnetic holder, hard horizontal impact plate, camera view, framing, and background from the input first frame. Exactly one ball is initially motionless at its existing release position, directly above the impact plate.\n\nAt the beginning of the shot, the existing electromagnetic holder releases the ball cleanly without moving, falling, or following the ball. The ball then falls vertically under gravity, strikes the hard plate, and makes at least four clear consecutive bounces, with each rebound reaching a lower height than the previous one. All impacts occur at approximately the same horizontal position, with no noticeable sideways drift.\n\nThe complete motion remains visible inside the frame: the initial release point, every impact, every rebound apex, and the full ball must never be cropped or occluded. The ball remains exactly one intact sphere throughout the shot, without duplication, disappearance, morphing, or permanent deformation.\n\nThe holder, support frame, impact plate, table, background, and camera remain stationary. No camera movement, panning, zooming, cuts, slow motion, pauses, or time jumps. No hands or people. No additional balls, ghost images, motion trails, trajectory lines, arrows, measurements, annotations, or new objects. End shortly after the ball completes its fourth clearly visible rebound arc and returns to the plate.",
+      "model": "minimax-h3",
+      "model_folder": "minimax_h3",
+      "seed": 42,
+      "source_result": "eval_results/minimax_h3/result_P4__prompt_v2_20260826__P4_gpt_03_industrial_seed42.json",
+      "previous_result": "work/g1_g9_v2_20260911/before/g3/P4/eval_results/minimax_h3/result_P4__prompt_v2_20260826__P4_gpt_03_industrial_seed42.json",
+      "video_sha256": "74c27a04413f0062fa14864a6cab284c5096357cad5c07199cd8c620346bed82",
+      "image_sha256": "a5b86251c5da3e08cb42773788db859846b2f03b19048a5c1f73f3f5295f05dd",
+      "source_metadata": {
+        "record_id": "P4:prompt_v2_20260826:P4_gpt_03_industrial_seed42",
+        "sample_id": "P4_gpt_03_industrial",
+        "video_id": "P4_gpt_03_industrial_seed42",
+        "batch_id": "prompt_v2_20260826",
+        "source_method": "gpt",
+        "raw_metrics": {
+          "M1": 0.015242411124567442,
+          "M2": {
+            "height_decrease_checks": [
+              true,
+              false,
+              true
+            ],
+            "height_decrease_fraction": 0.6666666666666666,
+            "adjacent_restitution_coefficient_cv": 0.1676439420132107
+          }
+        },
+        "metric_validity": {
+          "M1": true,
+          "M2": true
+        },
+        "diagnostic_status": {
+          "extract_success": true,
+          "structural_ok": true,
+          "measurement_valid": true
+        },
+        "failure_reason": "rebound_heights_not_strictly_decreasing; low_dimensions:monotonic_energy_loss",
+        "warnings": [],
+        "artifacts": {
+          "raw": "../P4/minimax_h3/videos/P4_gpt_03_industrial_seed42.mp4",
+          "video": "../P4/minimax_h3/videos/P4_gpt_03_industrial_seed42.mp4",
+          "overlay": "../P4/eval_results/debug/P4_gpt_03_industrial_seed42/overlay.mp4",
+          "plot": "../P4/eval_results/debug/P4_gpt_03_industrial_seed42/trajectory_plot.png",
+          "json": "../P4/eval_results/json/P4__prompt_v2_20260826__P4_gpt_03_industrial_seed42.json",
+          "extra": {
+            "extra": "../P4/eval_results/debug/P4_gpt_03_industrial_seed42/keyframes.jpg",
+            "track_csv": "../P4/eval_results/debug/P4_gpt_03_industrial_seed42/fused_track.csv"
+          }
+        },
+        "source_result_path": "P4/eval_results/json/P4__prompt_v2_20260826__P4_gpt_03_industrial_seed42.json",
+        "source_result_sha256": "21e0cb4492a2bdba4587b5072abd546d76e2e70ee96c4825aafcc3cd196f0fde"
+      }
+    },
+    {
+      "sample_id": "sample_09",
+      "video_path": "output_videos/minimax_h3/sample_09.mp4",
+      "source_video_path": "minimax_h3/videos/P4_gpt_03_industrial_seed43.mp4",
+      "image_path": "first_frames/gpt/P4_gpt_03_industrial.png",
+      "video_prompt": "A single continuous real-time shot from a locked-off, near-orthographic side camera, matching the input first frame.\n\nPreserve the exact apparatus, ball, electromagnetic holder, hard horizontal impact plate, camera view, framing, and background from the input first frame. Exactly one ball is initially motionless at its existing release position, directly above the impact plate.\n\nAt the beginning of the shot, the existing electromagnetic holder releases the ball cleanly without moving, falling, or following the ball. The ball then falls vertically under gravity, strikes the hard plate, and makes at least four clear consecutive bounces, with each rebound reaching a lower height than the previous one. All impacts occur at approximately the same horizontal position, with no noticeable sideways drift.\n\nThe complete motion remains visible inside the frame: the initial release point, every impact, every rebound apex, and the full ball must never be cropped or occluded. The ball remains exactly one intact sphere throughout the shot, without duplication, disappearance, morphing, or permanent deformation.\n\nThe holder, support frame, impact plate, table, background, and camera remain stationary. No camera movement, panning, zooming, cuts, slow motion, pauses, or time jumps. No hands or people. No additional balls, ghost images, motion trails, trajectory lines, arrows, measurements, annotations, or new objects. End shortly after the ball completes its fourth clearly visible rebound arc and returns to the plate.",
+      "model": "minimax-h3",
+      "model_folder": "minimax_h3",
+      "seed": 43,
+      "source_result": "eval_results/minimax_h3/result_P4__prompt_v2_20260826__P4_gpt_03_industrial_seed43.json",
+      "previous_result": "work/g1_g9_v2_20260911/before/g3/P4/eval_results/minimax_h3/result_P4__prompt_v2_20260826__P4_gpt_03_industrial_seed43.json",
+      "video_sha256": "4b87347aa0cea6fa5f633fff67777ec54303f9a478fe6a4ea815f61df3168623",
+      "image_sha256": "a5b86251c5da3e08cb42773788db859846b2f03b19048a5c1f73f3f5295f05dd",
+      "source_metadata": {
+        "record_id": "P4:prompt_v2_20260826:P4_gpt_03_industrial_seed43",
+        "sample_id": "P4_gpt_03_industrial",
+        "video_id": "P4_gpt_03_industrial_seed43",
+        "batch_id": "prompt_v2_20260826",
+        "source_method": "gpt",
+        "raw_metrics": {
+          "M1": 0.06288774142669577,
+          "M2": {
+            "height_decrease_checks": [
+              true,
+              true,
+              false
+            ],
+            "height_decrease_fraction": 0.6666666666666666,
+            "adjacent_restitution_coefficient_cv": 0.22313400779615783
+          }
+        },
+        "metric_validity": {
+          "M1": true,
+          "M2": true
+        },
+        "diagnostic_status": {
+          "extract_success": true,
+          "structural_ok": true,
+          "measurement_valid": true
+        },
+        "failure_reason": "rebound_heights_not_strictly_decreasing; low_dimensions:monotonic_energy_loss",
+        "warnings": [],
+        "artifacts": {
+          "raw": "../P4/minimax_h3/videos/P4_gpt_03_industrial_seed43.mp4",
+          "video": "../P4/minimax_h3/videos/P4_gpt_03_industrial_seed43.mp4",
+          "overlay": "../P4/eval_results/debug/P4_gpt_03_industrial_seed43/overlay.mp4",
+          "plot": "../P4/eval_results/debug/P4_gpt_03_industrial_seed43/trajectory_plot.png",
+          "json": "../P4/eval_results/json/P4__prompt_v2_20260826__P4_gpt_03_industrial_seed43.json",
+          "extra": {
+            "extra": "../P4/eval_results/debug/P4_gpt_03_industrial_seed43/keyframes.jpg",
+            "track_csv": "../P4/eval_results/debug/P4_gpt_03_industrial_seed43/fused_track.csv"
+          }
+        },
+        "source_result_path": "P4/eval_results/json/P4__prompt_v2_20260826__P4_gpt_03_industrial_seed43.json",
+        "source_result_sha256": "3abe830941c07b8e5590a342fff45851ea64b9f0e2fa82b6043695aefd88b1c7"
+      }
+    },
+    {
+      "sample_id": "sample_10",
+      "video_path": "output_videos/minimax_h3/sample_10.mp4",
+      "source_video_path": "minimax_h3/videos/P4_gpt_03_industrial_seed44.mp4",
+      "image_path": "first_frames/gpt/P4_gpt_03_industrial.png",
+      "video_prompt": "A single continuous real-time shot from a locked-off, near-orthographic side camera, matching the input first frame.\n\nPreserve the exact apparatus, ball, electromagnetic holder, hard horizontal impact plate, camera view, framing, and background from the input first frame. Exactly one ball is initially motionless at its existing release position, directly above the impact plate.\n\nAt the beginning of the shot, the existing electromagnetic holder releases the ball cleanly without moving, falling, or following the ball. The ball then falls vertically under gravity, strikes the hard plate, and makes at least four clear consecutive bounces, with each rebound reaching a lower height than the previous one. All impacts occur at approximately the same horizontal position, with no noticeable sideways drift.\n\nThe complete motion remains visible inside the frame: the initial release point, every impact, every rebound apex, and the full ball must never be cropped or occluded. The ball remains exactly one intact sphere throughout the shot, without duplication, disappearance, morphing, or permanent deformation.\n\nThe holder, support frame, impact plate, table, background, and camera remain stationary. No camera movement, panning, zooming, cuts, slow motion, pauses, or time jumps. No hands or people. No additional balls, ghost images, motion trails, trajectory lines, arrows, measurements, annotations, or new objects. End shortly after the ball completes its fourth clearly visible rebound arc and returns to the plate.",
+      "model": "minimax-h3",
+      "model_folder": "minimax_h3",
+      "seed": 44,
+      "source_result": "eval_results/minimax_h3/result_P4__prompt_v2_20260826__P4_gpt_03_industrial_seed44.json",
+      "previous_result": "work/g1_g9_v2_20260911/before/g3/P4/eval_results/minimax_h3/result_P4__prompt_v2_20260826__P4_gpt_03_industrial_seed44.json",
+      "video_sha256": "13d00f67d947779a4c0fa81b4f2cbbfda408e8a0e7fb670c8aa41a17e03cc6d7",
+      "image_sha256": "a5b86251c5da3e08cb42773788db859846b2f03b19048a5c1f73f3f5295f05dd",
+      "source_metadata": {
+        "record_id": "P4:prompt_v2_20260826:P4_gpt_03_industrial_seed44",
+        "sample_id": "P4_gpt_03_industrial",
+        "video_id": "P4_gpt_03_industrial_seed44",
+        "batch_id": "prompt_v2_20260826",
+        "source_method": "gpt",
+        "raw_metrics": {
+          "M1": 0.05815759780518933,
+          "M2": {
+            "height_decrease_checks": [
+              true,
+              true,
+              false
+            ],
+            "height_decrease_fraction": 0.6666666666666666,
+            "adjacent_restitution_coefficient_cv": 0.24677637134090552
+          }
+        },
+        "metric_validity": {
+          "M1": true,
+          "M2": true
+        },
+        "diagnostic_status": {
+          "extract_success": true,
+          "structural_ok": true,
+          "measurement_valid": true
+        },
+        "failure_reason": "rebound_heights_not_strictly_decreasing; low_dimensions:monotonic_energy_loss",
+        "warnings": [],
+        "artifacts": {
+          "raw": "../P4/minimax_h3/videos/P4_gpt_03_industrial_seed44.mp4",
+          "video": "../P4/minimax_h3/videos/P4_gpt_03_industrial_seed44.mp4",
+          "overlay": "../P4/eval_results/debug/P4_gpt_03_industrial_seed44/overlay.mp4",
+          "plot": "../P4/eval_results/debug/P4_gpt_03_industrial_seed44/trajectory_plot.png",
+          "json": "../P4/eval_results/json/P4__prompt_v2_20260826__P4_gpt_03_industrial_seed44.json",
+          "extra": {
+            "extra": "../P4/eval_results/debug/P4_gpt_03_industrial_seed44/keyframes.jpg",
+            "track_csv": "../P4/eval_results/debug/P4_gpt_03_industrial_seed44/fused_track.csv"
+          }
+        },
+        "source_result_path": "P4/eval_results/json/P4__prompt_v2_20260826__P4_gpt_03_industrial_seed44.json",
+        "source_result_sha256": "280512c7353fba9bcccadef4503ad83bd53f4c06dc6c29ad6a00d7b9171fef72"
+      }
+    },
+    {
+      "sample_id": "sample_11",
+      "video_path": "output_videos/minimax_h3/sample_11.mp4",
+      "source_video_path": "minimax_h3/videos/P4_gpt_03_industrial_seed45.mp4",
+      "image_path": "first_frames/gpt/P4_gpt_03_industrial.png",
+      "video_prompt": "A single continuous real-time shot from a locked-off, near-orthographic side camera, matching the input first frame.\n\nPreserve the exact apparatus, ball, electromagnetic holder, hard horizontal impact plate, camera view, framing, and background from the input first frame. Exactly one ball is initially motionless at its existing release position, directly above the impact plate.\n\nAt the beginning of the shot, the existing electromagnetic holder releases the ball cleanly without moving, falling, or following the ball. The ball then falls vertically under gravity, strikes the hard plate, and makes at least four clear consecutive bounces, with each rebound reaching a lower height than the previous one. All impacts occur at approximately the same horizontal position, with no noticeable sideways drift.\n\nThe complete motion remains visible inside the frame: the initial release point, every impact, every rebound apex, and the full ball must never be cropped or occluded. The ball remains exactly one intact sphere throughout the shot, without duplication, disappearance, morphing, or permanent deformation.\n\nThe holder, support frame, impact plate, table, background, and camera remain stationary. No camera movement, panning, zooming, cuts, slow motion, pauses, or time jumps. No hands or people. No additional balls, ghost images, motion trails, trajectory lines, arrows, measurements, annotations, or new objects. End shortly after the ball completes its fourth clearly visible rebound arc and returns to the plate.",
+      "model": "minimax-h3",
+      "model_folder": "minimax_h3",
+      "seed": 45,
+      "source_result": "eval_results/minimax_h3/result_P4__prompt_v2_20260826__P4_gpt_03_industrial_seed45.json",
+      "previous_result": "work/g1_g9_v2_20260911/before/g3/P4/eval_results/minimax_h3/result_P4__prompt_v2_20260826__P4_gpt_03_industrial_seed45.json",
+      "video_sha256": "cd8ccb8ae20fd357d4db5f9ecdfc6d589a37e9700753ae8f14872e31aba1660a",
+      "image_sha256": "a5b86251c5da3e08cb42773788db859846b2f03b19048a5c1f73f3f5295f05dd",
+      "source_metadata": {
+        "record_id": "P4:prompt_v2_20260826:P4_gpt_03_industrial_seed45",
+        "sample_id": "P4_gpt_03_industrial",
+        "video_id": "P4_gpt_03_industrial_seed45",
+        "batch_id": "prompt_v2_20260826",
+        "source_method": "gpt",
+        "raw_metrics": {
+          "M1": 0.024959746528953792,
+          "M2": {
+            "height_decrease_checks": [
+              true,
+              true,
+              true
+            ],
+            "height_decrease_fraction": 1.0,
+            "adjacent_restitution_coefficient_cv": 0.08224993944316272
+          }
+        },
+        "metric_validity": {
+          "M1": true,
+          "M2": true
+        },
+        "diagnostic_status": {
+          "extract_success": true,
+          "structural_ok": true,
+          "measurement_valid": true
+        },
+        "failure_reason": null,
+        "warnings": [],
+        "artifacts": {
+          "raw": "../P4/minimax_h3/videos/P4_gpt_03_industrial_seed45.mp4",
+          "video": "../P4/minimax_h3/videos/P4_gpt_03_industrial_seed45.mp4",
+          "overlay": "../P4/eval_results/debug/P4_gpt_03_industrial_seed45/overlay.mp4",
+          "plot": "../P4/eval_results/debug/P4_gpt_03_industrial_seed45/trajectory_plot.png",
+          "json": "../P4/eval_results/json/P4__prompt_v2_20260826__P4_gpt_03_industrial_seed45.json",
+          "extra": {
+            "extra": "../P4/eval_results/debug/P4_gpt_03_industrial_seed45/keyframes.jpg",
+            "track_csv": "../P4/eval_results/debug/P4_gpt_03_industrial_seed45/fused_track.csv"
+          }
+        },
+        "source_result_path": "P4/eval_results/json/P4__prompt_v2_20260826__P4_gpt_03_industrial_seed45.json",
+        "source_result_sha256": "78d98054a39352c5029e9824496e39e4f2181cbe04f3b075b7530263734d305e"
+      }
+    },
+    {
+      "sample_id": "sample_12",
+      "video_path": "output_videos/minimax_h3/sample_12.mp4",
+      "source_video_path": "minimax_h3/videos/P4_sim_01_seed42.mp4",
+      "image_path": "first_frames/simulation/P4_sim_01.png",
+      "video_prompt": "A single continuous real-time shot from a locked-off, near-orthographic side camera, matching the input first frame.\n\nPreserve the exact apparatus, ball, electromagnetic holder, hard horizontal impact plate, camera view, framing, and background from the input first frame. Exactly one ball is initially motionless at its existing release position, directly above the impact plate.\n\nAt the beginning of the shot, the existing electromagnetic holder releases the ball cleanly without moving, falling, or following the ball. The ball then falls vertically under gravity, strikes the hard plate, and makes at least four clear consecutive bounces, with each rebound reaching a lower height than the previous one. All impacts occur at approximately the same horizontal position, with no noticeable sideways drift.\n\nThe complete motion remains visible inside the frame: the initial release point, every impact, every rebound apex, and the full ball must never be cropped or occluded. The ball remains exactly one intact sphere throughout the shot, without duplication, disappearance, morphing, or permanent deformation.\n\nThe holder, support frame, impact plate, table, background, and camera remain stationary. No camera movement, panning, zooming, cuts, slow motion, pauses, or time jumps. No hands or people. No additional balls, ghost images, motion trails, trajectory lines, arrows, measurements, annotations, or new objects. End shortly after the ball completes its fourth clearly visible rebound arc and returns to the plate.",
+      "model": "minimax-h3",
+      "model_folder": "minimax_h3",
+      "seed": 42,
+      "source_result": "eval_results/minimax_h3/result_P4__prompt_v2_20260826__P4_sim_01_seed42.json",
+      "previous_result": "work/g1_g9_v2_20260911/before/g3/P4/eval_results/minimax_h3/result_P4__prompt_v2_20260826__P4_sim_01_seed42.json",
+      "video_sha256": "ffdae6d7e6b10985ca5fa827f9e9acdcd4e1546070fc33062a03a90140578838",
+      "image_sha256": "6407f5a4c9b347d101b0f02ea7a238260ee2b93d345a4cdec1b45be5c4112ce6",
+      "source_metadata": {
+        "record_id": "P4:prompt_v2_20260826:P4_sim_01_seed42",
+        "sample_id": "P4_sim_01",
+        "video_id": "P4_sim_01_seed42",
+        "batch_id": "prompt_v2_20260826",
+        "source_method": "simulation",
+        "raw_metrics": {
+          "M1": 0.057131189865529175,
+          "M2": {
+            "height_decrease_checks": [
+              true,
+              true
+            ],
+            "height_decrease_fraction": 1.0,
+            "adjacent_restitution_coefficient_cv": 0.02079121095650481
+          }
+        },
+        "metric_validity": {
+          "M1": true,
+          "M2": true
+        },
+        "diagnostic_status": {
+          "extract_success": true,
+          "structural_ok": false,
+          "measurement_valid": true
+        },
+        "failure_reason": "only_3_complete_rebound_arcs_detected;_need_4",
+        "warnings": [],
+        "artifacts": {
+          "raw": "../P4/minimax_h3/videos/P4_sim_01_seed42.mp4",
+          "video": "../P4/minimax_h3/videos/P4_sim_01_seed42.mp4",
+          "overlay": "../P4/eval_results/debug/P4_sim_01_seed42/overlay.mp4",
+          "plot": "../P4/eval_results/debug/P4_sim_01_seed42/trajectory_plot.png",
+          "json": "../P4/eval_results/json/P4__prompt_v2_20260826__P4_sim_01_seed42.json",
+          "extra": {
+            "extra": "../P4/eval_results/debug/P4_sim_01_seed42/keyframes.jpg",
+            "track_csv": "../P4/eval_results/debug/P4_sim_01_seed42/fused_track.csv"
+          }
+        },
+        "source_result_path": "P4/eval_results/json/P4__prompt_v2_20260826__P4_sim_01_seed42.json",
+        "source_result_sha256": "a3a22514ad5fd0cd6beea42ba8d87f76446ae43a2239c561de676d988b7c0dbe"
+      }
+    },
+    {
+      "sample_id": "sample_13",
+      "video_path": "output_videos/minimax_h3/sample_13.mp4",
+      "source_video_path": "minimax_h3/videos/P4_sim_01_seed43.mp4",
+      "image_path": "first_frames/simulation/P4_sim_01.png",
+      "video_prompt": "A single continuous real-time shot from a locked-off, near-orthographic side camera, matching the input first frame.\n\nPreserve the exact apparatus, ball, electromagnetic holder, hard horizontal impact plate, camera view, framing, and background from the input first frame. Exactly one ball is initially motionless at its existing release position, directly above the impact plate.\n\nAt the beginning of the shot, the existing electromagnetic holder releases the ball cleanly without moving, falling, or following the ball. The ball then falls vertically under gravity, strikes the hard plate, and makes at least four clear consecutive bounces, with each rebound reaching a lower height than the previous one. All impacts occur at approximately the same horizontal position, with no noticeable sideways drift.\n\nThe complete motion remains visible inside the frame: the initial release point, every impact, every rebound apex, and the full ball must never be cropped or occluded. The ball remains exactly one intact sphere throughout the shot, without duplication, disappearance, morphing, or permanent deformation.\n\nThe holder, support frame, impact plate, table, background, and camera remain stationary. No camera movement, panning, zooming, cuts, slow motion, pauses, or time jumps. No hands or people. No additional balls, ghost images, motion trails, trajectory lines, arrows, measurements, annotations, or new objects. End shortly after the ball completes its fourth clearly visible rebound arc and returns to the plate.",
+      "model": "minimax-h3",
+      "model_folder": "minimax_h3",
+      "seed": 43,
+      "source_result": "eval_results/minimax_h3/result_P4__prompt_v2_20260826__P4_sim_01_seed43.json",
+      "previous_result": "work/g1_g9_v2_20260911/before/g3/P4/eval_results/minimax_h3/result_P4__prompt_v2_20260826__P4_sim_01_seed43.json",
+      "video_sha256": "a9ff0fab4c5ba3489a9f15480627382292cec00ada3ee55613a398ec5f018b6e",
+      "image_sha256": "6407f5a4c9b347d101b0f02ea7a238260ee2b93d345a4cdec1b45be5c4112ce6",
+      "source_metadata": {
+        "record_id": "P4:prompt_v2_20260826:P4_sim_01_seed43",
+        "sample_id": "P4_sim_01",
+        "video_id": "P4_sim_01_seed43",
+        "batch_id": "prompt_v2_20260826",
+        "source_method": "simulation",
+        "raw_metrics": {
+          "M1": 0.07481080335519408,
+          "M2": {
+            "height_decrease_checks": [
+              true,
+              false
+            ],
+            "height_decrease_fraction": 0.5,
+            "adjacent_restitution_coefficient_cv": 0.10163377107952497
+          }
+        },
+        "metric_validity": {
+          "M1": true,
+          "M2": true
+        },
+        "diagnostic_status": {
+          "extract_success": true,
+          "structural_ok": false,
+          "measurement_valid": true
+        },
+        "failure_reason": "only_3_complete_rebound_arcs_detected;_need_4",
+        "warnings": [],
+        "artifacts": {
+          "raw": "../P4/minimax_h3/videos/P4_sim_01_seed43.mp4",
+          "video": "../P4/minimax_h3/videos/P4_sim_01_seed43.mp4",
+          "overlay": "../P4/eval_results/debug/P4_sim_01_seed43/overlay.mp4",
+          "plot": "../P4/eval_results/debug/P4_sim_01_seed43/trajectory_plot.png",
+          "json": "../P4/eval_results/json/P4__prompt_v2_20260826__P4_sim_01_seed43.json",
+          "extra": {
+            "extra": "../P4/eval_results/debug/P4_sim_01_seed43/keyframes.jpg",
+            "track_csv": "../P4/eval_results/debug/P4_sim_01_seed43/fused_track.csv"
+          }
+        },
+        "source_result_path": "P4/eval_results/json/P4__prompt_v2_20260826__P4_sim_01_seed43.json",
+        "source_result_sha256": "34d30fe7fc32fc8d640e998d63e6c082115715bcf1ab1732bca85305811c4239"
+      }
+    },
+    {
+      "sample_id": "sample_14",
+      "video_path": "output_videos/minimax_h3/sample_14.mp4",
+      "source_video_path": "minimax_h3/videos/P4_sim_01_seed44.mp4",
+      "image_path": "first_frames/simulation/P4_sim_01.png",
+      "video_prompt": "A single continuous real-time shot from a locked-off, near-orthographic side camera, matching the input first frame.\n\nPreserve the exact apparatus, ball, electromagnetic holder, hard horizontal impact plate, camera view, framing, and background from the input first frame. Exactly one ball is initially motionless at its existing release position, directly above the impact plate.\n\nAt the beginning of the shot, the existing electromagnetic holder releases the ball cleanly without moving, falling, or following the ball. The ball then falls vertically under gravity, strikes the hard plate, and makes at least four clear consecutive bounces, with each rebound reaching a lower height than the previous one. All impacts occur at approximately the same horizontal position, with no noticeable sideways drift.\n\nThe complete motion remains visible inside the frame: the initial release point, every impact, every rebound apex, and the full ball must never be cropped or occluded. The ball remains exactly one intact sphere throughout the shot, without duplication, disappearance, morphing, or permanent deformation.\n\nThe holder, support frame, impact plate, table, background, and camera remain stationary. No camera movement, panning, zooming, cuts, slow motion, pauses, or time jumps. No hands or people. No additional balls, ghost images, motion trails, trajectory lines, arrows, measurements, annotations, or new objects. End shortly after the ball completes its fourth clearly visible rebound arc and returns to the plate.",
+      "model": "minimax-h3",
+      "model_folder": "minimax_h3",
+      "seed": 44,
+      "source_result": "eval_results/minimax_h3/result_P4__prompt_v2_20260826__P4_sim_01_seed44.json",
+      "previous_result": "work/g1_g9_v2_20260911/before/g3/P4/eval_results/minimax_h3/result_P4__prompt_v2_20260826__P4_sim_01_seed44.json",
+      "video_sha256": "44dfb099e51345ce19c2d1775946bfc4788be76ee9d3c07b3bb1b50268c025d0",
+      "image_sha256": "6407f5a4c9b347d101b0f02ea7a238260ee2b93d345a4cdec1b45be5c4112ce6",
+      "source_metadata": {
+        "record_id": "P4:prompt_v2_20260826:P4_sim_01_seed44",
+        "sample_id": "P4_sim_01",
+        "video_id": "P4_sim_01_seed44",
+        "batch_id": "prompt_v2_20260826",
+        "source_method": "simulation",
+        "raw_metrics": {
+          "M1": 0.08482682379137796,
+          "M2": {
+            "height_decrease_checks": [
+              true,
+              true,
+              true
+            ],
+            "height_decrease_fraction": 1.0,
+            "adjacent_restitution_coefficient_cv": 0.04540789333898208
+          }
+        },
+        "metric_validity": {
+          "M1": true,
+          "M2": true
+        },
+        "diagnostic_status": {
+          "extract_success": true,
+          "structural_ok": true,
+          "measurement_valid": true
+        },
+        "failure_reason": null,
+        "warnings": [],
+        "artifacts": {
+          "raw": "../P4/minimax_h3/videos/P4_sim_01_seed44.mp4",
+          "video": "../P4/minimax_h3/videos/P4_sim_01_seed44.mp4",
+          "overlay": "../P4/eval_results/debug/P4_sim_01_seed44/overlay.mp4",
+          "plot": "../P4/eval_results/debug/P4_sim_01_seed44/trajectory_plot.png",
+          "json": "../P4/eval_results/json/P4__prompt_v2_20260826__P4_sim_01_seed44.json",
+          "extra": {
+            "extra": "../P4/eval_results/debug/P4_sim_01_seed44/keyframes.jpg",
+            "track_csv": "../P4/eval_results/debug/P4_sim_01_seed44/fused_track.csv"
+          }
+        },
+        "source_result_path": "P4/eval_results/json/P4__prompt_v2_20260826__P4_sim_01_seed44.json",
+        "source_result_sha256": "42b13bdf037679a2e7297fe77ba421afd84b0dc098b9da58895a09816a82e767"
+      }
+    },
+    {
+      "sample_id": "sample_15",
+      "video_path": "output_videos/minimax_h3/sample_15.mp4",
+      "source_video_path": "minimax_h3/videos/P4_sim_01_seed45.mp4",
+      "image_path": "first_frames/simulation/P4_sim_01.png",
+      "video_prompt": "A single continuous real-time shot from a locked-off, near-orthographic side camera, matching the input first frame.\n\nPreserve the exact apparatus, ball, electromagnetic holder, hard horizontal impact plate, camera view, framing, and background from the input first frame. Exactly one ball is initially motionless at its existing release position, directly above the impact plate.\n\nAt the beginning of the shot, the existing electromagnetic holder releases the ball cleanly without moving, falling, or following the ball. The ball then falls vertically under gravity, strikes the hard plate, and makes at least four clear consecutive bounces, with each rebound reaching a lower height than the previous one. All impacts occur at approximately the same horizontal position, with no noticeable sideways drift.\n\nThe complete motion remains visible inside the frame: the initial release point, every impact, every rebound apex, and the full ball must never be cropped or occluded. The ball remains exactly one intact sphere throughout the shot, without duplication, disappearance, morphing, or permanent deformation.\n\nThe holder, support frame, impact plate, table, background, and camera remain stationary. No camera movement, panning, zooming, cuts, slow motion, pauses, or time jumps. No hands or people. No additional balls, ghost images, motion trails, trajectory lines, arrows, measurements, annotations, or new objects. End shortly after the ball completes its fourth clearly visible rebound arc and returns to the plate.",
+      "model": "minimax-h3",
+      "model_folder": "minimax_h3",
+      "seed": 45,
+      "source_result": "eval_results/minimax_h3/result_P4__prompt_v2_20260826__P4_sim_01_seed45.json",
+      "previous_result": "work/g1_g9_v2_20260911/before/g3/P4/eval_results/minimax_h3/result_P4__prompt_v2_20260826__P4_sim_01_seed45.json",
+      "video_sha256": "53f0f9b8307c82ad6a59aeb58f100aefd9a7c094e5dca7ee9733964dfd2319c8",
+      "image_sha256": "6407f5a4c9b347d101b0f02ea7a238260ee2b93d345a4cdec1b45be5c4112ce6",
+      "source_metadata": {
+        "record_id": "P4:prompt_v2_20260826:P4_sim_01_seed45",
+        "sample_id": "P4_sim_01",
+        "video_id": "P4_sim_01_seed45",
+        "batch_id": "prompt_v2_20260826",
+        "source_method": "simulation",
+        "raw_metrics": {
+          "M1": 0.04486155098207495,
+          "M2": {
+            "height_decrease_checks": [
+              true,
+              true
+            ],
+            "height_decrease_fraction": 1.0,
+            "adjacent_restitution_coefficient_cv": 0.045371616005673146
+          }
+        },
+        "metric_validity": {
+          "M1": true,
+          "M2": true
+        },
+        "diagnostic_status": {
+          "extract_success": true,
+          "structural_ok": false,
+          "measurement_valid": true
+        },
+        "failure_reason": "only_3_complete_rebound_arcs_detected;_need_4",
+        "warnings": [],
+        "artifacts": {
+          "raw": "../P4/minimax_h3/videos/P4_sim_01_seed45.mp4",
+          "video": "../P4/minimax_h3/videos/P4_sim_01_seed45.mp4",
+          "overlay": "../P4/eval_results/debug/P4_sim_01_seed45/overlay.mp4",
+          "plot": "../P4/eval_results/debug/P4_sim_01_seed45/trajectory_plot.png",
+          "json": "../P4/eval_results/json/P4__prompt_v2_20260826__P4_sim_01_seed45.json",
+          "extra": {
+            "extra": "../P4/eval_results/debug/P4_sim_01_seed45/keyframes.jpg",
+            "track_csv": "../P4/eval_results/debug/P4_sim_01_seed45/fused_track.csv"
+          }
+        },
+        "source_result_path": "P4/eval_results/json/P4__prompt_v2_20260826__P4_sim_01_seed45.json",
+        "source_result_sha256": "92667e2d767ee806c02cc9cd79f0cb67613bfcd239580de15505a6a646ba63f8"
+      }
+    },
+    {
+      "sample_id": "sample_16",
+      "video_path": "output_videos/minimax_h3/sample_16.mp4",
+      "source_video_path": "minimax_h3/videos/P4_sim_02_seed42.mp4",
+      "image_path": "first_frames/simulation/P4_sim_02.png",
+      "video_prompt": "A single continuous real-time shot from a locked-off, near-orthographic side camera, matching the input first frame.\n\nPreserve the exact apparatus, ball, electromagnetic holder, hard horizontal impact plate, camera view, framing, and background from the input first frame. Exactly one ball is initially motionless at its existing release position, directly above the impact plate.\n\nAt the beginning of the shot, the existing electromagnetic holder releases the ball cleanly without moving, falling, or following the ball. The ball then falls vertically under gravity, strikes the hard plate, and makes at least four clear consecutive bounces, with each rebound reaching a lower height than the previous one. All impacts occur at approximately the same horizontal position, with no noticeable sideways drift.\n\nThe complete motion remains visible inside the frame: the initial release point, every impact, every rebound apex, and the full ball must never be cropped or occluded. The ball remains exactly one intact sphere throughout the shot, without duplication, disappearance, morphing, or permanent deformation.\n\nThe holder, support frame, impact plate, table, background, and camera remain stationary. No camera movement, panning, zooming, cuts, slow motion, pauses, or time jumps. No hands or people. No additional balls, ghost images, motion trails, trajectory lines, arrows, measurements, annotations, or new objects. End shortly after the ball completes its fourth clearly visible rebound arc and returns to the plate.",
+      "model": "minimax-h3",
+      "model_folder": "minimax_h3",
+      "seed": 42,
+      "source_result": "eval_results/minimax_h3/result_P4__prompt_v2_20260826__P4_sim_02_seed42.json",
+      "previous_result": "work/g1_g9_v2_20260911/before/g3/P4/eval_results/minimax_h3/result_P4__prompt_v2_20260826__P4_sim_02_seed42.json",
+      "video_sha256": "898832b863645407c05d1197a98d121e32a177790a166d7a74f0561ca9966f2d",
+      "image_sha256": "1770043062f58208637309f5bf2b97f87ce7e411c259099d35af0ce77047aeb9",
+      "source_metadata": {
+        "record_id": "P4:prompt_v2_20260826:P4_sim_02_seed42",
+        "sample_id": "P4_sim_02",
+        "video_id": "P4_sim_02_seed42",
+        "batch_id": "prompt_v2_20260826",
+        "source_method": "simulation",
+        "raw_metrics": {
+          "M1": 0.0243429832203384,
+          "M2": {
+            "height_decrease_checks": [
+              true,
+              true
+            ],
+            "height_decrease_fraction": 1.0,
+            "adjacent_restitution_coefficient_cv": 0.101071331206273
+          }
+        },
+        "metric_validity": {
+          "M1": true,
+          "M2": true
+        },
+        "diagnostic_status": {
+          "extract_success": true,
+          "structural_ok": false,
+          "measurement_valid": true
+        },
+        "failure_reason": "only_3_complete_rebound_arcs_detected;_need_4",
+        "warnings": [],
+        "artifacts": {
+          "raw": "../P4/minimax_h3/videos/P4_sim_02_seed42.mp4",
+          "video": "../P4/minimax_h3/videos/P4_sim_02_seed42.mp4",
+          "overlay": "../P4/eval_results/debug/P4_sim_02_seed42/overlay.mp4",
+          "plot": "../P4/eval_results/debug/P4_sim_02_seed42/trajectory_plot.png",
+          "json": "../P4/eval_results/json/P4__prompt_v2_20260826__P4_sim_02_seed42.json",
+          "extra": {
+            "extra": "../P4/eval_results/debug/P4_sim_02_seed42/keyframes.jpg",
+            "track_csv": "../P4/eval_results/debug/P4_sim_02_seed42/fused_track.csv"
+          }
+        },
+        "source_result_path": "P4/eval_results/json/P4__prompt_v2_20260826__P4_sim_02_seed42.json",
+        "source_result_sha256": "6fe72f4f8ac32f834763e0fcd69cdc757ff930a58fdcae6ae1c77b1ea382b31c"
+      }
+    },
+    {
+      "sample_id": "sample_17",
+      "video_path": "output_videos/minimax_h3/sample_17.mp4",
+      "source_video_path": "minimax_h3/videos/P4_sim_02_seed43.mp4",
+      "image_path": "first_frames/simulation/P4_sim_02.png",
+      "video_prompt": "A single continuous real-time shot from a locked-off, near-orthographic side camera, matching the input first frame.\n\nPreserve the exact apparatus, ball, electromagnetic holder, hard horizontal impact plate, camera view, framing, and background from the input first frame. Exactly one ball is initially motionless at its existing release position, directly above the impact plate.\n\nAt the beginning of the shot, the existing electromagnetic holder releases the ball cleanly without moving, falling, or following the ball. The ball then falls vertically under gravity, strikes the hard plate, and makes at least four clear consecutive bounces, with each rebound reaching a lower height than the previous one. All impacts occur at approximately the same horizontal position, with no noticeable sideways drift.\n\nThe complete motion remains visible inside the frame: the initial release point, every impact, every rebound apex, and the full ball must never be cropped or occluded. The ball remains exactly one intact sphere throughout the shot, without duplication, disappearance, morphing, or permanent deformation.\n\nThe holder, support frame, impact plate, table, background, and camera remain stationary. No camera movement, panning, zooming, cuts, slow motion, pauses, or time jumps. No hands or people. No additional balls, ghost images, motion trails, trajectory lines, arrows, measurements, annotations, or new objects. End shortly after the ball completes its fourth clearly visible rebound arc and returns to the plate.",
+      "model": "minimax-h3",
+      "model_folder": "minimax_h3",
+      "seed": 43,
+      "source_result": "eval_results/minimax_h3/result_P4__prompt_v2_20260826__P4_sim_02_seed43.json",
+      "previous_result": "work/g1_g9_v2_20260911/before/g3/P4/eval_results/minimax_h3/result_P4__prompt_v2_20260826__P4_sim_02_seed43.json",
+      "video_sha256": "e3c9a6fef467752d87716ee990db5224bbc54999ab6fd4525edc0e1ac5d04204",
+      "image_sha256": "1770043062f58208637309f5bf2b97f87ce7e411c259099d35af0ce77047aeb9",
+      "source_metadata": {
+        "record_id": "P4:prompt_v2_20260826:P4_sim_02_seed43",
+        "sample_id": "P4_sim_02",
+        "video_id": "P4_sim_02_seed43",
+        "batch_id": "prompt_v2_20260826",
+        "source_method": "simulation",
+        "raw_metrics": {
+          "M1": 0.029508105620306407,
+          "M2": {
+            "height_decrease_checks": [
+              true,
+              true,
+              true
+            ],
+            "height_decrease_fraction": 1.0,
+            "adjacent_restitution_coefficient_cv": 0.05023521994067606
+          }
+        },
+        "metric_validity": {
+          "M1": true,
+          "M2": true
+        },
+        "diagnostic_status": {
+          "extract_success": true,
+          "structural_ok": true,
+          "measurement_valid": true
+        },
+        "failure_reason": null,
+        "warnings": [],
+        "artifacts": {
+          "raw": "../P4/minimax_h3/videos/P4_sim_02_seed43.mp4",
+          "video": "../P4/minimax_h3/videos/P4_sim_02_seed43.mp4",
+          "overlay": "../P4/eval_results/debug/P4_sim_02_seed43/overlay.mp4",
+          "plot": "../P4/eval_results/debug/P4_sim_02_seed43/trajectory_plot.png",
+          "json": "../P4/eval_results/json/P4__prompt_v2_20260826__P4_sim_02_seed43.json",
+          "extra": {
+            "extra": "../P4/eval_results/debug/P4_sim_02_seed43/keyframes.jpg",
+            "track_csv": "../P4/eval_results/debug/P4_sim_02_seed43/fused_track.csv"
+          }
+        },
+        "source_result_path": "P4/eval_results/json/P4__prompt_v2_20260826__P4_sim_02_seed43.json",
+        "source_result_sha256": "a3e39013210d78cd4cbb0181a5d0979616f9486fd18a48d37e0e9f1234e0605e"
+      }
+    },
+    {
+      "sample_id": "sample_18",
+      "video_path": "output_videos/minimax_h3/sample_18.mp4",
+      "source_video_path": "minimax_h3/videos/P4_sim_02_seed44.mp4",
+      "image_path": "first_frames/simulation/P4_sim_02.png",
+      "video_prompt": "A single continuous real-time shot from a locked-off, near-orthographic side camera, matching the input first frame.\n\nPreserve the exact apparatus, ball, electromagnetic holder, hard horizontal impact plate, camera view, framing, and background from the input first frame. Exactly one ball is initially motionless at its existing release position, directly above the impact plate.\n\nAt the beginning of the shot, the existing electromagnetic holder releases the ball cleanly without moving, falling, or following the ball. The ball then falls vertically under gravity, strikes the hard plate, and makes at least four clear consecutive bounces, with each rebound reaching a lower height than the previous one. All impacts occur at approximately the same horizontal position, with no noticeable sideways drift.\n\nThe complete motion remains visible inside the frame: the initial release point, every impact, every rebound apex, and the full ball must never be cropped or occluded. The ball remains exactly one intact sphere throughout the shot, without duplication, disappearance, morphing, or permanent deformation.\n\nThe holder, support frame, impact plate, table, background, and camera remain stationary. No camera movement, panning, zooming, cuts, slow motion, pauses, or time jumps. No hands or people. No additional balls, ghost images, motion trails, trajectory lines, arrows, measurements, annotations, or new objects. End shortly after the ball completes its fourth clearly visible rebound arc and returns to the plate.",
+      "model": "minimax-h3",
+      "model_folder": "minimax_h3",
+      "seed": 44,
+      "source_result": "eval_results/minimax_h3/result_P4__prompt_v2_20260826__P4_sim_02_seed44.json",
+      "previous_result": "work/g1_g9_v2_20260911/before/g3/P4/eval_results/minimax_h3/result_P4__prompt_v2_20260826__P4_sim_02_seed44.json",
+      "video_sha256": "a8c775c777d0217e0c17fd22c19b8299708c75844330067fb5ba868c487a0837",
+      "image_sha256": "1770043062f58208637309f5bf2b97f87ce7e411c259099d35af0ce77047aeb9",
+      "source_metadata": {
+        "record_id": "P4:prompt_v2_20260826:P4_sim_02_seed44",
+        "sample_id": "P4_sim_02",
+        "video_id": "P4_sim_02_seed44",
+        "batch_id": "prompt_v2_20260826",
+        "source_method": "simulation",
+        "raw_metrics": {
+          "M1": 0.11044536032297596,
+          "M2": {
+            "height_decrease_checks": [
+              true,
+              false,
+              true
+            ],
+            "height_decrease_fraction": 0.6666666666666666,
+            "adjacent_restitution_coefficient_cv": 0.32474538720857266
+          }
+        },
+        "metric_validity": {
+          "M1": true,
+          "M2": true
+        },
+        "diagnostic_status": {
+          "extract_success": true,
+          "structural_ok": true,
+          "measurement_valid": true
+        },
+        "failure_reason": "rebound_heights_not_strictly_decreasing; low_dimensions:restitution_consistency",
+        "warnings": [],
+        "artifacts": {
+          "raw": "../P4/minimax_h3/videos/P4_sim_02_seed44.mp4",
+          "video": "../P4/minimax_h3/videos/P4_sim_02_seed44.mp4",
+          "overlay": "../P4/eval_results/debug/P4_sim_02_seed44/overlay.mp4",
+          "plot": "../P4/eval_results/debug/P4_sim_02_seed44/trajectory_plot.png",
+          "json": "../P4/eval_results/json/P4__prompt_v2_20260826__P4_sim_02_seed44.json",
+          "extra": {
+            "extra": "../P4/eval_results/debug/P4_sim_02_seed44/keyframes.jpg",
+            "track_csv": "../P4/eval_results/debug/P4_sim_02_seed44/fused_track.csv"
+          }
+        },
+        "source_result_path": "P4/eval_results/json/P4__prompt_v2_20260826__P4_sim_02_seed44.json",
+        "source_result_sha256": "3d9817b12d9a05634ca089588fbe601ffff819bbd4b76c65d83dd025a08ab235"
+      }
+    },
+    {
+      "sample_id": "sample_19",
+      "video_path": "output_videos/minimax_h3/sample_19.mp4",
+      "source_video_path": "minimax_h3/videos/P4_sim_02_seed45.mp4",
+      "image_path": "first_frames/simulation/P4_sim_02.png",
+      "video_prompt": "A single continuous real-time shot from a locked-off, near-orthographic side camera, matching the input first frame.\n\nPreserve the exact apparatus, ball, electromagnetic holder, hard horizontal impact plate, camera view, framing, and background from the input first frame. Exactly one ball is initially motionless at its existing release position, directly above the impact plate.\n\nAt the beginning of the shot, the existing electromagnetic holder releases the ball cleanly without moving, falling, or following the ball. The ball then falls vertically under gravity, strikes the hard plate, and makes at least four clear consecutive bounces, with each rebound reaching a lower height than the previous one. All impacts occur at approximately the same horizontal position, with no noticeable sideways drift.\n\nThe complete motion remains visible inside the frame: the initial release point, every impact, every rebound apex, and the full ball must never be cropped or occluded. The ball remains exactly one intact sphere throughout the shot, without duplication, disappearance, morphing, or permanent deformation.\n\nThe holder, support frame, impact plate, table, background, and camera remain stationary. No camera movement, panning, zooming, cuts, slow motion, pauses, or time jumps. No hands or people. No additional balls, ghost images, motion trails, trajectory lines, arrows, measurements, annotations, or new objects. End shortly after the ball completes its fourth clearly visible rebound arc and returns to the plate.",
+      "model": "minimax-h3",
+      "model_folder": "minimax_h3",
+      "seed": 45,
+      "source_result": "eval_results/minimax_h3/result_P4__prompt_v2_20260826__P4_sim_02_seed45.json",
+      "previous_result": "work/g1_g9_v2_20260911/before/g3/P4/eval_results/minimax_h3/result_P4__prompt_v2_20260826__P4_sim_02_seed45.json",
+      "video_sha256": "27f79e68fff17218ecaf186cfdc98262f951edc0c5e07282a1cf1d437cd8f485",
+      "image_sha256": "1770043062f58208637309f5bf2b97f87ce7e411c259099d35af0ce77047aeb9",
+      "source_metadata": {
+        "record_id": "P4:prompt_v2_20260826:P4_sim_02_seed45",
+        "sample_id": "P4_sim_02",
+        "video_id": "P4_sim_02_seed45",
+        "batch_id": "prompt_v2_20260826",
+        "source_method": "simulation",
+        "raw_metrics": {
+          "M1": 0.019161067356864663,
+          "M2": {
+            "height_decrease_checks": [
+              true,
+              true,
+              true
+            ],
+            "height_decrease_fraction": 1.0,
+            "adjacent_restitution_coefficient_cv": 0.041302246099907285
+          }
+        },
+        "metric_validity": {
+          "M1": true,
+          "M2": true
+        },
+        "diagnostic_status": {
+          "extract_success": true,
+          "structural_ok": true,
+          "measurement_valid": true
+        },
+        "failure_reason": null,
+        "warnings": [],
+        "artifacts": {
+          "raw": "../P4/minimax_h3/videos/P4_sim_02_seed45.mp4",
+          "video": "../P4/minimax_h3/videos/P4_sim_02_seed45.mp4",
+          "overlay": "../P4/eval_results/debug/P4_sim_02_seed45/overlay.mp4",
+          "plot": "../P4/eval_results/debug/P4_sim_02_seed45/trajectory_plot.png",
+          "json": "../P4/eval_results/json/P4__prompt_v2_20260826__P4_sim_02_seed45.json",
+          "extra": {
+            "extra": "../P4/eval_results/debug/P4_sim_02_seed45/keyframes.jpg",
+            "track_csv": "../P4/eval_results/debug/P4_sim_02_seed45/fused_track.csv"
+          }
+        },
+        "source_result_path": "P4/eval_results/json/P4__prompt_v2_20260826__P4_sim_02_seed45.json",
+        "source_result_sha256": "d23b319c0214694b20ea0d05e408f7d466ffa077aa8c2ef7587ea5f6c5d2cd4a"
+      }
+    },
+    {
+      "sample_id": "sample_20",
+      "video_path": "output_videos/minimax_h3/sample_20.mp4",
+      "source_video_path": "minimax_h3/videos/P4_sim_03_seed42.mp4",
+      "image_path": "first_frames/simulation/P4_sim_03.png",
+      "video_prompt": "A single continuous real-time shot from a locked-off, near-orthographic side camera, matching the input first frame.\n\nPreserve the exact apparatus, ball, electromagnetic holder, hard horizontal impact plate, camera view, framing, and background from the input first frame. Exactly one ball is initially motionless at its existing release position, directly above the impact plate.\n\nAt the beginning of the shot, the existing electromagnetic holder releases the ball cleanly without moving, falling, or following the ball. The ball then falls vertically under gravity, strikes the hard plate, and makes at least four clear consecutive bounces, with each rebound reaching a lower height than the previous one. All impacts occur at approximately the same horizontal position, with no noticeable sideways drift.\n\nThe complete motion remains visible inside the frame: the initial release point, every impact, every rebound apex, and the full ball must never be cropped or occluded. The ball remains exactly one intact sphere throughout the shot, without duplication, disappearance, morphing, or permanent deformation.\n\nThe holder, support frame, impact plate, table, background, and camera remain stationary. No camera movement, panning, zooming, cuts, slow motion, pauses, or time jumps. No hands or people. No additional balls, ghost images, motion trails, trajectory lines, arrows, measurements, annotations, or new objects. End shortly after the ball completes its fourth clearly visible rebound arc and returns to the plate.",
+      "model": "minimax-h3",
+      "model_folder": "minimax_h3",
+      "seed": 42,
+      "source_result": "eval_results/minimax_h3/result_P4__prompt_v2_20260826__P4_sim_03_seed42.json",
+      "previous_result": "work/g1_g9_v2_20260911/before/g3/P4/eval_results/minimax_h3/result_P4__prompt_v2_20260826__P4_sim_03_seed42.json",
+      "video_sha256": "933f5c4e6bc64ccce4d7d43d5e9230c08c45c12dab8bc2875344f016db99822c",
+      "image_sha256": "30bcd747efb046671747a785422fce43dd1a94a2fe5cbba02420f3c6f6a05a8f",
+      "source_metadata": {
+        "record_id": "P4:prompt_v2_20260826:P4_sim_03_seed42",
+        "sample_id": "P4_sim_03",
+        "video_id": "P4_sim_03_seed42",
+        "batch_id": "prompt_v2_20260826",
+        "source_method": "simulation",
+        "raw_metrics": {
+          "M1": 0.013554030042518483,
+          "M2": {
+            "height_decrease_checks": [
+              false,
+              true
+            ],
+            "height_decrease_fraction": 0.5,
+            "adjacent_restitution_coefficient_cv": 0.07058768403565117
+          }
+        },
+        "metric_validity": {
+          "M1": true,
+          "M2": true
+        },
+        "diagnostic_status": {
+          "extract_success": true,
+          "structural_ok": false,
+          "measurement_valid": true
+        },
+        "failure_reason": "only_3_complete_rebound_arcs_detected;_need_4",
+        "warnings": [],
+        "artifacts": {
+          "raw": "../P4/minimax_h3/videos/P4_sim_03_seed42.mp4",
+          "video": "../P4/minimax_h3/videos/P4_sim_03_seed42.mp4",
+          "overlay": "../P4/eval_results/debug/P4_sim_03_seed42/overlay.mp4",
+          "plot": "../P4/eval_results/debug/P4_sim_03_seed42/trajectory_plot.png",
+          "json": "../P4/eval_results/json/P4__prompt_v2_20260826__P4_sim_03_seed42.json",
+          "extra": {
+            "extra": "../P4/eval_results/debug/P4_sim_03_seed42/keyframes.jpg",
+            "track_csv": "../P4/eval_results/debug/P4_sim_03_seed42/fused_track.csv"
+          }
+        },
+        "source_result_path": "P4/eval_results/json/P4__prompt_v2_20260826__P4_sim_03_seed42.json",
+        "source_result_sha256": "cc6b63c841b645a16a9bef92e80e5863935b7a2f6335ab63513d90854e41d7f4"
+      }
+    },
+    {
+      "sample_id": "sample_21",
+      "video_path": "output_videos/minimax_h3/sample_21.mp4",
+      "source_video_path": "minimax_h3/videos/P4_sim_03_seed43.mp4",
+      "image_path": "first_frames/simulation/P4_sim_03.png",
+      "video_prompt": "A single continuous real-time shot from a locked-off, near-orthographic side camera, matching the input first frame.\n\nPreserve the exact apparatus, ball, electromagnetic holder, hard horizontal impact plate, camera view, framing, and background from the input first frame. Exactly one ball is initially motionless at its existing release position, directly above the impact plate.\n\nAt the beginning of the shot, the existing electromagnetic holder releases the ball cleanly without moving, falling, or following the ball. The ball then falls vertically under gravity, strikes the hard plate, and makes at least four clear consecutive bounces, with each rebound reaching a lower height than the previous one. All impacts occur at approximately the same horizontal position, with no noticeable sideways drift.\n\nThe complete motion remains visible inside the frame: the initial release point, every impact, every rebound apex, and the full ball must never be cropped or occluded. The ball remains exactly one intact sphere throughout the shot, without duplication, disappearance, morphing, or permanent deformation.\n\nThe holder, support frame, impact plate, table, background, and camera remain stationary. No camera movement, panning, zooming, cuts, slow motion, pauses, or time jumps. No hands or people. No additional balls, ghost images, motion trails, trajectory lines, arrows, measurements, annotations, or new objects. End shortly after the ball completes its fourth clearly visible rebound arc and returns to the plate.",
+      "model": "minimax-h3",
+      "model_folder": "minimax_h3",
+      "seed": 43,
+      "source_result": "eval_results/minimax_h3/result_P4__prompt_v2_20260826__P4_sim_03_seed43.json",
+      "previous_result": "work/g1_g9_v2_20260911/before/g3/P4/eval_results/minimax_h3/result_P4__prompt_v2_20260826__P4_sim_03_seed43.json",
+      "video_sha256": "cd41b3f6b6700e6456f102f8c4b05723ea0e4b8323be737c8415ed33d60fa6b8",
+      "image_sha256": "30bcd747efb046671747a785422fce43dd1a94a2fe5cbba02420f3c6f6a05a8f",
+      "source_metadata": {
+        "record_id": "P4:prompt_v2_20260826:P4_sim_03_seed43",
+        "sample_id": "P4_sim_03",
+        "video_id": "P4_sim_03_seed43",
+        "batch_id": "prompt_v2_20260826",
+        "source_method": "simulation",
+        "raw_metrics": {
+          "M1": 0.07181191287362809,
+          "M2": {
+            "height_decrease_checks": [
+              true,
+              true,
+              false
+            ],
+            "height_decrease_fraction": 0.6666666666666666,
+            "adjacent_restitution_coefficient_cv": 0.03573640916580729
+          }
+        },
+        "metric_validity": {
+          "M1": true,
+          "M2": true
+        },
+        "diagnostic_status": {
+          "extract_success": true,
+          "structural_ok": true,
+          "measurement_valid": true
+        },
+        "failure_reason": "rebound_heights_not_strictly_decreasing",
+        "warnings": [],
+        "artifacts": {
+          "raw": "../P4/minimax_h3/videos/P4_sim_03_seed43.mp4",
+          "video": "../P4/minimax_h3/videos/P4_sim_03_seed43.mp4",
+          "overlay": "../P4/eval_results/debug/P4_sim_03_seed43/overlay.mp4",
+          "plot": "../P4/eval_results/debug/P4_sim_03_seed43/trajectory_plot.png",
+          "json": "../P4/eval_results/json/P4__prompt_v2_20260826__P4_sim_03_seed43.json",
+          "extra": {
+            "extra": "../P4/eval_results/debug/P4_sim_03_seed43/keyframes.jpg",
+            "track_csv": "../P4/eval_results/debug/P4_sim_03_seed43/fused_track.csv"
+          }
+        },
+        "source_result_path": "P4/eval_results/json/P4__prompt_v2_20260826__P4_sim_03_seed43.json",
+        "source_result_sha256": "4d03faef8492fb4244fe8797daec2c4729120d35156dab1e0998927688be15ed"
+      }
+    },
+    {
+      "sample_id": "sample_22",
+      "video_path": "output_videos/minimax_h3/sample_22.mp4",
+      "source_video_path": "minimax_h3/videos/P4_sim_03_seed44.mp4",
+      "image_path": "first_frames/simulation/P4_sim_03.png",
+      "video_prompt": "A single continuous real-time shot from a locked-off, near-orthographic side camera, matching the input first frame.\n\nPreserve the exact apparatus, ball, electromagnetic holder, hard horizontal impact plate, camera view, framing, and background from the input first frame. Exactly one ball is initially motionless at its existing release position, directly above the impact plate.\n\nAt the beginning of the shot, the existing electromagnetic holder releases the ball cleanly without moving, falling, or following the ball. The ball then falls vertically under gravity, strikes the hard plate, and makes at least four clear consecutive bounces, with each rebound reaching a lower height than the previous one. All impacts occur at approximately the same horizontal position, with no noticeable sideways drift.\n\nThe complete motion remains visible inside the frame: the initial release point, every impact, every rebound apex, and the full ball must never be cropped or occluded. The ball remains exactly one intact sphere throughout the shot, without duplication, disappearance, morphing, or permanent deformation.\n\nThe holder, support frame, impact plate, table, background, and camera remain stationary. No camera movement, panning, zooming, cuts, slow motion, pauses, or time jumps. No hands or people. No additional balls, ghost images, motion trails, trajectory lines, arrows, measurements, annotations, or new objects. End shortly after the ball completes its fourth clearly visible rebound arc and returns to the plate.",
+      "model": "minimax-h3",
+      "model_folder": "minimax_h3",
+      "seed": 44,
+      "source_result": "eval_results/minimax_h3/result_P4__prompt_v2_20260826__P4_sim_03_seed44.json",
+      "previous_result": "work/g1_g9_v2_20260911/before/g3/P4/eval_results/minimax_h3/result_P4__prompt_v2_20260826__P4_sim_03_seed44.json",
+      "video_sha256": "e19e4498020c1cb23ccfa16721b8f0c5554b1049da11faf40366e98b89d3e332",
+      "image_sha256": "30bcd747efb046671747a785422fce43dd1a94a2fe5cbba02420f3c6f6a05a8f",
+      "source_metadata": {
+        "record_id": "P4:prompt_v2_20260826:P4_sim_03_seed44",
+        "sample_id": "P4_sim_03",
+        "video_id": "P4_sim_03_seed44",
+        "batch_id": "prompt_v2_20260826",
+        "source_method": "simulation",
+        "raw_metrics": {
+          "M1": 0.010919363755505729,
+          "M2": {
+            "height_decrease_checks": [
+              true
+            ],
+            "height_decrease_fraction": 1.0,
+            "adjacent_restitution_coefficient_cv": null
+          }
+        },
+        "metric_validity": {
+          "M1": true,
+          "M2": false
+        },
+        "diagnostic_status": {
+          "extract_success": true,
+          "structural_ok": false,
+          "measurement_valid": true
+        },
+        "failure_reason": "only_2_complete_rebound_arcs_detected;_need_4",
+        "warnings": [],
+        "artifacts": {
+          "raw": "../P4/minimax_h3/videos/P4_sim_03_seed44.mp4",
+          "video": "../P4/minimax_h3/videos/P4_sim_03_seed44.mp4",
+          "overlay": "../P4/eval_results/debug/P4_sim_03_seed44/overlay.mp4",
+          "plot": "../P4/eval_results/debug/P4_sim_03_seed44/trajectory_plot.png",
+          "json": "../P4/eval_results/json/P4__prompt_v2_20260826__P4_sim_03_seed44.json",
+          "extra": {
+            "extra": "../P4/eval_results/debug/P4_sim_03_seed44/keyframes.jpg",
+            "track_csv": "../P4/eval_results/debug/P4_sim_03_seed44/fused_track.csv"
+          }
+        },
+        "source_result_path": "P4/eval_results/json/P4__prompt_v2_20260826__P4_sim_03_seed44.json",
+        "source_result_sha256": "4297d38c600125c7dcb9037cee6599e1308070b66274e0670e843ab1577964e1"
+      }
+    },
+    {
+      "sample_id": "sample_23",
+      "video_path": "output_videos/minimax_h3/sample_23.mp4",
+      "source_video_path": "minimax_h3/videos/P4_sim_03_seed45.mp4",
+      "image_path": "first_frames/simulation/P4_sim_03.png",
+      "video_prompt": "A single continuous real-time shot from a locked-off, near-orthographic side camera, matching the input first frame.\n\nPreserve the exact apparatus, ball, electromagnetic holder, hard horizontal impact plate, camera view, framing, and background from the input first frame. Exactly one ball is initially motionless at its existing release position, directly above the impact plate.\n\nAt the beginning of the shot, the existing electromagnetic holder releases the ball cleanly without moving, falling, or following the ball. The ball then falls vertically under gravity, strikes the hard plate, and makes at least four clear consecutive bounces, with each rebound reaching a lower height than the previous one. All impacts occur at approximately the same horizontal position, with no noticeable sideways drift.\n\nThe complete motion remains visible inside the frame: the initial release point, every impact, every rebound apex, and the full ball must never be cropped or occluded. The ball remains exactly one intact sphere throughout the shot, without duplication, disappearance, morphing, or permanent deformation.\n\nThe holder, support frame, impact plate, table, background, and camera remain stationary. No camera movement, panning, zooming, cuts, slow motion, pauses, or time jumps. No hands or people. No additional balls, ghost images, motion trails, trajectory lines, arrows, measurements, annotations, or new objects. End shortly after the ball completes its fourth clearly visible rebound arc and returns to the plate.",
+      "model": "minimax-h3",
+      "model_folder": "minimax_h3",
+      "seed": 45,
+      "source_result": "eval_results/minimax_h3/result_P4__prompt_v2_20260826__P4_sim_03_seed45.json",
+      "previous_result": "work/g1_g9_v2_20260911/before/g3/P4/eval_results/minimax_h3/result_P4__prompt_v2_20260826__P4_sim_03_seed45.json",
+      "video_sha256": "7cbd045e9960287677876e7283f083b37dec70997b8578d110e646dd5a754371",
+      "image_sha256": "30bcd747efb046671747a785422fce43dd1a94a2fe5cbba02420f3c6f6a05a8f",
+      "source_metadata": {
+        "record_id": "P4:prompt_v2_20260826:P4_sim_03_seed45",
+        "sample_id": "P4_sim_03",
+        "video_id": "P4_sim_03_seed45",
+        "batch_id": "prompt_v2_20260826",
+        "source_method": "simulation",
+        "raw_metrics": {
+          "M1": 0.0763522703164764,
+          "M2": {
+            "height_decrease_checks": [
+              true,
+              true,
+              true
+            ],
+            "height_decrease_fraction": 1.0,
+            "adjacent_restitution_coefficient_cv": 0.08628581691583777
+          }
+        },
+        "metric_validity": {
+          "M1": true,
+          "M2": true
+        },
+        "diagnostic_status": {
+          "extract_success": true,
+          "structural_ok": true,
+          "measurement_valid": true
+        },
+        "failure_reason": null,
+        "warnings": [],
+        "artifacts": {
+          "raw": "../P4/minimax_h3/videos/P4_sim_03_seed45.mp4",
+          "video": "../P4/minimax_h3/videos/P4_sim_03_seed45.mp4",
+          "overlay": "../P4/eval_results/debug/P4_sim_03_seed45/overlay.mp4",
+          "plot": "../P4/eval_results/debug/P4_sim_03_seed45/trajectory_plot.png",
+          "json": "../P4/eval_results/json/P4__prompt_v2_20260826__P4_sim_03_seed45.json",
+          "extra": {
+            "extra": "../P4/eval_results/debug/P4_sim_03_seed45/keyframes.jpg",
+            "track_csv": "../P4/eval_results/debug/P4_sim_03_seed45/fused_track.csv"
+          }
+        },
+        "source_result_path": "P4/eval_results/json/P4__prompt_v2_20260826__P4_sim_03_seed45.json",
+        "source_result_sha256": "f0b015f2c008935348439482c190d14bdba7fdc314174164b3f839ef666f9fc1"
+      }
+    }
+  ]
+}

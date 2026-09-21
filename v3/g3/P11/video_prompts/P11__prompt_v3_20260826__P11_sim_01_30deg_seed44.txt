@@ -1,0 +1,13 @@
+A single continuous real-time shot from a locked-off, near-orthographic side camera, matching the input first frame.
+
+Preserve the existing transparent water tank, clear still water, laser source, support apparatus, camera view, framing, and background from the input first frame. The laser source is initially powered off. The laser source and its mount remain fixed in their existing position and orientation throughout the shot.
+
+After a brief initial still moment, the existing laser switches on and emits a steady, thin red incident beam from its existing aperture along its existing optical axis toward one fixed point on the calm air-water interface.
+
+At the same incidence point, exactly one reflected beam travels away through the air and exactly one refracted beam enters the water, both in physically correct directions. The incident, reflected, and refracted beam segments meet cleanly at the same point on the water surface and remain straight within their respective media.
+
+Keep the laser source, water surface, incidence point, and visible portions of all three light paths clearly inside the frame. Preserve the clean photographic appearance of the input frame, with the light remaining thin and sharp without excessive bloom or overexposure. The water surface remains still and horizontal.
+
+The apparatus, tank, water level, background, and camera remain stationary. No camera movement, cuts, slow motion, time jumps, people, or new objects. No normal line, angle markers, arrows, measurements, equations, numbers, labels, annotations, or disconnected light streaks.
+
+End after the three visible light paths have remained steady for a short moment.

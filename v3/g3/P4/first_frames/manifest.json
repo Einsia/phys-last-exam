@@ -1,0 +1,55 @@
+{
+  "schema_version": "physical-bench-delivery-v2",
+  "task_id": "P4",
+  "real_frames_included": false,
+  "records": [
+    {
+      "sample_id": "P4_gpt_01_modern",
+      "method": "gpt",
+      "path": "first_frames/gpt/P4_gpt_01_modern.png",
+      "source": "sop_delivery/P4/high_standard_v1/hybrid_run/images/P4_modern_mechanics_lab.png",
+      "bytes": 3429242,
+      "sha256": "75aa584e089c15e3767f2972e587f2854ecfa474e41623fefaf5e0772f790c90"
+    },
+    {
+      "sample_id": "P4_gpt_02_classic",
+      "method": "gpt",
+      "path": "first_frames/gpt/P4_gpt_02_classic.png",
+      "source": "sop_delivery/P4/high_standard_v1/hybrid_run/images/P4_classic_teaching_lab.png",
+      "bytes": 2709396,
+      "sha256": "62060ba0507d90f49df4ed2f9b7db68af68336607fca9bef09fefd688928256e"
+    },
+    {
+      "sample_id": "P4_gpt_03_industrial",
+      "method": "gpt",
+      "path": "first_frames/gpt/P4_gpt_03_industrial.png",
+      "source": "sop_delivery/P4/high_standard_v1/hybrid_run/images/P4_industrial_drop_test_bay.png",
+      "bytes": 2990807,
+      "sha256": "a5b86251c5da3e08cb42773788db859846b2f03b19048a5c1f73f3f5295f05dd"
+    },
+    {
+      "sample_id": "P4_sim_01",
+      "method": "simulation",
+      "path": "first_frames/simulation/P4_sim_01.png",
+      "source": "sop_delivery/P4/high_standard_v1/simulation/sim_01.png",
+      "bytes": 7090937,
+      "sha256": "6407f5a4c9b347d101b0f02ea7a238260ee2b93d345a4cdec1b45be5c4112ce6"
+    },
+    {
+      "sample_id": "P4_sim_02",
+      "method": "simulation",
+      "path": "first_frames/simulation/P4_sim_02.png",
+      "source": "sop_delivery/P4/high_standard_v1/simulation/sim_02.png",
+      "bytes": 7090937,
+      "sha256": "1770043062f58208637309f5bf2b97f87ce7e411c259099d35af0ce77047aeb9"
+    },
+    {
+      "sample_id": "P4_sim_03",
+      "method": "simulation",
+      "path": "first_frames/simulation/P4_sim_03.png",
+      "source": "sop_delivery/P4/high_standard_v1/simulation/sim_03.png",
+      "bytes": 7090937,
+      "sha256": "30bcd747efb046671747a785422fce43dd1a94a2fe5cbba02420f3c6f6a05a8f"
+    }
+  ]
+}

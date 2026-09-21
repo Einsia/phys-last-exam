@@ -1,0 +1,55 @@
+{
+  "schema_version": "physical-bench-delivery-v2",
+  "task_id": "P11",
+  "real_frames_included": false,
+  "records": [
+    {
+      "sample_id": "P11_gpt_01_30deg",
+      "method": "gpt",
+      "path": "first_frames/gpt/P11_gpt_01_30deg.png",
+      "source": "sop_delivery/P11/current_v3_laser_preaction_v5/one_to_one_20260826/30deg/gpt_optimized.png",
+      "bytes": 2308121,
+      "sha256": "9bc5008e0a46058780dd49c51b6e57157190befcfd51ba03ff7858d35bac8a63"
+    },
+    {
+      "sample_id": "P11_gpt_02_45deg",
+      "method": "gpt",
+      "path": "first_frames/gpt/P11_gpt_02_45deg.png",
+      "source": "sop_delivery/P11/current_v3_laser_preaction_v5/one_to_one_20260826/45deg/gpt_optimized.png",
+      "bytes": 4044940,
+      "sha256": "4c2726b7db408713eaf72e6d7a75a9e5bb6128fa9d85dcf8c2cff21e9edc50b5"
+    },
+    {
+      "sample_id": "P11_gpt_03_60deg",
+      "method": "gpt",
+      "path": "first_frames/gpt/P11_gpt_03_60deg.png",
+      "source": "sop_delivery/P11/current_v3_laser_preaction_v5/one_to_one_20260826/60deg/gpt_optimized.png",
+      "bytes": 2143677,
+      "sha256": "2854f43bef2e816c7533b2f4dc28b4b274f0c25897d3b8505d354555236d1f31"
+    },
+    {
+      "sample_id": "P11_sim_01_30deg",
+      "method": "simulation",
+      "path": "first_frames/simulation/P11_sim_01_30deg.png",
+      "source": "sop_delivery/P11/current_v3_laser_preaction_v5/one_to_one_20260826/30deg/simulation.png",
+      "bytes": 7090936,
+      "sha256": "ae8ddd427ff7677391dfd024e26262a3fcde0e0a86b225d399293834e0e85552"
+    },
+    {
+      "sample_id": "P11_sim_02_45deg",
+      "method": "simulation",
+      "path": "first_frames/simulation/P11_sim_02_45deg.png",
+      "source": "sop_delivery/P11/current_v3_laser_preaction_v5/one_to_one_20260826/45deg/simulation.png",
+      "bytes": 7090936,
+      "sha256": "73f633b8f97ece550796af98f5824fb3e3bf3b5ab21cb0d2beb2dfcdddaed83c"
+    },
+    {
+      "sample_id": "P11_sim_03_60deg",
+      "method": "simulation",
+      "path": "first_frames/simulation/P11_sim_03_60deg.png",
+      "source": "sop_delivery/P11/current_v3_laser_preaction_v5/one_to_one_20260826/60deg/simulation.png",
+      "bytes": 7090936,
+      "sha256": "bf3f30acc0472f8d54af3681a4163e65d4001037151b55a281476c3548760bb7"
+    }
+  ]
+}

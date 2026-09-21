@@ -1,0 +1,18 @@
+# Install a CUDA-compatible torch/torchvision build for the target machine first.
+torch>=2.5.1
+torchvision>=0.20.1
+transformers>=4.51,<6
+huggingface-hub>=0.30,<2
+av>=13,<19
+numpy>=1.26,<3
+opencv-python-headless>=4.10,<6
+matplotlib>=3.9,<4
+Pillow>=10
+PyYAML>=6
+scipy>=1.10
+hydra-core>=1.3.2,<2
+iopath>=0.1.10
+einops>=0.8
+# Official backends used by the G3 and P34 tasks.
+SAM-2 @ git+https://github.com/facebookresearch/sam2.git@2b90b9f5ceec907a1c18123530e92e794ad901a4
+cotracker @ git+https://github.com/facebookresearch/co-tracker.git@82e02e8029753ad4ef13cf06be7f4fc5facdda4d

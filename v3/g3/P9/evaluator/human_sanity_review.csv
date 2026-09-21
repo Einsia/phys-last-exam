@@ -1,0 +1,25 @@
+video,review_status,tracking_alignment,notes
+P9_gpt_01_modern_seed42.mp4,reviewed,PASS,Bob identities and pivot-to-bob overlays align at start midpoint and end; no identity swap observed.
+P9_gpt_01_modern_seed43.mp4,reviewed,PASS,Bob identities and pivot-to-bob overlays align at start midpoint and end; no identity swap observed.
+P9_gpt_01_modern_seed44.mp4,reviewed,PASS,Bob identities and pivot-to-bob overlays align at start midpoint and end; no identity swap observed.
+P9_gpt_01_modern_seed45.mp4,reviewed,PASS,Bob identities and pivot-to-bob overlays align at start midpoint and end; no identity swap observed.
+P9_gpt_02_classic_seed42.mp4,reviewed,PASS,Bob identities and pivot-to-bob overlays align at start midpoint and end; no identity swap observed.
+P9_gpt_02_classic_seed43.mp4,reviewed,PASS,Bob identities and pivot-to-bob overlays align at start midpoint and end; no identity swap observed.
+P9_gpt_02_classic_seed44.mp4,reviewed,PASS,Bob identities and pivot-to-bob overlays align at start midpoint and end; no identity swap observed.
+P9_gpt_02_classic_seed45.mp4,reviewed,PASS,Bob identities and pivot-to-bob overlays align at start midpoint and end; no identity swap observed.
+P9_gpt_03_industrial_seed42.mp4,reviewed,PASS,Bob identities and pivot-to-bob overlays align at start midpoint and end; no identity swap observed.
+P9_gpt_03_industrial_seed43.mp4,reviewed,PARTIAL_TRACK_DROPOUT_CORRECTLY_INVALIDATED,SAM2/CoTracker fusion loses the short bob during part of the clip; measurement_valid=false and M1=null as required. Sampled overlay endpoints remain aligned.
+P9_gpt_03_industrial_seed44.mp4,reviewed,PARTIAL_TRACK_DROPOUT_CORRECTLY_INVALIDATED,SAM2/CoTracker fusion loses the short bob during part of the clip; measurement_valid=false and M1=null as required. Sampled overlay endpoints remain aligned.
+P9_gpt_03_industrial_seed45.mp4,reviewed,PASS,Bob identities and pivot-to-bob overlays align at start midpoint and end; no identity swap observed.
+P9_sim_01_seed42.mp4,reviewed,PASS,Bob identities and pivot-to-bob overlays align at start midpoint and end; no identity swap observed.
+P9_sim_01_seed43.mp4,reviewed,PASS,Bob identities and pivot-to-bob overlays align at start midpoint and end; no identity swap observed.
+P9_sim_01_seed44.mp4,reviewed,PASS,Bob identities and pivot-to-bob overlays align at start midpoint and end; no identity swap observed.
+P9_sim_01_seed45.mp4,reviewed,PASS,Bob identities and pivot-to-bob overlays align at start midpoint and end; no identity swap observed.
+P9_sim_02_seed42.mp4,reviewed,PASS,Bob identities and pivot-to-bob overlays align at start midpoint and end; no identity swap observed.
+P9_sim_02_seed43.mp4,reviewed,PASS,Bob identities and pivot-to-bob overlays align at start midpoint and end; no identity swap observed.
+P9_sim_02_seed44.mp4,reviewed,PASS,Bob identities and pivot-to-bob overlays align at start midpoint and end; no identity swap observed.
+P9_sim_02_seed45.mp4,reviewed,PASS,Bob identities and pivot-to-bob overlays align at start midpoint and end; no identity swap observed.
+P9_sim_03_seed42.mp4,reviewed,PASS,Bob identities and pivot-to-bob overlays align at start midpoint and end; no identity swap observed.
+P9_sim_03_seed43.mp4,reviewed,PASS,Bob identities and pivot-to-bob overlays align at start midpoint and end; no identity swap observed.
+P9_sim_03_seed44.mp4,reviewed,PASS,Bob identities and pivot-to-bob overlays align at start midpoint and end; no identity swap observed.
+P9_sim_03_seed45.mp4,reviewed,PASS,Bob identities and pivot-to-bob overlays align at start midpoint and end; no identity swap observed.

@@ -1,0 +1,18 @@
+{
+  "samples": [
+    {
+      "sample_id": "sample_00",
+      "video_path": "output_videos/minimax_h3/sample_00.mp4",
+      "source_video_path": "output_videos/minimax_h3/sample_00.mp4",
+      "image_path": "first_frames/gpt/gpt_01.png",
+      "video_prompt": "Locked-off static camera, front view, matching the input first frame.\n\nA dense stone is completely frozen inside a piece of freshwater ice that initially floats freely in fresh water inside a transparent straight-walled container.\n\nThe ice remains at the water surface while it gradually melts completely and releases the stone. No solid ice remains by the end of the shot. The ice does not sink as an intact solid block; only the released stone sinks to the bottom of the container.\n\nNo water or other material is added or removed. The waterline and the stone remain clearly visible throughout the shot.\n\nThe camera does not move, pan, or zoom. Plain background, no unrelated objects.",
+      "model": "minimax_h3",
+      "model_folder": "minimax_h3",
+      "seed": null,
+      "source_result": "eval_results/minimax_h3/result_sample_00.json",
+      "previous_result": "work/g1_g9_v2_20260911/before/g5/P21b/eval_results/minimax_h3/result_sample_00.json",
+      "video_sha256": "480da7e24f10991239a17a77d03f2829a8752b4eaa6ba3268f5021a629a43655",
+      "image_sha256": "df69d7eee2dd7d4da3d23db2a85b0b7acca78774d045f1415db03e733073ac40"
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+av
+numpy
+opencv-python
+PyYAML
+scipy
+matplotlib
+torch
+transformers

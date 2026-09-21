@@ -1,0 +1,364 @@
+{
+  "schema_version": "1.0",
+  "task_id": "P6",
+  "method": "simulation_to_gpt_image_edit",
+  "status": "completed",
+  "mode": "execute",
+  "created_utc": "2026-08-24T15:10:55.581222+00:00",
+  "source": {
+    "role": "edit_target_and_physics_geometry_source",
+    "image": "external_materials/sop_delivery/P6/high_standard_v1/simulation/sim_01.png",
+    "image_sha256": "24161e92c4a129555b74cecefa365ae514182adcbc7e651b3f5fdda130805670",
+    "image_bytes": 7090937,
+    "metadata": {
+      "path": "external_materials/sop_delivery/P6/high_standard_v1/simulation/sim_01.json",
+      "sha256": "2d4abcffb048761d041d75532a3a800e1a12945aebfd2cb5cf92d05b842b2b60",
+      "task_id": "P6",
+      "candidate": 1,
+      "variant": {
+        "theme": "modern",
+        "name": "modern_university_lab",
+        "description": "Contemporary university laboratory, cool daylight and a right three-quarter camera.",
+        "index": 1
+      },
+      "physical_parameters": {
+        "ramp_angle_degrees": 20.0,
+        "ramp_length_m": 8.6,
+        "ramp_width_m": 1.88,
+        "ball_center_m": [
+          -2.170483,
+          0.0,
+          3.539669
+        ],
+        "ball_radius_m": 0.55,
+        "ball_ramp_contact_point_m": [
+          -2.358594,
+          0.0,
+          3.022838
+        ],
+        "gate_center_m": [
+          -1.671651,
+          -0.12,
+          3.155915
+        ],
+        "gate_thickness_m": 0.1,
+        "gate_width_m": 0.5,
+        "gate_lateral_center_m": -0.12,
+        "gate_ball_tangency_error_m": 1.04e-07,
+        "level_runout_length_m": 2.55
+      },
+      "hard_constraints": {
+        "exactly_one_ball": true,
+        "visibly_asymmetric_non_text_pattern": true,
+        "pattern_is_offset_band_plus_single_patch_not_face": true,
+        "ball_tangent_to_incline": true,
+        "thin_gate_tangent_and_holding_ball": true,
+        "gate_is_opaque_high_contrast_solid": true,
+        "ball_not_yet_rolling": true,
+        "complete_incline_visible": true,
+        "complete_level_runout_visible": true,
+        "text_arrows_formulas_trajectories_absent": true,
+        "motion_blur_absent": true
+      }
+    }
+  },
+  "prompt_set": {
+    "path": "external_materials/hybrid/prompt_sets/high_standard_v1/P6.json",
+    "sha256": "d656a03cd97538202e01e536ba62f696af4265fdca4f6c8be3a464cde8025ae9",
+    "version": "high-standard-v1"
+  },
+  "image_cli": {
+    "path": "external_materials/tools/image_gen.py",
+    "sha256": "c2cdb05244ad9a3dcb8731988790ea6a06a59ab3c062c0f872b35f4ad7d20b05",
+    "contract": "subprocess wrapper; bundled file is not modified"
+  },
+  "defaults": {
+    "model": "gpt-image-2",
+    "size": "2048x1152",
+    "quality": "high",
+    "background": "opaque",
+    "output_format": "png"
+  },
+  "records": [
+    {
+      "index": 1,
+      "id": "modern_dynamics_lab",
+      "intent": "Contemporary university dynamics laboratory with a realistic speckled marked ball and dark optical-grade incline.",
+      "source_variant": 1,
+      "source": {
+        "role": "edit_target_and_physics_geometry_source",
+        "image": "external_materials/sop_delivery/P6/high_standard_v1/simulation/sim_01.png",
+        "image_sha256": "24161e92c4a129555b74cecefa365ae514182adcbc7e651b3f5fdda130805670",
+        "image_bytes": 7090937,
+        "metadata": {
+          "path": "external_materials/sop_delivery/P6/high_standard_v1/simulation/sim_01.json",
+          "sha256": "2d4abcffb048761d041d75532a3a800e1a12945aebfd2cb5cf92d05b842b2b60",
+          "task_id": "P6",
+          "candidate": 1,
+          "variant": {
+            "theme": "modern",
+            "name": "modern_university_lab",
+            "description": "Contemporary university laboratory, cool daylight and a right three-quarter camera.",
+            "index": 1
+          },
+          "physical_parameters": {
+            "ramp_angle_degrees": 20.0,
+            "ramp_length_m": 8.6,
+            "ramp_width_m": 1.88,
+            "ball_center_m": [
+              -2.170483,
+              0.0,
+              3.539669
+            ],
+            "ball_radius_m": 0.55,
+            "ball_ramp_contact_point_m": [
+              -2.358594,
+              0.0,
+              3.022838
+            ],
+            "gate_center_m": [
+              -1.671651,
+              -0.12,
+              3.155915
+            ],
+            "gate_thickness_m": 0.1,
+            "gate_width_m": 0.5,
+            "gate_lateral_center_m": -0.12,
+            "gate_ball_tangency_error_m": 1.04e-07,
+            "level_runout_length_m": 2.55
+          },
+          "hard_constraints": {
+            "exactly_one_ball": true,
+            "visibly_asymmetric_non_text_pattern": true,
+            "pattern_is_offset_band_plus_single_patch_not_face": true,
+            "ball_tangent_to_incline": true,
+            "thin_gate_tangent_and_holding_ball": true,
+            "gate_is_opaque_high_contrast_solid": true,
+            "ball_not_yet_rolling": true,
+            "complete_incline_visible": true,
+            "complete_level_runout_visible": true,
+            "text_arrows_formulas_trajectories_absent": true,
+            "motion_blur_absent": true
+          }
+        }
+      },
+      "prompt_file": "external_materials/sop_delivery/P6/high_standard_v1/hybrid_run/prompts/modern_dynamics_lab.txt",
+      "prompt_sha256": "223e415069208517db8b6b290762acbff8f2908191bca33b72d3c6821052db79",
+      "output": "external_materials/sop_delivery/P6/high_standard_v1/hybrid_run/images/P6_modern_dynamics_lab.png",
+      "argv": [
+        "<external-path>",
+        "external_materials/tools/image_gen.py",
+        "edit",
+        "--image",
+        "external_materials/sop_delivery/P6/high_standard_v1/simulation/sim_01.png",
+        "--prompt-file",
+        "external_materials/sop_delivery/P6/high_standard_v1/hybrid_run/prompts/modern_dynamics_lab.txt",
+        "--model",
+        "gpt-image-2",
+        "--size",
+        "2048x1152",
+        "--quality",
+        "high",
+        "--background",
+        "opaque",
+        "--output-format",
+        "png",
+        "--out",
+        "external_materials/sop_delivery/P6/high_standard_v1/hybrid_run/images/P6_modern_dynamics_lab.png",
+        "--no-augment"
+      ],
+      "return_code": 0,
+      "stderr": "OPENAI_API_KEY is set.\nCalling Image API (edit) with 1 image(s).\nEdit completed in 45.4s.",
+      "status": "completed",
+      "output_sha256": "f8d7a6852248e4c0312f27ff71c113723e1371b07baa9d819b84677a8aa12303",
+      "output_bytes": 3568412
+    },
+    {
+      "index": 2,
+      "id": "classic_teaching_lab",
+      "intent": "Older university teaching apparatus with a worn timber-covered incline and an unmistakably asymmetric vintage ball.",
+      "source_variant": 2,
+      "source": {
+        "role": "edit_target_and_physics_geometry_source",
+        "image": "external_materials/sop_delivery/P6/high_standard_v1/simulation/sim_02.png",
+        "image_sha256": "4d2d462860c612bd816996115dac822f52bea18eab1de0016597f1adc791de95",
+        "image_bytes": 7090937,
+        "metadata": {
+          "path": "external_materials/sop_delivery/P6/high_standard_v1/simulation/sim_02.json",
+          "sha256": "7c7d8a60b76aa4825b5a75abb119510e746f5c22ea3cf885bad629d42a8cc0ca",
+          "task_id": "P6",
+          "candidate": 2,
+          "variant": {
+            "theme": "classic",
+            "name": "classic_teaching_lab",
+            "description": "Older teaching laboratory, warm window light and an opposite-side camera.",
+            "index": 2
+          },
+          "physical_parameters": {
+            "ramp_angle_degrees": 20.0,
+            "ramp_length_m": 8.6,
+            "ramp_width_m": 1.88,
+            "ball_center_m": [
+              -2.170483,
+              0.0,
+              3.539669
+            ],
+            "ball_radius_m": 0.55,
+            "ball_ramp_contact_point_m": [
+              -2.358594,
+              0.0,
+              3.022838
+            ],
+            "gate_center_m": [
+              -1.671651,
+              -0.12,
+              3.155915
+            ],
+            "gate_thickness_m": 0.1,
+            "gate_width_m": 0.5,
+            "gate_lateral_center_m": -0.12,
+            "gate_ball_tangency_error_m": 1.04e-07,
+            "level_runout_length_m": 2.55
+          },
+          "hard_constraints": {
+            "exactly_one_ball": true,
+            "visibly_asymmetric_non_text_pattern": true,
+            "pattern_is_offset_band_plus_single_patch_not_face": true,
+            "ball_tangent_to_incline": true,
+            "thin_gate_tangent_and_holding_ball": true,
+            "gate_is_opaque_high_contrast_solid": true,
+            "ball_not_yet_rolling": true,
+            "complete_incline_visible": true,
+            "complete_level_runout_visible": true,
+            "text_arrows_formulas_trajectories_absent": true,
+            "motion_blur_absent": true
+          }
+        }
+      },
+      "prompt_file": "external_materials/sop_delivery/P6/high_standard_v1/hybrid_run/prompts/classic_teaching_lab.txt",
+      "prompt_sha256": "70daf0f46022c1e80108827f6173157c4a6dcdcfcc91c1567776b3a8c7ea58ea",
+      "output": "external_materials/sop_delivery/P6/high_standard_v1/hybrid_run/images/P6_classic_teaching_lab.png",
+      "argv": [
+        "<external-path>",
+        "external_materials/tools/image_gen.py",
+        "edit",
+        "--image",
+        "external_materials/sop_delivery/P6/high_standard_v1/simulation/sim_02.png",
+        "--prompt-file",
+        "external_materials/sop_delivery/P6/high_standard_v1/hybrid_run/prompts/classic_teaching_lab.txt",
+        "--model",
+        "gpt-image-2",
+        "--size",
+        "2048x1152",
+        "--quality",
+        "high",
+        "--background",
+        "opaque",
+        "--output-format",
+        "png",
+        "--out",
+        "external_materials/sop_delivery/P6/high_standard_v1/hybrid_run/images/P6_classic_teaching_lab.png",
+        "--no-augment"
+      ],
+      "return_code": 0,
+      "stderr": "OPENAI_API_KEY is set.\nCalling Image API (edit) with 1 image(s).\nEdit completed in 61.4s.",
+      "status": "completed",
+      "output_sha256": "4033a01a9d97cdbb95eda668738808402a88acb26593e779a48548ae3ed5ed2f",
+      "output_bytes": 4396433
+    },
+    {
+      "index": 3,
+      "id": "industrial_roll_test_bay",
+      "intent": "Industrial rolling-resistance test bay with a high-visibility marked ball and full rugged test track.",
+      "source_variant": 3,
+      "source": {
+        "role": "edit_target_and_physics_geometry_source",
+        "image": "external_materials/sop_delivery/P6/high_standard_v1/simulation/sim_03.png",
+        "image_sha256": "1f874154076e30e6e5e0f01ce9e26f3268ca1bd389a941a8a5a3f8940353211d",
+        "image_bytes": 7090937,
+        "metadata": {
+          "path": "external_materials/sop_delivery/P6/high_standard_v1/simulation/sim_03.json",
+          "sha256": "24e2c29af929a23a5c0dbe7756ed1b9b233d3cc2f476e293ab8d68f0b3810b36",
+          "task_id": "P6",
+          "candidate": 3,
+          "variant": {
+            "theme": "industrial",
+            "name": "industrial_test_bay",
+            "description": "Full-scale industrial test bay, practical work lights and a near-frontal elevated camera.",
+            "index": 3
+          },
+          "physical_parameters": {
+            "ramp_angle_degrees": 20.0,
+            "ramp_length_m": 8.6,
+            "ramp_width_m": 1.88,
+            "ball_center_m": [
+              -2.170483,
+              0.0,
+              3.539669
+            ],
+            "ball_radius_m": 0.55,
+            "ball_ramp_contact_point_m": [
+              -2.358594,
+              0.0,
+              3.022838
+            ],
+            "gate_center_m": [
+              -1.671651,
+              -0.12,
+              3.155915
+            ],
+            "gate_thickness_m": 0.1,
+            "gate_width_m": 0.5,
+            "gate_lateral_center_m": -0.12,
+            "gate_ball_tangency_error_m": 1.04e-07,
+            "level_runout_length_m": 2.55
+          },
+          "hard_constraints": {
+            "exactly_one_ball": true,
+            "visibly_asymmetric_non_text_pattern": true,
+            "pattern_is_offset_band_plus_single_patch_not_face": true,
+            "ball_tangent_to_incline": true,
+            "thin_gate_tangent_and_holding_ball": true,
+            "gate_is_opaque_high_contrast_solid": true,
+            "ball_not_yet_rolling": true,
+            "complete_incline_visible": true,
+            "complete_level_runout_visible": true,
+            "text_arrows_formulas_trajectories_absent": true,
+            "motion_blur_absent": true
+          }
+        }
+      },
+      "prompt_file": "external_materials/sop_delivery/P6/high_standard_v1/hybrid_run/prompts/industrial_roll_test_bay.txt",
+      "prompt_sha256": "12f1b2f728e4fba1d72d111b3444b16649cdab264a0c56e3ce5f1d5c7d844d61",
+      "output": "external_materials/sop_delivery/P6/high_standard_v1/hybrid_run/images/P6_industrial_roll_test_bay.png",
+      "argv": [
+        "<external-path>",
+        "external_materials/tools/image_gen.py",
+        "edit",
+        "--image",
+        "external_materials/sop_delivery/P6/high_standard_v1/simulation/sim_03.png",
+        "--prompt-file",
+        "external_materials/sop_delivery/P6/high_standard_v1/hybrid_run/prompts/industrial_roll_test_bay.txt",
+        "--model",
+        "gpt-image-2",
+        "--size",
+        "2048x1152",
+        "--quality",
+        "high",
+        "--background",
+        "opaque",
+        "--output-format",
+        "png",
+        "--out",
+        "external_materials/sop_delivery/P6/high_standard_v1/hybrid_run/images/P6_industrial_roll_test_bay.png",
+        "--no-augment"
+      ],
+      "return_code": 0,
+      "stderr": "OPENAI_API_KEY is set.\nCalling Image API (edit) with 1 image(s).\nEdit completed in 84.0s.",
+      "status": "completed",
+      "output_sha256": "333464ccdf58b27fecbafdcc78ec2f429b5398381028f46aa8af3f561f8cff7f",
+      "output_bytes": 3980250
+    }
+  ],
+  "finished_utc": "2026-08-24T15:14:07.242434+00:00"
+}

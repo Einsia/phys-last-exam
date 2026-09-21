@@ -1,0 +1,102 @@
+{
+  "task_id": "P9",
+  "candidate": 1,
+  "variant": {
+    "name": "modern_blue_steel_lab",
+    "apparatus": "blue powder-coated rectangular steel test frame with machined steel pivots",
+    "environment": "bright contemporary university dynamics laboratory with cool softboxes",
+    "camera": "exact-front orthographic documentary view"
+  },
+  "method": "high_standard_procedural_simulation_v2",
+  "file": "external_materials/sop_delivery/P9/high_standard_v2/simulation/sim_01.png",
+  "width": 2048,
+  "height": 1152,
+  "sha256": "035eb5bd08368904c645453d52ea94868b6992d9b557ef56c7c96c0fe6974b09",
+  "renderer": "Blender Python 5.0.1 / cycles",
+  "samples": 16,
+  "elapsed_seconds": 3.552,
+  "camera": {
+    "type": "ORTHO",
+    "location": [
+      0.0,
+      -16.0,
+      3.7
+    ],
+    "optical_axis": [
+      0.0,
+      0.999472,
+      -0.032483
+    ],
+    "orthographic_scale": 12.25,
+    "lens_mm": 72.0,
+    "dof_enabled": false
+  },
+  "physical_parameters": {
+    "gravity_mps2": 9.81,
+    "initial_angle_to_vertical_degrees": 12.0,
+    "maximum_angle_mismatch_degrees": 0.0,
+    "short_length_m": 1.75,
+    "long_length_m": 3.5,
+    "length_ratio_short_to_long": "1:2",
+    "length_ratio_long_to_short": 2.0,
+    "pendulums": [
+      {
+        "index": 1,
+        "pivot_m": [
+          -2.4,
+          0.0,
+          5.46
+        ],
+        "bob_center_m": [
+          -2.036155,
+          0.0,
+          3.748242
+        ],
+        "string_length_m": 1.75,
+        "initial_angle_to_vertical_degrees": 12.0,
+        "initial_side": "right",
+        "initial_angular_velocity_rad_s": 0.0,
+        "bob_radius_m": 0.29,
+        "state": "stationary_pre_release_first_frame",
+        "small_angle_period_seconds": 2.653777
+      },
+      {
+        "index": 2,
+        "pivot_m": [
+          1.1,
+          0.0,
+          5.46
+        ],
+        "bob_center_m": [
+          1.827691,
+          0.0,
+          2.036484
+        ],
+        "string_length_m": 3.5,
+        "initial_angle_to_vertical_degrees": 12.0,
+        "initial_side": "right",
+        "initial_angular_velocity_rad_s": 0.0,
+        "bob_radius_m": 0.29,
+        "state": "stationary_pre_release_first_frame",
+        "small_angle_period_seconds": 3.753007
+      }
+    ]
+  },
+  "hard_constraints": {
+    "exactly_two_strings": true,
+    "exactly_two_identical_bobs": true,
+    "shared_rigid_beam": true,
+    "pivots_same_height": true,
+    "length_ratio_exactly_1_to_2": true,
+    "same_initial_angle_12_degrees": true,
+    "same_initial_side": true,
+    "both_stationary": true,
+    "visible_release_lines_catches_markers_absent": true,
+    "full_future_swing_space_in_frame": true,
+    "text_arrows_formulas_guide_arcs_absent": true
+  },
+  "external_assets": [],
+  "code": "external_materials/simulation/high_standard_p9_v2.py",
+  "code_sha256": "cc4d203eb8876efbaf43f2f6b9abf0ad9c2745abd1bc328dcc9adcac54923b85",
+  "created_at_utc": "2026-08-24T14:54:57.509704+00:00"
+}

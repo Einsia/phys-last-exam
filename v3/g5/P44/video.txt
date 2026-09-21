@@ -1,0 +1,11 @@
+A single continuous real-time shot from a locked-off, exact front near-orthographic camera, matching the input first frame.
+
+The input first frame captures the instant immediately after a temporary constraint has been removed. No hand, tool, magnet, or temporary support remains visible. The first and last links stay fixed to the two equal-height anchors, while the rest of the chain immediately begins moving freely under gravity from its existing non-equilibrium shape.
+
+Preserve the existing support frame, the two equal-height fixed anchors, the complete chain, its material and link structure, the camera view, framing, and background. The first and last links remain fixed to their existing anchors throughout the shot.
+
+The chain swings and oscillates naturally as the motion gradually damps, then settles into one smooth, stable, deep hanging shape. The chain remains one continuous flexible chain of rigid interlocked links, with unchanged total length. No link detaches, stretches, fuses, duplicates, disappears, or changes material.
+
+Keep the complete chain, both anchors, and the full motion visible inside the frame. The support frame, anchors, background, and camera remain stationary. No camera movement, cuts, slow motion, time jumps, hands, people, added supports, external forces, text, formulas, plotted curves, arrows, or annotations.
+
+End after the chain has settled and remained essentially motionless for a short moment.

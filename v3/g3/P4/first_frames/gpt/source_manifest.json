@@ -1,0 +1,316 @@
+{
+  "schema_version": "1.0",
+  "task_id": "P4",
+  "method": "simulation_to_gpt_image_edit",
+  "status": "completed",
+  "mode": "execute",
+  "created_utc": "2026-08-24T15:10:55.379825+00:00",
+  "source": {
+    "role": "edit_target_and_physics_geometry_source",
+    "image": "external_materials/sop_delivery/P4/high_standard_v1/simulation/sim_01.png",
+    "image_sha256": "6407f5a4c9b347d101b0f02ea7a238260ee2b93d345a4cdec1b45be5c4112ce6",
+    "image_bytes": 7090937,
+    "metadata": {
+      "path": "external_materials/sop_delivery/P4/high_standard_v1/simulation/sim_01.json",
+      "sha256": "942bd1846e8d3b69539a7506a5ae54844439bec040c25b4d28db8f1d021225ef",
+      "task_id": "P4",
+      "candidate": 1,
+      "variant": {
+        "theme": "modern",
+        "name": "modern_university_lab",
+        "description": "Contemporary university laboratory, cool daylight and a right three-quarter camera.",
+        "index": 1
+      },
+      "physical_parameters": {
+        "ball_center_m": [
+          -0.75,
+          -0.04,
+          4.92
+        ],
+        "ball_radius_m": 0.34,
+        "impact_plate_top_z_m": 0.64,
+        "clear_vertical_corridor_m": 3.94,
+        "magnet_center_m": [
+          -0.75,
+          -0.04,
+          5.44
+        ],
+        "magnet_depth_m": 0.36,
+        "magnet_ball_contact_error_m": 1.9e-08
+      },
+      "hard_constraints": {
+        "exactly_one_orange_rubber_ball": true,
+        "ball_held_by_small_electromagnetic_release": true,
+        "magnet_ball_contact_exact": true,
+        "ball_not_yet_released": true,
+        "complete_clear_fall_and_rebound_corridor_visible": true,
+        "complete_hard_impact_plate_visible": true,
+        "text_arrows_formulas_trajectories_absent": true,
+        "motion_blur_absent": true
+      }
+    }
+  },
+  "prompt_set": {
+    "path": "external_materials/hybrid/prompt_sets/high_standard_v1/P4.json",
+    "sha256": "da878a3c4be9384bd605e88b2d4322265a175bddd1eea5cd3ecca94a5af10384",
+    "version": "high-standard-v1"
+  },
+  "image_cli": {
+    "path": "external_materials/tools/image_gen.py",
+    "sha256": "c2cdb05244ad9a3dcb8731988790ea6a06a59ab3c062c0f872b35f4ad7d20b05",
+    "contract": "subprocess wrapper; bundled file is not modified"
+  },
+  "defaults": {
+    "model": "gpt-image-2",
+    "size": "2048x1152",
+    "quality": "high",
+    "background": "opaque",
+    "output_format": "png"
+  },
+  "records": [
+    {
+      "index": 1,
+      "id": "modern_mechanics_lab",
+      "intent": "Contemporary university mechanics laboratory with black-anodized release hardware and a real orange rubber ball.",
+      "source_variant": 1,
+      "source": {
+        "role": "edit_target_and_physics_geometry_source",
+        "image": "external_materials/sop_delivery/P4/high_standard_v1/simulation/sim_01.png",
+        "image_sha256": "6407f5a4c9b347d101b0f02ea7a238260ee2b93d345a4cdec1b45be5c4112ce6",
+        "image_bytes": 7090937,
+        "metadata": {
+          "path": "external_materials/sop_delivery/P4/high_standard_v1/simulation/sim_01.json",
+          "sha256": "942bd1846e8d3b69539a7506a5ae54844439bec040c25b4d28db8f1d021225ef",
+          "task_id": "P4",
+          "candidate": 1,
+          "variant": {
+            "theme": "modern",
+            "name": "modern_university_lab",
+            "description": "Contemporary university laboratory, cool daylight and a right three-quarter camera.",
+            "index": 1
+          },
+          "physical_parameters": {
+            "ball_center_m": [
+              -0.75,
+              -0.04,
+              4.92
+            ],
+            "ball_radius_m": 0.34,
+            "impact_plate_top_z_m": 0.64,
+            "clear_vertical_corridor_m": 3.94,
+            "magnet_center_m": [
+              -0.75,
+              -0.04,
+              5.44
+            ],
+            "magnet_depth_m": 0.36,
+            "magnet_ball_contact_error_m": 1.9e-08
+          },
+          "hard_constraints": {
+            "exactly_one_orange_rubber_ball": true,
+            "ball_held_by_small_electromagnetic_release": true,
+            "magnet_ball_contact_exact": true,
+            "ball_not_yet_released": true,
+            "complete_clear_fall_and_rebound_corridor_visible": true,
+            "complete_hard_impact_plate_visible": true,
+            "text_arrows_formulas_trajectories_absent": true,
+            "motion_blur_absent": true
+          }
+        }
+      },
+      "prompt_file": "external_materials/sop_delivery/P4/high_standard_v1/hybrid_run/prompts/modern_mechanics_lab.txt",
+      "prompt_sha256": "6619b32631768ec7b9ce93fe5ec561b67901000cfe093ed7ecb249f4189b73d0",
+      "output": "external_materials/sop_delivery/P4/high_standard_v1/hybrid_run/images/P4_modern_mechanics_lab.png",
+      "argv": [
+        "<external-path>",
+        "external_materials/tools/image_gen.py",
+        "edit",
+        "--image",
+        "external_materials/sop_delivery/P4/high_standard_v1/simulation/sim_01.png",
+        "--prompt-file",
+        "external_materials/sop_delivery/P4/high_standard_v1/hybrid_run/prompts/modern_mechanics_lab.txt",
+        "--model",
+        "gpt-image-2",
+        "--size",
+        "2048x1152",
+        "--quality",
+        "high",
+        "--background",
+        "opaque",
+        "--output-format",
+        "png",
+        "--out",
+        "external_materials/sop_delivery/P4/high_standard_v1/hybrid_run/images/P4_modern_mechanics_lab.png",
+        "--no-augment"
+      ],
+      "return_code": 0,
+      "stderr": "OPENAI_API_KEY is set.\nCalling Image API (edit) with 1 image(s).\nEdit completed in 96.9s.",
+      "status": "completed",
+      "output_sha256": "75aa584e089c15e3767f2972e587f2854ecfa474e41623fefaf5e0772f790c90",
+      "output_bytes": 3429242
+    },
+    {
+      "index": 2,
+      "id": "classic_teaching_lab",
+      "intent": "Older well-used university teaching laboratory with aged steel release hardware and a worn stone plate.",
+      "source_variant": 2,
+      "source": {
+        "role": "edit_target_and_physics_geometry_source",
+        "image": "external_materials/sop_delivery/P4/high_standard_v1/simulation/sim_02.png",
+        "image_sha256": "1770043062f58208637309f5bf2b97f87ce7e411c259099d35af0ce77047aeb9",
+        "image_bytes": 7090937,
+        "metadata": {
+          "path": "external_materials/sop_delivery/P4/high_standard_v1/simulation/sim_02.json",
+          "sha256": "18449fa60c7c13c49e8bd7630695b41a15049680a74e5f3bb39a3232295b789f",
+          "task_id": "P4",
+          "candidate": 2,
+          "variant": {
+            "theme": "classic",
+            "name": "classic_teaching_lab",
+            "description": "Older teaching laboratory, warm window light and an opposite-side camera.",
+            "index": 2
+          },
+          "physical_parameters": {
+            "ball_center_m": [
+              -0.75,
+              -0.04,
+              4.92
+            ],
+            "ball_radius_m": 0.34,
+            "impact_plate_top_z_m": 0.64,
+            "clear_vertical_corridor_m": 3.94,
+            "magnet_center_m": [
+              -0.75,
+              -0.04,
+              5.44
+            ],
+            "magnet_depth_m": 0.36,
+            "magnet_ball_contact_error_m": 1.9e-08
+          },
+          "hard_constraints": {
+            "exactly_one_orange_rubber_ball": true,
+            "ball_held_by_small_electromagnetic_release": true,
+            "magnet_ball_contact_exact": true,
+            "ball_not_yet_released": true,
+            "complete_clear_fall_and_rebound_corridor_visible": true,
+            "complete_hard_impact_plate_visible": true,
+            "text_arrows_formulas_trajectories_absent": true,
+            "motion_blur_absent": true
+          }
+        }
+      },
+      "prompt_file": "external_materials/sop_delivery/P4/high_standard_v1/hybrid_run/prompts/classic_teaching_lab.txt",
+      "prompt_sha256": "25de574feb71766e2d98429c1deda249cd589e9d4c99299f1748d14f60722324",
+      "output": "external_materials/sop_delivery/P4/high_standard_v1/hybrid_run/images/P4_classic_teaching_lab.png",
+      "argv": [
+        "<external-path>",
+        "external_materials/tools/image_gen.py",
+        "edit",
+        "--image",
+        "external_materials/sop_delivery/P4/high_standard_v1/simulation/sim_02.png",
+        "--prompt-file",
+        "external_materials/sop_delivery/P4/high_standard_v1/hybrid_run/prompts/classic_teaching_lab.txt",
+        "--model",
+        "gpt-image-2",
+        "--size",
+        "2048x1152",
+        "--quality",
+        "high",
+        "--background",
+        "opaque",
+        "--output-format",
+        "png",
+        "--out",
+        "external_materials/sop_delivery/P4/high_standard_v1/hybrid_run/images/P4_classic_teaching_lab.png",
+        "--no-augment"
+      ],
+      "return_code": 0,
+      "stderr": "OPENAI_API_KEY is set.\nCalling Image API (edit) with 1 image(s).\nEdit completed in 97.6s.",
+      "status": "completed",
+      "output_sha256": "62060ba0507d90f49df4ed2f9b7db68af68336607fca9bef09fefd688928256e",
+      "output_bytes": 2709396
+    },
+    {
+      "index": 3,
+      "id": "industrial_drop_test_bay",
+      "intent": "Full-scale industrial impact-test room with navy structural hardware and a dense black impact platen.",
+      "source_variant": 3,
+      "source": {
+        "role": "edit_target_and_physics_geometry_source",
+        "image": "external_materials/sop_delivery/P4/high_standard_v1/simulation/sim_03.png",
+        "image_sha256": "30bcd747efb046671747a785422fce43dd1a94a2fe5cbba02420f3c6f6a05a8f",
+        "image_bytes": 7090937,
+        "metadata": {
+          "path": "external_materials/sop_delivery/P4/high_standard_v1/simulation/sim_03.json",
+          "sha256": "88816b8a52b509e67494d58f10ad2eafbe7d114cbfb73eda53c68fef7c5324f8",
+          "task_id": "P4",
+          "candidate": 3,
+          "variant": {
+            "theme": "industrial",
+            "name": "industrial_test_bay",
+            "description": "Full-scale industrial test bay, practical work lights and a near-frontal elevated camera.",
+            "index": 3
+          },
+          "physical_parameters": {
+            "ball_center_m": [
+              -0.75,
+              -0.04,
+              4.92
+            ],
+            "ball_radius_m": 0.34,
+            "impact_plate_top_z_m": 0.64,
+            "clear_vertical_corridor_m": 3.94,
+            "magnet_center_m": [
+              -0.75,
+              -0.04,
+              5.44
+            ],
+            "magnet_depth_m": 0.36,
+            "magnet_ball_contact_error_m": 1.9e-08
+          },
+          "hard_constraints": {
+            "exactly_one_orange_rubber_ball": true,
+            "ball_held_by_small_electromagnetic_release": true,
+            "magnet_ball_contact_exact": true,
+            "ball_not_yet_released": true,
+            "complete_clear_fall_and_rebound_corridor_visible": true,
+            "complete_hard_impact_plate_visible": true,
+            "text_arrows_formulas_trajectories_absent": true,
+            "motion_blur_absent": true
+          }
+        }
+      },
+      "prompt_file": "external_materials/sop_delivery/P4/high_standard_v1/hybrid_run/prompts/industrial_drop_test_bay.txt",
+      "prompt_sha256": "ef37bf4505417d0fa7ca28024e7a5293b6167284824b50fed7b72409c3096f0c",
+      "output": "external_materials/sop_delivery/P4/high_standard_v1/hybrid_run/images/P4_industrial_drop_test_bay.png",
+      "argv": [
+        "<external-path>",
+        "external_materials/tools/image_gen.py",
+        "edit",
+        "--image",
+        "external_materials/sop_delivery/P4/high_standard_v1/simulation/sim_03.png",
+        "--prompt-file",
+        "external_materials/sop_delivery/P4/high_standard_v1/hybrid_run/prompts/industrial_drop_test_bay.txt",
+        "--model",
+        "gpt-image-2",
+        "--size",
+        "2048x1152",
+        "--quality",
+        "high",
+        "--background",
+        "opaque",
+        "--output-format",
+        "png",
+        "--out",
+        "external_materials/sop_delivery/P4/high_standard_v1/hybrid_run/images/P4_industrial_drop_test_bay.png",
+        "--no-augment"
+      ],
+      "return_code": 0,
+      "stderr": "OPENAI_API_KEY is set.\nCalling Image API (edit) with 1 image(s).\nEdit completed in 95.9s.",
+      "status": "completed",
+      "output_sha256": "a5b86251c5da3e08cb42773788db859846b2f03b19048a5c1f73f3f5295f05dd",
+      "output_bytes": 2990807
+    }
+  ],
+  "finished_utc": "2026-08-24T15:15:46.467599+00:00"
+}

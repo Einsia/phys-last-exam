@@ -1,0 +1,9 @@
+Locked-off static camera, front view, matching the input first frame.
+
+A piece of pure freshwater ice initially floats freely in fresh water inside a transparent straight-walled glass. The ice remains floating at the water surface while it gradually melts completely, leaving no solid ice by the end of the shot. It does not sink as an intact solid block.
+
+There is no overflow, visible evaporation, or addition or removal of liquid or material. The initial and final water levels remain clearly visible.
+
+The camera does not move, pan, or zoom. Plain background, no unrelated objects.
+
+Throughout the clip the water keeps the same distinctly light cyan-blue tint it has in the first frame and the ice stays opaque white, so the waterline and the ice are never confusable. The wall behind the glass stays one flat tone, with no dark horizontal band appearing behind or across the beaker at any time. Nothing else in the scene takes on that blue.

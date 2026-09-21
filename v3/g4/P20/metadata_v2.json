@@ -1,0 +1,64 @@
+{
+  "samples": [
+    {
+      "sample_id": "sample_00",
+      "video_path": "output_videos/minimax_h3/sample_00.mp4",
+      "source_video_path": "output_videos/minimax_h3/sample_00.mp4",
+      "image_path": "first_frames/gpt/gpt_01.png",
+      "video_prompt": "Locked-off static camera, front view, matching the input first frame.\n\nA uniform vertical rectangular block of pure freshwater ice is initially motionless at its existing immersion depth in fresh water inside a transparent straight-walled container.\n\nAfter a brief still moment, the ice is released from its existing position and moves freely under gravity and buoyancy until its motion naturally settles. No support, attachment, or external force acts on the ice after release.\n\nThe ice remains one intact upright rectangular block and does not melt, deform, or touch the container walls or bottom. Keep the complete ice block, waterline, and container visible throughout the shot.\n\nThe container, background, and camera remain stationary. No camera movement, cuts, people, new objects, labels, arrows, or annotations.\n\nEnd after the motion has settled for a short moment.",
+      "model": "minimax-h3",
+      "model_folder": "minimax_h3",
+      "seed": 42,
+      "source_result": "eval_results/minimax_h3/result_sample_00.json",
+      "previous_result": "work/g1_g9_v2_20260911/before/g4/P20/eval_results/minimax_h3/result_sample_00.json",
+      "video_sha256": "d3d2f42d8d35511dfc172127b42ded6929dc89b5d23fa5e9583b91f3070769de",
+      "image_sha256": "d807f5ac827e00a572521fc2dfa0bd61f1d2338db5ab4f26df4232769373d00e",
+      "route": "gpt"
+    },
+    {
+      "sample_id": "sample_01",
+      "video_path": "output_videos/minimax_h3/sample_01.mp4",
+      "source_video_path": "output_videos/minimax_h3/sample_01.mp4",
+      "image_path": "first_frames/gpt/gpt_01.png",
+      "video_prompt": "Locked-off static camera, front view, matching the input first frame.\n\nA uniform vertical rectangular block of pure freshwater ice is initially motionless at its existing immersion depth in fresh water inside a transparent straight-walled container.\n\nAfter a brief still moment, the ice is released from its existing position and moves freely under gravity and buoyancy until its motion naturally settles. No support, attachment, or external force acts on the ice after release.\n\nThe ice remains one intact upright rectangular block and does not melt, deform, or touch the container walls or bottom. Keep the complete ice block, waterline, and container visible throughout the shot.\n\nThe container, background, and camera remain stationary. No camera movement, cuts, people, new objects, labels, arrows, or annotations.\n\nEnd after the motion has settled for a short moment.",
+      "model": "minimax-h3",
+      "model_folder": "minimax_h3",
+      "seed": 43,
+      "source_result": "eval_results/minimax_h3/result_sample_01.json",
+      "previous_result": "work/g1_g9_v2_20260911/before/g4/P20/eval_results/minimax_h3/result_sample_01.json",
+      "video_sha256": "31b0f9bf114501b680bcb42d4baed80c4dc9d42d4e47b17d277342b41da4b1e4",
+      "image_sha256": "d807f5ac827e00a572521fc2dfa0bd61f1d2338db5ab4f26df4232769373d00e",
+      "route": "gpt"
+    },
+    {
+      "sample_id": "sample_02",
+      "video_path": "output_videos/minimax_h3/sample_02.mp4",
+      "source_video_path": "output_videos/minimax_h3/sample_02.mp4",
+      "image_path": "first_frames/gpt/gpt_01.png",
+      "video_prompt": "Locked-off static camera, front view, matching the input first frame.\n\nA uniform vertical rectangular block of pure freshwater ice is initially motionless at its existing immersion depth in fresh water inside a transparent straight-walled container.\n\nAfter a brief still moment, the ice is released from its existing position and moves freely under gravity and buoyancy until its motion naturally settles. No support, attachment, or external force acts on the ice after release.\n\nThe ice remains one intact upright rectangular block and does not melt, deform, or touch the container walls or bottom. Keep the complete ice block, waterline, and container visible throughout the shot.\n\nThe container, background, and camera remain stationary. No camera movement, cuts, people, new objects, labels, arrows, or annotations.\n\nEnd after the motion has settled for a short moment.",
+      "model": "minimax-h3",
+      "model_folder": "minimax_h3",
+      "seed": 44,
+      "source_result": "eval_results/minimax_h3/result_sample_02.json",
+      "previous_result": "work/g1_g9_v2_20260911/before/g4/P20/eval_results/minimax_h3/result_sample_02.json",
+      "video_sha256": "c0f0518b9f32542ce645731d99ab371f3c73cf3b4fa7c67edcffb0c81c817785",
+      "image_sha256": "d807f5ac827e00a572521fc2dfa0bd61f1d2338db5ab4f26df4232769373d00e",
+      "route": "gpt"
+    },
+    {
+      "sample_id": "sample_03",
+      "video_path": "output_videos/minimax_h3/sample_03.mp4",
+      "source_video_path": "output_videos/minimax_h3/sample_03.mp4",
+      "image_path": "first_frames/gpt/gpt_01.png",
+      "video_prompt": "Locked-off static camera, front view, matching the input first frame.\n\nA uniform vertical rectangular block of pure freshwater ice is initially motionless at its existing immersion depth in fresh water inside a transparent straight-walled container.\n\nAfter a brief still moment, the ice is released from its existing position and moves freely under gravity and buoyancy until its motion naturally settles. No support, attachment, or external force acts on the ice after release.\n\nThe ice remains one intact upright rectangular block and does not melt, deform, or touch the container walls or bottom. Keep the complete ice block, waterline, and container visible throughout the shot.\n\nThe container, background, and camera remain stationary. No camera movement, cuts, people, new objects, labels, arrows, or annotations.\n\nEnd after the motion has settled for a short moment.",
+      "model": "minimax-h3",
+      "model_folder": "minimax_h3",
+      "seed": 45,
+      "source_result": "eval_results/minimax_h3/result_sample_03.json",
+      "previous_result": "work/g1_g9_v2_20260911/before/g4/P20/eval_results/minimax_h3/result_sample_03.json",
+      "video_sha256": "c5c6f1a73048da21c5ade5622730ed89ff9d8d6ace816e6b22322b924b38bdbb",
+      "image_sha256": "d807f5ac827e00a572521fc2dfa0bd61f1d2338db5ab4f26df4232769373d00e",
+      "route": "gpt"
+    }
+  ]
+}

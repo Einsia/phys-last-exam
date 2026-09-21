@@ -1,0 +1,13 @@
+A single continuous real-time shot from a locked-off static side camera, matching the input first frame.
+
+Preserve the existing transparent tank, clear still fresh water, laser source, support apparatus, framing, and background. The laser source and its mount remain completely stationary.
+
+The laser is initially switched off. After a brief still moment, it switches on and emits a thin, clearly visible red beam along its existing optical axis. The beam travels through the air and enters the water obliquely at one fixed point on the flat air-water interface.
+
+Exactly one incident ray in the air and one refracted ray in the water are clearly visible. They meet cleanly and continuously at the same point of incidence and remain straight within their respective media. The flat air-water interface, point of incidence, and a thin stationary interface normal perpendicular to the water surface at that point are all clearly visible.
+
+The light remains thin and sharp without excessive bloom or overexposure. The water surface remains still and horizontal. Preserve the clean photographic appearance and existing uncluttered background of the input frame.
+
+No camera movement, panning, zooming, cuts, slow motion, or time jumps. No people, hands, angle arcs, arrows, measurements, equations, numbers, labels, or annotations other than the interface normal.
+
+End after the visible optical behavior has remained stable for a short moment.

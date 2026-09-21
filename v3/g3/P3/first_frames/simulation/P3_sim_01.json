@@ -1,0 +1,111 @@
+{
+  "task_id": "P3",
+  "candidate": 1,
+  "method": "procedural_simulation",
+  "variant": {
+    "name": "parallel_aluminum_front30_back60",
+    "description": "Two parallel aluminum landing lanes sharing one x start line.",
+    "camera": "orthographic side elevation with 10 degree downward pitch",
+    "layout": "front lane 30 degrees, rear lane 60 degrees; both launch toward +x"
+  },
+  "file": "external_materials/sop_delivery/P3/high_standard_v1/simulation/sim_01.png",
+  "width": 2048,
+  "height": 1152,
+  "sha256": "78344e452d3ad4729260a6e9ede69b42cf55aae3d4ded42c2c3bc3cbeeda93aa",
+  "renderer": "Blender Python 5.0.1 / cycles",
+  "samples": 64,
+  "elapsed_seconds": 4.669,
+  "camera": {
+    "type": "ORTHO",
+    "location": [
+      0.35,
+      -16.741732,
+      5.552019
+    ],
+    "rotation_euler_degrees": [
+      79.999998,
+      0.0,
+      0.0
+    ],
+    "optical_axis": [
+      0.0,
+      0.984808,
+      -0.173648
+    ],
+    "image_up": [
+      0.0,
+      0.173648,
+      0.984808
+    ],
+    "image_right": [
+      1.0,
+      0.0,
+      0.0
+    ],
+    "downward_pitch_degrees": 10.000002,
+    "x_direction_yaw_degrees": 0.0,
+    "roll_degrees": 0.0,
+    "dof_enabled": false
+  },
+  "launchers": [
+    {
+      "name": "v1_front_30deg",
+      "angle_degrees": 30.0,
+      "horizontal_direction": "right",
+      "ball_center": [
+        -4.35,
+        -1.6,
+        1.33
+      ],
+      "ball_radius": 0.18,
+      "barrel_length": 0.92,
+      "nominal_speed_mps": 7.0,
+      "relative_launch_height": 0.18
+    },
+    {
+      "name": "v1_back_60deg",
+      "angle_degrees": 60.0,
+      "horizontal_direction": "right",
+      "ball_center": [
+        -4.35,
+        1.6,
+        1.33
+      ],
+      "ball_radius": 0.18,
+      "barrel_length": 0.92,
+      "nominal_speed_mps": 7.0,
+      "relative_launch_height": 0.18
+    }
+  ],
+  "physical_parameters": {
+    "gravity_mps2": 9.81,
+    "same_nominal_initial_speed_mps": 7.0,
+    "expected_level_ground_ranges_m": {
+      "30": 4.325713,
+      "60": 4.325713
+    }
+  },
+  "hard_constraints": {
+    "angles_present_degrees": [
+      30,
+      60
+    ],
+    "identical_balls": true,
+    "identical_launchers": true,
+    "same_initial_speed": true,
+    "same_relative_launch_height": true,
+    "common_x_start_line": true,
+    "two_y_separated_parallel_lanes": true,
+    "both_launch_toward_positive_x": true,
+    "ball_bottom_tangent_to_lane_top": true,
+    "controlled_side_elevation_degrees": 10.000002,
+    "zero_x_direction_yaw": true,
+    "zero_camera_roll": true,
+    "full_future_flight_and_landing_space": true,
+    "text_arrows_formulas_trajectories_absent": true
+  },
+  "external_assets": [],
+  "code": "external_materials/sop_delivery/P3/first_frames/simulation/code/p3_sop_variants.py",
+  "code_sha256": "81b8d05deac2086614ce84089d932559d581711cd0d90d316fe53aea17d4e97b",
+  "created_utc": "2026-08-24T14:39:33.102799+00:00"
+}

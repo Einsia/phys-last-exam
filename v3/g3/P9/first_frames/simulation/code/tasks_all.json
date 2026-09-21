@@ -1,0 +1,1944 @@
+{
+  "schema_version": 1,
+  "task_definition": "one conceptual task per non-header row in physical-bench/prompt.txt",
+  "task_count": 54,
+  "method_count": 3,
+  "expected_source_images": 162,
+  "canvas": {
+    "width": 1344,
+    "height": 768,
+    "aspect_ratio": "16:9"
+  },
+  "methods": [
+    "simulation",
+    "gpt_image_2",
+    "web"
+  ],
+  "shared_acceptance": [
+    "image is sharp and the required apparatus is fully visible",
+    "scene resembles a real experiment rather than a toy or diagram",
+    "initial contacts, supports, liquid levels and geometry obey physical logic",
+    "there is enough unobstructed space for the future motion or state change",
+    "no text, labels, arrows, formulas, trajectory overlays, watermark or logo"
+  ],
+  "tasks": [
+    {
+      "id": "P1",
+      "priority_stars": 0,
+      "domain": "力学",
+      "scene_raw": "单个致密球从静止释放、侧视、纯色背景",
+      "measurement": "连续时间段位移比；不同时间总位移比",
+      "theory": "ΔX1:ΔX2:ΔX3 = 1:3:5；X(N)/X(2N) = 1/4",
+      "slug": "P1_free_fall",
+      "first_frame_en": "Photorealistic side-view university mechanics experiment. One dense matte metal sphere is held perfectly still by a tiny electromagnetic release at the top center of a tall open drop zone, against a uniform nonreflective light-gray backdrop. Show the complete sphere, the release tip, and a long unobstructed vertical fall corridor ending in a shallow dark catch tray near the bottom edge. The camera is level and orthographic-looking, the sphere edge is crisp, and the initial frame is clearly before release.",
+      "simulation_recipe": "Build a tall 16:9 side-view scene with a uniform cyclorama background, one high-density sphere near y=+3 m, a minimal electromagnet above it, and a thin catch tray near y=-3 m. Use an orthographic camera perpendicular to the motion plane, even area lighting, high-contrast materials, gravity downward, and release the rigid sphere at frame 2 with zero initial velocity.",
+      "required_objects": [
+        "one dense spherical ball",
+        "minimal contactless release mechanism",
+        "uniform plain backdrop",
+        "low-profile catch tray"
+      ],
+      "camera_view": "Locked orthographic side view, optical axis perpendicular to the vertical motion plane.",
+      "future_motion_space": "At least five ball diameters of empty vertical space below the release point; the entire descent remains inside frame.",
+      "negative_constraints": [
+        "no hand or person",
+        "no second ball",
+        "no motion blur in the first frame",
+        "no ruler text, formulas, arrows, trajectory, or labels",
+        "no patterned or cluttered background",
+        "no guide tube touching the ball",
+        "no toy-like rendering"
+      ],
+      "web_queries": [
+        "free fall metal ball electromagnet release experiment side view",
+        "university physics free fall ball drop apparatus plain background",
+        "dense sphere vertical drop experiment high speed camera",
+        "free falling ball laboratory demonstration side profile",
+        "electromagnetic ball release free fall lab setup"
+      ]
+    },
+    {
+      "id": "P2",
+      "priority_stars": 1,
+      "domain": "力学",
+      "scene_raw": "小球以指定角度斜抛",
+      "measurement": "顶点高度 H / 射程 R；上升 / 下降帧数",
+      "theory": "H/R = tan(θ)/4；N_up/N_down = 1",
+      "slug": "P2_projectile",
+      "first_frame_en": "Photorealistic university projectile-motion experiment in a strict side view. A single matte red ball sits motionless at the muzzle of a compact mechanical launcher set to a clearly visible oblique angle of about 45 degrees, near the lower-left of a long level landing surface. The ball is not yet launched. Show the complete launcher, the launch point, the horizontal ground plane, and abundant clean space above and to the right for the full parabolic flight and landing. Neutral laboratory background, crisp edges, realistic scale.",
+      "simulation_recipe": "Create a long horizontal floor, one compact pivoting launcher at the far left with its barrel at 45 degrees, and one high-contrast sphere resting at the muzzle. Use a locked side orthographic camera. Add a subtle hinge and support base so the angle is physically legible without text. At frame 2 apply an impulse along the barrel; leave the full ballistic arc and landing point visible.",
+      "required_objects": [
+        "one small high-contrast ball",
+        "adjustable angled launcher",
+        "level landing surface",
+        "visible launch point"
+      ],
+      "camera_view": "Locked side view with minimal perspective distortion and the flight plane parallel to the image plane.",
+      "future_motion_space": "Large empty region above and to the right of the muzzle, including the apex and the complete landing range.",
+      "negative_constraints": [
+        "no hand or person",
+        "no ball already in flight",
+        "no multiple balls or stroboscopic copies",
+        "no drawn parabola, arrow, angle text, formula, or labels",
+        "no cropped landing surface",
+        "no visual obstruction in front of the ball",
+        "no toy-like launcher"
+      ],
+      "web_queries": [
+        "projectile motion ball launcher laboratory experiment side view",
+        "angled projectile launcher physics lab ball setup",
+        "ballistic projectile range experiment university laboratory",
+        "projectile motion apparatus ball launch 45 degree",
+        "mechanical projectile launcher ball trajectory experiment side profile"
+      ]
+    },
+    {
+      "id": "P3",
+      "priority_stars": 0,
+      "domain": "力学",
+      "scene_raw": "同类物体分别以 30°/45°/60° 发射",
+      "measurement": "不同角度的射程比",
+      "theory": "R(θ1)/R(θ2) = sin(2θ1)/sin(2θ2)",
+      "slug": "P3_three_launch_angles",
+      "first_frame_en": "One photorealistic wide university physics scene containing three complete, identical projectile rigs simultaneously in the same frame. Arrange three parallel launch lanes side by side on one long level bench, viewed from a high, nearly side-on oblique angle so each lane has a measurable horizontal range. Each rig has the same compact launcher and the same matte ball held motionless at equal launch height; the three barrels are visibly set to 30 degrees, 45 degrees, and 60 degrees. All three balls are present before synchronized release, and every lane has an unobstructed landing strip.",
+      "simulation_recipe": "Construct three identical long lanes parallel in depth, separated enough to avoid occlusion. Place identical launchers at the same x coordinate and height, rotate barrels in the common vertical plane to 30, 45, and 60 degrees, and place one equal sphere at each muzzle. Use a high side-oblique camera with low perspective distortion that keeps all three lanes fully visible. Apply equal launch speeds simultaneously at frame 2.",
+      "required_objects": [
+        "three identical balls",
+        "three identical adjustable launchers",
+        "three parallel level landing lanes",
+        "common rigid support bench"
+      ],
+      "camera_view": "Locked elevated side-oblique view that shows all three parallel flight planes and full landing ranges without overlap.",
+      "future_motion_space": "A complete clear ballistic envelope above each lane and enough horizontal length for the longest of the three ranges.",
+      "negative_constraints": [
+        "do not split into separate images",
+        "no missing 30, 45, or 60 degree condition",
+        "no different ball sizes, launch heights, or launcher strengths",
+        "no people or hands",
+        "no trajectories, arrows, angle numerals, formulas, or labels",
+        "no lane occlusion",
+        "no cropped landing points",
+        "no toy-like styling"
+      ],
+      "web_queries": [
+        "projectile range experiment 30 45 60 degrees three launch angles",
+        "projectile launcher different angles range comparison laboratory",
+        "same speed projectile motion angle comparison experiment",
+        "30 degree 45 degree 60 degree projectile physics lab",
+        "multiple angle ball launcher range demonstration"
+      ]
+    },
+    {
+      "id": "P4",
+      "priority_stars": 1,
+      "domain": "力学",
+      "scene_raw": "橡胶球落在硬地上连续弹跳 ≥4 次",
+      "measurement": "弹跳高度衰减与时间间隔衰减分别估计恢复系数",
+      "theory": "sqrt(h(n+1)/h(n)) / (Δt(n+1)/Δt(n)) = 1",
+      "slug": "P4_repeated_bounce",
+      "first_frame_en": "Photorealistic side-view coefficient-of-restitution experiment. One saturated orange rubber ball is held at rest by a tiny electromagnetic release high above a hard matte stone plate. The full ball, release point, impact plate, and the entire vertical bounce column are visible with sharp focus. Leave clear horizontal width around the landing point and sufficient vertical room for at least four progressively lower bounces. The frame is captured immediately before release; no hand and no guide tube.",
+      "simulation_recipe": "Place a rigid rubber sphere about 3 m above a thick horizontal stone slab, supported by a tiny electromagnet that disengages at frame 2. Use a fixed orthographic side camera, simple neutral studio/lab background, collision restitution between 0.70 and 0.85, low tangential friction, and a wide/tall framing that preserves four bounces.",
+      "required_objects": [
+        "one rubber ball",
+        "small electromagnetic release",
+        "hard horizontal impact plate",
+        "plain high-contrast background"
+      ],
+      "camera_view": "Locked perpendicular side view centered on the complete bounce column and impact point.",
+      "future_motion_space": "Full vertical distance from release to plate plus enough width to keep all four rebounds visible despite small lateral drift.",
+      "negative_constraints": [
+        "no hand or person",
+        "no transparent guide tube",
+        "no soft carpet, grass, or deformable landing surface",
+        "no multiple balls or ghost images",
+        "no ball already falling or blurred in the first frame",
+        "no height annotations, arrows, formulas, text, or watermark",
+        "no cropped impact surface",
+        "no toy-like scene"
+      ],
+      "web_queries": [
+        "rubber ball repeated bounce coefficient restitution experiment side view",
+        "bouncing ball height decay physics laboratory hard floor",
+        "coefficient of restitution ball drop apparatus high speed video",
+        "rubber ball four bounces experiment plain background",
+        "ball rebound time interval height decay lab demonstration"
+      ]
+    },
+    {
+      "id": "P5",
+      "priority_stars": 0,
+      "domain": "力学",
+      "scene_raw": "两个等质量球正碰，一球初始静止",
+      "measurement": "碰撞前后速度关系",
+      "theory": "理想等质量弹性碰撞后速度交换",
+      "slug": "P5_equal_mass_collision",
+      "first_frame_en": "Photorealistic side-view dynamics experiment on a long, straight, level low-friction track. Two visually identical polished steel balls of equal diameter and mass are aligned center-to-center on the same track. The left ball is held motionless against a compact spring or magnetic launcher at the far left; the right ball is stationary near the center with a clear gap between them. Show ample empty track beyond the right ball for its post-collision motion and enough space between the balls to observe the incoming velocity.",
+      "simulation_recipe": "Build a long horizontal low-friction rail with shallow lateral guides that do not hide the balls. Place two identical rigid spheres on the same axis, one at x=-2 m against a compressed plunger and one at x=0 m. Use a side orthographic camera and elastic sphere-sphere collision settings close to restitution 1. Release the plunger at frame 2.",
+      "required_objects": [
+        "two equal-mass identical spheres",
+        "straight level low-friction track",
+        "compact non-occluding launcher",
+        "rigid support bench"
+      ],
+      "camera_view": "Locked side view aligned with the collision axis, with both sphere centers at the same image height.",
+      "future_motion_space": "Clear track from the moving ball's start to the collision point and a long unobstructed runout to the right.",
+      "negative_constraints": [
+        "no unequal ball sizes or materials",
+        "no offset or glancing collision",
+        "no person or hand",
+        "no pendulum-string Newton's cradle",
+        "no third ball",
+        "no arrows, velocity vectors, labels, text, or formulas",
+        "no motion blur in the first frame",
+        "no toy-like track"
+      ],
+      "web_queries": [
+        "two equal mass balls elastic collision experiment one stationary",
+        "equal spheres head on collision low friction track laboratory",
+        "velocity exchange equal mass collision physics demonstration",
+        "steel balls elastic collision experiment side view",
+        "two ball collision dynamics lab apparatus"
+      ]
+    },
+    {
+      "id": "P6",
+      "priority_stars": 0,
+      "domain": "力学",
+      "scene_raw": "带明显表面花纹的球沿斜面纯滚动",
+      "measurement": "平移速度和角速度",
+      "theory": "Vcm/(ωR) = 1",
+      "slug": "P6_pure_rolling",
+      "first_frame_en": "Photorealistic side-view rolling experiment. One solid rubber sphere with a bold, asymmetric high-contrast surface pattern is held stationary by a low retractable gate near the upper end of a long rough wooden incline. The pattern is painted on the ball and follows its curvature, making rotation unambiguous. Show the complete ramp from start to bottom, the sphere's circular edge, the contact point, and a clear runout. The ball is touching the ramp without slipping and is captured just before gate release.",
+      "simulation_recipe": "Create a long rough inclined board at about 18 degrees and one solid sphere resting on it behind a thin retractable gate. Give the sphere a strongly asymmetric texture such as one wide colored meridian plus two small contrasting patches. Use rigid-body rolling with high static friction, no initial velocity, a locked orthographic side camera, and release the gate at frame 2.",
+      "required_objects": [
+        "one solid patterned sphere",
+        "long rough inclined plane",
+        "thin retractable start gate",
+        "level runout at ramp bottom"
+      ],
+      "camera_view": "Locked side view perpendicular to the ramp's motion plane, with low perspective distortion.",
+      "future_motion_space": "The entire remaining ramp below the sphere and a short level runout must remain visible.",
+      "negative_constraints": [
+        "no plain unmarked ball",
+        "no ring, cylinder, or second rolling object",
+        "no sliding gap between ball and ramp",
+        "no hand or person",
+        "no drawn rotation arrows, trajectory, text, labels, or formulas",
+        "no occluded contact point",
+        "no motion blur in first frame",
+        "no toy-like materials"
+      ],
+      "web_queries": [
+        "patterned ball pure rolling inclined plane experiment",
+        "rolling without slipping marked sphere ramp laboratory",
+        "translational rotational velocity ball incline experiment",
+        "striped sphere rolling down rough inclined plane",
+        "pure rolling ball high speed video physics lab"
+      ]
+    },
+    {
+      "id": "P7",
+      "priority_stars": 1,
+      "domain": "力学",
+      "scene_raw": "实心球与圆环从同一斜面同时释放",
+      "measurement": "两者到达底部所需帧数",
+      "theory": "t_ring/t_sphere ≈ 1.195",
+      "slug": "P7_sphere_ring_race",
+      "first_frame_en": "Photorealistic university mechanics race on one rough wooden incline. A solid metal sphere and a thin metal ring with exactly the same outer diameter are placed side by side across the width of the same ramp, their foremost points aligned at one common start line. One low retractable gate holds both objects motionless for simultaneous release. Show both objects without overlap, the full ramp, the bottom finish edge, and a safe runout. The ring's open center and the sphere's solid body are unmistakable.",
+      "simulation_recipe": "Build one wide rough ramp at 15–20 degrees with two parallel lanes that share the same slope and surface. Add one solid sphere and one thin torus with equal outer radius and comparable visible material. Align their centers along the same downslope coordinate behind a single transverse retractable gate. Use high static friction, a locked side-oblique camera that exposes the ring hole, and release both at frame 2.",
+      "required_objects": [
+        "one solid sphere",
+        "one thin circular ring of equal outer diameter",
+        "one common rough inclined plane",
+        "single shared retractable start gate",
+        "visible ramp bottom and runout"
+      ],
+      "camera_view": "Locked shallow side-oblique view, mostly perpendicular to motion but offset enough to see the ring opening and both side-by-side lanes.",
+      "future_motion_space": "Both complete parallel paths from the common start line to the ramp bottom and runout remain visible.",
+      "negative_constraints": [
+        "do not use two spheres or a solid disk instead of a ring",
+        "no unequal outer diameters",
+        "no different start positions or separate ramps",
+        "no hand or person",
+        "no third comparison object",
+        "no arrows, labels, text, timing graphics, or formulas",
+        "no object already rolling in first frame",
+        "no toy-like scene"
+      ],
+      "web_queries": [
+        "solid sphere ring rolling down same incline experiment",
+        "sphere hoop race inclined plane moment of inertia laboratory",
+        "ring versus solid ball rolling ramp physics demonstration",
+        "rotational inertia race sphere hoop same ramp",
+        "solid sphere circular ring simultaneous release incline"
+      ]
+    },
+    {
+      "id": "P8",
+      "priority_stars": 0,
+      "domain": "力学",
+      "scene_raw": "单摆在不同振幅下摆动",
+      "measurement": "周期、角速度与振幅关系",
+      "theory": "小角度周期近似不随振幅 / 质量变化",
+      "slug": "P8_pendulum_amplitudes",
+      "first_frame_en": "One photorealistic wide laboratory frame containing three simple pendulums side by side on the same rigid support. The strings have exactly equal length and the spherical bobs have equal size and mass. Each bob is held motionless by an individual minimal electromagnetic catch at a different initial angle—small, medium, and moderately larger—while all pivot points lie on one horizontal line. Every string, pivot, equilibrium corridor, and complete swing envelope is visible; the three conditions coexist in the same image before synchronized release.",
+      "simulation_recipe": "Create a rigid horizontal support with three equally spaced frictionless pivots, three equal-length massless strings, and three identical dense spherical bobs. Set initial angular displacements near 5, 15, and 30 degrees in parallel non-overlapping vertical planes. Hold with tiny catches and release simultaneously at frame 2. Use a front orthographic camera, fixed gravity, and no damping for several periods.",
+      "required_objects": [
+        "three equal-length strings",
+        "three identical pendulum bobs",
+        "three aligned pivots on one rigid support",
+        "three minimal synchronized release catches"
+      ],
+      "camera_view": "Locked frontal view perpendicular to the three parallel swing planes, with each pendulum occupying a separate lane.",
+      "future_motion_space": "Complete left-to-right swing arc for every pendulum, with no overlap between neighboring bobs or strings.",
+      "negative_constraints": [
+        "do not split conditions into separate images",
+        "no unequal string lengths or bob masses",
+        "no missing amplitude condition",
+        "no people or hands",
+        "no clocks, angle labels, arrows, formulas, or text",
+        "no crossed or slack strings",
+        "no bob already moving in first frame",
+        "no toy-like apparatus"
+      ],
+      "web_queries": [
+        "simple pendulum different amplitudes same length experiment",
+        "pendulum period amplitude comparison laboratory three pendulums",
+        "small angle pendulum amplitude physics demonstration",
+        "equal length pendulums different release angles experiment",
+        "pendulum angular amplitude period high speed video lab"
+      ]
+    },
+    {
+      "id": "P9",
+      "priority_stars": 0,
+      "domain": "力学",
+      "scene_raw": "两个不同摆长的单摆同帧并排摆动",
+      "measurement": "周期比",
+      "theory": "T1/T2 = sqrt(L1/L2)",
+      "slug": "P9_two_pendulum_lengths",
+      "first_frame_en": "Photorealistic front-view laboratory comparison with two simple pendulums simultaneously visible side by side on one rigid overhead frame. The left string is clearly shorter and the right string clearly longer; both bobs are identical dense spheres. Each pendulum is held motionless at the same small angular displacement on the same side of equilibrium by a tiny release catch. Show both pivots, full strings, lowest positions, complete swing spaces, and the floor clearance before synchronized release.",
+      "simulation_recipe": "Build a rigid top beam with two pivots at equal height, two massless strings with a clearly different length ratio such as 1:1.6, and two identical bobs. Put both at the same initial angle around 12 degrees in separated parallel planes, add tiny catches, and release simultaneously at frame 2. Use an orthographic front camera and weak or zero damping.",
+      "required_objects": [
+        "two pendulum strings of visibly different lengths",
+        "two identical spherical bobs",
+        "one rigid overhead support",
+        "two synchronized minimal release catches"
+      ],
+      "camera_view": "Locked frontal view perpendicular to both separated swing planes.",
+      "future_motion_space": "Full swing arc of both the short and long pendulum, including clearance beneath the longer bob.",
+      "negative_constraints": [
+        "do not split the two pendulums into separate images",
+        "no equal string lengths",
+        "no different bob sizes or materials",
+        "no different initial angles",
+        "no person or hand",
+        "no clock, period text, arrows, labels, or formulas",
+        "no crossed strings or occlusion",
+        "no toy-like apparatus"
+      ],
+      "web_queries": [
+        "two pendulums different lengths period comparison experiment",
+        "simple pendulum length period ratio laboratory side by side",
+        "short long pendulum synchronized release demonstration",
+        "pendulum period versus length physics lab two pendulums",
+        "different length pendulums oscillating same frame"
+      ]
+    },
+    {
+      "id": "P10",
+      "priority_stars": 1,
+      "domain": "力学 / 摩擦",
+      "scene_raw": "物块沿斜面获得初速度冲上去，再自行滑回",
+      "measurement": "上行和下行帧数",
+      "theory": "t_down/t_up ≥ 1",
+      "slug": "P10_block_up_down_incline",
+      "first_frame_en": "Photorealistic side-view friction experiment. A single compact wooden block rests at the lower end of a long moderately rough inclined board, touching a compressed low-profile spring plunger aligned uphill. The block is stationary immediately before launch and is not tethered. Show the entire incline from the launch point to well above the expected turning point, the lower return region, the block-ramp contact, and the sturdy ramp supports. Neutral uncluttered lab background.",
+      "simulation_recipe": "Create a long 18–25 degree rough ramp with a rectangular block near its foot and a short spring plunger behind it. Frame 1 has the block at rest against the compressed plunger; at frame 2 the plunger gives a controlled uphill impulse then loses contact. Use kinetic friction so the block decelerates, stops, and slides back. Lock an orthographic side camera on the full path.",
+      "required_objects": [
+        "one rectangular sliding block",
+        "long rough inclined board",
+        "compact spring plunger at ramp foot",
+        "rigid ramp supports"
+      ],
+      "camera_view": "Locked orthographic side view parallel to the incline motion plane.",
+      "future_motion_space": "Clear ramp above the start through the turning point and below it through the complete return path.",
+      "negative_constraints": [
+        "no hand or person",
+        "no rope, tether, or continuous motor attached to the block",
+        "no second block",
+        "no block already moving or blurred in first frame",
+        "no wheels beneath the block",
+        "no arrows, labels, text, formulas, or trajectory",
+        "no cropped upper turning region",
+        "no toy-like ramp"
+      ],
+      "web_queries": [
+        "block launched up rough inclined plane slides back experiment",
+        "friction block up and down incline time laboratory",
+        "spring launched block inclined plane physics demonstration",
+        "wooden block initial velocity uphill ramp returns experiment",
+        "block motion rough slope upward downward high speed video"
+      ]
+    },
+    {
+      "id": "P11",
+      "priority_stars": 0,
+      "domain": "光学",
+      "scene_raw": "吸管 / 筷子斜插入透明水杯",
+      "measurement": "水面上下线段的角度",
+      "theory": "Snell 定律对应的折射率比",
+      "slug": "P11_straw_refraction",
+      "first_frame_en": "Photorealistic optics setup with one straight matte drinking straw inserted diagonally through the flat water surface of a clear, straight-sided rectangular glass vessel. The vessel is filled with clean still water and viewed nearly perpendicular to one side, so the straw segment above water and its refracted apparent segment below water are both long, sharp, and unobstructed. The waterline crosses the straw near the center of the frame. Use a plain dark neutral background and soft side lighting that preserves transparent edges.",
+      "simulation_recipe": "Model a transparent rectangular glass tank with realistic refraction, a flat water volume, and one long straight cylindrical straw passing obliquely through the air-water interface. Place an orthographic-looking camera perpendicular to the front wall and slightly above the waterline. Use physically based indices of refraction, soft large lights, and a dark matte backdrop; keep the static setup locked.",
+      "required_objects": [
+        "one straight matte straw or chopstick",
+        "clear straight-sided glass vessel",
+        "clean still water with visible flat surface",
+        "plain contrasting backdrop"
+      ],
+      "camera_view": "Locked near-orthographic side view normal to the vessel wall and parallel to the plane containing the straw.",
+      "future_motion_space": "The complete above-water and underwater straw segments, the interface crossing, and surrounding waterline remain uncropped.",
+      "negative_constraints": [
+        "no curved or flexible straw",
+        "no multiple straws",
+        "no patterned cup or opaque liquid",
+        "no ripples, bubbles, ice, hand, or person",
+        "no camera angle that hides the waterline",
+        "no ray diagrams, arrows, angle marks, formulas, or text",
+        "no severe glare obscuring the straw",
+        "no toy-like or illustrated appearance"
+      ],
+      "web_queries": [
+        "straw in water refraction experiment clear glass side view",
+        "chopstick appears bent water Snell law photograph",
+        "pencil refraction air water interface laboratory photo",
+        "straight straw transparent tank optical refraction experiment",
+        "apparent bending stick in water physics demonstration"
+      ]
+    },
+    {
+      "id": "P12",
+      "priority_stars": 1,
+      "domain": "光学",
+      "scene_raw": "光束以多个入射角射向水面",
+      "measurement": "折射得到的 n 与全反射临界角得到的 n",
+      "theory": "两套独立估计一致",
+      "slug": "P12_refraction_critical_angle",
+      "first_frame_en": "One photorealistic wide optics laboratory frame showing all required optical conditions simultaneously in a single transparent rectangular water tank. A calibrated multi-beam laser ray box outside the left wall sends three thin parallel red beams toward the flat air-water interface at visibly different incidence angles; each incident and refracted segment is sharp and traceable. In a separated right-hand region of the same tank, one underwater red beam approaches the surface near the critical angle and produces a strong internally reflected branch with at most a faint transmitted branch. Keep the waterline, every intersection point, tank edges, and beam paths clear against a dark neutral backdrop, with only slight safe scattering haze.",
+      "simulation_recipe": "Build one wide glass tank half-filled with water, a perfectly flat interface, a three-aperture ray-box assembly on the left producing three coplanar beams at distinct incidence angles, and one submerged laser on the right aimed upward near the water-air critical angle. Use volumetric scattering only lightly, correct refractive indices, thin emissive beam geometry or path-traced caustics, and a camera normal to the front wall. Spatially separate beam intersections to prevent overlap.",
+      "required_objects": [
+        "one wide transparent rectangular water tank",
+        "flat visible air-water interface",
+        "three-beam adjustable laser ray box",
+        "three distinct incident and refracted beam pairs",
+        "one underwater near-critical-angle beam and reflected branch",
+        "dark neutral backdrop"
+      ],
+      "camera_view": "Locked orthographic-looking side view perpendicular to the tank front wall and to the plane of all light rays.",
+      "future_motion_space": "All air-side and water-side ray segments, intersection points, and the full critical-angle branch remain separated and inside frame.",
+      "negative_constraints": [
+        "do not split incidence-angle conditions into separate images",
+        "no missing total-internal-reflection condition",
+        "no single beam standing in for all angles",
+        "no person or hand",
+        "no opaque or curved tank",
+        "no drawn arrows, protractor numerals, formulas, labels, or text",
+        "no excessive fog or glare hiding beam boundaries",
+        "no physically impossible disconnected or kinked rays",
+        "no toy-like illustration"
+      ],
+      "web_queries": [
+        "multiple angle laser refraction water tank Snell law experiment",
+        "laser ray box water refraction critical angle laboratory",
+        "total internal reflection water tank laser beam experiment",
+        "refractive index and critical angle same optics setup",
+        "multiple incident rays air water interface physics demonstration"
+      ]
+    },
+    {
+      "id": "P13",
+      "priority_stars": 0,
+      "domain": "光学",
+      "scene_raw": "物体放在平面镜前",
+      "measurement": "入射角 / 反射角；像距 / 物距；像高 / 物高",
+      "theory": "均应为 1",
+      "slug": "P13_plane_mirror_geometry",
+      "first_frame_en": "Photorealistic plane-mirror optics experiment on a matte laboratory table. A rigid vertical rectangular mirror stands exactly upright along a clearly visible base edge. One tall narrow red cuboid with a distinctive two-color band is positioned fully in front of the mirror, and its complete upright reflection is sharp and unobstructed. A thin laser ray from a low source strikes the mirror at an oblique angle and forms a visible reflected ray on the tabletop. Use a high oblique camera so the real object, mirror plane, virtual image appearance, object height, and both ray segments can all be measured in the same frame.",
+      "simulation_recipe": "Create a vertical planar mirror on a matte horizontal table, one narrow colored cuboid in front of it, and a small laser emitter producing one grazing beam in the table plane that reflects from the mirror. Use a high three-quarter camera with restrained perspective, realistic mirror material, light haze or a matte scattering surface to reveal rays, and enough table around the object for geometric distance measurements.",
+      "required_objects": [
+        "one vertical plane mirror",
+        "one upright measurable colored object",
+        "complete visible mirror image",
+        "one thin incident laser ray",
+        "one thin reflected laser ray",
+        "matte level tabletop"
+      ],
+      "camera_view": "Locked elevated three-quarter view showing the mirror base line, object-to-mirror separation, reflection, and ray plane.",
+      "future_motion_space": "Clear table region around the mirror, object, apparent image, and full incident/reflected ray segments; no key element near a crop edge.",
+      "negative_constraints": [
+        "no curved mirror",
+        "no second real object",
+        "no distorted or missing reflection",
+        "no hand or person",
+        "no decorative clutter blocking the mirror base",
+        "no drawn normal, arrows, angle labels, formulas, or text",
+        "no severe glare or camera reflection",
+        "no toy-like scene"
+      ],
+      "web_queries": [
+        "plane mirror object image distance laboratory experiment",
+        "law of reflection laser plane mirror object experiment",
+        "plane mirror image height object height physics lab",
+        "incident reflected laser ray flat mirror tabletop experiment",
+        "plane mirror geometry optics demonstration photograph"
+      ]
+    },
+    {
+      "id": "P14",
+      "priority_stars": 0,
+      "domain": "光学",
+      "scene_raw": "一个点光源照射 3–4 个直立物体",
+      "measurement": "多个影子反向延长线是否交于同一点",
+      "theory": "交汇 residual → 0",
+      "slug": "P14_point_light_shadows",
+      "first_frame_en": "Photorealistic darkened optics laboratory seen from a high oblique angle. One small exposed point-like white LED is mounted low above a large matte horizontal surface. Four separated, slender upright cylinders stand at different positions and distances from the light, each casting one crisp elongated shadow away from the same source. The light emitter, every cylinder base, and every complete shadow tip are visible simultaneously, with no overlapping shadows and no secondary lighting direction.",
+      "simulation_recipe": "Model one small near-point light 20–30 cm above a broad matte floor and four thin vertical cylinders distributed around it at different radii and azimuths. Use a high oblique or near-overhead camera, hard shadows, weak uniform ambient fill, and a large enough floor to contain each full shadow. Keep all objects stationary and prevent shadow overlap.",
+      "required_objects": [
+        "one compact visible point light source",
+        "three or four upright slender objects",
+        "one broad matte receiving surface",
+        "three or four complete distinct cast shadows"
+      ],
+      "camera_view": "Locked high oblique view close to overhead, preserving the geometry from light source through object bases to shadow tips.",
+      "future_motion_space": "The full radial region containing the source, all object bases, and all shadow endpoints remains inside frame.",
+      "negative_constraints": [
+        "no extended fluorescent panel or multiple light sources",
+        "no fewer than three upright objects",
+        "no overlapping or cropped shadows",
+        "no tilted objects",
+        "no hand or person",
+        "no drawn shadow rays, dashed lines, arrows, labels, or formulas",
+        "no patterned reflective floor",
+        "no toy-like miniature scene"
+      ],
+      "web_queries": [
+        "point light source multiple objects shadows experiment",
+        "four vertical rods one lamp shadow geometry laboratory",
+        "shadows converge point source physics demonstration",
+        "multiple cast shadows single point light optics experiment",
+        "point source ray geometry upright objects shadow photograph"
+      ]
+    },
+    {
+      "id": "P15",
+      "priority_stars": 0,
+      "domain": "光学",
+      "scene_raw": "一个光泽球，同时出现高光和投影",
+      "measurement": "高光推断光源方向 vs 影子推断方向",
+      "theory": "两者一致",
+      "slug": "P15_glossy_sphere_light_direction",
+      "first_frame_en": "Photorealistic controlled-lighting experiment with one smooth glossy dark sphere resting on a broad matte neutral floor. A single compact point-like lamp, visible near one upper side of the frame but not blown out, creates one small crisp specular highlight on the sphere and one clean cast shadow extending in the opposite floor direction. The entire sphere outline, contact point, highlight, complete shadow, and lamp position are visible with no other bright reflections.",
+      "simulation_recipe": "Place one glossy sphere on a matte plane and one small area light far enough away to approximate a compact source. Suppress other specular emitters, keep only weak diffuse ambient fill, and tune roughness so the sphere has one localized highlight and the floor has one legible shadow. Use a locked three-quarter camera slightly above sphere center.",
+      "required_objects": [
+        "one smooth glossy sphere",
+        "one compact visible light source",
+        "one matte horizontal receiving plane",
+        "one localized specular highlight",
+        "one complete cast shadow"
+      ],
+      "camera_view": "Locked medium three-quarter view showing the sphere surface, floor contact, light, and full shadow direction.",
+      "future_motion_space": "Clear floor surrounding the sphere through the complete shadow tip and clear image space between the sphere and visible lamp.",
+      "negative_constraints": [
+        "no multiple lamps or multiple highlights",
+        "no mirror-like floor",
+        "no textured or faceted ball",
+        "no missing or cropped shadow",
+        "no hand or person",
+        "no arrows, direction lines, labels, formulas, or text",
+        "no unrelated reflective objects",
+        "no CGI toy-like look"
+      ],
+      "web_queries": [
+        "glossy sphere specular highlight cast shadow single light",
+        "shading light direction ball highlight shadow experiment",
+        "single point light shiny ball shadow photography setup",
+        "specular reflection sphere cast shadow optics demonstration",
+        "glossy ball one lamp highlight and shadow laboratory"
+      ]
+    },
+    {
+      "id": "P16",
+      "priority_stars": 1,
+      "domain": "几何",
+      "scene_raw": "有多个可辨点的刚体运动，如梯子倒下 / 书滑动",
+      "measurement": "共线四点的射影交比",
+      "theory": "跨帧保持恒定",
+      "slug": "P16_falling_ladder_cross_ratio",
+      "first_frame_en": "Photorealistic side-view rigid-body experiment with one long uniform wooden ladder in a vertical motion plane, initially leaning steeply against a smooth wall on a level floor and held motionless by a tiny remote release at its upper end. Four small high-contrast circular markers are permanently attached along the same straight centerline of the ladder at unequal spacings; all four markers and both ladder endpoints are fully visible. Leave a large empty region into which the ladder can fall and slide, with the wall-floor corner clearly visible.",
+      "simulation_recipe": "Build a floor and vertical wall meeting at a clear right-angle corner, one rigid ladder or long plank with four colored circular markers centered at distinct collinear positions, and a minimal release catch near the top. Set the ladder around 70 degrees, constrain contacts to slide along wall and floor or let it topple as one rigid body, and release at frame 2. Use a fixed wide side camera with mild perspective so markers remain separable throughout motion.",
+      "required_objects": [
+        "one rigid ladder or long plank",
+        "four distinct permanently attached collinear markers",
+        "vertical wall",
+        "level floor",
+        "minimal remote release catch"
+      ],
+      "camera_view": "Locked wide side view of the single motion plane, with the wall-floor corner and complete rigid body visible.",
+      "future_motion_space": "The full swept area from the steep initial orientation to the final low orientation, including both sliding endpoints, remains unobstructed.",
+      "negative_constraints": [
+        "no fewer or more than four measurement markers",
+        "no non-collinear or moving markers",
+        "no articulated or bending ladder",
+        "no hand or person",
+        "no marker labels, numbers, connecting line overlays, arrows, or formulas",
+        "no background clutter resembling markers",
+        "no cropped ladder endpoint",
+        "no motion blur in first frame",
+        "no toy-like scene"
+      ],
+      "web_queries": [
+        "falling ladder sliding wall floor experiment side view",
+        "rigid ladder toppling physics high speed video markers",
+        "projective cross ratio rigid body motion experiment",
+        "ladder slipping against wall mechanics demonstration",
+        "marked rigid plank falling side view laboratory"
+      ]
+    },
+    {
+      "id": "P17",
+      "priority_stars": 0,
+      "domain": "波动",
+      "scene_raw": "石子落入静水形成圆形涟漪，俯视",
+      "measurement": "波纹半径增量、圆心漂移、v/(fλ)",
+      "theory": "半径增量稳定；圆心基本不漂；v/(fλ) = 1",
+      "slug": "P17_circular_ripples",
+      "first_frame_en": "Photorealistic direct overhead view of a wide, shallow, circular dark water tray filled with perfectly still clean water. One small round pebble is held motionless a few centimeters above the exact center by a very thin retractable suction tip entering from outside the main measurement area. The entire water surface and tray rim are visible with broad empty radial space around the impact point for many circular ripples. Use soft grazing illumination that will reveal wave crests without producing cluttered reflections; the first frame is before release and the water is flat.",
+      "simulation_recipe": "Create a wide shallow circular basin with a calm reflective water surface and one small dense pebble centered just above it on a minimal release tip. Use a locked orthographic top camera, subtle grazing lights, and a wave-capable fluid or procedural concentric wave simulation triggered when the pebble contacts the center. Keep the entire basin rim and at least several wavelengths of radial travel visible.",
+      "required_objects": [
+        "one small pebble",
+        "minimal remote release tip",
+        "wide shallow circular water tray",
+        "clean perfectly still water"
+      ],
+      "camera_view": "Locked true overhead orthographic view centered on the future impact point.",
+      "future_motion_space": "A broad unobstructed circular water area from the center to near the full tray rim for expanding wavefronts.",
+      "negative_constraints": [
+        "no pre-existing ripples in the first frame",
+        "no multiple pebbles or multiple impact points",
+        "no hand or person",
+        "no rectangular crop that hides the basin boundary",
+        "no floating debris, plants, bubbles, or rain",
+        "no drawn circles, radius arrows, labels, text, or formulas",
+        "no strong reflections that hide the water surface",
+        "no toy-like scene"
+      ],
+      "web_queries": [
+        "stone dropped still water circular ripples overhead experiment",
+        "circular water waves pebble impact top view high speed",
+        "ripple tank point disturbance concentric waves laboratory",
+        "pebble water ripple radius wave speed experiment",
+        "concentric ripples still water overhead physics demonstration"
+      ]
+    },
+    {
+      "id": "P18",
+      "priority_stars": 0,
+      "domain": "流体静力学",
+      "scene_raw": "装水容器整体倾斜，同时有可见落体",
+      "measurement": "液面法向 vs 落体重力方向",
+      "theory": "两者方向一致",
+      "slug": "P18_tilted_container_gravity",
+      "first_frame_en": "Photorealistic side-view hydrostatics experiment. A clear straight-sided rectangular container is rigidly mounted at a visible 20-degree tilt on a sturdy frame and partly filled with settled water; despite the tilted container walls, the free water surface is flat and horizontal. Beside the tank, in the same image plane, one small high-contrast metal ball is held stationary by a tiny electromagnet above a long clear vertical drop corridor and catch cup. Show the entire waterline, tank edges, ball, release, and future fall path simultaneously before release.",
+      "simulation_recipe": "Mount a transparent rectangular tank on a rigid frame rotated about 20 degrees in the image plane, fill it partly with a world-horizontal free surface, and place a dense sphere on an electromagnet beside the tank. Use a locked orthographic side camera with both the full waterline and vertical drop corridor visible. Release the sphere at frame 2 under the same downward gravity vector; keep the tank fixed and the liquid settled.",
+      "required_objects": [
+        "one tilted transparent straight-sided water container",
+        "visible settled water with flat free surface",
+        "rigid tilt support frame",
+        "one dense falling ball",
+        "minimal electromagnetic ball release",
+        "small catch cup"
+      ],
+      "camera_view": "Locked orthographic side view with the tank tilt and ball fall both parallel to the image plane.",
+      "future_motion_space": "Full vertical drop path beside the tank and the complete liquid surface from one container wall to the other remain visible.",
+      "negative_constraints": [
+        "no liquid sloshing or curved water surface in first frame",
+        "no container rotating during measurement",
+        "no ball inside the water",
+        "no hand or person",
+        "no opaque tank or hidden waterline",
+        "no arrows, gravity vectors, angle labels, formulas, or text",
+        "no motion blur in first frame",
+        "no toy-like apparatus"
+      ],
+      "web_queries": [
+        "tilted water container horizontal free surface experiment",
+        "liquid surface gravity direction tilted vessel demonstration",
+        "inclined transparent tank water level hydrostatics experiment",
+        "tilted container free surface falling ball gravity laboratory",
+        "water surface normal vertical gravity physics demonstration"
+      ]
+    },
+    {
+      "id": "P19",
+      "priority_stars": 0,
+      "domain": "流体静力学",
+      "scene_raw": "U 型管或两个连通杯，横截面积不同",
+      "measurement": "两侧液面高度",
+      "theory": "最终液面同高",
+      "slug": "P19_communicating_vessels",
+      "first_frame_en": "Photorealistic front-view communicating-vessels experiment. Two tall transparent vertical reservoirs of clearly different internal cross-sectional area stand side by side and are connected by one visible low transparent tube. The same colored water occupies both sides. At the initial frame, a small closed stopcock in the connector temporarily isolates the reservoirs so their flat liquid levels are visibly unequal; the stopcock handle is ready for remote opening, with no person present. Show both complete columns, both menisci, the full connector, support stand, and ample vertical headroom for equilibration.",
+      "simulation_recipe": "Build two straight transparent vertical vessels with a pronounced area ratio, joined near their bases by a transparent horizontal tube containing an animated stopcock. Initialize the same liquid at unequal heights while the valve is closed, open the valve at frame 2, and simulate flow until both free surfaces share one world height. Use a locked front orthographic camera, colored translucent liquid, and full-column framing.",
+      "required_objects": [
+        "two transparent vertical vessels of different cross-sectional area",
+        "one visible low connecting tube",
+        "one small remotely actuated stopcock",
+        "same colored liquid in both vessels",
+        "rigid support stand"
+      ],
+      "camera_view": "Locked orthographic front view with both vessel axes vertical in the image and both menisci clearly visible.",
+      "future_motion_space": "Vertical headroom above and below both initial liquid levels and a fully visible connection path for equilibration.",
+      "negative_constraints": [
+        "no disconnected cups",
+        "no identical cross-sectional areas",
+        "no different liquids or density layers",
+        "no sealed upper ends or pressurized gas apparatus",
+        "no hand or person",
+        "no hidden valve or hidden connector",
+        "no ruler numerals, arrows, labels, formulas, or text",
+        "no leaking or tilted vessels",
+        "no toy-like apparatus"
+      ],
+      "web_queries": [
+        "communicating vessels different cross sectional areas experiment",
+        "two connected containers unequal width water levels laboratory",
+        "hydrostatic communicating vessels equal level demonstration",
+        "U tube different diameter arms liquid level experiment",
+        "connected reservoirs stopcock unequal initial water levels physics"
+      ]
+    },
+    {
+      "id": "P20",
+      "priority_stars": 0,
+      "domain": "浮力",
+      "scene_raw": "木块 / 冰块 / 塑料块漂浮在液体中",
+      "measurement": "吃水深度比例",
+      "theory": "与物体 / 液体密度比对应",
+      "slug": "P20_floating_materials_submerged_fraction",
+      "first_frame_en": "A wide transparent rectangular tank contains still clear water and three equal-size, easily distinguishable specimens: a natural wood block, a frosted ice block, and a matte plastic block. They float separately at equilibrium without touching one another or the tank walls, with all three upper and lower faces visible and three clearly different submerged fractions. The waterline is crisp across the entire tank and every object is fully in frame.",
+      "simulation_recipe": "Build one glass tank with a flat liquid plane and three equal-volume cuboids. Assign realistic densities below the liquid density, for example wood 600, plastic 850, ice 917, and solve buoyancy so the equilibrium submerged fraction is rho_object/rho_liquid. Give the blocks small damped vertical perturbations that settle without lateral contact; render refraction, the meniscus and submerged faces clearly.",
+      "required_objects": [
+        "one transparent rectangular tank",
+        "still clear liquid with a visible level",
+        "one natural wood block",
+        "one frosted ice block",
+        "one matte plastic block"
+      ],
+      "camera_view": "Locked orthographic side view perpendicular to the tank wall, with the optical axis level with the liquid surface and minimal perspective distortion.",
+      "future_motion_space": "Leave vertical clearance above and below every specimen for gentle bobbing and lateral separation between all three specimens for independent settling.",
+      "negative_constraints": [
+        "no specimen may touch another specimen or the tank walls",
+        "no fully submerged or grounded specimen",
+        "no opaque tank wall or distorted waterline",
+        "no people or hands",
+        "no text, labels, arrows, formulas, watermark or logo",
+        "no toy-like, cartoon or diagram styling"
+      ],
+      "web_queries": [
+        "wood plastic ice blocks floating water tank buoyancy experiment side view",
+        "different density blocks floating submerged fraction laboratory experiment",
+        "buoyancy density floating blocks clear tank demonstration",
+        "floating object submerged volume fraction physics lab",
+        "wood ice plastic float water comparison experiment"
+      ]
+    },
+    {
+      "id": "P21",
+      "priority_stars": 1,
+      "domain": "热学 / 浮力",
+      "scene_raw": "高窄杯中浮冰完全融化",
+      "measurement": "融化前后水位",
+      "theory": "h_after/h_before = 1",
+      "slug": "P21_floating_ice_melts_constant_level",
+      "first_frame_en": "A single clear ice cube floats freely in still water inside a tall, narrow, straight-walled transparent cup. The ice is partly above the surface and partly submerged, the initial waterline is sharp against the vertical walls, and the cup bottom, rim, full ice cube and generous headspace are visible. The setup is stationary at the start of a locked-off time-lapse.",
+      "simulation_recipe": "Use a straight-sided transparent vessel, water density 1000 kg/m^3 and ice density about 917 kg/m^3. Float the ice at hydrostatic equilibrium, then progressively shrink the ice mesh while adding exactly the corresponding melt mass as water volume. Preserve mass and keep the free surface at the same height, adding only subtle thermal ripples that do not hide the level.",
+      "required_objects": [
+        "one tall narrow straight-walled transparent cup",
+        "still water with a crisp surface",
+        "one clear floating ice cube"
+      ],
+      "camera_view": "Locked level side view perpendicular to the cup, with a long focal length so both vertical walls and the waterline are easy to measure.",
+      "future_motion_space": "Show the entire cup height, free headspace above the initial ice and unobstructed water below it for complete melting.",
+      "negative_constraints": [
+        "no ice touching the bottom or side wall",
+        "no additional ice cubes or foreign inclusions",
+        "no tapered wine glass or curved bowl that prevents height measurement",
+        "no pouring, spilling or evaporation cue",
+        "no people or hands",
+        "no text, labels, arrows, formulas, watermark or logo"
+      ],
+      "web_queries": [
+        "floating ice cube melting water level experiment tall glass",
+        "melting floating ice water level physics demonstration",
+        "Archimedes principle floating ice melt experiment clear cylinder",
+        "ice cube melts in glass water level time lapse",
+        "floating ice before after melting water level laboratory"
+      ]
+    },
+    {
+      "id": "P21b",
+      "priority_stars": 1,
+      "domain": "热学 / 浮力",
+      "scene_raw": "浮冰中冻有一颗石子，冰融化",
+      "measurement": "水位变化方向",
+      "theory": "融化后水位下降",
+      "slug": "P21b_stone_in_floating_ice_melts",
+      "first_frame_en": "A transparent ice block floats freely in still water inside a tall, narrow, straight-walled glass vessel. One dense dark pebble is visibly frozen entirely inside the ice, with clear ice around it so its containment is unambiguous. The composite ice-and-stone body is not touching the walls, the initial waterline and vessel bottom are sharp, and there is an unobstructed vertical path for the pebble to fall after the ice melts.",
+      "simulation_recipe": "Model a buoyant ice mesh containing one rigid high-density pebble. Set the initial immersion from the combined ice-plus-stone weight, shrink the ice by mass-conserving melting, then release the pebble when its enclosing ice disappears so it sinks and rests on the bottom. Add the melted ice as water volume; the final water level must be lower because the grounded pebble displaces only its own volume.",
+      "required_objects": [
+        "one tall narrow straight-walled transparent vessel",
+        "still water with a visible level",
+        "one floating transparent ice block",
+        "one dense dark pebble visibly frozen inside the ice"
+      ],
+      "camera_view": "Locked level close side view perpendicular to the vessel, wide enough to include rim, initial waterline, composite ice body and bottom.",
+      "future_motion_space": "Keep the full water column below the ice visible so the pebble can fall all the way to the bottom without occlusion.",
+      "negative_constraints": [
+        "no loose pebble beside or beneath the ice at the first frame",
+        "no pebble already touching the water independently",
+        "no ice touching vessel walls or bottom",
+        "no opaque or heavily frosted ice that hides the pebble",
+        "no people or hands",
+        "no text, labels, arrows, formulas, watermark or logo"
+      ],
+      "web_queries": [
+        "stone frozen in floating ice melting water level experiment",
+        "pebble embedded ice cube floats melts water level demonstration",
+        "floating ice with rock inside Archimedes experiment",
+        "ice cube containing stone melts in water physics problem experiment",
+        "rock in floating ice water level before after melting"
+      ]
+    },
+    {
+      "id": "P21c",
+      "priority_stars": 1,
+      "domain": "热学 / 浮力",
+      "scene_raw": "冰沉在密度较小的液体底部后融化",
+      "measurement": "水位变化方向",
+      "theory": "融化后水位上升",
+      "slug": "P21c_sunken_frozen_phase_change_block_melts",
+      "first_frame_en": "A translucent frozen phase-change block rests fully submerged on the flat bottom of a tall, narrow, straight-walled transparent vessel filled with a clear lower-density host liquid. The block is visibly denser than the host liquid and is not trapped or weighted down. The initial liquid surface, vessel bottom, complete block and empty headspace are all visible in a clean side view, ready for a melt sequence in which the product occupies a larger volume.",
+      "simulation_recipe": "Treat the benchmark specimen as a generic ice-like frozen phase-change material rather than ordinary water ice: choose a solid density greater than the host liquid so it remains on the bottom, and choose a melt-product density slightly lower than the solid density so mass conservation increases the total occupied volume and raises the free surface. Animate solid-to-liquid conversion without mixing away the visible phase boundary and keep the host-liquid mass fixed.",
+      "required_objects": [
+        "one tall narrow straight-walled transparent vessel",
+        "one clear host liquid less dense than the frozen specimen",
+        "one translucent frozen phase-change block resting on the bottom"
+      ],
+      "camera_view": "Locked orthographic side view perpendicular to the vessel wall, including the full bottom-to-surface liquid column and headspace.",
+      "future_motion_space": "Leave visible headspace above the liquid for the level to rise and clear space around the bottom specimen for the melt product to spread.",
+      "negative_constraints": [
+        "no floating or suspended frozen block",
+        "no hidden weight, string or clamp holding the block down",
+        "no tapered vessel",
+        "no overflow at the final state",
+        "no people or hands",
+        "no text, labels, arrows, formulas, watermark or logo"
+      ],
+      "web_queries": [
+        "sunken ice block melts in lower density liquid level experiment",
+        "solid phase change block bottom liquid melting volume experiment",
+        "ice sinks in low density liquid melts water level demonstration",
+        "submerged solid melting liquid level change laboratory",
+        "phase change solid denser than bath melts volume expansion experiment"
+      ]
+    },
+    {
+      "id": "P22",
+      "priority_stars": 0,
+      "domain": "热学",
+      "scene_raw": "冰块在桌面持续融化",
+      "measurement": "固体 mask 面积",
+      "theory": "A(t+1)/A(t) <= 1",
+      "slug": "P22_ice_block_melting_on_table",
+      "first_frame_en": "One compact clear ice block sits stationary on a level, dark matte, waterproof laboratory tabletop under stable room lighting. Its entire silhouette and contact footprint are sharply visible, with a very small initial wet meniscus but no large pre-existing puddle. The surrounding tabletop is empty and provides ample room for meltwater to spread during a locked time-lapse.",
+      "simulation_recipe": "Create a single irregular but convex ice mesh with subsurface scattering on a thermally conductive table. Animate monotonic mesh erosion and loss of projected solid area while conserving melted mass in a shallow expanding transparent puddle. Prevent refreezing, fragmentation, camera motion and any apparent increase in the solid mask.",
+      "required_objects": [
+        "one clear ice block",
+        "one level dark matte waterproof tabletop",
+        "a minimal initial wet meniscus at the ice-table contact"
+      ],
+      "camera_view": "Locked three-quarter view from slightly above, close enough for accurate segmentation while retaining the entire future puddle region.",
+      "future_motion_space": "Leave a broad clean tabletop margin on every side for the meltwater puddle and shrinking solid footprint.",
+      "negative_constraints": [
+        "no multiple ice pieces",
+        "no glass, tray or container around the ice",
+        "no large puddle already present at the first frame",
+        "no frost, steam or reflections that obscure the solid boundary",
+        "no people or hands",
+        "no text, labels, arrows, formulas, watermark or logo"
+      ],
+      "web_queries": [
+        "single ice cube melting on table time lapse",
+        "ice block melts on black surface experiment",
+        "melting ice solid area time lapse overhead",
+        "ice cube melting puddle laboratory video fixed camera",
+        "ice melting on flat plate thermal experiment"
+      ]
+    },
+    {
+      "id": "P23",
+      "priority_stars": 0,
+      "domain": "热学",
+      "scene_raw": "直壁量杯中的水结冰",
+      "measurement": "结冰前后液面高度",
+      "theory": "h_ice/h_water approximately 1.09",
+      "slug": "P23_water_freezes_volume_expansion",
+      "first_frame_en": "A tall transparent straight-walled graduated cylinder contains still liquid water at a clearly visible initial height and is centered inside a cold-chamber setting. The cylinder bottom, waterline, rim and at least fifteen percent empty headspace are visible. Only subtle unnumbered tick marks may appear on one edge; no ice has formed yet and the camera is locked for the full freezing sequence.",
+      "simulation_recipe": "Use a constant-cross-section vessel and convert water at density 1000 kg/m^3 into ice at about 917 kg/m^3 while preserving mass. Grow an opaque-frosted solid phase through the volume and raise the top surface to approximately 1.09 times the initial water-column height. Keep the vessel rigid and vertical and avoid surface loss or overflow.",
+      "required_objects": [
+        "one transparent constant-cross-section measuring cylinder",
+        "still liquid water with a crisp initial surface",
+        "visible empty headspace",
+        "a neutral cold-chamber background"
+      ],
+      "camera_view": "Locked level side view with a long focal length, perpendicular to the cylinder and centered on its vertical axis.",
+      "future_motion_space": "Show enough headspace above the initial waterline for roughly nine percent vertical expansion without clipping or overflow.",
+      "negative_constraints": [
+        "no tapered cup, flask or irregular container",
+        "no ice already visible in the first frame",
+        "no cap or obstruction above the water",
+        "no boiling, evaporation or liquid loss",
+        "no people or hands",
+        "no numbers, text, arrows, formulas, watermark or logo"
+      ],
+      "web_queries": [
+        "water freezing expansion graduated cylinder experiment",
+        "water level rises when freezing clear cylinder demonstration",
+        "ice volume expansion nine percent laboratory experiment",
+        "freeze water in straight sided measuring cylinder time lapse",
+        "water to ice height change transparent container physics"
+      ]
+    },
+    {
+      "id": "P24",
+      "priority_stars": 1,
+      "domain": "热学 / 流体",
+      "scene_raw": "同一场景：蜡烛羽流 + 一杯静止的水",
+      "measurement": "羽流轴方向 vs 液面法向",
+      "theory": "方向一致",
+      "slug": "P24_candle_plume_and_water_gravity_reference",
+      "first_frame_en": "One stable upright candle and one tall transparent glass of perfectly still water stand side by side on the same level laboratory table in one continuous frame. A faint but clearly visible vertical thermal plume rises above the centered candle flame, while the glass shows a sharp horizontal water surface. Both the complete plume column and complete waterline are visible simultaneously against a dark neutral background.",
+      "simulation_recipe": "Place the candle and water vessel under one shared world-gravity vector. Use a low-speed buoyant volumetric smoke simulation above a steady flame so the time-averaged plume axis follows opposite gravity, and a flat liquid free surface whose normal follows the same direction. Add small turbulent plume fluctuations but no cross-draft; keep the water static.",
+      "required_objects": [
+        "one upright candle with a steady visible flame",
+        "one visible thermal plume",
+        "one tall transparent glass",
+        "still water with a sharp surface",
+        "one shared level tabletop"
+      ],
+      "camera_view": "Locked straight-on level view showing the candle and water glass together at equal scale, including the full plume height and entire water surface.",
+      "future_motion_space": "Reserve a tall empty column above the flame for plume evolution and keep the full glass and waterline unobstructed throughout.",
+      "negative_constraints": [
+        "do not split the candle and water into separate panels",
+        "no fan, wind or visibly tilted plume",
+        "no boiling, rippling or tilted water surface",
+        "no hidden or cropped flame, plume or waterline",
+        "no people or hands",
+        "no text, labels, arrows, formulas, watermark or logo"
+      ],
+      "web_queries": [
+        "candle convection plume still water glass gravity direction experiment",
+        "candle smoke plume beside glass of water physics demonstration",
+        "thermal plume vertical water surface normal experiment",
+        "buoyant candle plume laboratory dark background",
+        "candle flame convection current and level water surface"
+      ]
+    },
+    {
+      "id": "P25",
+      "priority_stars": 0,
+      "domain": "热学 / 观测",
+      "scene_raw": "铁棒一端受热，颜色随距离变化",
+      "measurement": "距离与色调秩相关性",
+      "theory": "应呈稳定单调关系",
+      "slug": "P25_heated_iron_rod_color_gradient",
+      "first_frame_en": "A long straight unpainted iron rod is clamped horizontally in a dark laboratory enclosure and heated only at its far-left end by a compact induction coil or localized burner. The entire rod is sharp and unobstructed from the hot end to the cool end, with the beginning of a continuous warm-color gradient visible near the heater and neutral gray metal farther away. Lighting and exposure are fixed for quantitative color tracking.",
+      "simulation_recipe": "Model one homogeneous iron cylinder with a localized constant heat flux at the left end and conductive heat diffusion along its length. Drive an emissive blackbody-style material from the computed temperature field so hue and brightness vary smoothly and monotonically with distance from the source. Keep convection and radiation losses uniform, the clamp thermally minor, and the exposure fixed.",
+      "required_objects": [
+        "one long straight unpainted iron rod",
+        "one localized end heater",
+        "one unobtrusive support clamp",
+        "a dark neutral heat-safe background"
+      ],
+      "camera_view": "Locked orthographic side view parallel to the rod axis, framing the full rod length from heater to cool end.",
+      "future_motion_space": "Leave clear background around the entire rod and keep both endpoints visible as the thermal gradient extends toward the cool end.",
+      "negative_constraints": [
+        "no painted rainbow or discrete color bands",
+        "no heating at both ends",
+        "no curved, segmented or partially occluded rod",
+        "no changing camera exposure or colored ambient light",
+        "no people or hands",
+        "no text, labels, arrows, formulas, watermark or logo"
+      ],
+      "web_queries": [
+        "iron rod heated at one end glowing temperature gradient experiment",
+        "metal rod thermal conduction color gradient laboratory",
+        "heated steel bar one end red hot experiment",
+        "iron bar heat conduction visible glow fixed camera",
+        "temperature distribution along heated metal rod demonstration"
+      ]
+    },
+    {
+      "id": "P26",
+      "priority_stars": 0,
+      "domain": "流体 / 热学",
+      "scene_raw": "深水槽中的单个气泡持续上升",
+      "measurement": "气泡可见直径变化",
+      "theory": "d(t+1)/d(t) >= 1",
+      "slug": "P26_single_bubble_rising_and_expanding",
+      "first_frame_en": "A deep, narrow, transparent water column fills most of the frame. Exactly one clearly outlined gas bubble has just detached near the bottom center and is beginning to rise through clean still water. The bubble is far from every wall, the entire path to the free surface is visible, and the tank contains no foam, sediment or other bubbles.",
+      "simulation_recipe": "Create one deformable gas bubble in a deep liquid column, initialize it near the bottom, and animate buoyant rise with mild drag and surface tension. Couple bubble volume to hydrostatic pressure with an approximately isothermal ideal-gas relation so its visible equivalent diameter is nondecreasing as depth decreases. Keep the liquid quiescent and prevent breakup or coalescence.",
+      "required_objects": [
+        "one deep transparent tank",
+        "clean still water with a visible top surface",
+        "exactly one gas bubble near the bottom"
+      ],
+      "camera_view": "Locked orthographic side view perpendicular to the tank, with the full bottom-to-surface ascent column in frame.",
+      "future_motion_space": "Keep a wide unobstructed vertical corridor above the bubble all the way to the liquid surface.",
+      "negative_constraints": [
+        "no second bubble, bubble train, foam or aerator stream",
+        "no bubble touching a wall or already near the surface",
+        "no opaque or turbulent liquid",
+        "no cropped tank bottom or water surface",
+        "no people or hands",
+        "no text, labels, arrows, formulas, watermark or logo"
+      ],
+      "web_queries": [
+        "single air bubble rising deep water tank experiment",
+        "gas bubble expands while rising water column laboratory",
+        "one bubble ascent hydrostatic pressure clear tank video",
+        "rising bubble diameter with depth physics experiment",
+        "isolated bubble rising in quiescent water column"
+      ]
+    },
+    {
+      "id": "P27",
+      "priority_stars": 0,
+      "domain": "热学",
+      "scene_raw": "等质量碎冰和整块冰并排融化",
+      "measurement": "完全融化所需帧数",
+      "theory": "t_crushed/t_whole < 1",
+      "slug": "P27_equal_mass_crushed_and_whole_ice_melting",
+      "first_frame_en": "Two identical shallow dark trays sit side by side in the same continuous frame under identical room conditions. One tray contains a single whole ice block; the other contains many crushed-ice pieces whose combined ice mass equals the whole block. Both samples have just been placed, are fully visible with minimal initial meltwater, and are separated enough for independent puddles to form.",
+      "simulation_recipe": "Use the same ice material, temperature and total solid volume in both trays. Represent one sample as a single low-area mesh and the other as many nonoverlapping fragments with much greater total surface area. Apply identical ambient heat-transfer conditions and melt each mesh according to exposed area so the crushed sample reaches zero solid mass earlier; conserve meltwater separately in each tray.",
+      "required_objects": [
+        "two identical shallow dark trays",
+        "one whole ice block",
+        "one equal-mass pile of crushed ice",
+        "one shared level tabletop"
+      ],
+      "camera_view": "Locked high three-quarter or overhead view showing both trays simultaneously at equal scale and without overlap.",
+      "future_motion_space": "Leave open area inside each tray for its own meltwater puddle and keep both conditions fully visible until complete melting.",
+      "negative_constraints": [
+        "do not split the two conditions into separate panels or shots",
+        "no unequal tray size, lighting, heating or starting temperature",
+        "no visibly unequal total ice mass",
+        "no mixing between the two samples",
+        "no people or hands",
+        "no text labels identifying crushed or whole ice"
+      ],
+      "web_queries": [
+        "equal mass crushed ice and ice cube melting comparison experiment",
+        "crushed ice melts faster than block ice surface area demonstration",
+        "whole versus crushed ice melting time laboratory",
+        "ice surface area melting rate two trays experiment",
+        "same mass ice cube crushed ice side by side time lapse"
+      ]
+    },
+    {
+      "id": "P28",
+      "priority_stars": 0,
+      "domain": "静电",
+      "scene_raw": "两个同质带电小球由等长细线悬挂",
+      "measurement": "左右偏转角",
+      "theory": "theta_L/theta_R = 1",
+      "slug": "P28_symmetric_charged_pith_balls",
+      "first_frame_en": "Two identical lightweight conductive pith balls carry equal like charges and hang from equal-length fine insulating threads attached to one centered support. They are stationary in a symmetric V-shaped equilibrium, at equal height and equal distance from the vertical centerline, with both complete threads, attachment point and balls visible against a plain dark background.",
+      "simulation_recipe": "Create two equal-mass, equal-radius spheres suspended by identical massless threads from the same support. Assign equal same-sign charges and solve gravity, tension and Coulomb repulsion with light damping until a symmetric equilibrium is reached. Optionally begin with a tiny residual sway that damps while preserving mirror symmetry.",
+      "required_objects": [
+        "two identical conductive pith balls",
+        "two equal-length fine insulating threads",
+        "one centered rigid suspension support"
+      ],
+      "camera_view": "Locked straight-on orthographic view in the plane of both threads, centered on the symmetry axis.",
+      "future_motion_space": "Leave equal lateral clearance on both sides and show the full thread lengths for any symmetric swing or settling.",
+      "negative_constraints": [
+        "no unequal ball size, material, mass, charge or thread length",
+        "no separate suspension heights",
+        "no ball or thread hidden behind the other",
+        "no external charged rod in the measurement frame",
+        "no people or hands",
+        "no text, labels, arrows, formulas, watermark or logo"
+      ],
+      "web_queries": [
+        "two charged pith balls equal strings electrostatics experiment",
+        "identical charged spheres suspended symmetrical repulsion laboratory",
+        "pith ball electroscope Coulomb repulsion equal angles",
+        "two like charged balls hanging threads physics demonstration",
+        "electrostatic equilibrium suspended charged spheres experiment"
+      ]
+    },
+    {
+      "id": "P29",
+      "priority_stars": 0,
+      "domain": "静电",
+      "scene_raw": "Van de Graaff 使人物头发竖起",
+      "measurement": "每根发丝方向 vs 球心径向",
+      "theory": "夹角接近 0 degrees",
+      "slug": "P29_van_de_graaff_radial_hair",
+      "first_frame_en": "A single anonymous adult participant with long dry hair stands fully visible on an insulating platform beside a full-size Van de Graaff generator and touches the metal dome with one hand. The participant is viewed from behind so no face or identity is visible. The complete dome, column, platform, participant and full hair envelope are in frame; the hair has begun to lift radially away from the head with ample empty space for further separation.",
+      "simulation_recipe": "Use an anonymous neutral mannequin with a dense set of flexible hair curves, standing on an insulating platform and electrically connected to the generator dome. Gradually apply one sign of charge to the dome, body and hair; approximate mutual strand repulsion plus gravity, bending stiffness and air drag so strands fan outward along local radial directions. Keep feet fixed, the generator stationary and the camera locked.",
+      "required_objects": [
+        "one full-size Van de Graaff generator with complete metal dome",
+        "one anonymous long-haired adult participant viewed from behind",
+        "one insulating platform",
+        "one clear hand-to-dome contact"
+      ],
+      "camera_view": "Locked wide three-quarter rear view that preserves anonymity while showing the complete person, generator, dome, platform and entire future hair envelope.",
+      "future_motion_space": "Leave generous empty space above and around the participant's head for every hair strand to rise and spread without leaving frame.",
+      "negative_constraints": [
+        "no identifiable face, name badge, tattoo or other personal identifier",
+        "no cropped head, hair, feet, platform or generator dome",
+        "no child participant",
+        "no additional people, instructor or audience",
+        "no hands dominating or blocking the apparatus",
+        "no text, labels, watermark or logo",
+        "no unsafe contact with grounded metal"
+      ],
+      "web_queries": [
+        "Van de Graaff generator hair standing up full experiment",
+        "person long hair Van de Graaff insulating platform physics demonstration",
+        "electrostatic hair radial Van de Graaff laboratory",
+        "Van de Graaff hair experiment rear view full apparatus",
+        "hair strands repel charged dome science museum demonstration"
+      ]
+    },
+    {
+      "id": "P30",
+      "priority_stars": 0,
+      "domain": "静电",
+      "scene_raw": "带电棒靠近细水流",
+      "measurement": "正 / 负极性条件下水流偏折方向",
+      "theory": "两种极性均吸引水流",
+      "slug": "P30_both_charge_polarities_attract_water_stream",
+      "first_frame_en": "Two matched fine-water-stream stations are mounted side by side in one continuous frame. Each identical nozzle produces a thin vertical stream into its own catch basin. A positively charged smooth rod approaches the left stream from the outer left, and an otherwise identical negatively charged rod approaches the right stream from the outer right; both rods are still separated from the water and both streams are initially straight. The two polarity conditions are color-coded only by subtle red and blue rod materials, without text.",
+      "simulation_recipe": "Duplicate one nozzle-stream-catch-basin setup into mirror-symmetric left and right conditions. Apply equal-magnitude opposite charges to the two rods, and model water polarization so each stream bends toward its nearby rod independent of sign. Animate both rods approaching by equal distances and both streams deflecting simultaneously, with equal flow rates and no rod-water contact.",
+      "required_objects": [
+        "two identical water nozzles",
+        "two simultaneous thin water streams",
+        "two identical catch basins",
+        "one positively charged rod",
+        "one negatively charged rod"
+      ],
+      "camera_view": "Locked straight-on level view showing both polarity conditions together at equal scale from nozzle to catch basin.",
+      "future_motion_space": "Leave clear lateral space between each rod and stream for visible inward bending, and show the complete fall path of both streams.",
+      "negative_constraints": [
+        "do not show only one polarity or split conditions into separate shots",
+        "no rod touching the water",
+        "no unequal rod distance, stream thickness or nozzle height",
+        "no airflow, magnet or mechanical guide bending a stream",
+        "no people or hands",
+        "no polarity text, plus or minus signs, arrows, formulas, watermark or logo"
+      ],
+      "web_queries": [
+        "charged rod bends thin water stream positive negative experiment",
+        "both positively and negatively charged rods attract water demonstration",
+        "water stream electrostatic polarization rod laboratory experiment",
+        "two polarity charged rod water deflection comparison",
+        "electrostatics comb rod bends faucet stream physics lab"
+      ]
+    },
+    {
+      "id": "P31",
+      "priority_stars": 0,
+      "domain": "静电",
+      "scene_raw": "验电器分别位于金属网内部和外部",
+      "measurement": "内 / 外偏转角",
+      "theory": "theta_inside/theta_outside approximately 0",
+      "slug": "P31_electroscope_inside_outside_faraday_cage",
+      "first_frame_en": "One transparent open-grid metal Faraday cage and two identical gold-leaf electroscopes appear together on the same insulating table. One electroscope is centered fully inside the cage and remains clearly visible through the mesh; the second stands immediately outside at matched height and orientation. A charged metal sphere is positioned outside the cage at a safe equal-view distance, ready to produce strong leaf divergence outside while the inner leaves remain together.",
+      "simulation_recipe": "Build a conductive wire-mesh enclosure with one electroscope at its geometric center and an identical control electroscope outside. Bring an external charged sphere toward the apparatus. Impose electrostatic shielding inside the conductor so the inner leaf pair receives negligible charge and angle, while the external control leaves repel and diverge. Use identical leaf mass, hinge stiffness and damping and animate both in the same frame.",
+      "required_objects": [
+        "one complete conductive wire-mesh Faraday cage",
+        "one gold-leaf electroscope centered inside the cage",
+        "one identical gold-leaf electroscope outside the cage",
+        "one external charged metal sphere",
+        "one shared insulating tabletop"
+      ],
+      "camera_view": "Locked straight-on three-quarter view that reveals cage depth yet keeps both electroscope leaf pairs visible at equal scale.",
+      "future_motion_space": "Keep empty space around both leaf pairs for divergence and an unobstructed path for the external charged sphere to approach without entering the cage.",
+      "negative_constraints": [
+        "do not place both electroscopes inside or both outside",
+        "do not split the inside and outside conditions into separate panels",
+        "no mesh dense enough to hide the inner leaves",
+        "no opening or cable that electrically exposes the inner electroscope",
+        "no people or hands",
+        "no text labels, arrows, formulas, watermark or logo"
+      ],
+      "web_queries": [
+        "electroscope inside outside Faraday cage metal mesh experiment",
+        "Faraday cage gold leaf electroscope shielding demonstration",
+        "electroscope in wire cage electrostatic field experiment",
+        "inside outside electroscope metal screen comparison physics lab",
+        "Faraday ice pail cage electroscope no deflection experiment"
+      ]
+    },
+    {
+      "id": "P32",
+      "priority_stars": 1,
+      "domain": "静磁",
+      "scene_raw": "条形磁铁上撒铁屑形成场图",
+      "measurement": "骨架化后的内部端点数、交叉数",
+      "theory": "应接近 (0,0)",
+      "slug": "P32_bar_magnet_iron_filings_field_map",
+      "first_frame_en": "A single straight bar magnet lies centered beneath a thin transparent nonmagnetic sheet viewed from directly overhead. Fine dry iron filings are distributed sparsely and evenly across the sheet at the first instant, with the magnet silhouette still visible underneath. There is a wide clean border around the magnet so the filings can settle into continuous, noncrossing dipole-field curves after gentle vibration.",
+      "simulation_recipe": "Place thousands of elongated magnetic particles on a horizontal sheet above one dipole bar magnet. Initially scatter them randomly with low density, then apply local dipole-field torque and weak short-range chaining while adding small vertical sheet vibrations. Particles should rotate and translate into smooth nested loops whose interior skeleton contains essentially no free endpoints or crossings away from the magnet poles.",
+      "required_objects": [
+        "one straight bar magnet",
+        "one thin transparent nonmagnetic sheet",
+        "fine dry iron filings spread across the sheet"
+      ],
+      "camera_view": "Locked orthographic overhead view centered on the magnet, with the sheet plane parallel to the image plane.",
+      "future_motion_space": "Leave a broad uniform sheet area around both poles and along both sides for complete dipole curves to form without frame clipping.",
+      "negative_constraints": [
+        "no second magnet or horseshoe magnet",
+        "no dense opaque pile hiding the magnet",
+        "no pre-drawn field lines, arrows or artificial crossings",
+        "no filings outside the sheet or contaminated with liquid",
+        "no people or hands",
+        "no text, pole labels, formulas, watermark or logo"
+      ],
+      "web_queries": [
+        "bar magnet iron filings magnetic field pattern overhead experiment",
+        "iron filings on paper over bar magnet field lines laboratory",
+        "bar magnet filings continuous non crossing field pattern",
+        "magnetic field visualization iron filings clear sheet top view",
+        "single bar magnet iron powder field map demonstration"
+      ]
+    },
+    {
+      "id": "P33",
+      "priority_stars": 0,
+      "domain": "静磁",
+      "scene_raw": "条形磁铁周围放多个小指南针",
+      "measurement": "指南针方向与径向的夹角",
+      "theory": "tan(alpha) = tan(theta)/2",
+      "slug": "P33_compasses_around_bar_magnet",
+      "first_frame_en": "A single bar magnet lies horizontally at the center of a nonmagnetic board, surrounded in the same plane by twelve to sixteen identical small transparent compasses at varied polar angles and radii. Every compass center and full needle is visible, no compass touches another or the magnet, and the needles are beginning to align with the local dipole field in a clean overhead composition.",
+      "simulation_recipe": "Model the bar magnet as a magnetic dipole and place identical pivoted compass needles at known noncollinear positions around it. Compute the dipole field at every compass center, apply magnetic torque plus small angular damping, and let all needles settle parallel to their local field. Keep compass housings fixed and use no ambient field except a weak uniform background if needed.",
+      "required_objects": [
+        "one straight bar magnet",
+        "twelve to sixteen identical small compasses",
+        "one flat nonmagnetic board"
+      ],
+      "camera_view": "Locked orthographic overhead view centered on the magnet, with all compass faces parallel to the image plane.",
+      "future_motion_space": "Provide clearance for every needle to rotate through a full circle and retain a wide border around the outermost compasses.",
+      "negative_constraints": [
+        "no compass overlap, hidden needle or cropped housing",
+        "no compass placed on top of the magnet",
+        "no second magnet, current-carrying wire or nearby steel object",
+        "no arrows or pre-drawn magnetic field curves",
+        "no people or hands",
+        "no text, angle labels, formulas, watermark or logo"
+      ],
+      "web_queries": [
+        "small compasses around bar magnet field experiment top view",
+        "bar magnet compass array magnetic dipole laboratory",
+        "multiple plotting compasses bar magnet field pattern",
+        "magnetic field direction compasses around bar magnet demonstration",
+        "dipole field compass needles polar angle experiment"
+      ]
+    },
+    {
+      "id": "P33b",
+      "priority_stars": 0,
+      "domain": "静磁",
+      "scene_raw": "可见的一条磁偶极场线",
+      "measurement": "沿场线多个点的几何量",
+      "theory": "r/sin^2(theta) 恒定",
+      "slug": "P33b_single_visible_magnetic_dipole_field_line",
+      "first_frame_en": "A single bar magnet lies beneath a clear horizontal acrylic plate in an overhead laboratory view. A narrow sparse trail of magnetically responsive tracer particles marks exactly one clean curved dipole field line looping from the vicinity of one pole toward the other, while the rest of the plate remains empty. The whole curve, magnet center and both poles are visible with no arrows, coordinates or additional field curves.",
+      "simulation_recipe": "Represent one selected analytic dipole field line r = C sin^2(theta) around a centered bar magnet. Place a sparse chain of small ferromagnetic tracer particles close to that curve, then animate weak magnetic attraction and damping so they settle onto a single smooth visible path. Preserve small gaps between particles for realism, but do not seed any second line or draw a graphic overlay.",
+      "required_objects": [
+        "one straight bar magnet",
+        "one clear horizontal acrylic plate",
+        "one sparse chain of magnetic tracer particles forming a single curve"
+      ],
+      "camera_view": "Locked orthographic overhead view with the magnet centered and the complete single field-line curve in frame.",
+      "future_motion_space": "Leave the full plate empty around the selected curve so tracer particles can settle without merging into other structures or leaving frame.",
+      "negative_constraints": [
+        "exactly one visible field-line curve, not a full family of curves",
+        "no dense iron-filings map",
+        "no arrows, arrowheads, axes, grid, coordinates or angle marks",
+        "no curve crossing, branch or free interior endpoint",
+        "no people or hands",
+        "no text, pole labels, formulas, watermark or logo"
+      ],
+      "web_queries": [
+        "single magnetic dipole field line visible experiment",
+        "one bar magnet field line tracer particles overhead",
+        "magnetic dipole field line r sin squared theta demonstration",
+        "single curve around bar magnet ferrofluid tracer",
+        "bar magnet one field line visualization laboratory"
+      ]
+    },
+    {
+      "id": "P34",
+      "priority_stars": 0,
+      "domain": "电磁",
+      "scene_raw": "直导线周围放多个指南针",
+      "measurement": "针方向 vs 径向",
+      "theory": "应为 90 degrees",
+      "slug": "P34_compasses_around_straight_current_wire",
+      "first_frame_en": "A long straight vertical copper wire passes perpendicularly through the center of a flat transparent nonmagnetic board. Twelve identical small compasses are arranged in one horizontal ring around the wire, with every compass center equidistant from it and every needle clearly visible from overhead. The current circuit is routed away below the board, and the needles have room to rotate tangentially around the wire when current begins.",
+      "simulation_recipe": "Place a vertical straight conductor through the origin and identical pivoted compass needles at evenly spaced azimuths on a horizontal circle. Ramp a DC current through the wire, calculate the circular Biot-Savart field, and apply torque plus damping so each needle becomes tangent to its local circle and perpendicular to the radial direction. Keep the return lead distant or coaxially canceled so it does not distort the pattern.",
+      "required_objects": [
+        "one long straight vertical copper wire",
+        "one transparent nonmagnetic support board",
+        "twelve identical small compasses in a circular array",
+        "one safely routed DC current circuit"
+      ],
+      "camera_view": "Locked orthographic overhead view centered exactly on the wire, with the compass ring parallel to the image plane.",
+      "future_motion_space": "Leave full rotational clearance inside every compass housing and a clean border around the entire circular array.",
+      "negative_constraints": [
+        "no bar magnet or horseshoe magnet",
+        "no bent, tilted or off-center main wire",
+        "no nearby visible return wire crossing the compass ring",
+        "no missing, overlapping or cropped compass needle",
+        "no people or hands",
+        "no arrows, radial guide lines, text, formulas, watermark or logo"
+      ],
+      "web_queries": [
+        "compasses around straight current carrying wire experiment top view",
+        "Oersted experiment multiple compass needles circular magnetic field",
+        "straight wire compass array magnetic field laboratory",
+        "current carrying conductor compasses tangent circle demonstration",
+        "Biot Savart straight wire compass ring experiment"
+      ]
+    },
+    {
+      "id": "P35",
+      "priority_stars": 0,
+      "domain": "静磁",
+      "scene_raw": "条形磁铁断成两半后分别撒铁屑",
+      "measurement": "每个碎片的磁极数",
+      "theory": "每一半仍有两个极，不产生单磁极",
+      "slug": "P35_broken_bar_magnet_two_dipoles",
+      "first_frame_en": "Two separated halves of one freshly broken bar magnet lie parallel but well apart beneath a large transparent nonmagnetic sheet. Their matching rough fracture faces are visible, making their common origin unambiguous. Fine dry iron filings are evenly scattered around each fragment with a wide empty gap between the two regions, ready to reveal a complete two-pole field pattern around each half under gentle vibration.",
+      "simulation_recipe": "Split one bar-magnet mesh into two equal fragments and assign each fragment its own north and south poles, including new opposite poles at the fracture faces. Scatter elongated magnetic particles on one sheet above both fragments. Apply the superposed field, local alignment, weak chaining and sheet vibration so filings form a separate dipole pattern around each fragment without any monopole-like radial-only pattern.",
+      "required_objects": [
+        "two matching halves of one broken bar magnet",
+        "two visible complementary fracture faces",
+        "one large transparent nonmagnetic sheet",
+        "fine dry iron filings around both fragments"
+      ],
+      "camera_view": "Locked orthographic overhead view showing both fragments and the complete filing region around each at equal scale.",
+      "future_motion_space": "Leave broad clearance around every end of both fragments and a wide central gap so two complete field patterns can emerge without clipping or merging.",
+      "negative_constraints": [
+        "no intact third magnet or unrelated magnet fragments",
+        "no fragment represented as a single isolated pole",
+        "no overlapping fragments or hidden fracture faces",
+        "no pre-drawn field curves, arrows or pole labels",
+        "no people or hands",
+        "no text, formulas, watermark or logo"
+      ],
+      "web_queries": [
+        "broken bar magnet halves iron filings field experiment",
+        "cut bar magnet each piece north south poles iron filings",
+        "bar magnet broken in half magnetic field pattern demonstration",
+        "two magnet fragments iron powder no monopole experiment",
+        "broken magnet fragments each dipole laboratory overhead"
+      ]
+    },
+    {
+      "id": "P36",
+      "priority_stars": 1,
+      "domain": "电磁感应",
+      "scene_raw": "磁铁与同形塑料块在倾斜铜板上并排释放",
+      "measurement": "磁铁速度增量 CV 与对照物运动差异",
+      "theory": "磁铁趋于终速，对照更接近加速运动",
+      "slug": "P36_eddy_current_braking",
+      "first_frame_en": "A photorealistic university laboratory setup shows one thick, clean copper plate forming a long inclined ramp. A bare metallic neodymium-magnet puck and a same-shape, same-diameter, same-height plastic control puck rest side by side against one synchronized low release gate at exactly the same downhill start line. Both pucks are stationary and fully visible, with separate parallel lanes and the entire copper runout path below them in frame. The magnet and plastic control are visually distinguishable by material but geometrically matched; the plate, hinge, rigid support, and release mechanism are physically credible.",
+      "simulation_recipe": "Build a thick copper ramp and two equal-geometry rigid pucks in Blender. Give both the same gravity component and contact parameters; add a velocity-proportional magnetic-drag term F=-k*v only to the magnet so its later motion approaches terminal speed. Hold both bodies at one start line with a synchronized gate at frame 1, then release together. Use realistic copper, metal, and polymer materials and a locked camera.",
+      "required_objects": [
+        "one long inclined copper plate",
+        "one neodymium-magnet puck",
+        "one geometrically identical plastic control puck",
+        "one synchronized two-lane release gate",
+        "rigid ramp supports and hinge"
+      ],
+      "camera_view": "Locked high three-quarter side view, close to orthographic, looking across both parallel lanes while preserving the full downhill length of the copper plate.",
+      "future_motion_space": "Keep the complete unobstructed downhill path and runout area visible below both pucks, with neither lane cropped.",
+      "negative_constraints": [
+        "no person, hand, or manual release",
+        "no different-sized or differently shaped comparison objects",
+        "no aluminum, steel, wooden, or painted ramp substituted for copper",
+        "no extra magnets hidden under or above the plate",
+        "no puck already moving or displaced from the common start line",
+        "no labels, equations, arrows, trajectories, watermark, or logo",
+        "no blur, cropped ramp, cartoon, or toy-like apparatus"
+      ],
+      "web_queries": [
+        "magnet and plastic puck sliding down inclined copper plate eddy current experiment",
+        "eddy current braking magnet copper ramp control block demonstration",
+        "neodymium magnet sliding on copper sheet incline physics laboratory",
+        "magnetic damping copper plate slope magnet versus nonmagnetic object",
+        "Lenz law magnet terminal speed inclined copper plate experiment video"
+      ]
+    },
+    {
+      "id": "P36b",
+      "priority_stars": 1,
+      "domain": "电磁感应",
+      "scene_raw": "同上",
+      "measurement": "两者通过铜板所需帧数",
+      "theory": "N_magnet/N_control > 1",
+      "slug": "P36b_eddy_current_transit_time",
+      "first_frame_en": "A photorealistic university laboratory setup shows one thick, clean copper plate forming a long inclined ramp. A bare metallic neodymium-magnet puck and a same-shape, same-diameter, same-height plastic control puck rest side by side against one synchronized low release gate at exactly the same downhill start line. Both pucks are stationary and fully visible, with separate parallel lanes and the entire copper transit distance below them in frame. The magnet and plastic control are visually distinguishable by material but geometrically matched; the plate, hinge, rigid support, and release mechanism are physically credible.",
+      "simulation_recipe": "Reuse the P36 scene and geometry. Simulate two equal-geometry pucks on the same copper incline, adding velocity-dependent eddy-current drag only to the magnet. Place both against one synchronized gate at frame 1 and preserve a common visible start line and common plate endpoint so the later frame counts across the copper transit can be compared directly.",
+      "required_objects": [
+        "one long inclined copper plate",
+        "one neodymium-magnet puck",
+        "one geometrically identical plastic control puck",
+        "one synchronized two-lane release gate",
+        "rigid ramp supports and hinge"
+      ],
+      "camera_view": "Locked high three-quarter side view, close to orthographic, showing both parallel lanes from the shared release line to the same lower endpoint.",
+      "future_motion_space": "The full common transit length of the copper plate must remain visible so both passage times can be counted without an edit or camera move.",
+      "negative_constraints": [
+        "no person, hand, or asynchronous release",
+        "no unequal start positions or unequal travel distances",
+        "no different-sized or differently shaped comparison objects",
+        "no material other than copper for the inclined conductor",
+        "no object already moving in the first frame",
+        "no labels, equations, arrows, trajectories, watermark, or logo",
+        "no cropped endpoint, motion blur, cartoon, or toy-like styling"
+      ],
+      "web_queries": [
+        "magnet plastic control race down inclined copper plate experiment",
+        "eddy current braking transit time magnet copper ramp demonstration",
+        "magnet versus nonmagnetic puck sliding copper incline Lenz law",
+        "neodymium magnet slow slide copper sheet slope classroom experiment",
+        "magnetic drag copper plate ramp comparative physics video"
+      ]
+    },
+    {
+      "id": "P37",
+      "priority_stars": 0,
+      "domain": "电磁感应",
+      "scene_raw": "完整铝环与开口铝环分别进行 Lenz 跳环实验",
+      "measurement": "跳起高度",
+      "theory": "h_open/h_closed ≈ 0",
+      "slug": "P37_lenz_jumping_rings",
+      "first_frame_en": "In one photorealistic frame, two matched Lenz jumping-ring stations stand side by side on the same laboratory bench. Each has an identical vertical laminated iron core and solenoid. A complete closed aluminum ring surrounds the left core, while an otherwise identical aluminum ring with one clearly visible narrow radial gap surrounds the right core. Both rings rest at the same height on identical supports before current is applied, and both are stationary. Leave tall clear space above each ring for the subsequent jump and keep the two entire apparatuses visible simultaneously.",
+      "simulation_recipe": "Create two identical solenoid-and-core rigs and two equal aluminum rings, cutting one ring with a visible radial gap. At frame 1 both rings rest at equal height. On energization, apply a short upward electromagnetic force to the closed ring and essentially zero net force to the open ring, then let gravity govern the trajectories. Render realistic aluminum, varnished copper winding, and laminated iron.",
+      "required_objects": [
+        "two identical vertical solenoids",
+        "two identical laminated iron cores",
+        "one closed aluminum ring",
+        "one same-size aluminum ring with a visible gap",
+        "two equal ring supports",
+        "one shared laboratory bench"
+      ],
+      "camera_view": "Locked frontal view with a slight downward angle, centered between the two stations so ring heights can be compared in the same image plane.",
+      "future_motion_space": "Reserve equal, unobstructed vertical headroom above both rings, including the expected maximum jump height of the closed ring.",
+      "negative_constraints": [
+        "no separate frames or before-and-after collage; both conditions must share one frame",
+        "no hidden or ambiguous gap in the open ring",
+        "no unequal core, coil, ring size, or starting height",
+        "no ring already airborne or tilted at the first frame",
+        "no person, hand, sparks, smoke, or exposed unsafe wiring",
+        "no text labels, arrows, formulas, watermark, or logo",
+        "no cropped jump space, blur, cartoon, or toy styling"
+      ],
+      "web_queries": [
+        "closed ring open ring jumping ring Lenz law experiment comparison",
+        "Thomson jumping ring split aluminum ring demonstration",
+        "complete versus cut aluminum ring electromagnetic induction lab",
+        "Lenz law jumping ring open circuit ring physics demonstration",
+        "jumping ring experiment closed and slotted ring side by side"
+      ]
+    },
+    {
+      "id": "P38",
+      "priority_stars": 0,
+      "domain": "电磁感应",
+      "scene_raw": "实心金属板和开槽板在磁极间摆动",
+      "measurement": "阻尼半衰所需摆数",
+      "theory": "实心板衰减更快",
+      "slug": "P38_eddy_current_pendulum_plates",
+      "first_frame_en": "A real laboratory eddy-current pendulum comparison is shown in one frame. Two identical pendulum arms hang side by side from equal pivots: the left carries a solid rectangular aluminum plate and the right carries an equal-outline, equal-mass-distribution slotted aluminum plate with several deep vertical cuts that interrupt eddy-current loops. Each plate will swing through an identical narrow gap between matched permanent-magnet pole pieces. A synchronized latch holds both pendulums motionless at the same initial angle. The full swing arcs, pivots, plates, and both magnet gaps are visible together.",
+      "simulation_recipe": "Model two matched physical pendulums with equal pivot geometry and plate outlines, one solid and one deeply slotted. Give both the same initial angle and release frame. Apply localized velocity-dependent magnetic damping while a plate crosses its magnet gap, with a much larger coefficient for the solid plate. Preserve gravity and bearing friction identically, and render the complete arcs with a fixed camera.",
+      "required_objects": [
+        "two identical pendulum pivots and arms",
+        "one solid aluminum plate",
+        "one same-outline slotted aluminum plate",
+        "two identical permanent-magnet pole gaps",
+        "one synchronized release latch",
+        "rigid support frame"
+      ],
+      "camera_view": "Locked orthographic frontal view normal to both swing planes, minimizing parallax between the two pendulums.",
+      "future_motion_space": "Show both complete symmetric swing envelopes from the common release angle through the magnetic gaps to the opposite side.",
+      "negative_constraints": [
+        "no separate frames; solid and slotted conditions must be simultaneous in one frame",
+        "no unequal pendulum length, release angle, magnet gap, or plate outline",
+        "no decorative holes that fail to interrupt current paths; use clear deep slots",
+        "no pendulum already moving at frame one",
+        "no person, hand, string release, or external push",
+        "no text, labels, arrows, motion trails, watermark, or logo",
+        "no cropped arcs, blur, cartoon, or toy-like apparatus"
+      ],
+      "web_queries": [
+        "solid plate slotted plate eddy current pendulum damping experiment",
+        "eddy current brake pendulum solid aluminum plate comb plate demonstration",
+        "metal plate with slots swinging between magnet poles physics lab",
+        "Waltenhofen pendulum solid and slotted plate comparison",
+        "Lenz law pendulum magnetic damping cut aluminum plate video"
+      ]
+    },
+    {
+      "id": "P39",
+      "priority_stars": 0,
+      "domain": "电磁感应",
+      "scene_raw": "磁铁在线圈中先静止、再移动，线圈接小灯",
+      "measurement": "磁铁运动与灯亮事件是否对齐",
+      "theory": "只有磁通变化时灯才亮",
+      "slug": "P39_faraday_coil_lamp",
+      "first_frame_en": "A sharp side view shows a large multi-turn copper coil fixed to a laboratory stand and connected by two plainly visible wires to a small clear incandescent lamp, forming a closed circuit. A bar magnet is held completely stationary, coaxial with the coil, by a nonmagnetic motorized linear carriage; its leading end sits just inside the coil opening. The lamp filament is visible but dark in this initial stationary state. Clear axial space remains on both sides of the coil for the magnet's later translation, and no hand touches the apparatus.",
+      "simulation_recipe": "Model a bar magnet on a motorized linear rail passing coaxially through a fixed coil. Prescribe an initial stationary interval followed by controlled translation. Compute a simple flux Phi(x), induced voltage V=-dPhi/dt, and drive lamp emission from |V| above a small threshold; at frame 1 velocity and lamp emission are zero. Keep the circuit wires visibly connected and the camera locked.",
+      "required_objects": [
+        "one bar magnet",
+        "one multi-turn copper coil",
+        "one small incandescent lamp",
+        "two visible circuit wires forming a closed circuit",
+        "one nonmagnetic motorized linear carriage",
+        "rigid laboratory stands"
+      ],
+      "camera_view": "Locked perpendicular side view aligned with the magnet and coil axis, with the lamp in the same focal plane.",
+      "future_motion_space": "Leave an unobstructed axial path through and beyond the coil while keeping the magnet, full coil, and lamp visible throughout the later motion.",
+      "negative_constraints": [
+        "no glowing lamp while the magnet is stationary in the first frame",
+        "no open, missing, or visually ambiguous circuit connection",
+        "no hand-held magnet or person",
+        "no battery or powered lamp source masquerading as induction",
+        "no magnet already moving or motion-blurred",
+        "no text, arrows, magnetic field lines, equations, watermark, or logo",
+        "no cropped coil or future magnet path, cartoon, or toy styling"
+      ],
+      "web_queries": [
+        "moving bar magnet coil small light bulb electromagnetic induction experiment",
+        "Faraday law magnet through coil lamp demonstration",
+        "magnet stationary then moving inside coil light bulb physics lab",
+        "bar magnet solenoid incandescent bulb induction experiment video",
+        "electromagnetic induction coil connected to lamp classroom demonstration"
+      ]
+    },
+    {
+      "id": "P40",
+      "priority_stars": 0,
+      "domain": "颗粒",
+      "scene_raw": "同帧倒出两堆不同大小但同材质的沙",
+      "measurement": "两个沙堆的休止角",
+      "theory": "alpha_small/alpha_large = 1",
+      "slug": "P40_sand_angle_of_repose",
+      "first_frame_en": "Two matched transparent hoppers are mounted side by side over two identical flat collection trays in one photorealistic frame. Both contain the same dry quartz sand with the same color and surface material, but the left grains are visibly fine and the right grains visibly coarse. Equal synchronized bottom gates are still closed, so both granular beds are stationary just before simultaneous pouring. The empty pile-forming areas below both outlets are fully visible and equally framed.",
+      "simulation_recipe": "Create two side-by-side discrete-element particle systems with the same density, friction, restitution, and grain material but different particle radii. Fill identical hoppers to matched amounts, hold both with synchronized gates at frame 1, and open the gates simultaneously. Accumulate particles on identical trays until stable conical heaps form; use the same camera and lighting for both.",
+      "required_objects": [
+        "two identical transparent hoppers",
+        "fine dry quartz sand",
+        "coarse dry quartz sand of the same material",
+        "two synchronized outlet gates",
+        "two identical level collection trays",
+        "one rigid shared support frame"
+      ],
+      "camera_view": "Locked frontal three-quarter view at equal distance from both hopper outlets, with minimal perspective and both future heap profiles visible.",
+      "future_motion_space": "Keep equal clear volume below each outlet and enough tray width and height for two complete final sand-pile silhouettes.",
+      "negative_constraints": [
+        "no separate frames; both grain-size conditions must appear simultaneously",
+        "no different sand color, moisture, material, hopper, or tray between conditions",
+        "no pre-existing unequal heaps in the first frame",
+        "no gate already open or sand already falling",
+        "no person, hand, scoop, or manual pouring",
+        "no text, labels, angle guides, arrows, watermark, or logo",
+        "no blurred grains, cropped pile area, cartoon, or toy-like scene"
+      ],
+      "web_queries": [
+        "fine sand coarse sand angle of repose experiment comparison",
+        "different grain size same material sand pile angle of repose lab",
+        "two hoppers sand grain size repose angle demonstration",
+        "granular material angle of repose particle size experiment video",
+        "quartz sand fine versus coarse conical pile laboratory"
+      ]
+    },
+    {
+      "id": "P41",
+      "priority_stars": 1,
+      "domain": "颗粒 / 流体",
+      "scene_raw": "相似容器中分别装沙和水并流出",
+      "measurement": "前半程 / 后半程流量变化",
+      "theory": "沙近似恒流；水随液面高度变化",
+      "slug": "P41_sand_water_discharge",
+      "first_frame_en": "One frame contains two identical transparent vertical vessels mounted side by side at the same height, each with the same small circular bottom outlet and synchronized closed gate. The left vessel is filled with dry uniform sand and the right vessel with clear water to the same initial fill height. Both contents are stationary before discharge; identical empty transparent catch bins sit below the outlets. The entire fill columns, outlets, falling paths, and collectors are visible together under controlled laboratory lighting.",
+      "simulation_recipe": "Build two geometrically identical containers with equal outlet radii. Simulate sand using a granular DEM/PBD system whose discharge remains approximately height-independent, and water with SPH/FLIP or an analytic Torricelli outflow proportional to sqrt(2gh). At frame 1 both gates are closed and fill heights match; open both gates on the same frame and retain identical camera framing.",
+      "required_objects": [
+        "two identical transparent discharge vessels",
+        "dry uniform sand",
+        "clear water",
+        "two equal circular bottom outlets",
+        "one synchronized two-gate release",
+        "two identical transparent catch bins"
+      ],
+      "camera_view": "Locked orthographic frontal view showing both vessels, fill heights, outlet streams, and collectors at equal image scale.",
+      "future_motion_space": "Keep both complete fall paths and catch bins unobstructed, and preserve a clear view of the changing material levels from full to nearly empty.",
+      "negative_constraints": [
+        "no separate frames; sand and water must be visible simultaneously",
+        "no unequal vessel geometry, initial fill height, outlet size, or gate timing",
+        "no wet sand, slurry, bubbles, foam, or colored opaque water",
+        "no flow already underway in the first frame",
+        "no person, hand, funnel pouring, or external hose",
+        "no labels, scales with numbers, equations, arrows, watermark, or logo",
+        "no cropped collector, blur, cartoon, or toy-like apparatus"
+      ],
+      "web_queries": [
+        "sand versus water discharge rate identical containers experiment",
+        "hourglass sand constant flow water bottle changing flow comparison",
+        "granular discharge and liquid discharge side by side laboratory",
+        "sand silo water tank outflow rate physics demonstration",
+        "Torricelli water flow versus granular hopper flow experiment video"
+      ]
+    },
+    {
+      "id": "P42",
+      "priority_stars": 2,
+      "domain": "摩擦",
+      "scene_raw": "同一块板上并排放同材质的一重一轻两个物块，缓慢抬板",
+      "measurement": "两块开始滑动的帧号",
+      "theory": "应在同一帧附近起滑",
+      "slug": "P42_mass_independent_static_friction",
+      "first_frame_en": "A realistic tilting-plane apparatus fills the frame. Two wooden blocks with identical dimensions, identical flat wooden contact faces, and the same surface finish sit side by side at one transverse start line on the same long wooden board. The heavier block is made visibly heavier only by securely centered metal masses attached on top; the lighter block has no added masses. Both blocks are stationary while the board is nearly horizontal, and the board's hinge and slow motorized lifting screw are visible. The complete downhill sliding paths remain clear.",
+      "simulation_recipe": "Create one hinged board whose angle increases slowly and smoothly. Place two equal-footprint rigid blocks at the same start line with identical static and kinetic friction coefficients; change only total mass by attaching centered weights to one block. Use a solver with sufficient friction iterations so both lose static contact at tan(theta)=mu_s on nearly the same frame. Start with the board nearly level and both blocks at rest.",
+      "required_objects": [
+        "one long hinged wooden board",
+        "two equal-size wooden blocks with identical contact faces",
+        "secure centered metal weights on only the heavy block",
+        "one slow motorized board-lifting mechanism",
+        "rigid hinge and support base"
+      ],
+      "camera_view": "Locked high side-front view with both blocks in the same image plane and the board angle and full downhill paths visible.",
+      "future_motion_space": "Show the full shared board below the common start line through the lower edge, leaving both parallel slide lanes unobstructed.",
+      "negative_constraints": [
+        "no separate frames; heavy and light blocks must share the same board and frame",
+        "no different block footprint, base material, surface treatment, or start position",
+        "no loose off-center weights that can shift or change contact geometry",
+        "no board already steep or block already sliding at frame one",
+        "no person, hand, manual lifting, string, or external push",
+        "no labels, arrows, force diagrams, trajectories, watermark, or logo",
+        "no cropped runout, blur, cartoon, or toy-like blocks"
+      ],
+      "web_queries": [
+        "two blocks different mass same material tilting board static friction experiment",
+        "mass independence coefficient static friction inclined plane demonstration",
+        "heavy light wooden blocks start sliding same angle experiment",
+        "variable angle incline two different weight blocks friction lab",
+        "static friction critical angle mass comparison physics video"
+      ]
+    },
+    {
+      "id": "P43",
+      "priority_stars": 0,
+      "domain": "刚体 / 接触",
+      "scene_raw": "均质方块被缓慢推倾",
+      "measurement": "倾倒开始帧 vs 质心越过支撑边帧",
+      "theory": "两事件应对齐",
+      "slug": "P43_cube_tipping_threshold",
+      "first_frame_en": "A homogeneous matte cube stands upright and motionless on a level, high-friction laboratory platform in a strict side view. A motorized horizontal pusher with a small flat contact pad just touches the upper portion of one vertical face without yet deforming or tilting the cube. The cube has uniform appearance and sharp visible edges so its geometric center can be inferred. Its lower pivot edge, entire support footprint, actuator, and a large empty region in the tipping direction are all visible.",
+      "simulation_recipe": "Model a uniform-density rigid cube on a level plane with high enough friction to prevent sliding. Advance a motorized pusher quasi-statically against the upper side. Resolve contact accurately so the cube begins rotating about its lower far edge when its center-of-mass projection crosses the support boundary. Begin at frame 1 with the cube upright, the pusher just touching, and zero velocity.",
+      "required_objects": [
+        "one homogeneous rigid cube",
+        "one level high-friction platform",
+        "one slow motorized horizontal pusher",
+        "one small flat pusher contact pad",
+        "rigid actuator support"
+      ],
+      "camera_view": "Locked orthographic side view normal to the tipping plane, with the cube face square to the camera and no perspective skew.",
+      "future_motion_space": "Leave the complete quarter-circle tipping envelope clear on the side away from the pusher, including the final landing region.",
+      "negative_constraints": [
+        "no sliding-dominant setup; the base must provide sufficient friction for tipping",
+        "no hollow, visibly weighted, nonuniform, beveled, or irregular block",
+        "no cube already tilted or pusher already moving at frame one",
+        "no cropped support edge or future fall region",
+        "no person, hand, hammer impact, rope, or sudden push",
+        "no center-of-mass marker, text, arrows, formulas, watermark, or logo",
+        "no blur, cartoon, or toy-like scene"
+      ],
+      "web_queries": [
+        "uniform cube slowly pushed tipping center of mass support edge experiment",
+        "block tipping threshold center of gravity physics demonstration",
+        "rigid cube toppling quasi static push laboratory",
+        "center of mass passes base edge block tips experiment video",
+        "tipping versus sliding cube high friction surface mechanics lab"
+      ]
+    },
+    {
+      "id": "P44",
+      "priority_stars": 0,
+      "domain": "力学",
+      "scene_raw": "两端固定的大垂度链条",
+      "measurement": "链条轮廓",
+      "theory": "满足悬链线 y=a cosh(x/a)",
+      "slug": "P44_catenary_chain",
+      "first_frame_en": "A long uniform metal chain hangs freely under gravity between two small rigid anchors fixed at exactly the same height, forming a deep smooth sag. Every link belongs to one continuous chain of constant linear density, and neither side touches any other surface. Both anchors, the entire lowest point, and the complete chain silhouette appear sharply against a plain high-contrast vertical background in a real laboratory setting.",
+      "simulation_recipe": "Generate a uniform chain as many equal rigid links with hinge constraints, or directly place links along the relaxed analytic catenary y=a*cosh(x/a). Fix only the two endpoints at equal height, allow gravity to settle the chain until stationary, and render the equilibrated shape with a telephoto or orthographic camera and high-contrast background.",
+      "required_objects": [
+        "one continuous uniform-link metal chain",
+        "two small rigid anchors at equal height",
+        "one rigid support frame",
+        "one plain contrasting background"
+      ],
+      "camera_view": "Locked orthographic frontal view normal to the vertical plane of the chain, with both anchors at equal image height.",
+      "future_motion_space": "Frame the full static chain with margin above the anchors, below the lowest point, and beyond both side tangents; no camera motion is needed.",
+      "negative_constraints": [
+        "no rope, cable, elastic cord, or chain with nonuniform links",
+        "no anchor-height mismatch or asymmetric external load",
+        "no chain touching the floor, wall, or another support",
+        "no strong perspective or oblique camera that distorts the profile",
+        "no person or hand",
+        "no plotted curve, grid labels, equations, arrows, watermark, or logo",
+        "no cropped endpoint, blur, cartoon, or decorative jewelry styling"
+      ],
+      "web_queries": [
+        "deep sag hanging chain two fixed points catenary experiment",
+        "uniform chain catenary curve physics laboratory demonstration",
+        "hanging chain equal height supports catenary photograph",
+        "measure catenary shape suspended chain mechanics experiment",
+        "real metal chain catenary two anchors front view"
+      ]
+    },
+    {
+      "id": "P45",
+      "priority_stars": 0,
+      "domain": "表面张力",
+      "scene_raw": "同一水槽插入粗细不同的两根毛细管",
+      "measurement": "上升高度与管半径",
+      "theory": "(h1*r1)/(h2*r2) = 1",
+      "slug": "P45_capillary_rise_two_radii",
+      "first_frame_en": "Two clean vertical glass capillary tubes with clearly different internal radii are clamped side by side above and into the same transparent reservoir of clean water. Their lower ends are immersed to the same depth and their inner surfaces are identical. At the first instant after synchronized insertion, the liquid menisci inside both tubes are just beginning near the common reservoir level; both tubes are stationary with ample vertical headroom for different rise heights. The reservoir free surface, tube bores, lower ends, and both future meniscus paths are sharply visible.",
+      "simulation_recipe": "Model a shared transparent water reservoir and two vertical glass tubes with radii r1 and r2, identical wetting angle, and equal immersion depth. Initialize both internal columns at the reservoir level, then animate damped capillary rise toward Jurin heights h=2*gamma*cos(theta)/(rho*g*r). Use physically plausible curved menisci, transparent refraction, and a fixed close side camera.",
+      "required_objects": [
+        "one transparent water reservoir",
+        "clean water with one common free surface",
+        "two glass capillary tubes of different internal radius",
+        "one rigid vertical tube clamp",
+        "two visible liquid menisci"
+      ],
+      "camera_view": "Locked telecentric-like close side view perpendicular to both tubes, with the reservoir level and tube axes in one measurement plane.",
+      "future_motion_space": "Leave sufficient vertical space above the reservoir for the narrower tube's larger rise while keeping both complete meniscus paths visible.",
+      "negative_constraints": [
+        "no separate reservoirs or separate frames; both tubes must share the same water bath",
+        "no different glass chemistry, liquid, immersion depth, or tube tilt",
+        "no opaque, colored, dirty, bubbling, or visibly evaporating liquid",
+        "no already completed unequal rise if depicting the pre-rise first frame",
+        "no person, hand, pipette, or manual tube support",
+        "no labels, numerical ruler, equations, arrows, watermark, or logo",
+        "no invisible bore, cropped tube top, blur, cartoon, or toy styling"
+      ],
+      "web_queries": [
+        "two capillary tubes different diameter same water capillary rise experiment",
+        "capillary rise height versus tube radius laboratory demonstration",
+        "Jurin law two glass tubes different bore water tank",
+        "narrow wide capillary tubes water rise side by side experiment",
+        "surface tension capillary tubes common reservoir physics lab video"
+      ]
+    },
+    {
+      "id": "P46",
+      "priority_stars": 2,
+      "domain": "表面张力",
+      "scene_raw": "两块平行板之间形成准二维泡沫",
+      "measurement": "多个皂膜交点夹角",
+      "theory": "120°；四棱汇顶角 109.47°",
+      "slug": "P46_plateau_foam_angles",
+      "first_frame_en": "A photorealistic quasi-two-dimensional soap foam is confined in the narrow uniform gap between two clean, parallel transparent glass plates. Many bubbles of varied size form thin sharply resolved films, with at least five unobstructed three-film junctions visible in the central region and no dominant liquid drainage. The plate edges and equal spacers are visible at the perimeter to establish the apparatus geometry, while the foam is stationary and fills most of the view. Junctions are large enough for later angle measurement, and the films meet naturally according to Plateau geometry.",
+      "simulation_recipe": "Create two parallel glass plates separated by a narrow constant gap. Generate a polydisperse 2D foam from a relaxed weighted Voronoi or Surface Evolver layout, then relax film curvature and vertices under equal surface tension so three films meet at 120 degrees; where a resolvable 3D Plateau-border vertex is included, enforce the tetrahedral four-edge angle near 109.47 degrees. Render thin iridescent films and clear junctions without labels.",
+      "required_objects": [
+        "two clean parallel transparent glass plates",
+        "uniform narrow plate spacers",
+        "polydisperse quasi-two-dimensional soap foam",
+        "multiple clear three-film junctions",
+        "visible thin soap films and Plateau borders",
+        "rigid plate support frame"
+      ],
+      "camera_view": "Locked near-orthographic view normal to the broad glass plates, with a narrow peripheral strip revealing the plate gap but minimal angular distortion in the central foam.",
+      "future_motion_space": "The foam is primarily a static measurement scene; retain the full central network and margin around at least five junctions so small later relaxation remains visible.",
+      "negative_constraints": [
+        "no synthetic hexagonal honeycomb or perfectly regular bubble lattice",
+        "no four films incorrectly meeting at a single planar cross",
+        "no opaque plate, thick foam column, or strongly nonparallel plates",
+        "no junction hidden by glare, drainage puddles, frame edges, or extreme iridescence",
+        "no person, hand, blowing straw, or moving wiper",
+        "no angle markings, text, formulas, arrows, watermark, or logo",
+        "no blur, cropped central network, cartoon, or toy-like bubbles"
+      ],
+      "web_queries": [
+        "two dimensional soap foam between parallel glass plates Plateau angles",
+        "quasi 2D foam three films meet 120 degrees experiment",
+        "Plateau laws soap film junction angle laboratory photograph",
+        "soap bubble raft parallel plates 120 degree vertices physics",
+        "Surface Evolver quasi two dimensional foam Plateau border experiment"
+      ]
+    },
+    {
+      "id": "P47",
+      "priority_stars": 1,
+      "domain": "表面张力",
+      "scene_raw": "两个大小不同的皂泡相接",
+      "measurement": "两泡半径和隔膜曲率半径",
+      "theory": "1/r_s = 1/r_1 - 1/r_2，隔膜凸向大泡",
+      "slug": "P47_connected_soap_bubbles",
+      "first_frame_en": "Two clean soap bubbles of clearly different radius touch and share one sharply visible curved internal membrane in a still-air laboratory enclosure. The bubbles are supported only by two thin unobtrusive nozzles entering from below, lie in the same image plane, and are otherwise free of surrounding foam. Both complete outer circles and the entire shared film are visible. The common separator is smoothly curved and bulges toward the larger bubble, consistent with the higher pressure in the smaller bubble.",
+      "simulation_recipe": "Model two intersecting spherical soap-film shells with radii r1<r2 and a shared spherical-cap membrane. Set Laplace pressures DeltaP=4*gamma/r for the double films and choose separator curvature satisfying 1/r_s=1/r1-1/r2, bulging toward the larger bubble. Anchor each bubble lightly to a narrow nozzle, use realistic thin-film iridescence, and keep all interfaces stationary at frame 1.",
+      "required_objects": [
+        "one smaller soap bubble",
+        "one larger soap bubble",
+        "one shared curved separator membrane",
+        "two thin support nozzles",
+        "one still-air transparent enclosure"
+      ],
+      "camera_view": "Locked telecentric-like frontal close-up through the enclosure, normal to both bubble centers and the shared membrane.",
+      "future_motion_space": "Keep both full bubble outlines and clear margin around their common film; reserve slight expansion space without cropping either bubble.",
+      "negative_constraints": [
+        "no separate frames; both bubbles and their shared membrane must appear together",
+        "no equal-size bubbles or flat separator membrane",
+        "no separator curved toward the smaller bubble",
+        "no cluster of extra bubbles, thick foam, or obscuring supports",
+        "no person, hand, blowing mouth, or straw crossing the bubbles",
+        "no radius labels, arrows, equations, watermark, or logo",
+        "no cropped bubble, blur, illustration, or toy styling"
+      ],
+      "web_queries": [
+        "two connected soap bubbles different sizes curved common film experiment",
+        "small large soap bubbles shared membrane curvature Laplace pressure",
+        "double bubble unequal radii separator bulges toward large bubble",
+        "soap bubble pressure difference common wall laboratory photograph",
+        "two soap bubbles connected different radius surface tension video"
+      ]
+    },
+    {
+      "id": "P48",
+      "priority_stars": 0,
+      "domain": "表面张力",
+      "scene_raw": "空中两个自由液滴合并",
+      "measurement": "合并前后半径",
+      "theory": "r_new^3/(r_1^3+r_2^3) = 1",
+      "slug": "P48_free_droplet_coalescence",
+      "first_frame_en": "A high-speed macro laboratory view freezes two clean spherical water droplets fully detached in air, separated by a very small gap and approaching one another along the same horizontal axis. Their radii are visibly different but both outlines are complete, sharply focused, and undeformed before contact. The release nozzles are outside the central measurement region, the background is dark and plain, and ample empty space surrounds the expected merged droplet.",
+      "simulation_recipe": "Use a high-resolution FLIP/SPH or level-set liquid simulation with two initially spherical, fully detached droplets of radii r1 and r2, placed a small distance apart with equal-and-opposite low velocities. Include surface tension, viscosity, gravity over the short event, and volume conservation. Start at frame 1 before contact; after coalescence the relaxed radius should satisfy r_new^3=r1^3+r2^3. Render with macro optics and short-exposure lighting.",
+      "required_objects": [
+        "two fully detached water droplets of different radius",
+        "one plain high-contrast background",
+        "stroboscopic or short-exposure laboratory lighting",
+        "an unobstructed airborne coalescence region"
+      ],
+      "camera_view": "Locked high-speed macro side view perpendicular to the droplet approach axis, with shallow perspective but enough depth of field for both droplets.",
+      "future_motion_space": "Reserve clear space centered on the gap and around a merged droplet whose volume equals the sum of the two initial droplets.",
+      "negative_constraints": [
+        "no droplet touching a surface, nozzle, fiber, leaf, or hand",
+        "no droplets already merged, connected by a liquid bridge, or strongly deformed at frame one",
+        "no splash crown, pool impact, falling rain scene, or extra droplets",
+        "no mismatched focal planes or motion blur",
+        "no unrealistic volume gain or loss implied by cropped droplets",
+        "no labels, radius guides, arrows, trajectories, watermark, or logo",
+        "no illustration, cartoon, or toy-like rendering"
+      ],
+      "web_queries": [
+        "two free water droplets coalescence high speed camera experiment",
+        "airborne droplet collision coalescence unequal size laboratory",
+        "binary water droplet merging in air high speed video",
+        "free droplet coalescence surface tension experiment macro",
+        "unequal radius droplets collide merge volume conservation video"
+      ]
+    },
+    {
+      "id": "P49",
+      "priority_stars": 0,
+      "domain": "流体",
+      "scene_raw": "同一甘油容器内两个不同半径小球下落",
+      "measurement": "两球终速比",
+      "theory": "v_1/v_2 = (r_1/r_2)^2",
+      "slug": "P49_stokes_fall_two_radii",
+      "first_frame_en": "A tall transparent rectangular tank filled with clear, still glycerin is shown in a sharp laboratory side view. Two polished solid steel spheres of the same material but clearly different radii are held at the same initial depth and widely separated horizontally by one synchronized, minimal nonmagnetic release gate near the top of the liquid. Both spheres are stationary, fully submerged, far from the walls, and the entire long settling distance below them is visible. The glycerin contains no bubbles or currents.",
+      "simulation_recipe": "Create a tall glycerin tank and two same-density spheres with radii r1 and r2, initially at equal depth and at rest. Release them simultaneously and integrate buoyancy, gravity, and Stokes drag F_d=6*pi*eta*r*v, with a gentle transition to terminal motion; keep Reynolds number small and wall separation large. Render the full descent using transparent glycerin and a locked telephoto camera.",
+      "required_objects": [
+        "one tall transparent rectangular glycerin tank",
+        "clear still glycerin",
+        "two same-material steel spheres of different radius",
+        "one synchronized nonmagnetic release gate",
+        "rigid tank support and plain background"
+      ],
+      "camera_view": "Locked orthographic or long-lens frontal side view normal to the tank wall, showing both spheres at equal scale and minimizing refraction distortion.",
+      "future_motion_space": "Keep a long unobstructed liquid column below both spheres, including enough distance for each to reach terminal speed before the tank bottom.",
+      "negative_constraints": [
+        "no separate tanks or frames; both spheres must fall in the same glycerin volume",
+        "no different sphere material, density, shape, initial depth, or release time",
+        "no wall contact, overlapping paths, bottom contact, or sphere-to-sphere collision",
+        "no bubbles, convection, visible liquid flow, cloudy glycerin, or free-surface disturbance",
+        "no hand, person, tweezers, magnet, or string remaining attached after release",
+        "no labels, scales with numbers, arrows, trajectories, watermark, or logo",
+        "no cropped descent column, blur, cartoon, or toy styling"
+      ],
+      "web_queries": [
+        "two different radius steel balls falling in glycerin Stokes law experiment",
+        "terminal velocity sphere radius glycerin column physics laboratory",
+        "Stokes law falling ball viscometer different sphere sizes video",
+        "small and large balls settling same glycerol tank experiment",
+        "terminal speed proportional radius squared falling spheres viscous fluid"
+      ]
+    },
+    {
+      "id": "P50",
+      "priority_stars": 0,
+      "domain": "表面张力",
+      "scene_raw": "同一表面存在多个不同大小的小液滴",
+      "measurement": "各液滴接触角",
+      "theory": "接触角基本一致",
+      "slug": "P50_droplet_contact_angle_size",
+      "first_frame_en": "Four isolated droplets of the same clean liquid rest at static equilibrium on one homogeneous, level, smooth solid substrate. Their volumes differ substantially, yet each forms a clear spherical-cap side profile with an unobstructed three-phase contact line. The droplets are well separated along the same surface, small enough that gravity does not noticeably flatten the largest one, and all are captured sharply in one low-angle laboratory frame under diffuse backlighting.",
+      "simulation_recipe": "Model one perfectly level homogeneous substrate with a single Young contact angle theta. Place four noninteracting spherical-cap droplets of different volumes on it, solving cap geometry so every droplet has the same equilibrium contact angle while radii and heights vary. Keep Bond numbers small, add realistic transparent-liquid refraction, and render all side profiles simultaneously with a telecentric camera.",
+      "required_objects": [
+        "one homogeneous level solid substrate",
+        "four same-liquid droplets of distinctly different volume",
+        "four clear spherical-cap profiles",
+        "four unobstructed three-phase contact lines",
+        "one diffuse backlight and plain background"
+      ],
+      "camera_view": "Locked telecentric-like low side view parallel to the substrate, with all droplet baselines collinear and minimal perspective distortion.",
+      "future_motion_space": "This is a static equilibrium measurement; leave clear separation and margin around every complete droplet profile so all contact angles remain measurable.",
+      "negative_constraints": [
+        "no separate surfaces or frames; all droplet sizes must share one substrate and image",
+        "no mixed liquids, contamination, patterned coating, roughness change, or substrate tilt",
+        "no merged, touching, evaporating, sliding, pinned-irregular, or strongly gravity-flattened droplets",
+        "no overhead-only view that hides side contact angles",
+        "no person, hand, pipette, needle, or dispenser touching a droplet",
+        "no angle guides, labels, equations, arrows, watermark, or logo",
+        "no cropped contact line, blur, illustration, or toy styling"
+      ],
+      "web_queries": [
+        "different volume water droplets same surface contact angle experiment side view",
+        "droplet size independence contact angle homogeneous substrate laboratory",
+        "multiple sessile droplets different sizes contact angle photograph",
+        "same liquid droplets varying volume goniometer side profile",
+        "Young contact angle multiple droplets smooth surface experiment"
+      ]
+    }
+  ]
+}

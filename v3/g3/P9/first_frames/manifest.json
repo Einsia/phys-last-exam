@@ -1,0 +1,55 @@
+{
+  "schema_version": "physical-bench-delivery-v2",
+  "task_id": "P9",
+  "real_frames_included": false,
+  "records": [
+    {
+      "sample_id": "P9_gpt_01_modern",
+      "method": "gpt",
+      "path": "first_frames/gpt/P9_gpt_01_modern.png",
+      "source": "sop_delivery/P9/high_standard_v2/hybrid_run/round1/candidate_01.png",
+      "bytes": 3367038,
+      "sha256": "a94939eead3291f426584bab33486188ef88b52fc7f712585fd481fc1ed10ffc"
+    },
+    {
+      "sample_id": "P9_gpt_02_classic",
+      "method": "gpt",
+      "path": "first_frames/gpt/P9_gpt_02_classic.png",
+      "source": "sop_delivery/P9/high_standard_v2/hybrid_run/round1/candidate_02.png",
+      "bytes": 2774912,
+      "sha256": "ee55de74604a8c48462ce8548d6e7d0fe43677790949ef78a46c1e55bcceb801"
+    },
+    {
+      "sample_id": "P9_gpt_03_industrial",
+      "method": "gpt",
+      "path": "first_frames/gpt/P9_gpt_03_industrial.png",
+      "source": "sop_delivery/P9/high_standard_v2/hybrid_run/round1/candidate_03.png",
+      "bytes": 2262272,
+      "sha256": "244a01d4a591e254ae5a35ad40b80a938892b37c92064d81d6e35b2e94f214d5"
+    },
+    {
+      "sample_id": "P9_sim_01",
+      "method": "simulation",
+      "path": "first_frames/simulation/P9_sim_01.png",
+      "source": "sop_delivery/P9/high_standard_v2/simulation/sim_01.png",
+      "bytes": 7090936,
+      "sha256": "035eb5bd08368904c645453d52ea94868b6992d9b557ef56c7c96c0fe6974b09"
+    },
+    {
+      "sample_id": "P9_sim_02",
+      "method": "simulation",
+      "path": "first_frames/simulation/P9_sim_02.png",
+      "source": "sop_delivery/P9/high_standard_v2/simulation/sim_02.png",
+      "bytes": 7090936,
+      "sha256": "bbde9d5c8a7fd0d40c91c461a27e0ee7233d4c1ceeb5fdb222b405e75dcf6e3e"
+    },
+    {
+      "sample_id": "P9_sim_03",
+      "method": "simulation",
+      "path": "first_frames/simulation/P9_sim_03.png",
+      "source": "sop_delivery/P9/high_standard_v2/simulation/sim_03.png",
+      "bytes": 7090936,
+      "sha256": "fa88fcfb2781f024db3232b6f7d89ed19de901b1c0b500c8ea5c66c0d414a45b"
+    }
+  ]
+}

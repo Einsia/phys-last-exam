@@ -1,0 +1,35 @@
+USE CASE
+Photorealistic scientific laboratory first frame for an image-to-video physics benchmark.
+
+TASK ID
+P38 — 实心导体板和开槽导体板在相同磁场中摆动
+
+SCENE
+Two matched pendulum rigs stand side by side in one real university physics laboratory. The left pendulum carries a solid rectangular conducting plate and the right pendulum carries an otherwise externally matched conducting plate with several clean, clearly visible vertical slots. The two plates have the same outer dimensions, pivot geometry, suspension length, total mass and rotational inertia, with the matching mass/thickness relationship physically plausible. Each plate hangs from a rigid low-friction pivot and swings through its own equivalent pair of compact permanent magnets near the lower part of the path. Both plates are held motionless at the same small angle away from vertical immediately before release. The full plates, suspension supports, magnetic gaps, and unobstructed future swing regions are visible.
+
+REQUIRED VISIBLE OBJECTS
+- one solid rectangular conducting plate on the left pendulum
+- one same-size conducting plate with several clear vertical slots on the right pendulum
+- two equal-length rigid pendulum suspensions and pivot supports
+- two equivalent compact permanent-magnet gaps crossing the lower swing paths
+- one stable laboratory base and clean neutral background
+
+INITIAL STATE AND PHYSICAL LOGIC
+Show only the initial instant before the principal motion. Both plates are perfectly still, released from rest at the same initial angle, with no plate already inside a different part of its swing. The solid and slotted plates have matched outer geometry, mass and rotational inertia, and both pass through equivalent magnetic-field regions after release. All supports, clearances, pivot contacts and magnet placement must be physically plausible. Do not visualize the later damping outcome.
+
+CAMERA AND COMPOSITION
+Locked orthographic front view normal to the common swing plane, with minimal perspective distortion. Keep the two rigs in one continuous 16:9 horizontal frame, symmetrically spaced but not split into separate panels. Show each complete pendulum from pivot to plate, both magnetic gaps, the lower clearance, and a large empty swept area around each plate for several later oscillations. Crisp focus, readable plate silhouettes and slots, stable exposure, realistic material response, restrained professional laboratory styling.
+
+REALISM
+Looks like a high-resolution documentary photograph of a real university electromagnetic induction experiment: believable copper or aluminium plates, machined metal pivots, permanent magnets, rigid supports, natural shadows, clean neutral laboratory background, and realistic scale. The solid plate must look genuinely solid and the slotted plate must look like the same conducting material with real through-slots, not painted marks.
+
+HARD NEGATIVE CONSTRAINTS
+- no unequal pendulum lengths, unequal release angles, different release times, or visibly different initial positions
+- no plate already swinging, tilted differently, touching a magnet, or showing a later damped state
+- no nonmatching plate sizes, arbitrary ballast, visibly hollow solid plate, or decorative cutouts that change the task
+- no missing pivot, cropped plate, hidden slot, cropped magnet gap, or insufficient future swing space
+- no extra pendulums, extra plates, unrelated apparatus, people, hands, wires, or labels
+- no arrows, trajectories, motion streaks, angle marks, formulas, axes, captions, numbers, watermark, or logo
+- no before-and-after inset, montage, split panel, outcome cue, or visualized damping result
+- no blur, cartoon, toy-like miniature, CGI-toy, infographic, textbook-diagram, or synthetic illustration look
+- no watermark, brand mark, or logo

@@ -1,0 +1,39 @@
+{
+  "schema_version": "continuous-0-1-v2-geometric",
+  "task_id": "P9",
+  "input_floor": 0.02,
+  "zero_score_policy": "invalid_or_unmeasurable_only",
+  "residual_formula": "s=1/(1+(e/t)^2)",
+  "dimensions": {
+    "setup": {
+      "weight": 0.16666666666666666,
+      "components": {
+        "length_ratio": {"kind": "residual", "metric": "initial_length_ratio_error", "scale": 0.12, "weight": 0.55},
+        "release_sync": {"kind": "residual", "metric": "release_time_difference_s", "scale": 0.50, "weight": 0.25},
+        "tracking_coverage": {"kind": "direct_fraction", "metric": "minimum_tracking_coverage", "weight": 0.20}
+      }
+    },
+    "structural": {
+      "weight": 0.16666666666666666,
+      "components": {
+        "pivot_stability": {"kind": "residual", "metric": "pivot_drift_short_length_fraction_p95", "scale": 0.045, "weight": 0.35},
+        "string_length_stability": {"kind": "residual", "metric": "string_length_relative_change_p95_max", "scale": 0.15, "weight": 0.40},
+        "pivot_separation_stability": {"kind": "residual", "metric": "pivot_separation_relative_change_p95", "scale": 0.035, "weight": 0.25}
+      }
+    },
+    "periodicity": {
+      "weight": 0.16666666666666666,
+      "components": {
+        "sinusoid_fit": {"kind": "high_target", "metric": "minimum_sinusoid_fit_r2", "target": 1.0, "scale": 0.30, "weight": 0.45},
+        "period_consistency": {"kind": "residual", "metric": "maximum_period_cv", "scale": 0.20, "weight": 0.35},
+        "observed_cycles": {"kind": "evidence_fraction", "metric": "minimum_observed_cycles", "required": 1.0, "weight": 0.20}
+      }
+    },
+    "pendulum_law": {
+      "weight": 0.50,
+      "components": {
+        "period_length_relation": {"kind": "residual", "metric": "m1_abs_residual", "scale": 0.20, "weight": 1.0}
+      }
+    }
+  }
+}

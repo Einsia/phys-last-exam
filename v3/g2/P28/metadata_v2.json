@@ -1,0 +1,32 @@
+{
+  "samples": [
+    {
+      "sample_id": "sample_00",
+      "video_path": "output_videos/minimax_h3/sample_00.mp4",
+      "source_video_path": "output_videos/minimax_h3/sample_00.mp4",
+      "image_path": "first_frames/gpt/gpt_01.png",
+      "video_prompt": "Locked-off static camera, front view. Two identical charged balls hang from two insulating threads of exactly equal length, arranged symmetrically from the same support. The balls repel each other and freely settle into a stable static configuration. Both balls and both complete threads remain clearly visible. The camera does not move, pan, or zoom. Plain background, no other objects.",
+      "model": "minimax_h3",
+      "model_folder": "minimax_h3",
+      "seed": null,
+      "source_result": "eval_results/minimax_h3/result_sample_00.json",
+      "previous_result": "work/g1_g9_v2_20260911/before/g2/P28/eval_results/minimax_h3/result_sample_00.json",
+      "video_sha256": "fcfa67684eac5f8462df56f52fbf964097bf835eb31de427dc0b2740b7b52314",
+      "image_sha256": "ba07b99fb10b4160dfb3d77dfee571fd9e2976fc9eb96f1c7d7d137e6507e357"
+    },
+    {
+      "sample_id": "sample_01",
+      "video_path": "output_videos/minimax_h3/sample_01.mp4",
+      "source_video_path": "output_videos/minimax_h3/sample_01.mp4",
+      "image_path": "first_frames/simulation/sim_01.png",
+      "video_prompt": "Locked-off static camera, front view. Two identical charged balls hang from two insulating threads of exactly equal length, arranged symmetrically from the same support. The balls repel each other and freely settle into a stable static configuration. Both balls and both complete threads remain clearly visible. The camera does not move, pan, or zoom. Plain background, no other objects.",
+      "model": "minimax_h3",
+      "model_folder": "minimax_h3",
+      "seed": null,
+      "source_result": "eval_results/minimax_h3/result_sample_01.json",
+      "previous_result": "work/g1_g9_v2_20260911/before/g2/P28/eval_results/minimax_h3/result_sample_01.json",
+      "video_sha256": "3315ebac9eeda08fa3081fde3ece26caa65388dc16b18203e848b0fadae1a3ad",
+      "image_sha256": "4142625a47ce8d0be9e9b6c387488ff495fe1e1b2a22262b062fbfefc513fae5"
+    }
+  ]
+}

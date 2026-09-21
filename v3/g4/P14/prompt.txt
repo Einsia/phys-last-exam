@@ -1,0 +1,7 @@
+Task: P14_point_source_four_shadows.
+Start exactly from the supplied first frame: a pale matte floor panel, one small bare white bulb standing upright at the centre close to the floor as the only light, and four slender upright rods - red, blue, yellow, green - spaced well apart around the bulb, each casting one long crisp dark shadow radially outward away from the bulb.
+
+Video action: Locked-off static camera with a clear view of the horizontal ground plane. A single compact point light source illuminates four vertical rods positioned at different locations on the ground, producing four distinct and clearly visible shadows. Every rod, rod base, and shadow tip is visible simultaneously. The camera does not move, pan, or zoom. Plain background, no other objects.
+Hold this exact geometry. The bulb stays lit at constant brightness and does not move. All four rods stay standing upright at their starting positions and do not fall, slide, or wobble. All four shadows stay long, sharp, clearly darker than the pale floor beside them, separate from one another, and pointing radially away from the bulb, exactly as in the first frame.
+
+Hard negative constraints: no second light source, no moving or flickering light, no additional or disappearing rods or shadows, no shadows fading out or losing contrast, no person or hand, no labels, numbers, arrows, watermark, logo, cartoon styling, no camera pan, zoom, shake or reframing, no cropped rods or shadow tips.

@@ -1,0 +1,102 @@
+schema_version: "1.0"
+evaluator_version: "p3-dual-projectile-1.0.0"
+task_id: "P3"
+
+runtime:
+  tracking_python: "/mnt/einsia/aws01-nvme/einsia-shared/homes/gaomingju/workspace/physical-bench/envs/track/bin/python"
+  sam2_snapshot: "/mnt/einsia/aws01-nvme/einsia-shared/homes/gaomingju/workspace/physical-bench/cache/hf/hub/models--facebook--sam2.1-hiera-small/snapshots/ee5bba1d82bb8749febdf90f45e84b687142ba03"
+  cotracker_source: "/mnt/einsia/aws01-nvme/einsia-shared/homes/gaomingju/workspace/physical-bench/cache/cotracker"
+  cotracker_checkpoint: "/mnt/einsia/aws01-nvme/einsia-shared/homes/gaomingju/workspace/physical-bench/cache/torch/hub/checkpoints/scaled_offline.pth"
+  default_device: "3"
+  dtype: "bfloat16"
+
+gates:
+  min_frames: 12
+  min_duration_s: 0.40
+  min_fused_coverage_flight: 0.90
+  min_fused_coverage_overall: 0.80
+  min_primary_coverage_overall: 0.85
+  min_backend_overlap_frames: 20
+  max_internal_gap_frames: 3
+  max_backend_disagreement_radii: 0.50
+  max_camera_translation_diag: 0.020
+  max_camera_scale_error: 0.010
+  max_camera_rotation_deg: 0.50
+  min_horizontal_span_diameters: 5.0
+  border_margin_radii: 1.5
+  release_displacement_radii: 0.40
+  release_confirmation_frames: 3
+  max_landing_level_error_diameters: 0.75
+
+score_weights:
+  task: 0.15
+  parabola: 0.20
+  horizontal: 0.15
+  vertical: 0.20
+  pair_consistency: 0.30
+
+thresholds:
+  sync_frames: {good: 1.0, bad: 4.0}
+  angle_error_deg: {good: 3.0, bad: 12.0}
+  landing_level_d: {good: 0.10, bad: 0.50}
+  camera_translation_diag: {good: 0.002, bad: 0.020}
+  integrity_error: {good: 0.10, bad: 0.45}
+  parabola_rmse_d: {good: 0.08, bad: 0.30}
+  parabola_p95_d: {good: 0.15, bad: 0.60}
+  x_fit_rmse_d: {good: 0.08, bad: 0.30}
+  vx_robust_cv: {good: 0.05, bad: 0.20}
+  y_fit_rmse_d: {good: 0.08, bad: 0.30}
+  vy_line_residual: {good: 0.05, bad: 0.20}
+  ay_robust_cv: {good: 0.10, bad: 0.35}
+  range_ratio_error: {good: 0.03, bad: 0.15}
+  initial_speed_error: {good: 0.05, bad: 0.20}
+  gravity_error: {good: 0.08, bad: 0.30}
+
+pass_rules:
+  overall_min: 70.0
+  task_min: 70.0
+  core_dimension_min: 60.0
+  range_error_max: 0.08
+  initial_speed_error_max: 0.10
+
+# Fixed annotations for the six accepted first frames.  They are properties of the
+# inputs, not of any generated video, and prevent per-rollout tuning or lane relabeling.
+# Coordinates are on the formal 1344x768 MiniMax canvas.  "slot" identity is frozen
+# from frame zero; it is never inferred from the output trajectory.
+samples:
+  P3_gpt_01_modern:
+    method: gpt
+    first_frame: "../minimax_h3/prompt_v1_20260825/inputs_1344x768/P3_gpt_01_modern.png"
+    balls:
+      upper: {cx: 230.0, cy: 346.0, radius: 22.0, angle_deg: 60.0}
+      lower: {cx: 230.0, cy: 424.0, radius: 23.0, angle_deg: 30.0}
+  P3_gpt_02_classic:
+    method: gpt
+    first_frame: "../minimax_h3/prompt_v1_20260825/inputs_1344x768/P3_gpt_02_classic.png"
+    balls:
+      upper: {cx: 333.0, cy: 285.0, radius: 23.0, angle_deg: 60.0}
+      lower: {cx: 335.0, cy: 430.0, radius: 23.0, angle_deg: 30.0}
+  P3_gpt_03_industrial:
+    method: gpt
+    first_frame: "../minimax_h3/prompt_v1_20260825/inputs_1344x768/P3_gpt_03_industrial.png"
+    balls:
+      upper: {cx: 230.0, cy: 380.0, radius: 21.0, angle_deg: 30.0}
+      lower: {cx: 229.0, cy: 467.0, radius: 21.0, angle_deg: 60.0}
+  P3_sim_01:
+    method: simulation
+    first_frame: "../minimax_h3/prompt_v1_20260825/inputs_1344x768/P3_sim_01.png"
+    balls:
+      upper: {cx: 165.0, cy: 491.0, radius: 21.0, angle_deg: 60.0}
+      lower: {cx: 166.0, cy: 550.0, radius: 20.0, angle_deg: 30.0}
+  P3_sim_02:
+    method: simulation
+    first_frame: "../minimax_h3/prompt_v1_20260825/inputs_1344x768/P3_sim_02.png"
+    balls:
+      upper: {cx: 153.0, cy: 482.0, radius: 20.0, angle_deg: 30.0}
+      lower: {cx: 155.0, cy: 562.0, radius: 21.0, angle_deg: 60.0}
+  P3_sim_03:
+    method: simulation
+    first_frame: "../minimax_h3/prompt_v1_20260825/inputs_1344x768/P3_sim_03.png"
+    balls:
+      upper: {cx: 173.0, cy: 455.0, radius: 17.0, angle_deg: 60.0}
+      lower: {cx: 173.0, cy: 569.0, radius: 18.0, angle_deg: 30.0}

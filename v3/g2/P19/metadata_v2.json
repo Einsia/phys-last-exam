@@ -1,0 +1,18 @@
+{
+  "samples": [
+    {
+      "sample_id": "sample_00",
+      "video_path": "output_videos/minimax_h3/sample_00.mp4",
+      "source_video_path": "output_videos/minimax_h3/sample_00.mp4",
+      "image_path": "first_frames/gpt/gpt_01.png",
+      "video_prompt": "Locked-off static camera, front view. A transparent U-shaped tube has two vertical arms with clearly different diameters and contains the same continuous liquid. The liquid is initially disturbed and then freely settles back to static equilibrium. You need to display how the liquid in the U-shaped tube reaches a state of equilibrium. The total amount of liquid remains constant throughout the entire process, with no liquid added, removed, appearing, or disappearing. Both liquid surfaces remain clearly visible throughout the process. The camera does not move, pan, or zoom. Plain background, no other objects.",
+      "model": "minimax_h3",
+      "model_folder": "minimax_h3",
+      "seed": null,
+      "source_result": "eval_results/minimax_h3/result_sample_00.json",
+      "previous_result": "work/g1_g9_v2_20260911/before/g2/P19/eval_results/minimax_h3/result_sample_00.json",
+      "video_sha256": "5e5ffd77560c9d30bf50a3302d3089d4c799f7aeae1e47f46eaf4f44b9b2356f",
+      "image_sha256": "b35363f065cb81a690be45d0e78215223109f0b3dc7e59f27e22d96b142e13b6"
+    }
+  ]
+}

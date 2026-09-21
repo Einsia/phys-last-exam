@@ -1,0 +1,71 @@
+evaluator_version: p9-two-pendulum-1.0.0
+task_id: P9
+frozen: true
+frozen_at_utc: 2026-08-26T00:00:00Z
+runtime:
+  python_track: /mnt/einsia/aws01-nvme/einsia-shared/homes/gaomingju/workspace/physical-bench/envs/track/bin/python
+  cotracker_source: /mnt/einsia/aws01-nvme/einsia-shared/homes/gaomingju/workspace/physical-bench/cache/cotracker
+  cotracker_checkpoint: /mnt/einsia/aws01-nvme/einsia-shared/homes/gaomingju/workspace/physical-bench/cache/torch/hub/checkpoints/scaled_offline.pth
+  sam2_path: /mnt/einsia/aws01-nvme/einsia-shared/homes/gaomingju/workspace/physical-bench/cache/hf/hub/models--facebook--sam2.1-hiera-small/snapshots/ee5bba1d82bb8749febdf90f45e84b687142ba03
+  sam2_dtype: bfloat16
+  default_device: cuda:7
+tracking:
+  minimum_coverage: 0.82
+  maximum_gap_frames: 5
+  minimum_group_points: 4
+structure:
+  camera_translation_diagonal_fraction_max: 0.018
+  camera_scale_change_max: 0.012
+  camera_rotation_deg_max: 0.8
+  pivot_drift_short_length_fraction_max: 0.045
+  pivot_separation_change_fraction_max: 0.035
+  string_length_p95_relative_change_max: 0.15
+measurement:
+  minimum_motion_amplitude_deg: 4.0
+  minimum_fit_r2: 0.55
+  minimum_turning_points: 3
+  minimum_observed_cycles: 0.85
+physics:
+  m1_good: 0.08
+  m1_bad: 0.55
+  period_cv_good: 0.06
+  period_cv_bad: 0.30
+  sinusoid_r2_good: 0.92
+  sinusoid_r2_bad: 0.55
+  initial_length_ratio_target: 0.5
+  initial_length_ratio_tolerance: 0.12
+  simultaneous_release_good_s: 0.08
+  simultaneous_release_bad_s: 0.50
+  physics_pass_m1_max: 0.20
+  physics_pass_period_cv_max: 0.20
+  physics_pass_fit_r2_min: 0.70
+scores:
+  setup: 15
+  structural: 20
+  periodicity: 25
+  pendulum_law: 40
+samples:
+  P9_gpt_01_modern:
+    first_frame: ../minimax_h3/prompt_v1_20260825/inputs_1344x768/P9_gpt_01_modern.png
+    short: {pivot: [429, 108], bob: [472, 296], radius: 23}
+    long: {pivot: [775, 108], bob: [854, 487], radius: 23}
+  P9_gpt_02_classic:
+    first_frame: ../minimax_h3/prompt_v1_20260825/inputs_1344x768/P9_gpt_02_classic.png
+    short: {pivot: [430, 122], bob: [453, 310], radius: 30}
+    long: {pivot: [775, 123], bob: [878, 496], radius: 28}
+  P9_gpt_03_industrial:
+    first_frame: ../minimax_h3/prompt_v1_20260825/inputs_1344x768/P9_gpt_03_industrial.png
+    short: {pivot: [430, 106], bob: [466, 295], radius: 27}
+    long: {pivot: [780, 107], bob: [857, 500], radius: 27}
+  P9_sim_01:
+    first_frame: ../minimax_h3/prompt_v1_20260825/inputs_1344x768/P9_sim_01.png
+    short: {pivot: [440, 129], bob: [447, 322], radius: 29}
+    long: {pivot: [780, 130], bob: [872, 512], radius: 31}
+  P9_sim_02:
+    first_frame: ../minimax_h3/prompt_v1_20260825/inputs_1344x768/P9_sim_02.png
+    short: {pivot: [403, 131], bob: [448, 321], radius: 26}
+    long: {pivot: [793, 131], bob: [873, 513], radius: 30}
+  P9_sim_03:
+    first_frame: ../minimax_h3/prompt_v1_20260825/inputs_1344x768/P9_sim_03.png
+    short: {pivot: [456, 133], bob: [453, 321], radius: 31}
+    long: {pivot: [785, 133], bob: [867, 506], radius: 30}

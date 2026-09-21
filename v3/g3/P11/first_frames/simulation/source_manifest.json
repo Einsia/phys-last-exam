@@ -1,0 +1,46 @@
+{
+  "task_id": "P11",
+  "delivery_contract": "3 simulation images; exactly 1 GPT-optimized image per simulation image",
+  "pair_count": 3,
+  "angle_tolerance_deg": 5.0,
+  "all_angle_gates_passed": true,
+  "pairs": [
+    {
+      "angle": "30deg",
+      "simulation": "30deg/simulation.png",
+      "gpt_optimized": "30deg/gpt_optimized.png",
+      "prompt": "30deg/prompt.txt",
+      "simulation_sha256": "ae8ddd427ff7677391dfd024e26262a3fcde0e0a86b225d399293834e0e85552",
+      "gpt_optimized_sha256": "9bc5008e0a46058780dd49c51b6e57157190befcfd51ba03ff7858d35bac8a63",
+      "measured_angle_error_deg": 2.99,
+      "angle_tolerance_deg": 5.0,
+      "angle_gate_passed": true,
+      "mapping": "exactly one GPT-optimized image derived from this simulation image"
+    },
+    {
+      "angle": "45deg",
+      "simulation": "45deg/simulation.png",
+      "gpt_optimized": "45deg/gpt_optimized.png",
+      "prompt": "45deg/prompt.txt",
+      "simulation_sha256": "73f633b8f97ece550796af98f5824fb3e3bf3b5ab21cb0d2beb2dfcdddaed83c",
+      "gpt_optimized_sha256": "4c2726b7db408713eaf72e6d7a75a9e5bb6128fa9d85dcf8c2cff21e9edc50b5",
+      "measured_angle_error_deg": 2.54,
+      "angle_tolerance_deg": 5.0,
+      "angle_gate_passed": true,
+      "mapping": "exactly one GPT-optimized image derived from this simulation image"
+    },
+    {
+      "angle": "60deg",
+      "simulation": "60deg/simulation.png",
+      "gpt_optimized": "60deg/gpt_optimized.png",
+      "prompt": "60deg/prompt.txt",
+      "simulation_sha256": "bf3f30acc0472f8d54af3681a4163e65d4001037151b55a281476c3548760bb7",
+      "gpt_optimized_sha256": "2854f43bef2e816c7533b2f4dc28b4b274f0c25897d3b8505d354555236d1f31",
+      "measured_angle_error_deg": 0.4,
+      "angle_tolerance_deg": 5.0,
+      "angle_gate_passed": true,
+      "mapping": "exactly one GPT-optimized image derived from this simulation image"
+    }
+  ],
+  "created_utc": "2026-08-25T16:02:06.782779+00:00"
+}

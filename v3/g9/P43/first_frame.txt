@@ -1,0 +1,30 @@
+Use case: scientific-educational
+Asset type: photorealistic first-frame reference for an image-to-video rigid-body benchmark
+
+Primary request:
+Create a single, physically plausible metrology photograph of a uniform rectangular rigid block standing perfectly upright on a rough horizontal laboratory surface. A compact motorized actuator approaches from the left and its small flat pad is just tangent to the upper third of the block's left face. The actuator has not moved the block yet: the block is vertical, centered over its full footprint, and has zero visible velocity. The block should read as a solid, homogeneous rectangular prism with crisp, straight edges and a matte neutral finish; its dimensions should be visibly rectangular in side profile rather than a perfect cube.
+
+Scene/backdrop:
+Minimal neutral mechanics laboratory, dark charcoal high-friction platform with a clearly visible front edge, plain warm-gray wall behind it, no clutter. Leave the entire unobstructed fall/landing region to the right of the block inside the frame.
+
+Composition/framing:
+Locked-off exact side view, orthographic-looking and perpendicular to the tipping plane. Put the block slightly right of center, with the actuator and its rigid support fully visible on the left. Show the complete lower contact footprint, the supporting edge about which tipping could occur, and generous empty space to the right for the full quarter-circle tipping envelope. Horizontal 16:9 frame, no crop, no perspective skew, no camera motion.
+
+Lighting/mood:
+Controlled laboratory metrology lighting: one large soft key from high front-left and a weak broad fill from camera-right. Use gentle contact shadows under the block and actuator, stable exposure, and enough tonal separation to keep every block edge and the bottom contact line measurable. No hard glare on the block face and no impossible duplicated shadows.
+
+Materials/textures:
+Uniform matte ceramic-coated or painted metal block, visibly solid and non-deformable; coarse rubberized or stone-like platform; brushed aluminum actuator, guide rail, and pad. Real scale and restrained documentary realism, not a toy or CGI render.
+
+Initial-state constraints:
+The pad only touches the vertical face; it must not indent, tilt, lift, or visibly push the block at frame one. The block must not slide. Keep the whole apparatus and future fall region visible. This is the instant before the slow horizontal push begins.
+
+Measurement-ready presentation:
+Use a simple high-contrast silhouette: the block's four edges, both bottom corners, the full support footprint, and the pad-to-face contact line must be crisp and unobstructed. Keep the block and platform at a stable scale with no reflections or shadow shapes that could be mistaken for the contour.
+
+
+Real-world capture priority:
+The result must look like one unedited frame captured by a real fixed laboratory camera during an actual university experiment, not a diagram, product render, simulation, or synthetic CGI scene. Preserve believable material microtexture, ordinary optical imperfections, physically consistent reflections and shadows, restrained lens response, and natural sensor-level tonal variation. Keep the scene clean enough for computer vision because the real apparatus is well designed and well lit; never use digital edge enhancement, artificial contour drawing, measurement overlays, or textbook-like simplification.
+
+Avoid:
+people, hands, ropes, hammers, springs under compression, guides touching the block, a tilted or sliding block, a cube-like block, a second block, motion blur, dust, labels, ruler marks, center-of-mass graphics, arrows, formulas, axes, captions, logos, watermarks, split panels, before/after images, trajectories, cartoon styling, toy styling, or any written characters.

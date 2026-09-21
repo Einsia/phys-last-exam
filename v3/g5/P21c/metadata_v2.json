@@ -1,0 +1,18 @@
+{
+  "samples": [
+    {
+      "sample_id": "sample_00",
+      "video_path": "output_videos/minimax_h3/sample_00.mp4",
+      "source_video_path": "output_videos/minimax_h3/sample_00.mp4",
+      "image_path": "first_frames/gpt/gpt_01.png",
+      "video_prompt": "Locked-off static camera, front view, matching the input first frame.\n\nA piece of freshwater ice initially floats freely in denser salt water inside a transparent straight-walled container.\n\nThe freshwater ice remains floating at the salt-water surface while it gradually melts completely, leaving no solid ice by the end of the shot. It does not sink as an intact solid block. The meltwater mixes naturally with the surrounding salt water.\n\nNo liquid is added, removed, spilled, or visibly evaporated. The liquid surface remains clearly visible throughout the shot.\n\nThe camera does not move, pan, or zoom. Plain background, no unrelated objects.",
+      "model": "minimax_h3",
+      "model_folder": "minimax_h3",
+      "seed": null,
+      "source_result": "eval_results/minimax_h3/result_sample_00.json",
+      "previous_result": "work/g1_g9_v2_20260911/before/g5/P21c/eval_results/minimax_h3/result_sample_00.json",
+      "video_sha256": "b8710bbab77dcbb3d7cc528709f4f0d9e0fb4fc2a308b61e404dc13e8e72235e",
+      "image_sha256": "7d36906afaf02a0af2d5907372ce065b217da7c6e3f1c590dd6baab8f521d2b4"
+    }
+  ]
+}
