@@ -73,6 +73,10 @@ def main():
     signatures = {(j['model'], j['sample_id']): j['signature'] for j in manifest['jobs']}
     blocked_file = ROOT / 'blocked_inputs.json'
     blocked = {r['video']: r['reason'] for r in json.loads(blocked_file.read_text())['videos']} if blocked_file.exists() else {}
+    reliability_file = ROOT / 'reliability_status' / 'status_augmented_results.json'
+    reliability = {}
+    if reliability_file.exists():
+        reliability = {(item.get('model'), item.get('sample_id')): item for item in json.loads(reliability_file.read_text())}
     models = sorted(p.name for p in (SOURCE / 'data/videos/all_test').iterdir() if p.is_dir())
     rows = []
     for model in models:
@@ -82,6 +86,11 @@ def main():
             row = json.loads(execution.read_text()) if execution.exists() else {}
             row.update(model=model, sample_id=video.stem, task=task, seed=int(video.stem.rsplit('seed', 1)[1]),
                        video=str(video), **definitions[task])
+            reliability_row = reliability.get((model, video.stem), {})
+            for key in ('measurement_status', 'measurement_status_reason', 'measurement_coverage',
+                        'reliably_judged', 'metric_measurement_statuses', 'measurement_pass_threshold'):
+                if key in reliability_row:
+                    row[key] = reliability_row[key]
             if not row.get('finished_at_utc'):
                 import os
                 row['score_status'] = ('running' if row.get('started_at_utc') else 'pending') if os.access(video, os.R_OK) else 'permission_denied'
@@ -100,6 +109,10 @@ def main():
                 'total_score': mean(valid), 'consistency_score': mean(valid, 'consistency_score'),
                 'consistency_passed': sum(r.get('consistency_passed') is True for r in valid),
                 'consistency_rejected': counts['consistency_rejected'], 'statuses': dict(counts)}
+        stat['measurement_statuses'] = dict(Counter(r.get('measurement_status') for r in rr if r.get('measurement_status')))
+        measured_rows = [r for r in rr if r.get('measurement_status')]
+        stat['measurement_coverage'] = (sum(r.get('reliably_judged') is True for r in measured_rows) / len(measured_rows)
+                                        if measured_rows else None)
         for difficulty in ['Easy', 'Medium', 'Hard']:
             subset = [r for r in valid if r['difficulty'] == difficulty]
             stat[difficulty] = mean(subset)
@@ -124,12 +137,18 @@ def main():
                'benchmark_source': str(definition_file), 'benchmark_sha256': digest(definition_file),
                'score_scale': [0, 1], 'threshold': threshold,
                'rubric_version': manifest.get('rubric_version'), 'consistency_score_bands': consistency_bands,
-               'weights': {'consistency': .15, 'physics': .85}}
+               'weights': {'consistency': .15, 'physics': .85},
+               'measurement_statuses': dict(Counter(r.get('measurement_status') for r in rows if r.get('measurement_status'))),
+               'measurement_status_source': str(reliability_file) if reliability_file.exists() else None,
+               'measurement_coverage': (sum(r.get('reliably_judged') is True for r in rows if r.get('measurement_status')) /
+                                        sum(bool(r.get('measurement_status')) for r in rows)
+                                        if any(r.get('measurement_status') for r in rows) else None)}
     write_json(ROOT / 'summary.json', summary)
     write_json(ROOT / 'task_catalog.json', definitions)
     save_csv(ROOT / 'per_video.csv', rows, ['model', 'task', 'difficulty', 'phenomenon', 'seed', 'score_status',
         'valid_score', 'score', 'consistency_score', 'consistency_passed', 'physics_score', 'physics_attempted',
-        'extraction_successes', 'reason', 'video', 'output', 'result_sha256'])
+        'extraction_successes', 'measurement_status', 'measurement_status_reason', 'measurement_coverage',
+        'reliably_judged', 'reason', 'video', 'output', 'result_sha256'])
     save_csv(ROOT / 'model_summary.csv', stats, ['model', 'source_videos', 'valid_results', 'total_score',
         'Easy', 'Easy_n', 'Medium', 'Medium_n', 'Hard', 'Hard_n', 'consistency_score', 'consistency_passed', 'consistency_rejected'])
     lines = ['# V3 视频物理评测报告', '', f'更新时间：{summary["updated_at_utc"]}。状态：' + ('全部完成。' if complete else '评测尚未全部完成；以下为当前已完成样本的阶段性统计。'), '',
@@ -154,6 +173,10 @@ def main():
                     [[s['model'], *[s['statuses'].get(k, 0) for k in ['complete', 'partial', 'unavailable', 'consistency_rejected']],
                       s['source_videos'] - s['valid_results']] for s in stats]), '',
               '物理提取不完整或不可用与一致性拒绝分开记录。一致性通过仅说明场景和主体足够连贯，不代表物理正确。', '',
+              '## 3.1 新版可解释测量状态', '',
+              '若存在 `reliability_status/status_augmented_results.json`，以下状态会自动并入本报告；否则需要先运行 `backfill_reliability_status.py`。', '',
+              table(['测量状态', '数量'], sorted(summary['measurement_statuses'].items())) if summary['measurement_statuses'] else '当前没有回填的新版测量状态。', '',
+              f'新版可可靠判断覆盖率：{summary["measurement_coverage"]:.2%}。' if summary['measurement_coverage'] is not None else '', '',
               '逐视频明细：[per_video.csv](per_video.csv)；模型汇总：[model_summary.csv](model_summary.csv)；结构化汇总：[summary.json](summary.json)。', '',
               '各模型的 `v3_<model>/` 内包含结果 JSON、逐视频运行记录、VLM 原始回答、采样帧、物理测量数据与调试日志。', '']
     lines += ['## 4. 一致性分布与未通过样本', '',
