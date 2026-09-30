@@ -6,16 +6,14 @@
 
 ## 输入与目录
 
-本题标准首帧位于根目录的 `first_frame.png`。首帧生成提示词与视频续写提示词分别归档，评测时应使用与输入视频对应的实际续写文本。题目 `data/` 和 `reports/` 已按要求删除，不再附带 metadata 样本清单。
+本题标准首帧位于根目录的 `first_frame.png`。首帧生成提示词与视频续写提示词分别归档，评测时应使用与输入视频对应的实际续写文本。题目 `data/`、`reports/` 和 `first_frames/` 已按要求删除，不再附带 metadata 样本清单。
 
 | 文件或目录 | 用途 |
 | --- | --- |
 | [first_frame.png](first_frame.png) | 本题选定的标准首帧。 |
-| 首帧生成提示词（未提供） | 仓库仅有 first_frames/gpt/source_manifest.json 来源记录，原文未交付，本次没有迁移生成提示词。 |
+| 首帧生成提示词（未提供） | 原始生成提示词未随仓库交付，不创建占位文件。 |
 | [prompts/index.txt](prompts/index.txt) | 提示词批次索引说明，不是可直接用于生成的 prompt。 |
 | [video_prompts/](video_prompts/) | 逐样本视频续写文本；按视频来源选择对应文件。 |
-| [first_frames/gpt/](first_frames/gpt/) | 其余 GPT 首帧和已有生成来源记录。 |
-| [first_frames/simulation/](first_frames/simulation/) | 仿真首帧、来源记录及可用生成代码。 |
 | [evaluator/evaluate.py](evaluator/evaluate.py) | 当前 V3 单视频入口，调用 v3/unified_evaluators/runtime.py。 |
 | [evaluator/measure_backend.py](evaluator/measure_backend.py) | 历史 V2 分数复算入口，依赖旧 scoring_v2 包；当前 V3 不调用它。 |
 | [evaluator/evaluate_raw_legacy.py](evaluator/evaluate_raw_legacy.py) | 当前 V3 调用的原始物理提取器；同目录保留配置、审计与回归工具。 |

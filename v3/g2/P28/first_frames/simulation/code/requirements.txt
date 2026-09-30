@@ -1,3 +1,0 @@
-# The renderer requires Blender's bundled Python modules: bpy and mathutils.
-# Use a Blender installation compatible with the renderer (the source run used
-# Blender 5.0.1). No additional pip packages are required.

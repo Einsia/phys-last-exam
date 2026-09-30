@@ -1,6 +1,6 @@
 # G1–G9 目录重构说明
 
-标准首帧统一存放在每道题的根目录，已有的首帧生成提示词归入本题的 `prompts/first_frame.txt`。分组和题目级 `data/`、题目级 `reports/` 已按要求删除；G5 分组级报告保留。
+标准首帧统一存放在每道题的根目录，已有的首帧生成提示词归入本题的 `prompts/first_frame.txt`。分组和题目级 `data/`、题目级 `reports/`、所有题目级 `first_frames/` 已按要求删除；G5 分组级报告保留。
 
 ## 题目目录
 
@@ -14,10 +14,6 @@ Pxx/
 │   ├── video_simulation.txt       # 有差异时保留
 │   ├── video_legacy.txt           # 有差异时保留
 │   └── index.txt                  # 原有批次说明（可选）
-├── first_frames/                  # 其余首帧、仿真代码和来源记录（有内容时保留）
-│   ├── gpt/
-│   ├── simulation/
-│   └── provided/
 ├── video_prompts/                 # G3/G7 原有逐样本视频提示词
 ├── annotations/                  # 首帧几何标注（可选）
 ├── evaluator/                    # 单题入口、物理后端、配置、依赖和原有测试
@@ -32,10 +28,10 @@ Pxx/
 ## 标准首帧的选择和提示词
 
 - G1/G2/G4/G5/G6/G7：原 `first_frames/gpt/gpt_01.png` 移为 `first_frame.png`，同目录 `prompt.txt` 移为 `prompts/first_frame.txt`。
-- G3：P3/P4/P6/P9 选择各自的 `Pxx_gpt_01_modern.png`；P11 选择第一张 `P11_gpt_01_30deg.png`。五题均未提供生成提示词原文，本次仅迁移图片。来源清单中的外部 prompt 路径是历史记录，不能当作已有文件。
+- G3：P3/P4/P6/P9 选择各自的 `Pxx_gpt_01_modern.png`；P11 选择第一张 `P11_gpt_01_30deg.png`。五题均未提供生成提示词原文，本次仅迁移图片。原始生成提示词未随仓库交付，不创建占位文件。
 - G8/G9：原 `first_frames/provided/first_frame_01.png` 移为 `first_frame.png`，同目录 `prompt.txt` 移为 `prompts/first_frame.txt`。
 
-40 张图片和 35 份现有生成提示词按原始字节迁移。其他首帧继续留在原来源目录。G3 的 `first_frames/manifest.json` 已指向根目录标准首帧；外部来源记录保留原文。首帧生成提示词与视频续写提示词分别保存。
+40 张标准首帧和 35 份现有生成提示词按原始字节迁移。后续删除了所有题目的 `first_frames/` 目录，其中其余图片、首帧清单、来源记录和仿真生成代码一并删除。根目录 `first_frame.png` 与 `prompts/first_frame.txt` 保留，生成首帧与视频续写的提示词分别保存。
 
 ## 公共代码和评测目录
 

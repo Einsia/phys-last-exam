@@ -6,15 +6,13 @@
 
 ## 输入与目录
 
-本题标准首帧位于根目录的 `first_frame.png`。首帧生成提示词与视频续写提示词分别归档，评测时应使用与输入视频对应的实际续写文本。题目 `data/` 和 `reports/` 已按要求删除，不再附带 metadata 样本清单。
+本题标准首帧位于根目录的 `first_frame.png`。首帧生成提示词与视频续写提示词分别归档，评测时应使用与输入视频对应的实际续写文本。题目 `data/`、`reports/` 和 `first_frames/` 已按要求删除，不再附带 metadata 样本清单。
 
 | 文件或目录 | 用途 |
 | --- | --- |
 | [first_frame.png](first_frame.png) | 本题选定的标准首帧。 |
 | [prompts/first_frame.txt](prompts/first_frame.txt) | 生成首帧图片所用的原始提示词。 |
 | [prompts/video.txt](prompts/video.txt) | 视频续写 prompt。 |
-| [first_frames/gpt/](first_frames/gpt/) | 其余 GPT 首帧和已有生成来源记录。 |
-| [first_frames/simulation/](first_frames/simulation/) | 仿真首帧、来源记录及可用生成代码。 |
 | [evaluator/evaluate.py](evaluator/evaluate.py) | 当前 V3 单视频入口，调用 v3/unified_evaluators/runtime.py。 |
 | [evaluator/measure_backend.py](evaluator/measure_backend.py) | 本题 OpenCV 测量后端，由 V3 入口在一致性通过后调用。 |
 | [evaluator/requirements.txt](evaluator/requirements.txt) | 本题物理后端依赖；V3 一致性模型依赖另见公共环境说明。 |

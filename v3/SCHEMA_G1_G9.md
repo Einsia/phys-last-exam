@@ -1,6 +1,6 @@
 # VDM-Bench V3：G1–G9 新目录与代码文件 Schema（README 已核对）
 
-本文件记录 data/reports 删除及标准首帧迁移后的目录体系。核对日期：2026-09-30；重构基于 Git 版本 8540a45。
+本文件记录 data/reports 删除、标准首帧迁移及题目 first_frames 目录清理后的目录体系。核对日期：2026-10-01；本次清理基于 Git 版本 7619d43。
 
 每个分组仅展开一道典型题目，同时完整保留该分组的 scripts、evaluator、tools、分组 reports 等公共目录。下面的目录树根据当前本地文件直接生成，叶子节点是实际文件；其他题目仅列题号。MP4、权重、坐标缓存和生成结果未随源码交付，另列运行路径约定。
 
@@ -13,11 +13,10 @@
 | 标准首帧 | gX/Pxx/first_frame.png | 所有 40 题均有选定首帧。G1–G7 选第一张 GPT 图片，G8/G9 选原 provided 首帧。 |
 | 首帧生成提示词 | Pxx/prompts/first_frame.txt | 35 题已有原文并已迁移；G3 五题未提供，不创建占位文件。 |
 | 视频续写提示词 | Pxx/prompts/video.txt、video_simulation.txt、video_legacy.txt；G3/G7 的 video_prompts/ | 题目文本和逐样本文本分别保留，按输入视频实际来源选择。 |
-| 其他首帧及来源 | Pxx/first_frames/gpt/、simulation/、provided/ | 其余图片、原始来源记录和仿真代码；仅保留实际有内容的目录。 |
 | 首帧标注 | Pxx/annotations/first_frame_annotations.json；evaluator/roi.json | 审核过的几何标注或人工 ROI 配置。 |
 | 单题代码 | Pxx/evaluator/ | 当前入口、物理后端、题目配置、依赖和原有辅助脚本/测试。 |
 | 运行脚本 | Pxx/scripts/、gX/scripts/、v3/scripts/ | 单题/分组/公共脚本；原 metadata 批量方式尚需适配删除清单后的输入。 |
-| 说明与分组报告 | Pxx/docs/；g5/reports/ | 说明文档与分组级历史报告。题目级 reports 和全部分组/题目 data 已删除。 |
+| 说明与分组报告 | Pxx/docs/；g5/reports/ | 说明文档与分组级历史报告。题目级 reports/first_frames 和全部分组/题目 data 已删除。 |
 | 公共测量代码 | v3/shared/、unified_evaluators/、refined_evaluators/ | 公共测量、统一门控和结果合同。 |
 
 统一单视频入口在没有 metadata 清单时读取根目录标准首帧及已有视频续写提示词，支持显式覆盖。G3/P3/P9 的缓存及 G8/G9 的标注/模型仍需准备；G7 分发器的旧 tasks.json 依赖和原批量输入方式尚需适配。当前总分仍为一致性 15% 与纯物理分 85%。
@@ -145,14 +144,6 @@ g1/
 │   │   ├── evaluate.py
 │   │   ├── measure_backend.py
 │   │   └── requirements.txt
-│   ├── first_frames/
-│   │   ├── gpt/
-│   │   │   ├── gpt_02.png
-│   │   │   └── gpt_03.png
-│   │   └── simulation/
-│   │       ├── sim_01.png
-│   │       ├── sim_02.png
-│   │       └── sim_03.png
 │   ├── prompts/
 │   │   ├── first_frame.txt
 │   │   └── video.txt
@@ -171,7 +162,6 @@ g1/
 | 当前单题入口 | P1/evaluator/evaluate.py | 调用 unified_evaluators/runtime.py，执行 V3 门控与统一输出。 |
 | 物理适配 | P1/evaluator/measure_backend.py | 构建 Context；读取 prompts/video.txt，调用 shared.physeval 的 P1 规则。 |
 | 输入提示词 | P1/prompts/；video_prompts/（有文件时） | 首帧生成文本与视频续写文本分别保存；metadata 和 samples.csv 已删除。 |
-| 首帧资产 | P1/first_frames/gpt/*.png、simulation/*.png | 树中逐文件列出；GPT/仿真来源保持独立。 |
 | 依赖 | P1/evaluator/requirements.txt | 本题物理测量依赖；历史题目报告已删除。 |
 | 单题/整组运行 | P1/scripts/run_eval.sh、scripts/run_eval.sh | 各自调用公共 run_all_eval.py，选择 P1 或 G1。 |
 
@@ -190,26 +180,6 @@ g2/
 │   │   ├── evaluate.py
 │   │   ├── measure_backend.py
 │   │   └── requirements.txt
-│   ├── first_frames/
-│   │   ├── gpt/
-│   │   │   ├── gpt_02.png
-│   │   │   └── gpt_03.png
-│   │   ├── provided/
-│   │   │   └── first_frame.png
-│   │   ├── real/
-│   │   │   └── .gitkeep
-│   │   └── simulation/
-│   │       ├── code/
-│   │       │   ├── __init__.py
-│   │       │   ├── builders_induction_surface.py
-│   │       │   ├── builders_mech_optics.py
-│   │       │   ├── builders_thermal_em.py
-│   │       │   ├── common.py
-│   │       │   ├── render.py
-│   │       │   ├── render_all.py
-│   │       │   ├── requirements.txt
-│   │       │   └── tasks.json
-│   │       └── sim_01.png
 │   ├── prompts/
 │   │   ├── first_frame.txt
 │   │   └── video.txt
@@ -229,9 +199,6 @@ g2/
 | 首帧生成提示词 | P19/prompts/first_frame.txt | 原生成提示词逐字节迁移，与视频续写提示词分开。 |
 | 当前评测代码 | P19/evaluator/evaluate.py、measure_backend.py | 前者是 V3 门控入口，后者测量左右液面及末段运动。 |
 | ROI 标注 | P19/scripts/annotate_roi.py | 直接读取根目录 first_frame.png 或显式指定图片；生成 evaluator/roi.json。run_eval.sh 不支持旧 --annotate 模式。 |
-| 渲染入口 | P19/first_frames/simulation/code/render.py、render_all.py | 按生成配置生成单场景或批次仿真素材；不属于评测输出目录。 |
-| 渲染实现 | code/common.py、builders_induction_surface.py、builders_mech_optics.py、builders_thermal_em.py、__init__.py | 本题保留的仿真 builder 与公共生成辅助。 |
-| 生成配置/依赖 | code/tasks.json、requirements.txt | 首帧生成的参数与依赖，和正式评测 metadata 作用不同。 |
 | 输入提示词 | P19/prompts/；video_prompts/（有文件时） | 首帧生成文本与视频续写文本分别保存；metadata 和 samples.csv 已删除。 |
 | 运行脚本 | P19/scripts/run_eval.sh、scripts/run_eval.sh | 单题/整组的 V3 批量入口。 |
 
@@ -262,26 +229,6 @@ g3/
 │   │   ├── track_worker_p3.py
 │   │   ├── validate_synthetic.py
 │   │   └── write_human_sanity_review.py
-│   ├── first_frames/
-│   │   ├── gpt/
-│   │   │   ├── P3_gpt_02_classic.png
-│   │   │   ├── P3_gpt_03_industrial.png
-│   │   │   └── source_manifest.json
-│   │   ├── simulation/
-│   │   │   ├── code/
-│   │   │   │   ├── simulation/
-│   │   │   │   │   ├── __init__.py
-│   │   │   │   │   └── common.py
-│   │   │   │   ├── p3_sop_variants.py
-│   │   │   │   └── tasks_all.json
-│   │   │   ├── P3_sim_01.json
-│   │   │   ├── P3_sim_01.png
-│   │   │   ├── P3_sim_02.json
-│   │   │   ├── P3_sim_02.png
-│   │   │   ├── P3_sim_03.json
-│   │   │   ├── P3_sim_03.png
-│   │   │   └── source_manifest.json
-│   │   └── manifest.json
 │   ├── scripts/
 │   │   ├── run_eval.sh
 │   │   └── run_eval_legacy.sh
@@ -324,14 +271,13 @@ g3/
 | 代码/文件分类 | 文件位置 | 职责与当前调用关系 |
 | --- | --- | --- |
 | 标准首帧 | P3/first_frame.png | 原选定图片移至题目根目录，内容未修改。 |
-| 首帧生成提示词 | 原文未提供 | 本次不迁移、不创建占位文件，保留来源记录。 |
+| 首帧生成提示词 | 原文未提供 | 本次不迁移、不创建占位文件。 |
 | 当前入口与测量器 | P3/evaluator/evaluate.py、evaluate_raw_legacy.py | V3 门控后实际调用 evaluate_raw_legacy.py；文件名含 legacy 但处于当前物理执行链。 |
 | 历史评分适配 | P3/evaluator/measure_backend.py | 旧评分 replay 入口依赖旧 scoring_v2 包，当前 V3 不调用。 |
 | 跟踪与配置 | P3/evaluator/track_worker_p3.py、config.yaml、config_v2_geometric.json | 冻结跟踪种子/几何配置和旧几何评分设置。当前 P3 用已关联坐标缓存重新计算物理量。 |
 | 历史批量与重评分 | P3/evaluator/run_batch.py、run_batch_pre_continuous_aggregate_20260826.py、rescore_continuous.py、rescore_v2_geometric.py | 保留的原始批处理与旧分数迁移，不替代当前 scripts/run_eval.sh。 |
 | 审计与原有回归 | P3/evaluator/audit_formal_artifacts.py、write_human_sanity_review.py、validate_synthetic.py、test_rescore_continuous.py、synthetic_validation.json | 审核、人工检查、合成回归代码及历史验证记录；没有再复制到 utils/。 |
-| 首帧生成 | P3/first_frames/simulation/code/p3_sop_variants.py、simulation/common.py、simulation/__init__.py、tasks_all.json | 仿真生成和参数归于首帧来源目录。 |
-| 来源与 prompt | P3/first_frames/manifest.json、各来源 source_manifest.json、simulation/*.json、video_prompts/*.txt | 首帧来源、仿真参数和逐样本 prompt 的历史记录。 |
+| 逐样本视频提示词 | P3/video_prompts/*.txt | 保留已有视频续写提示词；首帧来源清单已随 first_frames 目录删除。 |
 | 全局工具 | tools/audit_document_only_package.py、build_document_only_package.py | 历史 document-only 审计/构建工具，需要外部交付输入；分组 data 清单已删除。 |
 | 当前批量入口 | P3/scripts/run_eval.sh、scripts/run_eval.sh、scripts/evaluate_v2.py | 文件名 evaluate_v2 保留，但该包装器调用当前 V3 run_all_eval；旧 --verify 已移除。 |
 
@@ -348,11 +294,6 @@ g4/
 │   │   ├── evaluate.py
 │   │   ├── measure_backend.py
 │   │   └── requirements.txt
-│   ├── first_frames/
-│   │   ├── gpt/
-│   │   │   └── gpt_02.png
-│   │   └── simulation/
-│   │       └── sim_01.png
 │   ├── prompts/
 │   │   ├── first_frame.txt
 │   │   ├── video.txt
@@ -372,7 +313,6 @@ g4/
 | 当前入口与后端 | P14/evaluator/evaluate.py、measure_backend.py | V3 入口调公共 runtime；测量后端调用 shared/physeval 的 P14 共点规则。 |
 | 输入提示词 | P14/prompts/；video_prompts/（有文件时） | 首帧生成文本与视频续写文本分别保存；metadata 和 samples.csv 已删除。 |
 | 分路线提示词 | P14/prompts/video.txt、video_simulation.txt | 两份 prompt 内容不同，因此分别保留；根 prompt_sim.txt 已归档。 |
-| 首帧与报告 | P14/first_frames/gpt/、simulation/、reports/report.md | 首帧保持来源分组；报告从题目根目录移入 reports。 |
 | 依赖与运行 | P14/evaluator/requirements.txt、P14/scripts/run_eval.sh、scripts/run_eval.sh | 物理依赖、单题和整组运行。 |
 
 P16/P18/P20/P21 复用同一套 physeval；P21 也有独立 simulation prompt。首帧路线及数量以各题文件和 metadata 为准。
@@ -390,15 +330,6 @@ g5/
 │   │   ├── evaluate.py
 │   │   ├── measure_backend.py
 │   │   └── requirements.txt
-│   ├── first_frames/
-│   │   ├── real/
-│   │   │   └── .gitkeep
-│   │   └── simulation/
-│   │       ├── code/
-│   │       │   └── README.md
-│   │       ├── README.md
-│   │       ├── sim_01.png
-│   │       └── sim_first_frame.png
 │   ├── prompts/
 │   │   ├── first_frame.txt
 │   │   └── video.txt
@@ -420,8 +351,7 @@ g5/
 | 当前评测实现 | P36/evaluator/evaluate.py、measure_backend.py | V3 门控入口与磁体/对照物运动测量后端。 |
 | 输入提示词 | P36/prompts/；video_prompts/（有文件时） | 首帧生成文本与视频续写文本分别保存；metadata 和 samples.csv 已删除。 |
 | ROI 与运行 | P36/scripts/annotate_roi.py、run_eval.sh、scripts/run_eval.sh | 标注 evaluator/roi.json；单题/整组运行使用公共批量器。 |
-| 保留的仿真首帧 | P36/first_frames/simulation/sim_01.png、sim_first_frame.png | 独立原始图片移入 simulation，当前包没有源 renderer。 |
-| 来源说明与占位 | P36/first_frames/simulation/README.md、code/README.md、real/.gitkeep、evaluator/utils/README.md | 明确源 renderer 缺失；real 和 utils 为保留位置，不是隐藏的生成器或提取器。 |
+| 辅助说明 | P36/evaluator/utils/README.md | 保留的辅助目录说明。 |
 | 分组报告 | reports/report.md | 分组历史汇总移入分组 reports，未归到某一道题。 |
 
 P44 也有保留的 simulation 图和来源缺口说明；P21b/P21c/P23 的 simulation 目录仅有说明文件，没有可执行 renderer。
@@ -437,9 +367,6 @@ g6/
 │   │   ├── evaluate.py
 │   │   ├── measure_backend.py
 │   │   └── requirements.txt
-│   ├── first_frames/
-│   │   └── simulation/
-│   │       └── sim_01.png
 │   ├── prompts/
 │   │   ├── first_frame.txt
 │   │   └── video.txt
@@ -457,7 +384,6 @@ g6/
 | 首帧生成提示词 | P48/prompts/first_frame.txt | 原生成提示词逐字节迁移，与视频续写提示词分开。 |
 | 当前入口与共享后端 | P48/evaluator/evaluate.py、measure_backend.py | V3 入口；共享 physeval 的 P48 液滴体积规则。 |
 | 输入提示词 | P48/prompts/；video_prompts/（有文件时） | 首帧生成文本与视频续写文本分别保存；metadata 和 samples.csv 已删除。 |
-| 首帧素材 | P48/first_frame.png、first_frames/simulation/ | 选定 GPT 首帧在根目录，仿真图片保持原来源路径。 |
 | 运行与依赖 | P48/evaluator/requirements.txt、P48/scripts/run_eval.sh、scripts/run_eval.sh | 题目物理依赖及单题/分组运行。 |
 
 P45/P8b 同样使用公共 physeval。P45 当前只有 GPT 首帧，因此无需人为增加 simulation 资产。
@@ -494,20 +420,6 @@ g7/
 │   │   ├── p7_rotational.py
 │   │   ├── README.md
 │   │   └── requirements.txt
-│   ├── first_frames/
-│   │   ├── gpt/
-│   │   │   ├── gpt_02.png
-│   │   │   ├── gpt_03.png
-│   │   │   └── video_prompt.txt
-│   │   ├── provided/
-│   │   │   └── first_frame_01.png
-│   │   └── simulation/
-│   │       ├── code/
-│   │       │   ├── render.py
-│   │       │   └── requirements.txt
-│   │       ├── sim_01.png
-│   │       ├── sim_02.png
-│   │       └── sim_03.png
 │   ├── prompts/
 │   │   ├── first_frame.txt
 │   │   └── video.txt
@@ -558,7 +470,6 @@ g7/
 | 本题物理模块 | P7/evaluator/p7_rotational.py | 从原 evaluator/tasks 拆出，现由分组解码器调用；共用 shared/g7_cv_common.py。 |
 | 保留的旧接口 | P7/evaluator/evaluate_raw_legacy.py、measure_backend.py、batch.py | 旧 task adapter / evaluator_common 入口；不作为当前运行方法，部分依赖未随源码交付。 |
 | 另一条提取方案 | P7/evaluator/evaluate_p7.py | 保留的 SAM3/CoTracker 方案，需额外模型环境，当前默认分发不调用。 |
-| 首帧/生成代码 | P7/first_frames/gpt/、provided/、simulation/code/render.py、requirements.txt | 保留其余首帧、来源记录和可用仿真渲染入口。 |
 | 输入提示词 | P7/prompts/；video_prompts/（有文件时） | 首帧生成文本与视频续写文本分别保存；metadata 和 samples.csv 已删除。 |
 | 运行脚本 | P7/scripts/run_eval.sh、scripts/run_eval.sh、scripts/evaluate_v2.py | 当前单题/分组批量入口；带 legacy 的脚本只作历史保留。 |
 | 全局生成器 | tools/blender_scene_builder.py | 离线场景/输入生成工具，不放进题目 evaluator。 |
@@ -688,4 +599,4 @@ v3/
 
 40 道题的 README 已使用根目录标准首帧，并将生成首帧的提示词和视频续写提示词分开说明。G3 五题没有原始首帧生成提示词，本次仅迁移图片。已删除 metadata 的登记样本批量命令不再列作可直接运行的示例；G7 的旧任务清单依赖明确注明尚需适配。
 
-校验结果：40 张图片和 35 份提示词的原始字节哈希保持一致，G3 首帧清单 30 个图像路径与哈希均通过；40 题输入默认路径与显式覆盖、40 题入口 --help、题目 README 本地链接均通过。现有公共回归运行 36 项，34 项通过、2 项跳过。未执行完整 GPU 视频评测。
+本次删除了剩余 31 个题目级 first_frames 目录及其中 232 个文件，全部 40 题均已无该目录。40 张根目录标准首帧与 35 份生成提示词的内容保持一致，题目 README 链接和典型题文件树已同步清理。前次公共回归运行 36 项，34 项通过、2 项跳过；本次仅删除目录和更新文档，未执行完整 GPU 视频评测。
