@@ -46,7 +46,7 @@ G8/G9 现有任务 evaluator 文档明确仅实现 M1。本次不从其他题目
 每个结果包含 `task_id`、`video_path`、`image_path`、实际 `video_prompt`、`model`、`seed`、`metrics.M1/M2` 和 `verbose.M1/M2`。未知 seed 为 null。
 
 公开结果的 `video_path` 使用 `minimax_h3/videos/sample_00.mp4`，`image_path` 使用
-`first_frames/provided/first_frame_01.png`；实际磁盘输入仍由 `metadata_v2.json` 与
+`first_frames/provided/first_frame_01.png`；实际磁盘输入仍由 `data/metadata.json` 与
 `verbose.M1._provenance` 追溯。首帧生成器没有可靠记录，因此放在 `first_frames/provided/`，不冒称 GPT、仿真或实拍来源。
 
 `score_details` 和原提取阶段 `calculation.md` 中的旧 `score/metric` 表述对应纯物理分 q；加入识别分及已定义指标聚合后的数值以 `verbose.M*.scoring`、`verbose.M1._scoring_summary` 和 `scoring_calculation.md` 为准。
@@ -67,7 +67,7 @@ P47 新增 OpenCV/SciPy 轮廓测量后端。圆模型独立拟合，不使用 L
 
 每题入口：`bash g8/P37/scripts/run_eval.sh minimax_h3 --device cpu --reuse_masks --reuse_tracks`。P34 只支持 `--reuse_masks`；P47 为逐帧轮廓测量。总入口处理这两个差异。
 
-默认优先读 `output_videos/<model>` 与 `metadata_v2.json`，显式 `--input_dir` 保留原目录输入功能。新增视频必须在对应 manifest 登记首帧、prompt、样本 ID；六个使用审核标注的旧后端还需提供匹配的 `annotation`，不能把当前视频标注用于另一个视频。
+默认优先读 `output_videos/<model>` 与 `data/metadata.json`，显式 `--input_dir` 保留原目录输入功能。新增视频必须在对应 manifest 登记首帧、prompt、样本 ID；六个使用审核标注的旧后端还需提供匹配的 `annotation`，不能把当前视频标注用于另一个视频。
 
 依赖见各题 `evaluator/requirements.txt`。运行环境由 `EVALUATOR_PYTHON` / `P34_PYTHON` 指定；可用 `EVALUATOR_PYTHON` / `P34_PYTHON` 指定环境。本地 DINO/SAM 权重位于 `g8/P34/models/`；CoTracker 默认寻找 v2 的 `shared_models/`、`shared_vendor/`，其次使用原项目的同名资源。也可显式传 `--cotracker_checkpoint` 并安装依赖中的官方 CoTracker 包。没有下载、生成或替换源视频。
 

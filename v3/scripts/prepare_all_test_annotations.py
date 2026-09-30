@@ -60,9 +60,9 @@ def main():
     models = sorted(p for p in (SOURCE / "data/videos/all_test").iterdir() if p.is_dir() and (not args.models or p.name in args.models) and all(os.access(v, os.R_OK) for v in (p/"gpt").glob("*.mp4")))
     records = []
     for task in sorted(ANNOTATED):
-        original = next(V3.glob(f"g[1-9]/{task}/first_frame_annotations.json"))
+        original = next(V3.glob(f"g[1-9]/{task}/annotations/first_frame_annotations.json"))
         template = json.loads(original.read_text())
-        still_path = next((SOURCE / "data/g1_g9").glob(f"g[1-9]/{task}/first_frame.png"))
+        still_path = next((V3).glob(f"g[1-9]/{task}/first_frames/provided/first_frame.png"))
         if digest(still_path) != template["source_image_sha256"]:
             raise ValueError(f"{task}: source still does not match the reviewed template")
         still = cv2.imread(str(still_path))

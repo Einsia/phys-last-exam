@@ -7,14 +7,14 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 def main():
-    for metadata in sorted(ROOT.glob('g[1-9]/P*/metadata_v2.json')):
-        task = metadata.parent
+    for metadata in sorted(ROOT.glob('g[1-9]/P*/data/metadata.json')):
+        task = metadata.parent.parent
         entry = task/'evaluator/evaluate.py'
         backup = task/'evaluator/measure_backend.py'
         if not backup.exists():
             shutil.copy2(entry,backup)
         entry.write_text(f'''#!/usr/bin/env python3
-"""{task.name}: fresh measurement with the unified G1-G9 V2 output contract."""
+"""{task.name}: V3 consistency gate followed by task-specific physics."""
 from pathlib import Path
 import sys
 ROOT = Path(__file__).resolve().parents[3]
@@ -49,7 +49,7 @@ exec "$evaluation_python" "$evaluation_root/scripts/run_all_eval.py" --groups {g
 ''')
         script.chmod(0o755)
     # Keep numerical output at full precision and declare the mapping explicitly.
-    for schema in ROOT.glob('g[146]/P*/evaluator/utils/physeval/schema.py'):
+    for schema in [ROOT / 'shared/physeval/schema.py']:
         text = schema.read_text()
         for before,after in (
             ('round(float(self.value), 6)','float(self.value)'),('round(q, 6)','q'),

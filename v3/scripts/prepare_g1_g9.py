@@ -47,7 +47,7 @@ def main():
             source_files = set(old_results)
             source_files.update(task.glob('*.md'))
             source_files.update(task.glob('*.csv'))
-            source_files.update(task.glob('metadata*.json'))
+            source_files.update(task.glob('data/metadata.json'))
             source_files.update(task.glob('scripts/*'))
             source_files.update(task.glob('evaluator/**/*.py'))
             source_files.update(task.glob('evaluator/*.json'))
@@ -65,14 +65,14 @@ def main():
             for index, result_path in enumerate(old_results):
                 old = json.loads(result_path.read_text())
                 if group.name == 'g7':
-                    manifest = json.loads((group/'manifest.json').read_text())['samples']
+                    manifest = json.loads((group/'data'/'manifest.json').read_text())['samples']
                     source = next(x for x in manifest if x['task_id'] == task.name and x['sample_id'] == result_path.stem.removeprefix('result_'))
                     # Five historical sample_00 JSONs refer to a separate continuation.
                     # The generation manifest and its SHA identify the formal samples.
                     old['video_path'] = source['video']
                     old['image_path'] = source['first_frame']
                     old['seed'] = source['seed']
-                    old['video_prompt'] = (task/'prompt.txt').read_text().strip()
+                    old['video_prompt'] = (task/'prompts'/'video.txt').read_text().strip()
                     assert digest(resolve(task, source['video'])) == source['sha256']
                 video = resolve(task, old['video_path'])
                 image = resolve(task, old.get('image_path'))
@@ -86,7 +86,7 @@ def main():
                 prompt_file = None
                 if not prompt:
                     route_sim = image and 'simulation' in image.parts
-                    prompt_file = task/('prompt_sim.txt' if route_sim and (task/'prompt_sim.txt').exists() else 'prompt.txt')
+                    prompt_file = task/('prompts/video_simulation.txt' if route_sim and (task/'prompts/video_simulation.txt').exists() else 'prompts/video.txt')
                     prompt = prompt_file.read_text().strip()
                 record = {
                     'sample_id': sample,
@@ -107,8 +107,8 @@ def main():
                 if old.get('source_metadata'):
                     record['source_metadata'] = old['source_metadata']
                 # Preserve the explicit first-frame annotations used by G8/G9.
-                if (task/'metadata_v2.json').exists() and group.name in ('g8','g9'):
-                    previous = json.loads((task/'metadata_v2.json').read_text())['samples']
+                if (task/'data'/'metadata.json').exists() and group.name in ('g8','g9'):
+                    previous = json.loads((task/'data'/'metadata.json').read_text())['samples']
                     match = next(x for x in previous if x['sample_id'] == sample)
                     if match.get('annotation'):
                         record['annotation'] = match['annotation']
@@ -116,7 +116,7 @@ def main():
             if group.name == 'g7' and (task/'continuation.mp4').exists():
                 video = task/'continuation.mp4'
                 if digest(video) not in {row['video_sha256'] for row in samples}:
-                    image = task/'first_frame.png'
+                    image = task/'first_frames'/'provided'/'first_frame.png'
                     # No generation model or seed was recorded for these extra videos.
                     sample = 'sample_00'
                     canonical = task/'output_videos/unknown_model'/f'{sample}.mp4'
@@ -126,13 +126,13 @@ def main():
                     samples.append({
                         'sample_id': sample, 'video_path': str(canonical.relative_to(task)),
                         'source_video_path': 'continuation.mp4',
-                        'image_path': 'first_frame.png',
-                        'video_prompt': (task/'video.txt').read_text().strip(),
+                        'image_path': 'first_frames/provided/first_frame.png',
+                        'video_prompt': (task/'prompts'/'video.txt').read_text().strip(),
                         'model': 'minimax_h3', 'model_folder': 'unknown_model', 'seed': None,
                         'video_sha256': digest(video), 'image_sha256': digest(image),
                         'metadata_note': 'Supplied continuation; model from historical continuation result, seed not recorded. Separate folder avoids collision with the formal sample_00.',
                     })
-            (task/'metadata_v2.json').write_text(json.dumps({'samples': samples}, ensure_ascii=False, indent=2)+'\n')
+            (task/'data'/'metadata.json').write_text(json.dumps({'samples': samples}, ensure_ascii=False, indent=2)+'\n')
             for record in samples:
                 rows.append({'group': group.name, 'task_id': task.name, **record})
         for src in group.glob('evaluator/**/*.py'):

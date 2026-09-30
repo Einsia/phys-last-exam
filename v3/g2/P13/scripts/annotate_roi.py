@@ -90,8 +90,13 @@ def main() -> int:
         bgr = cv2.imread(str(image), cv2.IMREAD_COLOR)
         if bgr is None:
             raise SystemExit(f"cannot read first-frame image: {image}")
-    elif args.video is None and (TASK_DIR / "first_frame.png").is_file():
-        image = TASK_DIR / "first_frame.png"
+    elif args.video is None and any(
+            candidate.is_file() for candidate in (
+                TASK_DIR / "first_frames" / "provided" / "first_frame.png",
+                TASK_DIR / "first_frames" / "gpt" / "gpt_01.png")):
+        image = next(candidate for candidate in (
+            TASK_DIR / "first_frames" / "provided" / "first_frame.png",
+            TASK_DIR / "first_frames" / "gpt" / "gpt_01.png") if candidate.is_file())
         bgr = cv2.imread(str(image), cv2.IMREAD_COLOR)
         if bgr is None:
             raise SystemExit(f"cannot read first-frame image: {image}")

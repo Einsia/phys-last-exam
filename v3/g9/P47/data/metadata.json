@@ -1,0 +1,31 @@
+{
+  "samples": [
+    {
+      "sample_id": "sample_00",
+      "video_path": "output_videos/minimax_h3/sample_00.mp4",
+      "source_video_path": "output_videos/minimax_h3/sample_00.mp4",
+      "image_path": "first_frames/provided/first_frame_01.png",
+      "video_prompt": "Locked-off static camera, close-up side view. Continue from the supplied first frame. Two roughly spherical soap bubbles of clearly different sizes move toward each other and stay connected by one clearly visible internal partition. The outer boundaries of both bubbles and the complete partition remain sharply visible and inside the frame. The bubbles do not pop or detach. The camera does not move, pan, or zoom. Plain dark background.",
+      "model": "minimax_h3",
+      "model_folder": "minimax_h3",
+      "seed": null,
+      "source_result": "eval_results/minimax_h3/result_sample_00.json",
+      "previous_result": "work/g1_g9_v2_20260911/before/g9/P47/eval_results/minimax_h3/result_sample_00.json",
+      "video_sha256": "3fd4f4958a2877a860b7f8431614ec7c6edeb681e31c458ad33802369ca861be",
+      "image_sha256": "3fab06e8b9efbccc90714ceedb8497990303d76c58ce82836ac68e32df31626c"
+    }
+  ],
+  "legacy_metadata": {
+    "samples": [
+      {
+        "sample_id": "sample_00",
+        "video_path": "continuation.mp4",
+        "image_path": "first_frame.png",
+        "video_prompt_file": "video.txt",
+        "model": "minimax_h3",
+        "seed": null,
+        "provenance": "Explicit sample association in evaluator.md; seed not recorded"
+      }
+    ]
+  }
+}

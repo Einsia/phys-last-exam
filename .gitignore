@@ -24,3 +24,6 @@ v3_*/
 .vscode/
 .DS_Store
 .pytest_cache/
+
+# Local document-authoring workspaces
+/draft_*_folder/

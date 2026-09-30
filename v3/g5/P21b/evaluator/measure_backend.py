@@ -69,7 +69,7 @@ def metadata(video: str, image_path: str | None, seed: int | None) -> tuple[str,
     match = re.search(r"_seed(\d+)$", stem, flags=re.IGNORECASE)
     actual_seed = seed if seed is not None else (int(match.group(1)) if match else None)
     if image_path is None:
-        candidates = ["sim_first_frame.png"] if stem.lower().startswith("sim") else ["first_frame.png"]
+        candidates = ["first_frames/simulation/sim_first_frame.png"] if stem.lower().startswith("sim") else ["first_frames/provided/first_frame.png"]
         base = re.sub(r"_seed\d+$", "", stem, flags=re.IGNORECASE)
         candidates += [f"first_frames/gpt/{base}.png", f"first_frames/simulation/{base}.png"]
         for candidate in candidates:

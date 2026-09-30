@@ -9,11 +9,12 @@ from typing import Any
 
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parent
-if str(ROOT) not in sys.path:
-    sys.path.insert(0, str(ROOT))
+V3_ROOT = HERE.parents[1]
+if str(V3_ROOT) not in sys.path:
+    sys.path.insert(0, str(V3_ROOT))
 
-from evaluator.contract import TASK_METRICS, build_public_result, validate_public_result
-from evaluator.evaluate import evaluate as evaluate_raw
+from g7.evaluator.contract import TASK_METRICS, build_public_result, validate_public_result
+from g7.evaluator.evaluate import evaluate as evaluate_raw
 
 
 def _load(path: Path) -> dict[str, Any]:
@@ -34,8 +35,8 @@ def evaluate_one(
     model: str = "minimax-h3",
 ) -> dict[str, Any]:
     data_root = data_root.resolve()
-    task_spec = {item["task_id"]: item for item in _load(data_root / "tasks.json")["tasks"]}[task_id]
-    manifest = _load(data_root / "manifest.json")
+    task_spec = {item["task_id"]: item for item in _load(data_root / "data" / "tasks.json")["tasks"]}[task_id]
+    manifest = _load(data_root / "data" / "manifest.json")
     row = next((item for item in manifest.get("samples", []) if str(item.get("task_id")) == task_id and str(item.get("sample_id")) == sample_id), None)
     if row:
         video_rel = Path(str(row["video"]))

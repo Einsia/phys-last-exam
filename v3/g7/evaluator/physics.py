@@ -18,7 +18,7 @@ from typing import Any
 # P12's M1 combines the three air-to-water Snell estimates with a critical/TIR
 # estimate.  A low CV is therefore not sufficient if the video omitted the
 # TIR branch (or turned it into an ordinary refracted branch).  These limits
-# mirror the explicit pixel-geometry checks in ``tasks/p12_optics.py``.
+# mirror the explicit pixel-geometry checks in ``P12/evaluator/p12_optics.py``.
 P12_MIN_SNELL_PAIRS = 3
 P12_CRITICAL_REFLECTION_MAX_RESIDUAL_DEG = 10.0
 P12_CRITICAL_REFLECTION_MAX_MISMATCH_RATIO = 0.020

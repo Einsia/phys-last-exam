@@ -18,19 +18,23 @@ import numpy as np
 
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parent
-if str(ROOT) not in sys.path:
-    sys.path.insert(0, str(ROOT))
+V3_ROOT = HERE.parents[1]
+if str(V3_ROOT) not in sys.path:
+    sys.path.insert(0, str(V3_ROOT))
 
+from g7.P7.evaluator import p7_rotational
+from g7.P8c.evaluator import p8c_pendulum
+from g7.P10.evaluator import p10_mechanics
+from g7.P12.evaluator import p12_optics
+from g7.P27.evaluator import p27_thermal
 try:
-    from .tasks import p10_mechanics, p12_optics, p27_thermal, p7_rotational, p8c_pendulum
     from .physics import physics_decision
 except ImportError:  # direct ``python evaluator/evaluate.py`` execution
-    from evaluator.tasks import p10_mechanics, p12_optics, p27_thermal, p7_rotational, p8c_pendulum
-    from evaluator.physics import physics_decision
+    from g7.evaluator.physics import physics_decision
 
 TASKS = {
     item["task_id"]: item
-    for item in json.loads((ROOT / "tasks.json").read_text(encoding="utf-8"))["tasks"]
+    for item in json.loads((ROOT / "data" / "tasks.json").read_text(encoding="utf-8"))["tasks"]
 }
 EVALUATORS = {
     "P7": p7_rotational.evaluate,

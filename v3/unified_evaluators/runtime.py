@@ -49,11 +49,11 @@ def resolve(value, task):
 
 
 def load_metadata(task, video, args):
-    manifest = task/'metadata_v2.json'
+    manifest = task/'data'/'metadata.json'
     records = json.loads(manifest.read_text())['samples'] if manifest.exists() else []
     matches = [row for row in records if any(row.get(k) and (task/row[k]).resolve() == video for k in ('video_path','source_video_path'))]
     if len(matches) > 1:
-        raise ValueError('Ambiguous video association in metadata_v2.json')
+        raise ValueError('Ambiguous video association in data/metadata.json')
     row = deepcopy(matches[0]) if matches else {
         'sample_id':video.stem, 'video_path':relative(video,task), 'source_video_path':relative(video,task),
         'image_path':None, 'video_prompt':None, 'model':None, 'seed':None,
@@ -277,7 +277,7 @@ def main(task_id, task_root, argv=None):
     started = time.time()
     provenance = {'run_started_at_utc':datetime.datetime.now(datetime.timezone.utc).isoformat(),
                   'video_sha256':row['video_sha256'],'image_sha256':row.get('image_sha256'),
-                  'metadata_manifest':'metadata_v2.json','raw_result_path':relative(raw_path,task),
+                  'metadata_manifest':'data/metadata.json','raw_result_path':relative(raw_path,task),
                   'group':task.parent.name,'execution_mode':'fresh_video_measurement',
                   'score_replay_only':False,'neural_inference_rerun':None,
                   'debug_dir':relative(debug,task),'physics_attempted':False}

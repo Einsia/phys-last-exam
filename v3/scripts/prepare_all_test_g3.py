@@ -17,7 +17,7 @@ def main():
     cv2.setNumThreads(2)
     models = sorted(p for p in (SOURCE / 'data/videos/all_test').iterdir() if p.is_dir() and (not args.models or p.name in args.models) and all(os.access(v, os.R_OK) for v in (p/"gpt").glob("*.mp4")))
     for task in ['P3', 'P9']:
-        image = SOURCE / 'data/g1_g9/g3' / task / 'first_frame.png'
+        image = V3 / 'g3' / task / 'first_frames' / 'gpt' / 'gpt_01.png'
         still = cv2.imread(str(image)); sh, sw = still.shape[:2]
         hsv = cv2.cvtColor(still, cv2.COLOR_BGR2HSV)
         balls = {}

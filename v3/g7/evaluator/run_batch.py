@@ -21,11 +21,12 @@ from typing import Any
 
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parent
-if str(ROOT) not in sys.path:
-    sys.path.insert(0, str(ROOT))
+V3_ROOT = HERE.parents[1]
+if str(V3_ROOT) not in sys.path:
+    sys.path.insert(0, str(V3_ROOT))
 
-from evaluator.contract import CONTRACT_VERSION, PROXY_VERSION, TASK_METRICS, build_public_result, validate_public_result
-from evaluator.evaluate import evaluate as evaluate_raw
+from g7.evaluator.contract import CONTRACT_VERSION, PROXY_VERSION, TASK_METRICS, build_public_result, validate_public_result
+from g7.evaluator.evaluate import evaluate as evaluate_raw
 
 
 def _load_json(path: Path) -> dict[str, Any]:
@@ -33,8 +34,8 @@ def _load_json(path: Path) -> dict[str, Any]:
 
 
 def _manifest_rows(data_root: Path) -> tuple[dict[str, Any], dict[str, Any]]:
-    manifest = _load_json(data_root / "manifest.json")
-    tasks = {item["task_id"]: item for item in _load_json(data_root / "tasks.json")["tasks"]}
+    manifest = _load_json(data_root / "data" / "manifest.json")
+    tasks = {item["task_id"]: item for item in _load_json(data_root / "data" / "tasks.json")["tasks"]}
     rows = manifest.get("samples")
     if not isinstance(rows, list):
         raise ValueError("manifest.json has no samples list")
@@ -207,7 +208,7 @@ def run_batch(data_root: Path, output_root: Path, *, force: bool = False) -> dic
             "by_source": by_source,
             "by_task_source": by_task_source,
         },
-        "evaluator": "evaluator/run_batch.py + evaluator/tasks (OpenCV/NumPy only)",
+        "evaluator": "evaluator/run_batch.py + task-local evaluator modules (OpenCV/NumPy only)",
     }
     (output_root / "summary.json").write_text(json.dumps(summary, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     return summary

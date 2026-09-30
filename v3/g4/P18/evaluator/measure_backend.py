@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 """Evaluate one generated video for this task and write one JSON verdict.
 
-Self-contained: the measurement library is vendored under ``utils/physeval``,
-so nothing outside this package is needed beyond the packages in
+Self-contained: the measurement library is provided by the shared ``shared/physeval`` package,
+so all tasks use one audited implementation in addition to the packages in
 ``requirements.txt``.
 
     python evaluator/evaluate.py \
@@ -12,10 +12,10 @@ so nothing outside this package is needed beyond the packages in
         --debug eval_results/minimax_h3/debug/sample_00/plot.png
 
 Which first-frame route and seed a sample number stands for is recorded in
-``samples.csv`` at the task root; this reads it from there so the JSON carries
+``data/samples.csv``; this reads it from there so the JSON carries
 the same ``sample_id``, ``route`` and ``seed`` whether the file was produced by
 ``run_eval.sh`` or shipped in the package. ``--route`` and ``--seed`` override
-it. The continuation prompt comes from ``prompt.txt`` (``prompt_sim.txt`` for
+it. The continuation prompt comes from ``prompts/video.txt`` (``prompts/video_simulation.txt`` for
 the simulation route, where the two routes were worded apart) unless
 ``--prompt`` is given.
 """
@@ -28,9 +28,11 @@ from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 TASK_ROOT = HERE.parent
-sys.path.insert(0, str(HERE / "utils"))
+V3_ROOT = HERE.parents[3]
+if str(V3_ROOT) not in sys.path:
+    sys.path.insert(0, str(V3_ROOT))
 
-from physeval import Context, get_evaluator, read_clip  # noqa: E402
+from shared.physeval import Context, get_evaluator, read_clip  # noqa: E402
 
 TASK_ID = "P18"
 
@@ -45,7 +47,7 @@ def _rel(path: str) -> str:
 
 def _from_manifest(sample_id: str) -> dict:
     """What samples.csv says this sample number is."""
-    f = TASK_ROOT / "samples.csv"
+    f = TASK_ROOT / "data" / "samples.csv"
     if not f.is_file():
         return {}
     for line in f.read_text(encoding="utf-8").splitlines()[1:]:
@@ -85,9 +87,9 @@ def main() -> int:
     if args.prompt:
         prompt_file = Path(args.prompt)
     else:
-        alt = TASK_ROOT / "prompt_sim.txt"
+        alt = TASK_ROOT / "prompts" / "video_simulation.txt"
         prompt_file = (alt if route == "sim" and alt.is_file()
-                       else TASK_ROOT / "prompt.txt")
+                       else TASK_ROOT / "prompts" / "video.txt")
     prompt = prompt_file.read_text(encoding="utf-8").strip() \
         if prompt_file.is_file() else ""
 

@@ -11,7 +11,7 @@ ROOT=Path(__file__).resolve().parents[1]
 
 
 def load_annotation(args, frames, directory):
-    path=Path(args.annotation) if args.annotation else Path(args.video_path).parent/'first_frame_annotations.json'
+    path=Path(args.annotation) if args.annotation else Path(args.video_path).parent/'annotations'/'first_frame_annotations.json'
     if not path.is_file():
         raise ExtractionError('Missing reviewed first-frame annotations: supply --annotation. Object identities must be established before tracking.')
     a=json.loads(path.read_text())
@@ -52,7 +52,7 @@ COLORS=[(40,210,40),(255,160,20),(60,80,255),(180,20,230)]
 
 def segment(frames,args,a,directory):
     import torch
-    signature={'video':fingerprint(args.video_path),'annotation':fingerprint(args.annotation or Path(args.video_path).parent/'first_frame_annotations.json'),
+    signature={'video':fingerprint(args.video_path),'annotation':fingerprint(args.annotation or Path(args.video_path).parent/'annotations'/'first_frame_annotations.json'),
                'checkpoint':fingerprint(args.sam2_checkpoint),'config':args.sam2_config,'version':3}
     cache=directory/'sam2_masks.npz'
     if args.reuse_masks and cache.is_file():

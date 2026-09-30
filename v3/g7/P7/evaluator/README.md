@@ -1,22 +1,14 @@
-# P7 evaluator
+# P7 评测代码
 
-This evaluator follows the P38 interface: `evaluate.py` evaluates one video and `batch.py` evaluates all direct `.mp4` inputs using explicit metadata associations. It records PTS, source previews, motion diagnostics, task-named intermediate videos, masks/tracks placeholders, and a result JSON. Semantic extraction is conservative and returns `metric: null` when object identity or geometry cannot be validated; it never substitutes prompt text for measurements.
-
-## Single video
+当前运行入口和输入准备见 [题目 README](../README.md)，结果语义见 [SCORING_V3.md](../../../SCORING_V3.md)。以下命令在题目根目录执行：
 
 ```bash
-python videos/g7/P7/evaluator/evaluate.py \
-  --video_path videos/g7/P7/continuation.mp4 \
-  --image_path videos/g7/P7/first_frame.png \
-  --video_prompt_file videos/g7/P7/video.txt \
-  --model minimax_h3 --sample_id sample_00 \
-  --output videos/g7/P7/eval_results/minimax_h3/result_sample_00.json
+python evaluator/evaluate.py --help
+bash scripts/run_eval.sh minimax_h3 --help
 ```
 
-## Batch
+`p7_rotational.py` 是本题物理提取实现，供 `g7/evaluator/evaluate.py` 统一解码和分发使用。公共 CV helper 位于 `v3/shared/g7_cv_common.py`。
 
-```bash
-python videos/g7/P7/evaluator/batch.py minimax_h3
-```
+`evaluate_raw_legacy.py` 是旧物理入口；`measure_backend.py` 和 `batch.py` 是旧 evaluator_common 接口，源码仓库不附带该历史包。它们不能代替 V3 入口；`utils/` 仅保留旧命名空间占位。
 
-`--device`, `--seed`, `--margin`, and `--config` are accepted. Unknown metadata is written as `null`; no sample is numbered from directory order. `P47` is intentionally excluded from this set.
+`evaluate_p7.py` 是保留的另一条 SAM3/CoTracker 提取方案，需要额外模型环境，当前 V3 默认分发不调用它。

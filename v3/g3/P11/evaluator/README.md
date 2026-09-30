@@ -1,74 +1,17 @@
-# P11 deterministic evaluator
+# P11 评测代码
 
-This directory scores the air-to-water laser task without any LLM or VLM.
-The frozen evaluator first fits the horizontal water interface from the
-laser-off background. It then detects the laser-on interval using temporal
-red-change ridges, and independently fits the incident ray in air and the
-refracted ray in water with Hough proposals plus robust IRLS refinement.
-The visible normal drawn by a video model is explicitly ignored; the normal is
-computed as the perpendicular to the fitted interface.
-
-## Metrics
-
-- `M1 = abs(sin(theta_i) / sin(theta_t) - 1.333)`. The signed residual and
-  measured ratio are also retained.
-- `M2 = abs(x_incident - x_refracted) / frozen_tank_width`, where each x is the
-  independent ray/interface intersection.
-
-The JSON distinguishes extraction, structural, measurement, per-metric, and
-physics validity. Missing metrics remain `null`; they are never replaced by a
-zero residual. Structural or extraction failure gates the end-to-end score to
-zero while leaving the geometric metric score `null`.
-
-The primary score in the completed result set is `continuous-0-1-v1`.
-Residual quality is `q(r,s)=1/(1+r/s)`, with the former M1/M2 pass limits used
-as half-quality anchors. M1, M2, fit, temporal, and camera dimensions are
-combined with a 0.01-floored weighted geometric mean. Hard pass/fail values are
-retained only as labels. The original score is preserved as
-`legacy_scores_0_100`.
-
-## One video
+当前运行入口和输入准备见 [题目 README](../README.md)，结果语义见 [SCORING_V3.md](../../../SCORING_V3.md)。以下命令在题目根目录执行：
 
 ```bash
-python evaluate.py \
-  --video /absolute/path/video.mp4 \
-  --task_id P11 \
-  --output /absolute/path/result.json
+python evaluator/evaluate.py --help
+bash scripts/run_eval.sh minimax_h3 --help
 ```
 
-The run emits JSON plus an overlay video, overlay PNG, off/on keyframes, beam
-mask, and temporal diagnostic plot.
+`evaluate.py` 是 V3 入口，当前原始物理提取器为 `evaluate_raw_legacy.py`。`measure_backend.py` 保留旧 V2 评分复算接口，不参与 V3 测量。旧 `evaluator/utils/` 已合并到当前目录，同名脚本只保留一份。
 
-## One complete prompt batch
+物理测量：
 
-```bash
-python run_batch.py \
-  --videos-dir /absolute/path/videos \
-  --output-dir /absolute/path/evaluation \
-  --batch-name prompt_v4_20260826 \
-  --workers 4
-```
+- M1：从时序亮度差分提取光束，独立拟合液面，测量光线与法线夹角，计算 sin(theta_i)/sin(theta_t)-n_water。
+- M2：计算入射光、折射光与液面交点的距离差，以冻结的容器宽度归一化。
 
-Every MP4 is retained. Prompt versions are run into separate output folders
-and are never pooled or filtered by seed.
-
-## Regression tests
-
-```bash
-python validate_synthetic.py
-```
-
-The full-pipeline tests cover correct Snell geometry, a displaced interface
-intersection, an incorrect no-bending ray, a missing refracted ray, a laser
-that never switches on, a visible drawn normal, and an extra reflected branch.
-
-Continuous-score regression tests and idempotent score-only migration:
-
-```bash
-python test_continuous_scoring.py
-python rescore_continuous.py --evaluation-root /absolute/path/evaluation
-python audit_continuous_results.py --evaluation-root /absolute/path/evaluation
-```
-
-The migration reads existing JSON geometry only; it does not open videos or
-rerun extraction.
+配置文件冻结几何、阈值、初始化种子及权重；审计、连续重评分、历史批处理和合成回归文件仍保留在本目录。历史批处理输出格式与 V3 不同，运行 V3 使用题目 `scripts/run_eval.sh`。

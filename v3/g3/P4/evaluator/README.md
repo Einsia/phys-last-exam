@@ -1,58 +1,17 @@
-# P4 deterministic repeated-bounce evaluator
+# P4 评测代码
 
-This evaluator does **not** use an LLM or VLM. Its only optional learned component
-is a locally deployed CoTracker point tracker. CoTracker is independently checked
-against two classical CV tracks: Lab seed-colour segmentation and temporal median
-background subtraction.
-
-Formal batch:
+当前运行入口和输入准备见 [题目 README](../README.md)，结果语义见 [SCORING_V3.md](../../../SCORING_V3.md)。以下命令在题目根目录执行：
 
 ```bash
-python \
-  run_all.py
+python evaluator/evaluate.py --help
+bash scripts/run_eval.sh minimax_h3 --help
 ```
 
-SOP single-video interface:
+`evaluate.py` 是 V3 入口，当前原始物理提取器为 `evaluate_raw_legacy.py`。`measure_backend.py` 保留旧 V2 评分复算接口，不参与 V3 测量。旧 `evaluator/utils/` 已合并到当前目录，同名脚本只保留一份。
 
-```bash
-python \
-  evaluate.py --video VIDEO.mp4 --task_id P4 --output result.json \
-  --debug-dir debug/sample_id
-```
+物理测量：
 
-For CPU-only reproducibility, add `--no-cotracker`. The formal reported run uses all
-three trackers and fixes `CUDA_VISIBLE_DEVICES` to physical GPU 4.
+- M1：从轨迹识别碰撞、反弹最高点和相邻碰撞时间，用 |sqrt(h[n+1]/h[n])-dt[n+1]/dt[n]| 的原聚合误差衡量一致性。
+- M2：保留相邻反弹高度严格下降的比例，以及恢复系数变异系数。
 
-## Measurement definition
-
-An eligible clip needs one well-measured chain of at least four complete rebound
-arcs, i.e. five successive impact events and four intervening apexes. For arc `n`:
-
-- `h_n`: apex height above the linearly interpolated level of its two adjacent
-  impact centres;
-- `Delta t_n`: number of frames between those impacts;
-- `e_h,n = sqrt(h_(n+1)/h_n)`;
-- `e_t,n = Delta t_(n+1)/Delta t_n`.
-
-Primary M1 is the mean `abs(e_h,n - e_t,n)` across successive pairs. M2 records
-height/time monotonic violations (including an explicit near-equality penalty, so
-equal-height rebounds cannot pass as decreasing) and the coefficient-of-restitution consistency
-(CV of `(e_h,n + e_t,n)/2`). Arc parabolic shape, apex timing, horizontal drift,
-impact alignment, camera drift and tracker disagreement are independent dimensions.
-
-An observable content failure is never converted into an extraction failure. A
-reliably tracked clip with fewer than four arcs has `extract_success=true`,
-`structural_ok=false`, and end-to-end score zero. Every run emits a JSON even if
-decoding, seeding, or tracking fails.
-
-## Debug artifacts
-
-Each sample receives:
-
-- `overlay.mp4`: all three tracks, fused trail, impacts and apexes;
-- `trajectory_plot.png`: y(t), event locations, four heights and intervals;
-- `keyframes.jpg`: release, impacts and apexes;
-- `fused_track.csv`: stabilized coordinates and confidence flags;
-- one strict JSON result.
-
-The batch additionally writes `results.csv` and `summary.json`.
+配置文件冻结几何、阈值、初始化种子及权重；审计、连续重评分、历史批处理和合成回归文件仍保留在本目录。历史批处理输出格式与 V3 不同，运行 V3 使用题目 `scripts/run_eval.sh`。

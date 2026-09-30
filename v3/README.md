@@ -3,7 +3,7 @@
 可靠性校准、四种测量状态、真值控制集和 Qwen-VL 对照流程见
 [RELIABILITY.md](RELIABILITY.md)。
 
-V3 先用本地 Qwen3-VL-8B-Instruct 检查视频一致性，再决定是否运行物理评测。模型已下载到 `.models/Qwen3-VL-8B-Instruct/`，运行时只读本地权重。
+V3 先检查视频一致性，再决定是否运行物理评测。本地模式默认使用 Qwen3-VL-8B-Instruct，运行时只读本地权重；模型、虚拟环境和 MP4 不随源码仓库交付，需要单独准备。也可使用兼容的 HTTP VLM 服务。
 
 - 默认通过阈值 **0.8**，一致性得分 **大于或等于 0.8** 才运行物理后端。
 - 通过：`总分 = 0.15 × 一致性分 + 0.85 × 物理分`。
@@ -12,15 +12,45 @@ V3 先用本地 Qwen3-VL-8B-Instruct 检查视频一致性，再决定是否运�
 
 一致性检查采用中等严格标准：对视频内部持续的形状漂移、物体身份/部件数量变化、连接关系不稳定、重复性严重形变、复制/融合/分裂和异常瞬移进行扣分或拦截；纯运动模糊且主体结构稳定时不扣成失败。背景、场景、颜色、视角、物体布局变化，以及液面高低不合理、轨迹错误等不影响一致性，后者留给物理评测。判断使用覆盖视频首尾的 8 帧；参考首帧和生成提示词只存档，不发送给 VLM。
 
+## 运行环境
+
+下列公共命令在 `v3/` 目录执行。可使用已有 Python 环境；如果新建环境，可先运行：
+
+```bash
+python -m venv .venv
+source .venv/bin/activate
+export EVALUATOR_PYTHON="$(command -v python)"
+```
+
+按所选题目的 `evaluator/requirements.txt` 安装物理后端依赖，例如 G1/P1：
+
+```bash
+python -m pip install -r g1/P1/evaluator/requirements.txt
+python -m pip install Pillow torch transformers accelerate
+```
+
+第二行用于本地一致性模型，需要支持 Qwen3-VL 的 Transformers 和与机器匹配的 PyTorch 环境。本地权重放在 `.models/Qwen3-VL-8B-Instruct/`，或通过 `VLM_MODEL` / `--consistency-model` 指定；HTTP 模式不需要本地 VLM 权重和加载栈，但仍需 OpenCV、Pillow 采样视频。SAM、CoTracker 等物理后端权重按所选题目单独配置。
+
+批量 shell 脚本优先使用 `EVALUATOR_PYTHON`，否则使用 `v3/.venv/bin/python`。如果一致性模型和物理后端使用不同环境，可通过 `EVALUATOR_MEASUREMENT_PYTHON` 指定物理子进程的解释器。源码克隆后应按 `Pxx/data/metadata.json` 恢复视频和源文件名别名；登记输入会校验 SHA-256。metadata 中的路径以题目根目录为基准，不以 `data/` 为基准。
+
+检查单视频和批量入口，不需要先加载模型或提供 MP4：
+
+```bash
+python g2/P19/evaluator/evaluate.py --help
+EVALUATOR_PYTHON="$(command -v python)" bash g2/P19/scripts/run_eval.sh minimax_h3 --help
+```
+
+目录归档决策见 [RESTRUCTURE_NOTES.md](RESTRUCTURE_NOTES.md)，逐组的实际文件树和代码分类见 [SCHEMA_G1_G9.md](SCHEMA_G1_G9.md)。每题 README 给出本题输入、工作目录、当前入口和共享代码位置。
+
 ## 单视频
 
 在 `v3/` 目录运行：
 
 ```bash
-g8/P34/.venv/bin/python g2/P19/evaluator/evaluate.py \
+python g2/P19/evaluator/evaluate.py \
   --video /absolute/path/to/video.mp4 \
-  --image /absolute/path/to/first_frame.png \
-  --video_prompt_file /absolute/path/to/video.txt \
+  --image g2/P19/first_frames/provided/first_frame.png \
+  --video_prompt_file g2/P19/prompts/video.txt \
   --output results/P19/result.json \
   --consistency-threshold 0.8 \
   --consistency-device cuda:0
@@ -31,8 +61,8 @@ g8/P34/.venv/bin/python g2/P19/evaluator/evaluate.py \
 ## 批量
 
 ```bash
-# 运行 metadata_v2.json 中登记的视频；历史清单用于关联输入。
-g8/P34/.venv/bin/python scripts/run_all_eval.py \
+# 运行 data/metadata.json 中登记的视频；历史清单用于关联输入。
+python scripts/run_all_eval.py \
   --tasks P19 --workers 1 --consistency-threshold 0.8
 ```
 
@@ -41,10 +71,10 @@ g8/P34/.venv/bin/python scripts/run_all_eval.py \
 ## 两个示例的完整验证
 
 ```bash
-g8/P34/.venv/bin/python scripts/smoke_consistency.py
+python scripts/smoke_consistency.py
 ```
 
-该脚本读取用户指定的 CogVideoX 和 Hunyuan 的 `g2_P19_seed42.mp4`，执行真实 VLM 和物理流程，检查明显刚性装置扭曲的视频被拦截、连贯视频运行物理后端，以及最终分数满足 15%/85% 公式。输出位于 `work/consistency_smoke/`，`latest.json` 指向最近一次成功验证。视频文件名或生成模型名称不会作为 VLM 判分依据。
+该脚本需要额外准备其配置的 CogVideoX 和 Hunyuan `g2_P19_seed42.mp4`，这些视频未随源码交付。它执行真实 VLM 和物理流程，检查扭曲视频被拦截、连贯视频运行物理后端，以及最终分数满足 15%/85% 公式。输出位于 `work/consistency_smoke/`。视频文件名或生成模型名称不会作为 VLM 判分依据。
 
 ## 读取结果
 
@@ -58,7 +88,7 @@ g8/P34/.venv/bin/python scripts/smoke_consistency.py
 
 ## 模型配置
 
-当前模型来自 [Qwen/Qwen3-VL-8B-Instruct](https://huggingface.co/Qwen/Qwen3-VL-8B-Instruct)，下载版本为 `0c351dd01ed87e9c1b53cbc748cba10e6187ff3b`，权重约 17.5 GB；默认使用 `cuda:0`。重新下载相同版本：
+历史运行使用 [Qwen/Qwen3-VL-8B-Instruct](https://huggingface.co/Qwen/Qwen3-VL-8B-Instruct) 的 `0c351dd01ed87e9c1b53cbc748cba10e6187ff3b` 版本；本地模式默认使用 `cuda:0`。如需复用该版本，安装 Hugging Face CLI 后下载：
 
 ```bash
 hf download Qwen/Qwen3-VL-8B-Instruct \
@@ -69,7 +99,7 @@ hf download Qwen/Qwen3-VL-8B-Instruct \
 如需替换模型，可设置 `VLM_MODEL` 或 `--consistency-model`。也支持兼容 Chat Completions 多图输入的 HTTP 服务：
 
 ```bash
-g8/P34/.venv/bin/python g2/P19/evaluator/evaluate.py \
+python g2/P19/evaluator/evaluate.py \
   --video /absolute/path/to/video.mp4 --output results/P19/result.json \
   --consistency-backend http \
   --consistency-base-url http://localhost:8000/v1 \
@@ -83,6 +113,6 @@ g8/P34/.venv/bin/python g2/P19/evaluator/evaluate.py \
 一致性阶段只根据视频画面判断时序视觉连贯性。参考图和完整生成提示词仅保留作审计，避免把背景/布景变化或“没有按要求运动”误判为失败；持续的形状/身份/连接关系不稳定和刚性装置拓扑改变等扭曲会扣分或拦截。物理规律仍由后续物理评测判断。
 
 ```bash
-g8/P34/.venv/bin/python -B -m unittest discover -s tests -p 'test*.py'
-g8/P34/.venv/bin/python -B -m unittest discover -s tests/refined -p 'test*.py'
+python -B -m unittest discover -s tests -p 'test*.py'
+python -B -m unittest discover -s tests/refined -p 'test*.py'
 ```

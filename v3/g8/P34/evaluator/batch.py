@@ -43,7 +43,7 @@ def resolve_metadata_path(value, manifest_dir):
 
 
 def associate(video, entries, manifest_dir, task_dir):
-    """Paths in metadata are relative to its file, never inferred from enumeration order."""
+    """Canonical task metadata paths are relative to the task root; external manifests remain relative to their own file."""
     video = Path(video).resolve()
     matches = []
     for entry in entries:
@@ -63,9 +63,14 @@ def associate(video, entries, manifest_dir, task_dir):
             if not resolved.is_file():
                 raise ValueError(f'Metadata {key} does not exist: {resolved}')
             result[key] = str(resolved)
-    # Only the explicitly documented local fixture has this special association.
-    if not matches and video == (task_dir/'continuation.mp4').resolve():
-        for key,file in (('image_path','first_frame.png'),('video_prompt_file','video.txt')):
+    # Canonical task videos live below output_videos; use the standard assets
+    # only when an external caller omits the canonical metadata row.
+    try:
+        canonical_video = video.is_relative_to((task_dir/'output_videos').resolve())
+    except AttributeError:
+        canonical_video = str(video).startswith(str((task_dir/'output_videos').resolve()))
+    if not matches and canonical_video:
+        for key,file in (('image_path','first_frames/provided/first_frame.png'),('video_prompt_file','prompts/video.txt')):
             if (task_dir/file).is_file():
                 result[key] = str((task_dir/file).resolve())
     return result
@@ -87,15 +92,19 @@ def main(argv=None):
     if any(arg.split('=')[0] in forbidden for arg in forward):
         p.error('Sample-specific paths/metadata must come from the manifest, not batch overrides')
     metadata = args.metadata
-    if metadata is None and use_standard and (TASK_DIR/'metadata_v2.json').is_file():
-        metadata = TASK_DIR/'metadata_v2.json'
+    if metadata is None and use_standard and (TASK_DIR/'data'/'metadata.json').is_file():
+        metadata = TASK_DIR/'data'/'metadata.json'
     if metadata is None:
         found = [input_dir/name for name in ('metadata.json','metadata.jsonl','manifest.json') if (input_dir/name).is_file()]
+        canonical = TASK_DIR/'data'/'metadata.json'
+        if canonical.is_file() and canonical not in found:
+            found.insert(0, canonical)
         if len(found) > 1:
             p.error('Multiple metadata files; select one with --metadata')
         metadata = found[0] if found else None
     entries = load_metadata(metadata) if metadata else []
-    manifest_dir = metadata.resolve().parent if metadata else input_dir
+    canonical = (TASK_DIR/'data'/'metadata.json').resolve()
+    manifest_dir = TASK_DIR if metadata and metadata.resolve() == canonical else (metadata.resolve().parent if metadata else input_dir)
     videos = sorted(v for v in input_dir.iterdir() if v.is_file() and v.suffix.lower()=='.mp4')
     if not videos:
         p.error(f'No MP4 videos in {input_dir}')

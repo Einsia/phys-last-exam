@@ -30,8 +30,9 @@ def main(argv=None):
     selected_tasks = set(args.tasks.split(',')) if args.tasks else None
     selected_samples = set(args.samples.split(',')) if args.samples else None
     jobs = []
-    for path in sorted(ROOT.glob('g[1-9]/P*/metadata_v2.json')):
-        task,group = path.parent,path.parent.parent.name
+    for path in sorted(ROOT.glob('g[1-9]/P*/data/metadata.json')):
+        task = path.parent.parent
+        group = task.parent.name
         if group not in groups or selected_tasks and task.name not in selected_tasks:
             continue
         for record in json.loads(path.read_text())['samples']:
@@ -47,7 +48,7 @@ def main(argv=None):
             jobs.append({'group':group,'task_id':task.name,'sample_id':record['sample_id'],'model_folder':model_folder,
                 'video_path':str((task/record['video_path']).relative_to(ROOT)), 'output':str(output),'log':str(log),'command':cmd})
     if not jobs:
-        parser.error('No matching videos in metadata_v2.json')
+        parser.error('No matching videos in task data/metadata.json')
     manifest = {'started_at_utc':datetime.datetime.now(datetime.timezone.utc).isoformat(),'requested_samples':len(jobs),'completed':[]}
     write_json(args.log_dir/'run_manifest.json',manifest)
     def execute(job):

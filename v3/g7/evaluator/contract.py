@@ -1,6 +1,6 @@
 """Stable, auditable G7 result contract.
 
-The task modules in :mod:`evaluator.tasks` intentionally return rich internal
+The task modules in :mod:`g7.P*/evaluator` task modules intentionally return rich internal
 measurements.  This module converts those measurements into the public
 per-video envelope used by the refined Group 7 delivery.  It is deliberately
 deterministic and imports no learned model, LLM, or VLM.

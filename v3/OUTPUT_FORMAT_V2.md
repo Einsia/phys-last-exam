@@ -5,7 +5,7 @@
 每题的 `evaluator/evaluate.py` 是单视频入口，`scripts/run_eval.sh` 是批量入口。
 结果保存在 `<组>/<题>/eval_results/<模型>/result_sample_xx.json`。
 公开 `video_path` 使用 `<model>/videos/sample_xx.mp4`，公开 `image_path` 使用
-`first_frames/...`；实际磁盘路径和输入哈希仍由 `metadata_v2.json` 与 `verbose.M1._provenance` 追溯。
+`first_frames/...`；实际磁盘路径和输入哈希仍由 `data/metadata.json` 与 `verbose.M1._provenance` 追溯。
 
 ```bash
 # 在 v2 目录执行，重跑全部已登记视频。

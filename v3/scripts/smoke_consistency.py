@@ -24,7 +24,7 @@ def main():
     run = (args.output_root / datetime.datetime.now(datetime.timezone.utc).strftime('%Y%m%dT%H%M%S%fZ')).resolve()
     run.mkdir(parents=True)
     source = args.source_root
-    reference = source/'data/g1_g9/g2/P19/first_frame.png'
+    reference = source/'g2/P19/first_frames/provided/first_frame.png'
     forwarded = []
     for name in Settings.__dataclass_fields__:
         value = getattr(args, 'consistency_' + name)
@@ -36,7 +36,7 @@ def main():
         output = run/model/'result_g2_P19_seed42.json'
         debug = run/model/'debug'
         code = evaluate('P19', ROOT/'g2/P19', ['--video',str(video),'--image',str(reference),
-            '--video_prompt_file',str(reference.parent/'video.txt'),'--output',str(output),
+            '--video_prompt_file',str(source/'g2/P19/prompts/video.txt'),'--output',str(output),
             '--debug-dir',str(debug),'--sample-id','g2_P19_seed42','--model',model,'--seed','42',*forwarded])
         result = json.loads(output.read_text())
         summary = result['verbose']['M1']['_scoring_summary']
