@@ -6,7 +6,7 @@
     {
       "sample_id": "P6_gpt_01_modern",
       "method": "gpt",
-      "path": "first_frames/gpt/P6_gpt_01_modern.png",
+      "path": "first_frame.png",
       "source": "sop_delivery/P6/high_standard_v1/hybrid_run/images/P6_modern_dynamics_lab.png",
       "bytes": 3568412,
       "sha256": "f8d7a6852248e4c0312f27ff71c113723e1371b07baa9d819b84677a8aa12303"

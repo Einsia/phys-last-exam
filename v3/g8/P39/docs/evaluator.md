@@ -25,7 +25,7 @@ F1 本身即 0–1 分数，0 最差、1 最好，不再转换成二值通过/�
 以下路径相对于项目根目录：
 
 * `g8/P39/output_videos/minimax_h3/sample_00.mp4`：视频。
-* `g8/P39/first_frames/provided/first_frame_01.png`：对应首帧。
+* `g8/P39/first_frame.png`：对应首帧。
 * `g8/P39/prompts/video.txt`：实际内容作为 `video_prompt`。
 * `g8/P39/first_frames/provided/prompt.txt`：首帧提示词，不作为 `video_prompt`。
 
@@ -34,7 +34,7 @@ F1 本身即 0–1 分数，0 最差、1 最好，不再转换成二值通过/�
 ```bash
 python g8/P39/evaluator/evaluate.py \
   --video_path g8/P39/output_videos/minimax_h3/sample_00.mp4 \
-  --image_path g8/P39/first_frames/provided/first_frame_01.png \
+  --image_path g8/P39/first_frame.png \
   --video_prompt "$(cat g8/P39/prompts/video.txt)" \
   --model minimax_h3 --sample_id sample_00 \
   --output g8/P39/eval_results/minimax_h3/result_sample_00.json
@@ -125,7 +125,7 @@ onset_tolerance_sec = 0.5
 {
   "task_id": "P39",
   "video_path": "g8/P39/output_videos/minimax_h3/sample_00.mp4",
-  "image_path": "g8/P39/first_frames/provided/first_frame_01.png",
+  "image_path": "g8/P39/first_frame.png",
   "video_prompt": null,
   "model": "minimax_h3",
   "sample_id": "sample_00",

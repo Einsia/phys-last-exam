@@ -27,7 +27,7 @@ def rel(v):
 def metadata(video,image,seed):
     stem=Path(video).stem;m=re.search(r"_seed(\d+)$",stem,re.I);seed=seed if seed is not None else(int(m.group(1)) if m else None);base=re.sub(r"_seed\d+$","",stem,flags=re.I)
     if image is None:
-        p=TASK_ROOT/("first_frames/simulation/sim_first_frame.png" if base.lower().startswith("sim") else "first_frames/provided/first_frame.png")
+        p=TASK_ROOT/("first_frames/simulation/sim_first_frame.png" if base.lower().startswith("sim") else "first_frame.png")
         if p.is_file():image=str(p)
     return rel(video),rel(image),seed
 def read_video(path,limit=None):

@@ -6,7 +6,7 @@
     {
       "sample_id": "P4_gpt_01_modern",
       "method": "gpt",
-      "path": "first_frames/gpt/P4_gpt_01_modern.png",
+      "path": "first_frame.png",
       "source": "sop_delivery/P4/high_standard_v1/hybrid_run/images/P4_modern_mechanics_lab.png",
       "bytes": 3429242,
       "sha256": "75aa584e089c15e3767f2972e587f2854ecfa474e41623fefaf5e0772f790c90"

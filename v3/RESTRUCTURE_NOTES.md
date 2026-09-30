@@ -1,54 +1,45 @@
 # G1–G9 目录重构说明
 
-本次重构把“题目资产、题目评测器、全局运行时、历史资料”分开。题目元数据中的路径仍以题目根目录为基准解析，所以把 `metadata.json` 放进 `data/` 不会改变 `video_path`、`image_path` 等字段的语义。
+标准首帧统一存放在每道题的根目录，已有的首帧生成提示词归入本题的 `prompts/first_frame.txt`。分组和题目级 `data/`、题目级 `reports/` 已按要求删除；G5 分组级报告保留。
 
-## 统一题目树
+## 题目目录
 
 ```text
 Pxx/
 ├── README.md
-├── data/
-│   ├── metadata.json             # 唯一正式样本清单（v2 内容为准）
-│   └── samples.csv              # 仅 G1/G4/G6 的旧样本/route 索引
+├── first_frame.png               # 每题选定的标准首帧
 ├── prompts/
-│   ├── video.txt                 # 正式视频续写 prompt
-│   ├── video_simulation.txt      # 有区别的 simulation prompt（可选）
-│   └── index.txt                 # 仅在题目根 prompt 是索引说明时使用
-├── first_frames/
+│   ├── first_frame.txt            # 已有的首帧生成提示词；G3 未提供
+│   ├── video.txt                  # 视频续写提示词；G3 使用逐样本文件
+│   ├── video_simulation.txt       # 有差异时保留
+│   ├── video_legacy.txt           # 有差异时保留
+│   └── index.txt                  # 原有批次说明（可选）
+├── first_frames/                  # 其余首帧、仿真代码和来源记录（有内容时保留）
 │   ├── gpt/
 │   ├── simulation/
-│   └── provided/                 # 外部提供、无法归入生成器的首帧
-├── annotations/                  # 审核过的首帧标注（可选）
-├── evaluator/                    # 单题评测入口、后端、题目配置和测试
-├── scripts/                      # 题目级运行/标注脚本
-├── reports/                      # 历史报告（可选）
+│   └── provided/
+├── video_prompts/                 # G3/G7 原有逐样本视频提示词
+├── annotations/                  # 首帧几何标注（可选）
+├── evaluator/                    # 单题入口、物理后端、配置、依赖和原有测试
+├── scripts/                      # 单题运行/标注脚本
 ├── docs/                         # 题目评测说明（可选）
-├── output_videos/<model>/        # 外部生成输入
-└── eval_results/<model>/         # 历史结果或显式选定的题目内输出
+├── output_videos/<model>/         # 外部输入的运行路径约定
+└── eval_results/<model>/          # 历史结果、缓存或显式选择的题目内输出
 ```
 
-`README.md`、`evaluator/`、`scripts/`、`output_videos/` 和 `eval_results/` 是所有题目都可以使用的固定位置；没有对应内容的可选目录不创建。
+可选目录只在有实际内容时保留。视频、权重和完整评测结果未随源码交付，运行目录不表示已有这些资产。
 
-## 公共实现和元数据
+## 标准首帧的选择和提示词
 
-- G1、G4、G6 原先每题各自复制的 `evaluator/utils/physeval` 已合并到 `v3/shared/physeval/`。它包含视频解码、轨迹/拟合、液体/摆、任务注册、结果 schema、可视化和 task evaluator。所有 12 个 `measure_backend.py` 已改为导入 `shared.physeval`。P1 中对不完整测量诊断的修正版作为公共版本保留。
-- G7 的通用 OpenCV helper 已移到 `v3/shared/g7_cv_common.py`；P7/P8c 的题目模块从这里导入。
-- 每题的 `metadata_v2.json` 已成为 `data/metadata.json`。同时存在旧 `metadata.json` 的 G7/G8/G9 题目保留旧对象在顶层 `legacy_metadata`，正式读取只看 `samples`。旧路径不参与评测。
-- G8/G9 的 annotation 路径已改为 `annotations/first_frame_annotations.json`，运行时仍按题目根目录解析。
+- G1/G2/G4/G5/G6/G7：原 `first_frames/gpt/gpt_01.png` 移为 `first_frame.png`，同目录 `prompt.txt` 移为 `prompts/first_frame.txt`。
+- G3：P3/P4/P6/P9 选择各自的 `Pxx_gpt_01_modern.png`；P11 选择第一张 `P11_gpt_01_30deg.png`。五题均未提供生成提示词原文，本次仅迁移图片。来源清单中的外部 prompt 路径是历史记录，不能当作已有文件。
+- G8/G9：原 `first_frames/provided/first_frame_01.png` 移为 `first_frame.png`，同目录 `prompt.txt` 移为 `prompts/first_frame.txt`。
 
-## 文件归档结果
+40 张图片和 35 份现有生成提示词按原始字节迁移。其他首帧继续留在原来源目录。G3 的 `first_frames/manifest.json` 已指向根目录标准首帧；外部来源记录保留原文。首帧生成提示词与视频续写提示词分别保存。
 
-- G1/G4/G6：根目录 `prompt.txt` → `prompts/video.txt`；有区别的 `prompt_sim.txt` → `prompts/video_simulation.txt`；`report.md` → `reports/report.md`；`samples.csv` → `data/samples.csv`。
-- G2/G5/G7/G8/G9：根目录 prompt 和重复的 `video.txt` 合并为 `prompts/video.txt`。G7 P10/P12/P27 中不相同的旧 `video.txt` 作为 `prompts/video_legacy.txt` 保留。重复的根目录首帧和 `first_frame.txt` 删除；唯一的 G2 P19/P40/P42 根首帧归档到 `first_frames/provided/`；G5 P36/P44 的 simulation 首帧归档到 `first_frames/simulation/`。
-- G8/G9 的 `first_frame_annotations.json` → `annotations/first_frame_annotations.json`；`evaluator.md` → `docs/evaluator.md`。
-- G3 P3/P4/P6/P9 根 `prompt.txt` 与 `video_prompts/` 重复，已删除；P11 的根 prompt 是批次索引说明，保留为 `prompts/index.txt`。每题 `evaluator/utils/` 中与 `evaluator/` 相同的文件已删除，缺失或不同的 README 已合并到 `evaluator/README.md`。
-- G3 的全局 `evaluate_v2.py` → `scripts/evaluate_v2.py`，全局 `manifest.json` → `data/manifest.json`；`tools/` 的审计和构建脚本保持在全局工具目录。
+## 公共代码和评测目录
 
-## G7 全局和题目评测器
-
-`g7/evaluator/` 下保留的是跨题运行时：`contract.py`（公开结果合同）、`evaluate.py`（解码/分发）、`physics.py`（物理判定）、`evaluate_one.py`/`run_batch.py`（单样本/批量适配）、`task_entrypoint.py`、`result_schema.py`、`renormalize_results.py`、`validate_results.py`、`validate_schema.py`、`test_proxy.py` 和依赖文件。它们不属于某一道题，不拆到题目目录。
-
-原 `g7/evaluator/tasks/` 中的题目脚本已拆到：
+G1/G4/G6 共用 `v3/shared/physeval/`，12 个题目后端均从该处加载。G7 的通用 OpenCV helper 位于 `v3/shared/g7_cv_common.py`；各题物理模块分别位于：
 
 ```text
 g7/P7/evaluator/p7_rotational.py
@@ -58,10 +49,16 @@ g7/P12/evaluator/p12_optics.py
 g7/P27/evaluator/p27_thermal.py
 ```
 
-全局 `blender_scene_builder.py` 是离线场景/输入生成器，归档到 `g7/tools/`；`evaluate_v2.py` 是统一评分 wrapper，归档到 `g7/scripts/`；`first_frame_manifest.json`、`manifest.json`、`tasks.json` 分别是首帧资产清单、批次样本清单、题目参数清单，归档到 `g7/data/`。全局运行时代码已改用这些新路径。
+`g7/evaluator/` 保留跨题解码/分发、物理判定、结果合同、历史批量适配和校验工具。`g7/tools/blender_scene_builder.py` 是离线生成器，`g7/scripts/evaluate_v2.py` 是评测包装器。G3 的全局工具在 `g3/tools/`，评测包装器在 `g3/scripts/`；题目原 `evaluator/utils/` 的重复文件已合并。
 
-## 入口和路径兼容
+G8/G9 的几何标注归档到 `annotations/first_frame_annotations.json`，说明文档位于 `docs/`。G2/G5 的人工 ROI 配置仍由 `evaluator/roi.json` 承载。
 
-`v3/scripts/run_all_eval.py`、统一 runtime、G8/P34 batch、G1–G9 准备脚本都读取 `Pxx/data/metadata.json`。G1/G4/G6 后端读取 `data/samples.csv` 和 `prompts/`；G2/G5 后端的首帧 fallback 读取 `first_frames/`；G7 运行时读取 `g7/data/` 并从题目 evaluator 模块分发。没有视频文件的源码包仍可检查目录和元数据，实际评测需提供 metadata 登记的外部 MP4。
+## 当前运行路径
 
-当前 V3 批量入口默认把新结果写入 `v3/results/<group>/<task>/eval_results/<model>/`。题目内的 `eval_results/` 可保留历史测量、坐标缓存及运行日志，不表示默认新结果会写回该目录。逐题 README 已统一说明工作目录、解释器、样本关联与 V3 参数；文件级概览见 [SCHEMA_G1_G9.md](SCHEMA_G1_G9.md)。
+统一单视频入口在没有登记 metadata 时读取本题 `first_frame.png` 和已有 `prompts/video.txt`，显式 `--image`、`--video_prompt_file` 或 `--video_prompt` 可覆盖。G3 使用逐样本 `video_prompts/`，需要显式选择实际续写提示词；P3/P9 还需要原视频对应的坐标缓存和配置。
+
+G2 的首帧标注脚本和 G2/G5 的后端默认首帧已适配根目录文件；G8/G9 manifest 批量适配器的标准首帧 fallback、外部 all_test 准备脚本中的本地首帧路径也已更新。
+
+原 `run_all_eval.py`、题目/分组 `run_eval.sh` 和入口生成器仍依赖已删除的 metadata 清单，尚需适配新的批量输入方式。G7 物理分发器仍依赖已删除的 `g7/data/tasks.json`。本次首帧迁移没有重建这些清单。
+
+评分语义见 [SCORING_V3.md](SCORING_V3.md)，每组一道典型题目的实际文件树见 [SCHEMA_G1_G9.md](SCHEMA_G1_G9.md)。

@@ -20,7 +20,7 @@ E_M1 = |beta_water - 0.5| + |beta_sand|
 项目根目录下的实际输入：
 
 * `g8/P41/output_videos/minimax_h3/sample_00.mp4`：视频。
-* `g8/P41/first_frames/provided/first_frame_01.png`：对应首帧。
+* `g8/P41/first_frame.png`：对应首帧。
 * `g8/P41/prompts/video.txt`：读取内容作为 `video_prompt`。
 * `g8/P41/first_frames/provided/prompt.txt`：首帧提示词，不作为 `video_prompt`。
 
@@ -29,7 +29,7 @@ E_M1 = |beta_water - 0.5| + |beta_sand|
 ```bash
 python g8/P41/evaluator/evaluate.py \
   --video_path g8/P41/output_videos/minimax_h3/sample_00.mp4 \
-  --image_path g8/P41/first_frames/provided/first_frame_01.png \
+  --image_path g8/P41/first_frame.png \
   --video_prompt "$(cat g8/P41/prompts/video.txt)" \
   --model minimax_h3 --sample_id sample_00 \
   --output g8/P41/eval_results/minimax_h3/result_sample_00.json
@@ -108,7 +108,7 @@ error_half_score = 1.0
 {
   "task_id": "P41",
   "video_path": "g8/P41/output_videos/minimax_h3/sample_00.mp4",
-  "image_path": "g8/P41/first_frames/provided/first_frame_01.png",
+  "image_path": "g8/P41/first_frame.png",
   "video_prompt": null,
   "model": "minimax_h3",
   "sample_id": "sample_00",

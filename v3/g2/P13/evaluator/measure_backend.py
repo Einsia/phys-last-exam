@@ -72,7 +72,8 @@ def metadata(video: str, image_path: str | None, seed: int | None) -> tuple[str,
                        TASK_ROOT / "first_frames" / "simulation" / f"{base}.png",
                        TASK_ROOT / "first_frames" / "provided" / "first_frame.png"]
                       if simulation else
-                      [TASK_ROOT / "first_frames" / "provided" / "first_frame.png",
+                      [TASK_ROOT / "first_frame.png",
+                       TASK_ROOT / "first_frames" / "provided" / "first_frame.png",
                        TASK_ROOT / "first_frames" / "gpt" / f"{base}.png"])
         image_path = str(next((candidate for candidate in candidates if candidate.is_file()), "")) or None
         if image_path is None:

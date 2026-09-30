@@ -19,7 +19,7 @@ height_ratio = h_open / h_closed < 1
 路径相对于项目根目录，命令从项目根目录执行。当前输入：
 
 * `g8/P37/output_videos/minimax_h3/sample_00.mp4`：待评测视频。
-* `g8/P37/first_frames/provided/first_frame_01.png`：对应首帧。
+* `g8/P37/first_frame.png`：对应首帧。
 * `g8/P37/prompts/video.txt`：读取实际内容作为 `video_prompt`。
 * `g8/P37/first_frames/provided/prompt.txt`：首帧提示词，不作为 `video_prompt`。
 
@@ -28,7 +28,7 @@ height_ratio = h_open / h_closed < 1
 ```bash
 python g8/P37/evaluator/evaluate.py \
   --video_path g8/P37/output_videos/minimax_h3/sample_00.mp4 \
-  --image_path g8/P37/first_frames/provided/first_frame_01.png \
+  --image_path g8/P37/first_frame.png \
   --video_prompt "$(cat g8/P37/prompts/video.txt)" \
   --model minimax_h3 --sample_id sample_00 \
   --output g8/P37/eval_results/minimax_h3/result_sample_00.json
@@ -65,7 +65,7 @@ g8/P37/eval_results/<model>/
 
 1. 独立识别闭合环和开口环，保存缺口证据图。SAM 掩码不能把整个线圈或线圈顶端固定法兰当成自由环；环内孔、开口和被铁芯遮挡部分不能填成测量点。
 2. 利用固定底座和线圈估计相机运动，建立竖直向上的测量轴。沿各自铁芯轴跟踪环的平移；不能把铁芯伸长、线圈升高或检测框变化算作跳高。
-3. 初始位置优先取核验匹配的 `first_frames/provided/first_frame_01.png`，否则取视频第 0 帧的可靠观测。不要求视频开头静止 0.5 秒，允许第一帧后立即起跳；首帧已在空中且无初始参考时不能倒推起跳高度。
+3. 初始位置优先取核验匹配的 `first_frame.png`，否则取视频第 0 帧的可靠观测。不要求视频开头静止 0.5 秒，允许第一帧后立即起跳；首帧已在空中且无初始参考时不能倒推起跳高度。
 4. 以环体上同一组实体点的稳健位移估计环中心轨迹。相同成像比例时可用像素高度比；比例不同时，使用同形环的初始外径 `D_i` 归一化，记录单位为“环外径”。不允许用逐帧变化的检测框宽度动态消除真实形变。
 5. 从完整响应段找主峰，包括其上升和峰顶/下降证据。对短时尖峰用固定时间尺度的中值平滑，不依据预期高低关系删点。若形成平台，平台需持续至少 `peak_window_sec`；视频结束时还在明显上升，峰值属于右删失，不当作已测到最高点。
 6. 全程清晰而不动可测为零升高；看不见、身份丢失和视频截断不能记为零。无需检测开关画面，也不要求最终落回或末段静止。
@@ -124,7 +124,7 @@ min_valid_track_fraction = 0.90
 {
   "task_id": "P37",
   "video_path": "g8/P37/output_videos/minimax_h3/sample_00.mp4",
-  "image_path": "g8/P37/first_frames/provided/first_frame_01.png",
+  "image_path": "g8/P37/first_frame.png",
   "video_prompt": null,
   "model": "minimax_h3",
   "sample_id": "sample_00",

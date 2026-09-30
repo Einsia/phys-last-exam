@@ -31,7 +31,7 @@ python -m pip install Pillow torch transformers accelerate
 
 第二行用于本地一致性模型，需要支持 Qwen3-VL 的 Transformers 和与机器匹配的 PyTorch 环境。本地权重放在 `.models/Qwen3-VL-8B-Instruct/`，或通过 `VLM_MODEL` / `--consistency-model` 指定；HTTP 模式不需要本地 VLM 权重和加载栈，但仍需 OpenCV、Pillow 采样视频。SAM、CoTracker 等物理后端权重按所选题目单独配置。
 
-批量 shell 脚本优先使用 `EVALUATOR_PYTHON`，否则使用 `v3/.venv/bin/python`。如果一致性模型和物理后端使用不同环境，可通过 `EVALUATOR_MEASUREMENT_PYTHON` 指定物理子进程的解释器。源码克隆后应按 `Pxx/data/metadata.json` 恢复视频和源文件名别名；登记输入会校验 SHA-256。metadata 中的路径以题目根目录为基准，不以 `data/` 为基准。
+批量 shell 脚本优先使用 `EVALUATOR_PYTHON`，否则使用 `v3/.venv/bin/python`。如果一致性模型和物理后端使用不同环境，可通过 `EVALUATOR_MEASUREMENT_PYTHON` 指定物理子进程的解释器。各题的标准首帧是 `Pxx/first_frame.png`；已有首帧生成提示词统一为 `Pxx/prompts/first_frame.txt`，视频续写提示词为 `Pxx/prompts/video.txt`（G3 使用 `video_prompts/` 的逐样本文本）。所有题目和分组的 `data/`、题目级 `reports/` 已删除，当前不再附带登记样本清单。
 
 检查单视频和批量入口，不需要先加载模型或提供 MP4：
 
@@ -49,7 +49,7 @@ EVALUATOR_PYTHON="$(command -v python)" bash g2/P19/scripts/run_eval.sh minimax_
 ```bash
 python g2/P19/evaluator/evaluate.py \
   --video /absolute/path/to/video.mp4 \
-  --image g2/P19/first_frames/provided/first_frame.png \
+  --image g2/P19/first_frame.png \
   --video_prompt_file g2/P19/prompts/video.txt \
   --output results/P19/result.json \
   --consistency-threshold 0.8 \
@@ -60,13 +60,9 @@ python g2/P19/evaluator/evaluate.py \
 
 ## 批量
 
-```bash
-# 运行 data/metadata.json 中登记的视频；历史清单用于关联输入。
-python scripts/run_all_eval.py \
-  --tasks P19 --workers 1 --consistency-threshold 0.8
-```
+`run_all_eval.py` 和题目/分组 `scripts/run_eval.sh` 仍依赖已删除的 `data/metadata.json`，不能直接执行原登记样本批量命令。当前使用单视频入口显式传入视频、首帧和实际续写提示词；批量目录扫描方式尚需适配。G7 分组物理分发器还依赖已删除的 `g7/data/tasks.json`，调用物理后端前需调整该依赖。
 
-新结果默认写入 `v3/results/`，运行记录写入 `v3/work/v3_runs/`。默认单进程，避免同时加载多份 VLM 权重。可以通过 `--output-root`、`--log-dir` 改目录；无需调用历史 V2 的报告/重整脚本。现有的物理测量配置与输入关联规则继续适用，新视频需要提供正确的首帧、提示词及任务所需的标注/配置。
+原批量入口的新结果默认写入 `v3/results/`，运行记录写入 `v3/work/v3_runs/`。单视频的输出位置由 `--output` 指定。现有的物理测量配置继续保留；G3 的坐标缓存、G8/G9 的模型/标注仍需按对应题目准备。
 
 ## 两个示例的完整验证
 
@@ -84,7 +80,7 @@ python scripts/smoke_consistency.py
 - 调试目录下的 `consistency/`：输入采样帧、`request.json`、`response.json`、`consistency.json`。
 - `scoring_calculation.md`：该视频的计分明细。
 
-更详细的语义见 [SCORING_V3.md](SCORING_V3.md)。`SCORING_V2.md`、`OUTPUT_FORMAT_V2.md` 和已有 G1–G9 报告保留用于解释历史结果。
+更详细的语义见 [SCORING_V3.md](SCORING_V3.md)。`SCORING_V2.md`、`OUTPUT_FORMAT_V2.md` 和保留的分组报告用于解释历史结果。
 
 ## 模型配置
 

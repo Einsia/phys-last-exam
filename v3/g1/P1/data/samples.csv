@@ -1,9 +1,0 @@
-sample,route,seed,first_frame,video
-sample_00,gpt,42,first_frames/gpt/gpt_01.png,output_videos/minimax_h3/sample_00.mp4
-sample_01,gpt,43,first_frames/gpt/gpt_01.png,output_videos/minimax_h3/sample_01.mp4
-sample_02,gpt,44,first_frames/gpt/gpt_01.png,output_videos/minimax_h3/sample_02.mp4
-sample_03,gpt,45,first_frames/gpt/gpt_01.png,output_videos/minimax_h3/sample_03.mp4
-sample_04,sim,42,first_frames/simulation/sim_01.png,output_videos/minimax_h3/sample_04.mp4
-sample_05,sim,43,first_frames/simulation/sim_01.png,output_videos/minimax_h3/sample_05.mp4
-sample_06,sim,44,first_frames/simulation/sim_01.png,output_videos/minimax_h3/sample_06.mp4
-sample_07,sim,45,first_frames/simulation/sim_01.png,output_videos/minimax_h3/sample_07.mp4

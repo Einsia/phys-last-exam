@@ -21,7 +21,7 @@ E_M1 = abs(r_s * (1/r_small - 1/r_large) - 1)
 以下路径相对于项目根目录：
 
 * `g9/P47/output_videos/minimax_h3/sample_00.mp4`：视频。
-* `g9/P47/first_frames/provided/first_frame_01.png`：对应首帧。
+* `g9/P47/first_frame.png`：对应首帧。
 * `g9/P47/prompts/video.txt`：读取内容作为 `video_prompt`。
 * `g9/P47/first_frames/provided/prompt.txt`：首帧提示词，不作为 `video_prompt`。
 
@@ -30,7 +30,7 @@ E_M1 = abs(r_s * (1/r_small - 1/r_large) - 1)
 ```bash
 python g9/P47/evaluator/evaluate.py \
   --video_path g9/P47/output_videos/minimax_h3/sample_00.mp4 \
-  --image_path g9/P47/first_frames/provided/first_frame_01.png \
+  --image_path g9/P47/first_frame.png \
   --video_prompt "$(cat g9/P47/prompts/video.txt)" \
   --model minimax_h3 --sample_id sample_00 \
   --output g9/P47/eval_results/minimax_h3/result_sample_00.json
@@ -113,7 +113,7 @@ error_at_zero = 1.0
 {
   "task_id": "P47",
   "video_path": "g9/P47/output_videos/minimax_h3/sample_00.mp4",
-  "image_path": "g9/P47/first_frames/provided/first_frame_01.png",
+  "image_path": "g9/P47/first_frame.png",
   "video_prompt": null,
   "model": "minimax_h3",
   "sample_id": "sample_00",

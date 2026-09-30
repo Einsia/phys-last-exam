@@ -6,7 +6,7 @@
 
 两个完全相同的装置并排放置，每个装置由一根竖直导线和一个小指南针组成。两根导线中的电流大小相同、方向相反，同时通电，随后两个指南针自由转动至稳定。
 
-上述为 `bench.md` 的任务定义。当前目录的 `first_frames/provided/prompt.txt`、`first_frames/provided/first_frame_01.png` 和 `prompts/video.txt` 实际采用“一根中央竖直导线、左右等距各一个指南针”的素材变体。应在 `verbose.M1` 中记录这一场景差异，不声称检测到了两根导线，也不修改素材或将提示词当作测量证据；本次仍保留 bench 指定的反向、近等幅偏转 M1。
+上述为 `bench.md` 的任务定义。当前目录的 `first_frames/provided/prompt.txt`、`first_frame.png` 和 `prompts/video.txt` 实际采用“一根中央竖直导线、左右等距各一个指南针”的素材变体。应在 `verbose.M1` 中记录这一场景差异，不声称检测到了两根导线，也不修改素材或将提示词当作测量证据；本次仍保留 bench 指定的反向、近等幅偏转 M1。
 
 只评估 M1：根据两个指南针相对于各自初始方向的有符号偏转量 δ₁、δ₂，对**偏转方向相反、幅度接近**的程度输出连续的 0–1 得分，0 最差、1 最好。理想关系为：
 
@@ -20,7 +20,7 @@
 以下路径均相对于项目根目录，示例命令从项目根目录执行。当前任务素材为：
 
 * `g8/P34/output_videos/minimax_h3/sample_00.mp4`：待评测视频。
-* `g8/P34/first_frames/provided/first_frame_01.png`：对应首帧。
+* `g8/P34/first_frame.png`：对应首帧。
 * `g8/P34/prompts/video.txt`：视频生成提示词，读取文件内容作为 `video_prompt`。
 * `g8/P34/first_frames/provided/prompt.txt`：首帧生成提示词，不作为 `video_prompt`。
 
@@ -36,7 +36,7 @@
 ```bash
 python g8/P34/evaluator/evaluate.py \
   --video_path g8/P34/output_videos/minimax_h3/sample_00.mp4 \
-  --image_path g8/P34/first_frames/provided/first_frame_01.png \
+  --image_path g8/P34/first_frame.png \
   --video_prompt "$(cat g8/P34/prompts/video.txt)" \
   --model minimax_h3 \
   --sample_id sample_00 \
@@ -57,7 +57,7 @@ bash g8/P34/scripts/run_eval.sh minimax_h3
 g8/P34/eval_results/minimax_h3/result_sample_00.json
 ```
 
-当前 `data/metadata.json` 明确关联 `sample_00`、`output_videos/minimax_h3/sample_00.mp4`、`first_frames/provided/first_frame_01.png` 和 `prompts/video.txt`。增加其他视频时，在 metadata 中登记对应的 `sample_01`、`sample_02` 等 ID；不能凭文件遍历顺序配对，也不能自动将当前首帧和提示词用于所有视频。缺失的元数据写 `null`。单个样本失败不能中断整批评测。中间产物放在对应模型下的 `debug_<sample_id>/`，批量汇总放在该模型的 `batch_summary.json`。
+当前 `data/metadata.json` 明确关联 `sample_00`、`output_videos/minimax_h3/sample_00.mp4`、`first_frame.png` 和 `prompts/video.txt`。增加其他视频时，在 metadata 中登记对应的 `sample_01`、`sample_02` 等 ID；不能凭文件遍历顺序配对，也不能自动将当前首帧和提示词用于所有视频。缺失的元数据写 `null`。单个样本失败不能中断整批评测。中间产物放在对应模型下的 `debug_<sample_id>/`，批量汇总放在该模型的 `batch_summary.json`。
 
 3. 工具与测量流程
 
@@ -135,7 +135,7 @@ initial_reference_tolerance_deg = 5
 {
   "task_id": "P34",
   "video_path": "g8/P34/output_videos/minimax_h3/sample_00.mp4",
-  "image_path": "g8/P34/first_frames/provided/first_frame_01.png",
+  "image_path": "g8/P34/first_frame.png",
   "video_prompt": null,
   "model": "minimax_h3",
   "sample_id": "sample_00",
@@ -184,4 +184,4 @@ initial_reference_tolerance_deg = 5
 * 保存跟踪叠加图、左右指南针分割视频、逐帧角度数据和角度曲线，当前样本保存至 `g8/P34/eval_results/minimax_h3/debug_sample_00/`。
 * 同时保留无损分割掩码、真实 PTS、逐帧原视频对应关系和校准信息；有损 mask 视频只用于查看。在 `debug_<sample_id>/calculation.md` 写出实际初态与末段窗口、两针偏转、各分项及最终分数的数值代入，不只输出公式。
 * 检查角度跨界、针尖切换、同向偏转、零偏转、幅度不匹配及跟踪失败等情况。
-* 使用现有的 `g8/P34/output_videos/minimax_h3/sample_00.mp4` 和对应的 `g8/P34/first_frames/provided/first_frame_01.png` 实际运行；依赖或权重缺失时如实说明完成的检查，不得编造评测结果。
+* 使用现有的 `g8/P34/output_videos/minimax_h3/sample_00.mp4` 和对应的 `g8/P34/first_frame.png` 实际运行；依赖或权重缺失时如实说明完成的检查，不得编造评测结果。

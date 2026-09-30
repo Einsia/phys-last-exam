@@ -7,7 +7,7 @@ so all tasks use one audited implementation in addition to the packages in
 
     python evaluator/evaluate.py \
         --video output_videos/minimax_h3/sample_00.mp4 \
-        --image first_frames/gpt/gpt_01.png \
+        --image first_frame.png \
         --out eval_results/minimax_h3/result_sample_00.json \
         --debug eval_results/minimax_h3/debug/sample_00/plot.png
 

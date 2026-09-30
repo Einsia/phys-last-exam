@@ -11,6 +11,6 @@ bash g7/scripts/run_eval.sh minimax_h3
 
 默认输出位于 `v3/results/g7/<task>/eval_results/<model>/`；分组日志位于 `g7/eval_run_logs/`。可用 `--tasks`、`--samples` 进一步筛选登记样本。当前分数按 [SCORING_V3.md](../SCORING_V3.md) 的一致性 15% / 物理 85% 规则计算。
 
-`data/tasks.json` 保存题目参数；`data/manifest.json`、`data/first_frame_manifest.json` 保存历史批次和首帧清单。`evaluator/` 保留共享解码、分发、合同、物理判定和历史结果工具，各题专属模块归于各自的 `evaluator/`。公共 CV helper 位于 `../shared/g7_cv_common.py`。
+分组和题目 `data/` 已删除，原任务参数、批次及首帧清单不再保留；分组物理分发器和旧批量接口仍依赖这些清单，尚需适配。标准首帧在各题根目录的 `first_frame.png`，原生成提示词已迁入 `prompts/first_frame.txt`。`evaluator/` 保留共享解码、分发、合同、物理判定和历史结果工具，各题专属模块归于各自的 `evaluator/`。公共 CV helper 位于 `../shared/g7_cv_common.py`。
 
 `tools/blender_scene_builder.py` 是离线场景生成工具。`scripts/evaluate_v2.py` 实际是当前 V3 批量包装器；旧复算和 legacy 脚本不作为默认运行入口。

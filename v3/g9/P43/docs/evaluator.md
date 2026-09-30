@@ -21,7 +21,7 @@ bench 的 M2“倾倒前底面接触点保持静止”不单独评分；接触�
 路径相对于项目根目录：
 
 * `g9/P43/output_videos/minimax_h3/sample_00.mp4`：视频。
-* `g9/P43/first_frames/provided/first_frame_01.png`：对应首帧。
+* `g9/P43/first_frame.png`：对应首帧。
 * `g9/P43/prompts/video.txt`：内容作为 `video_prompt`。
 * `g9/P43/first_frames/provided/prompt.txt`：首帧提示词，不作为 `video_prompt`。
 
@@ -30,7 +30,7 @@ bench 的 M2“倾倒前底面接触点保持静止”不单独评分；接触�
 ```bash
 python g9/P43/evaluator/evaluate.py \
   --video_path g9/P43/output_videos/minimax_h3/sample_00.mp4 \
-  --image_path g9/P43/first_frames/provided/first_frame_01.png \
+  --image_path g9/P43/first_frame.png \
   --video_prompt "$(cat g9/P43/prompts/video.txt)" \
   --model minimax_h3 --sample_id sample_00 \
   --output g9/P43/eval_results/minimax_h3/result_sample_00.json
@@ -118,7 +118,7 @@ time_error_half_score_sec = 0.5
 {
   "task_id": "P43",
   "video_path": "g9/P43/output_videos/minimax_h3/sample_00.mp4",
-  "image_path": "g9/P43/first_frames/provided/first_frame_01.png",
+  "image_path": "g9/P43/first_frame.png",
   "video_prompt": null,
   "model": "minimax_h3",
   "sample_id": "sample_00",

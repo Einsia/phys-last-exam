@@ -75,7 +75,7 @@ def associate(video, entries, manifest_dir, task_dir):
     except AttributeError:
         canonical_video = str(video).startswith(str((task_dir/'output_videos').resolve()))
     if not matches and canonical_video:
-        for key,file in (('image_path','first_frames/provided/first_frame.png'),('video_prompt_file','prompts/video.txt')):
+        for key,file in (('image_path','first_frame.png'),('video_prompt_file','prompts/video.txt')):
             if (task_dir/file).is_file():
                 result[key] = str((task_dir/file).resolve())
     return result

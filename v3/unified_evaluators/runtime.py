@@ -58,6 +58,12 @@ def load_metadata(task, video, args):
         'sample_id':video.stem, 'video_path':relative(video,task), 'source_video_path':relative(video,task),
         'image_path':None, 'video_prompt':None, 'model':None, 'seed':None,
     }
+    if not matches:
+        if (task/'first_frame.png').is_file():
+            row['image_path'] = 'first_frame.png'
+        prompt = task/'prompts'/'video.txt'
+        if prompt.is_file():
+            row['video_prompt'] = prompt.read_text(encoding='utf-8').strip()
     for key in ('sample_id','model','seed','video_prompt','route'):
         value = getattr(args,key,None)
         if value is not None:
@@ -277,7 +283,8 @@ def main(task_id, task_root, argv=None):
     started = time.time()
     provenance = {'run_started_at_utc':datetime.datetime.now(datetime.timezone.utc).isoformat(),
                   'video_sha256':row['video_sha256'],'image_sha256':row.get('image_sha256'),
-                  'metadata_manifest':'data/metadata.json','raw_result_path':relative(raw_path,task),
+                  'metadata_manifest':'data/metadata.json' if (task/'data'/'metadata.json').is_file() else None,
+                  'raw_result_path':relative(raw_path,task),
                   'group':task.parent.name,'execution_mode':'fresh_video_measurement',
                   'score_replay_only':False,'neural_inference_rerun':None,
                   'debug_dir':relative(debug,task),'physics_attempted':False}

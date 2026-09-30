@@ -61,7 +61,7 @@ def make_job(video, frozen, threshold):
     task = entries[0].parent.parent
     group = task.parent.name
     out = ROOT / ('v3_' + model)
-    image = task / 'first_frames' / 'gpt' / 'gpt_01.png'
+    image = task / 'first_frame.png'
     prompt_source = task / 'prompts' / 'video.txt'
     generation_manifest = video.parent / 'manifest.json'
     record = json.loads(generation_manifest.read_text()).get(video.stem, {}) if generation_manifest.exists() else {}

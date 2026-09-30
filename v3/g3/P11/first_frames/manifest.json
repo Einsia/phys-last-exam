@@ -6,7 +6,7 @@
     {
       "sample_id": "P11_gpt_01_30deg",
       "method": "gpt",
-      "path": "first_frames/gpt/P11_gpt_01_30deg.png",
+      "path": "first_frame.png",
       "source": "sop_delivery/P11/current_v3_laser_preaction_v5/one_to_one_20260826/30deg/gpt_optimized.png",
       "bytes": 2308121,
       "sha256": "9bc5008e0a46058780dd49c51b6e57157190befcfd51ba03ff7858d35bac8a63"

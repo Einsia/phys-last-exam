@@ -27,7 +27,7 @@ def rel(v):
     except ValueError:return str(v)
 def metadata(video,image,seed):
     stem=Path(video).stem;m=re.search(r"_seed(\d+)$",stem,re.I);seed=seed if seed is not None else(int(m.group(1)) if m else None)
-    if image is None:image=str(TASK_ROOT/"first_frames"/"provided"/"first_frame.png") if (TASK_ROOT/"first_frames"/"provided"/"first_frame.png").is_file() else None
+    if image is None:image=str(TASK_ROOT/"first_frame.png") if (TASK_ROOT/"first_frame.png").is_file() else None
     return rel(video),rel(image),seed
 def read_video(path,limit=None):
     c=cv2.VideoCapture(path)

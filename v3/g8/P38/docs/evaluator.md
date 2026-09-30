@@ -21,7 +21,7 @@ oscillation_count_ratio = N_solid / N_slotted < 1
 路径相对于项目根目录。当前输入：
 
 * `g8/P38/output_videos/minimax_h3/sample_00.mp4`：视频。
-* `g8/P38/first_frames/provided/first_frame_01.png`：对应首帧。
+* `g8/P38/first_frame.png`：对应首帧。
 * `g8/P38/prompts/video.txt`：内容作为 `video_prompt`。
 * `g8/P38/first_frames/provided/prompt.txt`：首帧提示词，不作为 `video_prompt`。
 
@@ -30,7 +30,7 @@ oscillation_count_ratio = N_solid / N_slotted < 1
 ```bash
 python g8/P38/evaluator/evaluate.py \
   --video_path g8/P38/output_videos/minimax_h3/sample_00.mp4 \
-  --image_path g8/P38/first_frames/provided/first_frame_01.png \
+  --image_path g8/P38/first_frame.png \
   --video_prompt "$(cat g8/P38/prompts/video.txt)" \
   --model minimax_h3 --sample_id sample_00 \
   --output g8/P38/eval_results/minimax_h3/result_sample_00.json
@@ -129,7 +129,7 @@ max_track_gap_sec = 0.10
 {
   "task_id": "P38",
   "video_path": "g8/P38/output_videos/minimax_h3/sample_00.mp4",
-  "image_path": "g8/P38/first_frames/provided/first_frame_01.png",
+  "image_path": "g8/P38/first_frame.png",
   "video_prompt": null,
   "model": "minimax_h3",
   "sample_id": "sample_00",

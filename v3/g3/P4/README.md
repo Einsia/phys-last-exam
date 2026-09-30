@@ -1,24 +1,25 @@
 # P4 — 连续反弹
 
-本题属于 G3，使用重构后的 V3 文件布局。单视频入口为 `evaluator/evaluate.py`，批量入口为 `scripts/run_eval.sh`；两者都执行一致性门控和物理评测。请保留完整 `v3/` 目录，公共实现通过相对路径加载。
+本题属于 G3，使用重构后的 V3 文件布局。单视频入口为 `evaluator/evaluate.py`，执行一致性门控和物理评测。`scripts/run_eval.sh` 保留原批量接口，目前仍依赖已删除的样本清单。请保留完整 `v3/` 目录，公共实现通过相对路径加载。
 
 目录归档规则见 [重构说明](../../RESTRUCTURE_NOTES.md)，当前评分与结果语义见 [SCORING_V3.md](../../SCORING_V3.md)。
 
 ## 输入与目录
 
-`data/metadata.json` 的 `samples` 登记了 24 个输入关联。`video_path`、`source_video_path`、`image_path` 和 `annotation` 均相对于本题根目录解析；`video_prompt` 保存实际生成提示词，不因 metadata 移入 `data/` 而改变路径基准。
+本题标准首帧位于根目录的 `first_frame.png`。首帧生成提示词与视频续写提示词分别归档，评测时应使用与输入视频对应的实际续写文本。题目 `data/` 和 `reports/` 已按要求删除，不再附带 metadata 样本清单。
 
 | 文件或目录 | 用途 |
 | --- | --- |
-| [data/metadata.json](data/metadata.json) | 唯一正式样本清单，提供视频、首帧、prompt、模型、seed 与哈希关联。 |
-| [video_prompts/](video_prompts/) | 逐样本历史 prompt 文本；精确关联以 metadata 为准。 |
-| [first_frames/gpt/](first_frames/gpt/) | GPT 首帧及生成 prompt。 |
+| [first_frame.png](first_frame.png) | 本题选定的标准首帧。 |
+| 首帧生成提示词（未提供） | 仓库仅有 first_frames/gpt/source_manifest.json 来源记录，原文未交付，本次没有迁移生成提示词。 |
+| [video_prompts/](video_prompts/) | 逐样本视频续写文本；按视频来源选择对应文件。 |
+| [first_frames/gpt/](first_frames/gpt/) | 其余 GPT 首帧和已有生成来源记录。 |
 | [first_frames/simulation/](first_frames/simulation/) | 仿真首帧、来源记录及可用生成代码。 |
 | [evaluator/evaluate.py](evaluator/evaluate.py) | 当前 V3 单视频入口，调用 v3/unified_evaluators/runtime.py。 |
 | [evaluator/measure_backend.py](evaluator/measure_backend.py) | 历史 V2 分数复算入口，依赖旧 scoring_v2 包；当前 V3 不调用它。 |
 | [evaluator/evaluate_raw_legacy.py](evaluator/evaluate_raw_legacy.py) | 当前 V3 调用的原始物理提取器；同目录保留配置、审计与回归工具。 |
 | [evaluator/requirements.txt](evaluator/requirements.txt) | 本题物理后端依赖；V3 一致性模型依赖另见公共环境说明。 |
-| [scripts/run_eval.sh](scripts/run_eval.sh) | 读取 data/metadata.json，只选择本题与指定生成模型的登记样本。 |
+| [scripts/run_eval.sh](scripts/run_eval.sh) | 原 metadata 批量入口；样本清单已删除，批量运行方式尚需适配。 |
 
 `output_videos/<model>/` 是运行输入目录，`eval_results/` 是题目内历史结果或显式选择的输出目录。源码仓库未附带 MP4、模型权重和完整评测结果；这些运行资产不作为现存文件链接。
 
@@ -42,23 +43,21 @@ python evaluator/evaluate.py --help
 
 ## 单视频评测
 
-以下例子使用 metadata 中登记的首个样本；先按清单恢复对应视频及其原始文件名别名。入口自动读取首帧、实际 prompt、seed 和模型关联，并核对文件哈希。
+准备输入视频后，在题目根目录运行。以下命令显式指定标准首帧和视频续写提示词；首帧生成提示词不用作视频续写 prompt。其他来源的视频应传入对应的首帧、实际续写文本、seed 和模型信息。
 
 ```bash
 python evaluator/evaluate.py \
   --video output_videos/minimax_h3/sample_00.mp4 \
+  --image first_frame.png \
+  --video_prompt_file video_prompts/P4__prompt_v2_20260826__P4_gpt_01_modern_seed42.txt \
   --output ../../results/g3/P4/eval_results/minimax_h3/result_sample_00.json
 ```
 
-本例首帧是 `first_frames/gpt/P4_gpt_01_modern.png`。自定义视频可以使用 `--image`、`--video_prompt_file` 或 `--video_prompt` 显式传入关联；一致性参数通过 `--consistency-*` 设置，详见 `--help`。
+本例首帧是 `first_frame.png`。自定义视频可以使用 `--image`、`--video_prompt_file` 或 `--video_prompt` 显式传入关联；一致性参数通过 `--consistency-*` 设置，详见 `--help`。
 
 ## 批量评测
 
-```bash
-bash scripts/run_eval.sh minimax_h3
-```
-
-脚本按 `data/metadata.json` 的样本关联运行，不接受旧版视频目录、结果目录等位置参数。可加 `--samples sample_00` 只运行单个登记样本，或用 `--output-root`、`--log-dir` 设置输出基准目录；任意输入目录评测不属于该脚本接口。
+`scripts/run_eval.sh` 仍调用依赖 `data/metadata.json` 的公共批量执行器。该清单已删除，当前不能直接使用原登记样本批量命令；请先按上面的单视频入口逐个运行，批量目录扫描接口待后续适配。
 
 默认新结果位于 `v3/results/g3/P4/eval_results/<model>/result_<sample_id>.json`，同目录有 `batch_summary.json`；本题批量日志位于 `eval_results/run_logs/`。`--output-root` 下始终追加 `g3/P4/eval_results/<model>/`。
 

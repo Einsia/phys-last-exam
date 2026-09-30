@@ -44,7 +44,7 @@ def metadata(video: str, image: str | None, seed: int | None):
     seed = seed if seed is not None else (int(m.group(1)) if m else None)
     base = re.sub(r"_seed\d+$", "", stem, flags=re.I)
     if image is None:
-        for name in ("first_frames/provided/first_frame.png", "first_frames/simulation/sim_first_frame.png"):
+        for name in ("first_frame.png", "first_frames/simulation/sim_first_frame.png"):
             p = TASK_ROOT / name
             if p.is_file(): image = str(p); break
     return rel(video) or str(video), rel(image), seed
