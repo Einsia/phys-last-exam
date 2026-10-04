@@ -250,8 +250,9 @@ def _debug(clip, ctx, tr, a0, start, apex, land, x, y, H, R, target, res) -> str
     ax[2].set_title("v_x flat and dv_y constant if projectile")
 
     m1 = "n/a" if M1.value is None else f"{M1.value:+.4f}"
+    observed_ratio = f"{H / R:.4f}" if R != 0 else "n/a (zero range)"
     cap = (f"{ctx.task_id}  M1 = H/R - tan(theta)/4 = {m1}"
-           f"   (H/R = {H / R:.4f} vs {target:.4f})")
+           f"   (H/R = {observed_ratio} vs {target:.4f})")
     def fmt(key: str) -> str:
         m = res.metrics[key]
         return "n/a" if m.value is None else f"{m.value:.4f}"
