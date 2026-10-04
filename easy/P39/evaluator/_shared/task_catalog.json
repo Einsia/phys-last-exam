@@ -1,0 +1,11 @@
+{
+  "P39": {
+    "difficulty": "Easy",
+    "phenomenon": "磁铁穿线圈与感应发光",
+    "domain": "电磁感应",
+    "original_group": "g8",
+    "package_path": "../..",
+    "difficulty_score": 0.5031249999999999,
+    "difficulty_rank": 13
+  }
+}

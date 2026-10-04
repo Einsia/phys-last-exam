@@ -1,0 +1,11 @@
+{
+  "P9": {
+    "difficulty": "Easy",
+    "phenomenon": "单摆周期与摆长关系",
+    "domain": "力学",
+    "original_group": "g3",
+    "package_path": "../..",
+    "difficulty_score": 0.47979152261959435,
+    "difficulty_rank": 14
+  }
+}

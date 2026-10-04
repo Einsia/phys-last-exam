@@ -1,0 +1,11 @@
+{
+  "P1": {
+    "difficulty": "Medium",
+    "phenomenon": "自由落体",
+    "domain": "力学",
+    "original_group": "g1",
+    "package_path": "../..",
+    "difficulty_score": 0.266127552222827,
+    "difficulty_rank": 27
+  }
+}

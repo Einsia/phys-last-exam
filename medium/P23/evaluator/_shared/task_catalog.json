@@ -1,0 +1,11 @@
+{
+  "P23": {
+    "difficulty": "Medium",
+    "phenomenon": "水冻结体积膨胀",
+    "domain": "热学",
+    "original_group": "g5",
+    "package_path": "../..",
+    "difficulty_score": 0.4384507020248576,
+    "difficulty_rank": 16
+  }
+}

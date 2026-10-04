@@ -1,0 +1,11 @@
+{
+  "P38": {
+    "difficulty": "Hard",
+    "phenomenon": "实心与开槽导体板电磁阻尼",
+    "domain": "电磁感应",
+    "original_group": "g8",
+    "package_path": "../..",
+    "difficulty_score": 0.1428125,
+    "difficulty_rank": 39
+  }
+}

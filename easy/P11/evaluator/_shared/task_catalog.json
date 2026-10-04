@@ -1,0 +1,11 @@
+{
+  "P11": {
+    "difficulty": "Easy",
+    "phenomenon": "光的折射",
+    "domain": "光学",
+    "original_group": "g3",
+    "package_path": "../..",
+    "difficulty_score": 0.44549721944263887,
+    "difficulty_rank": 15
+  }
+}

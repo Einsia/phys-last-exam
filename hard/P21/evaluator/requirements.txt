@@ -1,0 +1,8 @@
+# Measurement stack for this evaluator.
+numpy>=1.24
+opencv-python>=4.8
+scipy>=1.10
+matplotlib>=3.7
+# This task locates its vessel with SAM2, which transformers carries natively.
+torch>=2.1
+transformers>=5.0

@@ -1,0 +1,11 @@
+{
+  "P28": {
+    "difficulty": "Medium",
+    "phenomenon": "带电小球对称平衡",
+    "domain": "静电",
+    "original_group": "g2",
+    "package_path": "../..",
+    "difficulty_score": 0.35158162141088994,
+    "difficulty_rank": 20
+  }
+}

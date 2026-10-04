@@ -1,0 +1,11 @@
+{
+  "P7": {
+    "difficulty": "Medium",
+    "phenomenon": "实心球与圆环滚动对比",
+    "domain": "转动动力学",
+    "original_group": "g7",
+    "package_path": "../..",
+    "difficulty_score": 0.28411415438886384,
+    "difficulty_rank": 25
+  }
+}

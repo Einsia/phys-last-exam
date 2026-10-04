@@ -1,0 +1,11 @@
+{
+  "P8a": {
+    "difficulty": "Medium",
+    "phenomenon": "小角度单摆等时性",
+    "domain": "力学",
+    "original_group": "g1",
+    "package_path": "../..",
+    "difficulty_score": 0.41733961518626966,
+    "difficulty_rank": 17
+  }
+}

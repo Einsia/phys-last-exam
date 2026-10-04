@@ -1,0 +1,11 @@
+{
+  "P8c": {
+    "difficulty": "Easy",
+    "phenomenon": "大角度单摆周期",
+    "domain": "非线性摆",
+    "original_group": "g7",
+    "package_path": "../..",
+    "difficulty_score": 0.5745973236159432,
+    "difficulty_rank": 8
+  }
+}

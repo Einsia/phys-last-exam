@@ -1,0 +1,11 @@
+{
+  "P21": {
+    "difficulty": "Hard",
+    "phenomenon": "浮冰融化液面变化",
+    "domain": "热学 / 浮力",
+    "original_group": "g4",
+    "package_path": "../..",
+    "difficulty_score": 0.14295559818986275,
+    "difficulty_rank": 38
+  }
+}

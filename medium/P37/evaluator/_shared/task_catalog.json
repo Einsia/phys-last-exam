@@ -1,0 +1,11 @@
+{
+  "P37": {
+    "difficulty": "Medium",
+    "phenomenon": "闭合环与开口环电磁跳环",
+    "domain": "电磁感应",
+    "original_group": "g8",
+    "package_path": "../..",
+    "difficulty_score": 0.2469866206546883,
+    "difficulty_rank": 28
+  }
+}
