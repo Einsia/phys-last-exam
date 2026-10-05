@@ -10,6 +10,7 @@ models/
 runs/
 videos/
 annotations/
+generation.local.json
 **/eval_results/
 **/output_videos/
 **/results/

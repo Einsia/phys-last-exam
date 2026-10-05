@@ -24,6 +24,7 @@ hydra-core>=1.3.2,<2
 iopath>=0.1.10
 einops>=0.8
 tqdm>=4.66.1
+requests>=2.32,<3
 
 # External source packages: network/git is needed to install these lines unless
 # equivalent source checkouts or wheels are supplied locally. Weights are NOT

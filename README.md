@@ -20,26 +20,32 @@ bash setup.sh
 
 ## Prepare your videos
 
-The benchmark has **40 tasks: 15 easy, 15 medium, and 10 hard**. Each task folder contains `first_frame.png`, `prompt.txt`, `task.md`, and its evaluator. Generate videos using the task's image and prompt, then organize them by video generation model:
+The benchmark has **40 tasks: 15 easy, 15 medium, and 10 hard**. The unified generator reads their `first_frame.png` and `prompt.txt` automatically and supports the eight models in the results table, plus custom models.
 
-```text
-videos/
-├── my-model/
-│   ├── g2_P19_seed42.mp4
-│   ├── P3_gpt_01_modern_seed42.mp4
-│   └── ...
-└── another-model/
-    └── ...
+Connect your generation model environments once:
+
+```bash
+python generate.py --init-config --model-root /path/to/checkpoints
 ```
 
-Keep the task ID in each filename. Videos are evaluated against the task's supplied image and prompt by default; a matching `VIDEO_STEM_config.json` supplies the actual generation prompt when present. Video generation itself is not included in this repository.
+Check the Python, source, and weight paths in `generation.local.json`; see the short [model setup and custom model guide](generation/README.md). Generation models use their own environments; `setup.sh` prepares the evaluator and generation controller.
 
-**Before running all 40 tasks:** P3/P6/P9/P11 use fixed scene calibrations, and P37/P38/P39/P41/P43/P49 require annotations for each video's first frame.
+Generate all 40 tasks with all 8 models and seeds 42–45:
+
+```bash
+python generate.py --models all --output videos --resume
+```
+
+To start with one model and task, add `--models cogvideox1.5-5b-i2v --tasks P19 --seeds 42` in place of `--models all`. Add `--dry-run` to preview the jobs without loading weights or calling an API.
+
+Videos are written to `videos/MODEL/VIDEO_STEM.mp4`, with matching parameter records and an evaluation-ready `videos/manifest.json`. Special task filenames are handled automatically; P3/P9 receive the required 1344 × 768 evaluation copy while the native video and resize metadata are retained. Frozen images and prompts are stored in `videos/.inputs/`, so the manifest travels with the videos.
+
+**Before running all 40 tasks:** P3/P6/P9/P11 use fixed scene calibrations, and P37/P38/P39/P41/P43/P49 still require annotations for each generated video's first frame.
 
 <details>
 <summary>Required filenames and annotations for these tasks</summary>
 
-Use these calibrated filenames, replacing `N` with the seed:
+The generator assigns these calibrated filenames. If you bring existing videos, use the same names, replacing `N` with the seed:
 
 ```text
 P3_gpt_01_modern_seedN.mp4
@@ -63,10 +69,10 @@ The bundled annotation files refer to particular historical inputs and cannot be
 
 ## Evaluate all tasks
 
-From the repository root, run:
+From the repository root, run (or use `--video-root videos` instead of `--manifest` for existing videos):
 
 ```bash
-python evaluate.py --video-root videos --annotation-root annotations \
+python evaluate.py --manifest videos/manifest.json --annotation-root annotations \
   --output runs/all_tasks --require-all-tasks --resume
 ```
 
@@ -75,7 +81,7 @@ This evaluates all models and all 40 tasks, one video at a time, using the first
 To try just P19 first:
 
 ```bash
-python evaluate.py --video-root videos --tasks P19 --output runs/quick_test --resume
+python evaluate.py --manifest videos/manifest.json --tasks P19 --output runs/quick_test --resume
 ```
 
 Results are saved under `runs/all_tasks/`: `by_model.csv` and `by_task.csv` contain summaries; `results.csv` and `results.json` contain per-video results. Per-video folders include the detailed result and debug evidence. Add `--dry-run` to check the input inventory without loading models. See `python evaluate.py --help` for other options.
