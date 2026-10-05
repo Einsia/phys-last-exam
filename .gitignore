@@ -8,6 +8,8 @@ models/
 
 # Evaluation inputs and generated outputs
 runs/
+videos/
+annotations/
 **/eval_results/
 **/output_videos/
 **/results/

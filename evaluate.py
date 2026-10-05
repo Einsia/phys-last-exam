@@ -347,6 +347,9 @@ def summarize(output, records, planned, missing_tasks):
 
 
 def main(argv=None):
+    # setup.sh uses this layout; child evaluators inherit the resolved model root.
+    model_root = Path(os.environ.get('FINAL_MODELS_DIR', ROOT / 'models')).expanduser().resolve()
+    os.environ['FINAL_MODELS_DIR'] = str(model_root)
     tasks = discover_tasks()
     shared = Path(next(iter(tasks.values()))['path']) / 'evaluator/_shared/unified_evaluators'
     gate_module = load_module('physcope_batch_gate', shared / 'consistency.py')
@@ -363,10 +366,11 @@ def main(argv=None):
     parser.add_argument('--workers', type=int, default=1, help='Concurrent evaluator processes; default 1 to bound GPU use')
     parser.add_argument('--timeout', type=float, default=1800, help='Maximum seconds per evaluator process and its children')
     parser.add_argument('--python', default=sys.executable, help='Python interpreter for the per-task entrypoints')
-    parser.add_argument('--measurement-device', help='Override P3/P9/G8/G9 measurement device, e.g. cuda:0 or cpu')
+    parser.add_argument('--measurement-device', default='cuda:0', help='P3/P9/G8/G9 measurement device (default: cuda:0)')
     parser.add_argument('--resume', action='store_true', help='Reuse successful results only when input/code/settings signatures match')
     parser.add_argument('--dry-run', action='store_true', help='Validate inventory and write the plan without loading models')
     gate_module.add_arguments(parser)
+    parser.set_defaults(consistency_model=os.environ.get('VLM_MODEL', str(model_root / 'Qwen3.6-27B')))
     for group in parser._action_groups:
         if group.title.startswith('V3 consistency gate'):
             group.title = 'Consistency gate (runs before physics)'

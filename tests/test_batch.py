@@ -200,6 +200,38 @@ class BatchTests(unittest.TestCase):
         self.assertEqual(exc.exception.code, 2)
         self.assertFalse(self.output.exists())
 
+    def test_quickstart_models_and_explicit_overrides_reach_child_process(self):
+        shared = self.folder / 'evaluator/_shared/unified_evaluators'
+        shared.mkdir(parents=True)
+        actual = batch.ROOT / 'easy/P19/evaluator/_shared/unified_evaluators'
+        for name in ('consistency.py', 'schema_v4.py'):
+            (shared / name).write_bytes((actual / name).read_bytes())
+        # Record the actual command/environment received by the child process.
+        evaluator = self.folder / 'evaluator/evaluate.py'
+        evaluator.write_text(FIXTURE_EVALUATOR.replace(
+            "raise SystemExit(1 if rejected else 0)",
+            "import os\npathlib.Path(a.output).with_name('received.json').write_text(json.dumps(dict(argv=sys.argv, models=os.environ.get('FINAL_MODELS_DIR'))))\nraise SystemExit(1 if rejected else 0)"))
+        manifest = self.root / 'manifest.json'
+        manifest.write_text(json.dumps([dict(task='P19', model='test-model', video=str(self.video))]))
+        cases = [
+            ({}, [], str(batch.ROOT / 'models'), str(batch.ROOT / 'models/Qwen3.6-27B'), 'local', 'cuda:0'),
+            ({'FINAL_MODELS_DIR': 'custom-models', 'VLM_MODEL': 'existing-server', 'VLM_BACKEND': 'http',
+              'VLM_BASE_URL': 'http://localhost:8000/v1'}, [], str(Path('custom-models').resolve()), 'existing-server', 'http', 'cuda:0'),
+            ({'VLM_MODEL': 'environment-model'}, ['--consistency-model', '/explicit/model', '--measurement-device', 'cpu'],
+             str(batch.ROOT / 'models'), '/explicit/model', 'local', 'cpu'),
+        ]
+        for index, (environment, flags, root, model, backend, device) in enumerate(cases):
+            output = self.root / f'case{index}'
+            with self.subTest(index=index), patch.dict(batch.os.environ, environment, clear=True), \
+                    patch.object(batch, 'discover_tasks', return_value=self.tasks), redirect_stdout(io.StringIO()):
+                self.assertEqual(batch.main(['--manifest', str(manifest), '--output', str(output), *flags]), 0)
+            config = batch.read(next((output / 'configurations').glob('*.json')))
+            received = batch.read(next(output.glob('test-model/P19/*/attempt*/received.json')))
+            self.assertEqual(received['models'], root)
+            self.assertEqual(received['argv'][received['argv'].index('--consistency-model') + 1], model)
+            self.assertEqual(config['gate']['backend'], backend)
+            self.assertEqual(config['measurement_device'], device)
+
 
 if __name__ == '__main__':
     unittest.main()

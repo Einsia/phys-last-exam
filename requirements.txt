@@ -1,7 +1,7 @@
 # Consolidated dependencies for the 40 final task packages; observed Python: 3.12.
 # This is not a fresh-environment installation lock or an all-40-task validation.
-# Install a matching PyTorch/torchvision CPU or CUDA build FIRST; no wheel index
-# or local virtual-environment path is hard-coded here.
+# Recommended installation: bash setup.sh (installs the CUDA PyTorch pair first).
+# For manual installation, install matching PyTorch/torchvision builds FIRST.
 # The scientific stack below matches the successful P1/P19/P7 CPU regressions,
 # including their OpenCV 4.11 overlay. Install only ONE cv2 wheel provider.
 numpy==2.4.4
