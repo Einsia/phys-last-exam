@@ -37,8 +37,7 @@ python evaluator/evaluate.py \
   --video /absolute/path/to/input.mp4 \
   --image first_frame.png \
   --video_prompt_file prompt.txt \
-  --annotation /absolute/path/to/video_annotations.json \
   --output /absolute/path/to/result.json
 ```
 
-需使用已配置评测依赖及一致性模型的 Python 环境。 `video_annotations.json` 必须针对本次外部视频审查并绑定其视频及首帧哈希；不得直接复用其他视频的标注。
+Use the configured evaluation environment. The evaluator automatically loads `first_frame_annotations.json` bundled with this task. It verifies the input-image hash, scales the coordinates to the video resolution, and checks correspondence with the decoded first frame before tracking. No per-video annotation is needed for the fixed task image when this check passes. Use `--annotation /absolute/path/to/video_annotations.json` only to override initialization for a different image or layout; custom video annotations retain their video/image hash checks.

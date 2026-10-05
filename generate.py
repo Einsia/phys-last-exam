@@ -36,10 +36,14 @@ def plan_jobs(tasks, models, profiles, seeds, output, signature):
             folder = Path(info['path'])
             image, prompt = folder / 'first_frame.png', folder / 'prompt.txt'
             inputs = dict(image=batch.sha(image), prompt=batch.sha(prompt))
+            annotation = folder / 'first_frame_annotations.json'
+            if task in ANNOTATED:
+                inputs['annotation'] = batch.sha(annotation)
             for seed in seeds:
                 sid = sample_id(task, info['group'], seed)
                 job = dict(model=model, task=task, seed=seed, sample_id=sid,
                            image=str(image), prompt_file=str(prompt), prompt=prompt.read_text().strip(),
+                           annotation_template=str(annotation) if task in ANNOTATED else None,
                            input_hashes=inputs, profile=profiles[model], num_frames=profiles[model]['num_frames'],
                            video=str(output / model / (sid + '.mp4')),
                            requires_annotation=task in ANNOTATED)
@@ -54,7 +58,10 @@ def frozen_inputs(job):
     folder = Path(job['video']).parents[1] / '.inputs' / job['task']
     folder.mkdir(parents=True, exist_ok=True)
     paths = {}
-    for key, source, suffix in (('image', job['image'], '.png'), ('prompt', job['prompt_file'], '.txt')):
+    sources = [('image', job['image'], '.png'), ('prompt', job['prompt_file'], '.txt')]
+    if job.get('annotation_template'):
+        sources.append(('annotation', job['annotation_template'], '.json'))
+    for key, source, suffix in sources:
         if batch.sha(source) != job['input_hashes'][key]:
             raise ValueError(f'Task {key} changed after planning: {source}')
         target = folder / (job['input_hashes'][key] + suffix)
@@ -118,7 +125,7 @@ def generate_job(job, work, resume, timeout):
                         input_hashes=job['input_hashes'], profile=job['profile'], media=media,
                         arguments=dict(prompt=job['prompt'], image=str(inputs['image']), seed=job['seed'],
                                        num_frames=job['num_frames']), backend=response,
-                        annotation_status='requires_video_bound_annotation' if job['requires_annotation'] else 'not_required')
+                        annotation_status='bundled_template_checked_during_evaluation' if job['requires_annotation'] else 'not_required')
         batch.save(sidecar, metadata)
         temporary.replace(output)
     finally:
@@ -142,6 +149,8 @@ def update_manifest(output, work, jobs, annotation_root=None):
         row = dict(model=job['model'], task=job['task'], seed=job['seed'], sample_id=job['sample_id'],
                    video=os.path.relpath(job['video'], output),
                    image=os.path.relpath(inputs['image'], output), prompt=os.path.relpath(inputs['prompt'], output))
+        if 'annotation' in inputs:
+            row['annotation'] = os.path.relpath(inputs['annotation'], output)
         if annotation_root:
             annotation = annotation_root / job['model'] / job['task'] / (job['sample_id'] + '.json')
             if annotation.is_file():
@@ -164,7 +173,7 @@ def main(argv=None):
     parser.add_argument('--check', action='store_true', help='Check selected model paths/API configuration without generating')
     parser.add_argument('--dry-run', action='store_true', help='Write the task/seed plan without loading models or calling APIs')
     parser.add_argument('--resume', action='store_true')
-    parser.add_argument('--annotation-root', type=Path, help='Attach existing MODEL/TASK/VIDEO_STEM.json annotations to the manifest')
+    parser.add_argument('--annotation-root', type=Path, help='Optional MODEL/TASK/VIDEO_STEM.json overrides of bundled annotations')
     parser.add_argument('--timeout', type=float, default=3600, help='Seconds per video, including model startup')
     args = parser.parse_args(argv)
     try:

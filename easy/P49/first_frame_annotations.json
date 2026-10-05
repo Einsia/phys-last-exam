@@ -61,13 +61,21 @@
   },
   "review": "right large; left small; sphere exterior rather than highlight determines radius",
   "task_id": "P49",
-  "annotation_type": "agent_visual_first_frame_review",
+  "annotation_type": "task_first_frame_template",
   "source_image_sha256": "6bf62da13d4e5e546fd57ce9b952aea4a8af626bbb30ac35c323c7218d118b75",
-  "source_video_sha256": "dfd6209068c230c83bcdb0ae820489c5e16c3ec7d38814a041f3a794b144fb7c",
-  "coordinate_frame": "decoded_video_frame_0",
+  "coordinate_frame": "resized_input_image",
   "size_wh": [
     1344,
     768
   ],
-  "note": "Initialization annotations only; no heights, peak times, velocities or scores. Reuse only after source hash and image correspondence checks."
+  "note": "Reusable initialization for the fixed task image, without video-specific measurements or scores. Coordinates refer to the input image resized to size_wh. The evaluator scales them to the video and checks first-frame correspondence before tracking.",
+  "template_version": 1,
+  "source_size_wh": [
+    2048,
+    1152
+  ],
+  "template_review": {
+    "accepted": true,
+    "evidence": "Object identities and initialization prompts reviewed against the bundled task input image on the declared annotation canvas."
+  }
 }

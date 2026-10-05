@@ -88,13 +88,21 @@
   },
   "review": "left water; right sand; recover volume from cavity and visible free surface, not projected area",
   "task_id": "P41",
-  "annotation_type": "agent_visual_first_frame_review",
+  "annotation_type": "task_first_frame_template",
   "source_image_sha256": "cf55a31eeb0944425f0d8585aabf7bf7d5741ff1a5a787564dfbd0c8c97ce5cf",
-  "source_video_sha256": "cebca2c4bf396a4bf1e1f794a5cd046a4cc353891e574c7c909b749d9f477acf",
-  "coordinate_frame": "decoded_video_frame_0",
+  "coordinate_frame": "resized_input_image",
   "size_wh": [
     1344,
     768
   ],
-  "note": "Initialization annotations only; no heights, peak times, velocities or scores. Reuse only after source hash and image correspondence checks."
+  "note": "Reusable initialization for the fixed task image, without video-specific measurements or scores. Coordinates refer to the input image resized to size_wh. The evaluator scales them to the video and checks first-frame correspondence before tracking.",
+  "template_version": 1,
+  "source_size_wh": [
+    1659,
+    948
+  ],
+  "template_review": {
+    "accepted": true,
+    "evidence": "Object identities and initialization prompts reviewed against the bundled task input image on the declared annotation canvas."
+  }
 }

@@ -53,8 +53,8 @@ python generate.py --models cogvideox1.5-5b-i2v --tasks P19 --seeds 42 --output 
 # All 8 models, all 40 tasks, seeds 42/43/44/45: 1,280 videos.
 python generate.py --models all --output videos --resume
 
-# The generated manifest includes the exact input images and prompts.
-python evaluate.py --manifest videos/manifest.json --annotation-root annotations --output runs/all_tasks --require-all-tasks --resume
+# The manifest includes the exact input images, prompts, and bundled task annotations.
+python evaluate.py --manifest videos/manifest.json --output runs/all_tasks --require-all-tasks --resume
 ```
 
 Use `--models NAME NAME` to choose several models and `--tasks P19 P1` to choose tasks. Each model's `num_frames` and `options` are configurable; legal frame-count adjustments and the measured output frame count/FPS are recorded. Automatic prompt rewriting is disabled so the recorded task prompt is the supplied conditioning prompt. These defaults do not reproduce every historical benchmark generation setting.
@@ -64,7 +64,7 @@ Output layout:
 ```text
 videos/
 ├── manifest.json
-├── .inputs/                       # Frozen images/prompts; keep with manifest
+├── .inputs/                       # Frozen images/prompts/annotations
 └── MODEL/
     ├── g2_P19_seed42.mp4
     ├── g2_P19_seed42_config.json
@@ -74,7 +74,9 @@ runs/generation/OUTPUT_ID/           # Plans, raw videos, attempt logs, API job 
 
 The controller assigns the special calibrated filenames for P3/P6/P9/P11. For P3/P9, it exports a 1344 × 768 evaluation copy with an explicit spatial resize if needed; it retains the native raw video, records both dimensions and scale factors, and checks that frame count and timing are unchanged. This format conversion does not establish that the generated scene matches the calibration. Other tasks retain the native video dimensions.
 
-P37/P38/P39/P41/P43/P49 still need annotations tied to the generated video's first frame. Generation marks these tasks in its metadata; it does not invent annotations or reuse old video bindings. Put reviewed annotations at `annotations/MODEL/TASK/VIDEO_STEM.json` and pass `--annotation-root annotations` to evaluation. You may also pass this flag to generation to include existing annotations in the manifest.
+P37/P38/P39/P41/P43/P49 include reviewed annotations for their fixed task image. Generation snapshots these templates into `.inputs/` and adds them to the manifest. Evaluation loads them automatically, checks the image hash, scales the coordinates to the output resolution, and validates correspondence with the decoded first frame. A successful check records the current video/frame hashes in the evaluation debug output. Standard benchmark inputs need no separate annotation directory.
+
+The coordinate mapping supports full-image resizing. If a crop or changed layout fails the first-frame correspondence check, initialization fails explicitly. For custom inputs, place reviewed video annotations at `annotations/MODEL/TASK/VIDEO_STEM.json` and use `--annotation-root annotations`; a matching file overrides the bundled template. Explicit video annotations keep their video/image hash checks. This flag is optional for both generation and evaluation.
 
 `--resume` skips only files whose input/settings/controller-code signature and video hash match. Changed settings or modified videos require a new output directory. Use a new output directory when changing model weights, upstream environments, or custom inference code too; those external files are not hashed. Failed samples remain in the manifest and produce explicit evaluator input errors instead of disappearing from the sample count. Check `runs/generation/OUTPUT_ID/summary.json` for failures.
 

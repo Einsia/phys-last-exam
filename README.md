@@ -38,12 +38,12 @@ python generate.py --models all --output videos --resume
 
 To start with one model and task, add `--models cogvideox1.5-5b-i2v --tasks P19 --seeds 42` in place of `--models all`. Add `--dry-run` to preview the jobs without loading weights or calling an API.
 
-Videos are written to `videos/MODEL/VIDEO_STEM.mp4`, with matching parameter records and an evaluation-ready `videos/manifest.json`. Special task filenames are handled automatically; P3/P9 receive the required 1344 × 768 evaluation copy while the native video and resize metadata are retained. Frozen images and prompts are stored in `videos/.inputs/`, so the manifest travels with the videos.
+Videos are written to `videos/MODEL/VIDEO_STEM.mp4`, with matching parameter records and an evaluation-ready `videos/manifest.json`. Special task filenames are handled automatically; P3/P9 receive the required 1344 × 768 evaluation copy while the native video and resize metadata are retained. Frozen images, prompts, and task annotations are stored in `videos/.inputs/`, so the manifest travels with the videos.
 
-**Before running all 40 tasks:** P3/P6/P9/P11 use fixed scene calibrations, and P37/P38/P39/P41/P43/P49 still require annotations for each generated video's first frame.
+The fixed first-frame annotations for P37/P38/P39/P41/P43/P49 are included in their task packages and loaded automatically. You do not need to create an `annotations/` directory for standard benchmark inputs.
 
 <details>
-<summary>Required filenames and annotations for these tasks</summary>
+<summary>Calibrated filenames and custom first frames</summary>
 
 The generator assigns these calibrated filenames. If you bring existing videos, use the same names, replacing `N` with the seed:
 
@@ -56,14 +56,16 @@ P11_gpt_01_30deg_seedN.mp4
 
 P3/P9 require a 1344 × 768 video canvas. Follow each task's `task.md` for its scene geometry; renaming an incompatible video does not make it calibrated.
 
-For P37/P38/P39/P41/P43/P49, use the task's `first_frame_annotations.json` as a format reference. Annotate the current video's objects and update its source image/video hashes. Store each annotation at:
+P37/P38/P39/P41/P43/P49 use the bundled `first_frame_annotations.json`. The evaluator verifies the input-image hash, scales coordinates to the video resolution, and checks the actual first frame before tracking. A layout that fails this correspondence check is reported as an initialization failure.
+
+For a different input image or layout, provide reviewed video annotations with `--annotation-root annotations`. These optional overrides use:
 
 ```text
 annotations/MODEL/TASK/VIDEO_STEM.json
 # Example: annotations/my-model/P37/g8_P37_seed42.json
 ```
 
-The bundled annotation files refer to particular historical inputs and cannot be reused for arbitrary videos.
+Custom video annotations must match their video's image/video hashes. Standard task templates are bound to the fixed input image and reused automatically across models and seeds.
 
 </details>
 
@@ -72,7 +74,7 @@ The bundled annotation files refer to particular historical inputs and cannot be
 From the repository root, run (or use `--video-root videos` instead of `--manifest` for existing videos):
 
 ```bash
-python evaluate.py --manifest videos/manifest.json --annotation-root annotations \
+python evaluate.py --manifest videos/manifest.json \
   --output runs/all_tasks --require-all-tasks --resume
 ```
 

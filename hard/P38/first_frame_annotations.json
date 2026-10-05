@@ -78,17 +78,25 @@
         173
       ]
     ],
-    "release_reference": "video_frame0; matching supplied still and initial dwell verified before motion"
+    "release_reference": "first decoded video frame; release timing measured from the video"
   },
   "review": "left solid; right slotted; mask slots and intervening support rod as background",
   "task_id": "P38",
-  "annotation_type": "agent_visual_first_frame_review",
+  "annotation_type": "task_first_frame_template",
   "source_image_sha256": "71ba8e61cd81dec5a35d746abd76c55a7b575d0103139bd5bc580c76abe2d490",
-  "source_video_sha256": "17b028785265d2329f346c783564b1fbdbb57b61a62e8bf5e30d00db83dbb8db",
-  "coordinate_frame": "decoded_video_frame_0",
+  "coordinate_frame": "resized_input_image",
   "size_wh": [
     1344,
     768
   ],
-  "note": "Initialization annotations only; no heights, peak times, velocities or scores. Reuse only after source hash and image correspondence checks."
+  "note": "Reusable initialization for the fixed task image, without video-specific measurements or scores. Coordinates refer to the input image resized to size_wh. The evaluator scales them to the video and checks first-frame correspondence before tracking.",
+  "template_version": 1,
+  "source_size_wh": [
+    1536,
+    1024
+  ],
+  "template_review": {
+    "accepted": true,
+    "evidence": "Object identities and initialization prompts reviewed against the bundled task input image on the declared annotation canvas."
+  }
 }

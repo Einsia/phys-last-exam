@@ -7,56 +7,61 @@ import numpy as np
 from .common import ExtractionError, EnvironmentError, write_json
 from .media import fingerprint, frame_fingerprint
 from .resources import resource
+from .annotations import TEMPLATE_TYPE, bind_task_template
 ROOT=Path(__file__).resolve().parents[1]
 
 
 def load_annotation(args, frames, directory):
     path=Path(args.annotation) if args.annotation else Path(args.video_path).parent/'first_frame_annotations.json'
     if not path.is_file():
-        raise ExtractionError('Missing reviewed first-frame annotations: supply --annotation. Object identities must be established before tracking.')
+        raise ExtractionError('Missing bundled first-frame annotations; supply --annotation for custom inputs.')
+    args.annotation=str(path)
     a=json.loads(path.read_text())
-    if a['source_video_sha256']!=fingerprint(args.video_path):
-        raise ExtractionError('Annotation video hash mismatch; do not reuse fixture coordinates on another video.')
-    if args.image_path and a['source_image_sha256']!=fingerprint(args.image_path):
-        raise ExtractionError('Annotation first-frame image hash mismatch')
-    if a['size_wh']!=list(frames[0].shape[1::-1]):
-        raise ExtractionError('Annotation dimensions differ from decoded video')
-    if a.get('annotation_type') == 'decoded_video_frame_0':
-        # A generation input image can differ in color, light or layout from
-        # the actual video. Explicit frame-zero annotations are validated
-        # against their decoded pixels, rather than against that input image.
-        if a.get('frame0_sha256') != frame_fingerprint(frames[0]):
-            raise ExtractionError('Annotation decoded first-frame hash mismatch')
-        if a.get('coordinate_frame') != 'decoded_video_frame_0':
-            raise ExtractionError('Annotation coordinate frame is not video frame zero')
-        review=a.get('frame0_review', {})
-        if review.get('accepted') is not True or not review.get('evidence'):
-            raise ExtractionError('Actual first-frame annotation has no accepted identity review')
-        height,width=frames[0].shape[:2]
-        for obj in a['objects']:
-            x1,y1,x2,y2=obj['box']
-            if not (0<=x1<x2<=width and 0<=y1<y2<=height):
-                raise ExtractionError('First-frame object box lies outside the video')
-            if not obj.get('positive'):
-                raise ExtractionError('First-frame object has no observed material point')
-            if any(not (0<=x<width and 0<=y<height) for x,y in obj['positive']+obj.get('negative',[])):
-                raise ExtractionError('First-frame material point lies outside the video')
-        a['image_correspondence']={
-            'accepted':True,'method':'exact_decoded_video_frame_hash_and_identity_review',
-            'generation_image_used_for_initialization':False,
-            'frame0_sha256':a['frame0_sha256']}
-    elif args.image_path:
-        still=cv2.imread(str(args.image_path))
-        if still is None: raise ExtractionError('First-frame image unreadable')
-        still=cv2.resize(still,frames[0].shape[1::-1])
-        # Images may differ in JPEG noise but must show the same initial object geometry.
-        blurred=[cv2.GaussianBlur(x,(5,5),0).astype(float) for x in (still,frames[0])]
-        a['image_correspondence']={'mean_absolute_difference':float(np.mean(abs(blurred[0]-blurred[1]))),'object_crop_errors':[]}
-        for obj in a['objects']:
-            x1,y1,x2,y2=obj['box']
-            a['image_correspondence']['object_crop_errors'].append(float(np.mean(abs(blurred[0][y1:y2,x1:x2]-blurred[1][y1:y2,x1:x2]))))
-        a['image_correspondence']['accepted']=bool(max(a['image_correspondence']['object_crop_errors'])<15)
-        if not a['image_correspondence']['accepted']: raise ExtractionError('Supplied image and video initial object geometry differ')
+    if a.get('annotation_type') == TEMPLATE_TYPE:
+        a=bind_task_template(a,args,frames[0],directory,path)
+    else:
+        if a['source_video_sha256']!=fingerprint(args.video_path):
+            raise ExtractionError('Annotation video hash mismatch; do not reuse fixture coordinates on another video.')
+        if args.image_path and a['source_image_sha256']!=fingerprint(args.image_path):
+            raise ExtractionError('Annotation first-frame image hash mismatch')
+        if a['size_wh']!=list(frames[0].shape[1::-1]):
+            raise ExtractionError('Annotation dimensions differ from decoded video')
+        if a.get('annotation_type') == 'decoded_video_frame_0':
+            # A generation input image can differ in color, light or layout from
+            # the actual video. Explicit frame-zero annotations are validated
+            # against their decoded pixels, rather than against that input image.
+            if a.get('frame0_sha256') != frame_fingerprint(frames[0]):
+                raise ExtractionError('Annotation decoded first-frame hash mismatch')
+            if a.get('coordinate_frame') != 'decoded_video_frame_0':
+                raise ExtractionError('Annotation coordinate frame is not video frame zero')
+            review=a.get('frame0_review', {})
+            if review.get('accepted') is not True or not review.get('evidence'):
+                raise ExtractionError('Actual first-frame annotation has no accepted identity review')
+            height,width=frames[0].shape[:2]
+            for obj in a['objects']:
+                x1,y1,x2,y2=obj['box']
+                if not (0<=x1<x2<=width and 0<=y1<y2<=height):
+                    raise ExtractionError('First-frame object box lies outside the video')
+                if not obj.get('positive'):
+                    raise ExtractionError('First-frame object has no observed material point')
+                if any(not (0<=x<width and 0<=y<height) for x,y in obj['positive']+obj.get('negative',[])):
+                    raise ExtractionError('First-frame material point lies outside the video')
+            a['image_correspondence']={
+                'accepted':True,'method':'exact_decoded_video_frame_hash_and_identity_review',
+                'generation_image_used_for_initialization':False,
+                'frame0_sha256':a['frame0_sha256']}
+        elif args.image_path:
+            still=cv2.imread(str(args.image_path))
+            if still is None: raise ExtractionError('First-frame image unreadable')
+            still=cv2.resize(still,frames[0].shape[1::-1])
+            # Images may differ in JPEG noise but must show the same initial object geometry.
+            blurred=[cv2.GaussianBlur(x,(5,5),0).astype(float) for x in (still,frames[0])]
+            a['image_correspondence']={'mean_absolute_difference':float(np.mean(abs(blurred[0]-blurred[1]))),'object_crop_errors':[]}
+            for obj in a['objects']:
+                x1,y1,x2,y2=obj['box']
+                a['image_correspondence']['object_crop_errors'].append(float(np.mean(abs(blurred[0][y1:y2,x1:x2]-blurred[1][y1:y2,x1:x2]))))
+            a['image_correspondence']['accepted']=bool(max(a['image_correspondence']['object_crop_errors'])<15)
+            if not a['image_correspondence']['accepted']: raise ExtractionError('Supplied image and video initial object geometry differ')
     canvas=frames[0].copy()
     for j,obj in enumerate(a['objects']):
         x1,y1,x2,y2=obj['box']; color=COLORS[j%len(COLORS)]

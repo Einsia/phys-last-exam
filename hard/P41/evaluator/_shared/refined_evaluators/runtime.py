@@ -11,8 +11,10 @@ ROOT=Path(__file__).resolve().parents[1]
 def parser(task):
     from .definitions import DEFAULTS
     p=argparse.ArgumentParser(description=f'{task}: reviewed first-frame identity, SAM2 + CoTracker3, task-specific M1')
+    annotation=task_resource(task)/'first_frame_annotations.json'
+    p.set_defaults(task_id=task)
     p.add_argument('--video_path',required=True);p.add_argument('--image_path');g=p.add_mutually_exclusive_group();g.add_argument('--video_prompt');g.add_argument('--video_prompt_file')
-    p.add_argument('--model');p.add_argument('--sample_id');p.add_argument('--seed',type=int);p.add_argument('--output',required=True);p.add_argument('--debug_dir');p.add_argument('--annotation');p.add_argument('--device',default='auto');p.add_argument('--config');p.add_argument('--threads',type=int,default=4)
+    p.add_argument('--model');p.add_argument('--sample_id');p.add_argument('--seed',type=int);p.add_argument('--output',required=True);p.add_argument('--debug_dir');p.add_argument('--annotation',default=str(annotation) if annotation.is_file() else None,help='Override the bundled task-image annotation');p.add_argument('--device',default='auto');p.add_argument('--config');p.add_argument('--threads',type=int,default=4)
     p.add_argument('--dino_model',default=str(model_resource('grounding-dino-tiny')),help='Context detector path; reviewed first-frame annotation overrides unreliable whole-apparatus detections')
     p.add_argument('--sam2_checkpoint',default=str(model_resource('sam2.1-hiera-small/sam2.1_hiera_small.pt')));p.add_argument('--sam2_config',default='configs/sam2.1/sam2.1_hiera_s.yaml');p.add_argument('--cotracker_checkpoint',default=str(model_resource('cotracker3/scaled_offline.pth')));p.add_argument('--reuse_masks',action='store_true');p.add_argument('--reuse_tracks',action='store_true')
     for k,v in DEFAULTS[task].items():p.add_argument('--'+k,type=type(v),default=None)

@@ -88,14 +88,19 @@ class GenerationTests(unittest.TestCase):
         self.assertEqual(Path(prefix), environment)
 
     def test_generation_export_manifest_evaluator_and_resume(self):
-        self.assertEqual(self.run_cli('--tasks', 'P3', 'P19', '--seeds', '42'), 0)
+        self.assertEqual(self.run_cli('--tasks', 'P3', 'P19', 'P37', '--seeds', '42'), 0)
         manifest = evaluate.read(self.output / 'manifest.json')
-        self.assertEqual(len(manifest), 2)
+        self.assertEqual(len(manifest), 3)
         self.assertTrue(all(row['image'].startswith('.inputs/') and row['prompt'].startswith('.inputs/') for row in manifest))
+        annotated = next(row for row in manifest if row['task'] == 'P37')
+        self.assertTrue(annotated['annotation'].startswith('.inputs/'))
+        template = evaluate.read(self.output / annotated['annotation'])
+        self.assertEqual(template['annotation_type'], 'task_first_frame_template')
+        self.assertNotIn('source_video_sha256', template)
         jobs, duplicates = evaluate.prepare_jobs(manifest, self.output, evaluate.discover_tasks())
         self.assertFalse(duplicates)
         self.assertTrue(all(not j['input_errors'] for j in jobs))
-        self.assertEqual(len(evaluate.scan_videos(self.output, evaluate.discover_tasks())), 2)
+        self.assertEqual(len(evaluate.scan_videos(self.output, evaluate.discover_tasks())), 3)
         calibrated = self.output / 'fixture/P3_gpt_01_modern_seed42.mp4'
         info = inspect_video(calibrated)
         self.assertEqual((info['width'], info['height'], info['frames']), (1344, 768, 4))
@@ -103,7 +108,7 @@ class GenerationTests(unittest.TestCase):
         self.assertEqual(meta['media']['transform'], 'resize_xy')
         self.assertEqual(meta['media']['raw']['frames'], meta['media']['exported']['frames'])
         before = {str(p): p.stat().st_mtime_ns for p in self.output.rglob('*.mp4')}
-        self.assertEqual(self.run_cli('--tasks', 'P3', 'P19', '--seeds', '42', '--resume'), 0)
+        self.assertEqual(self.run_cli('--tasks', 'P3', 'P19', 'P37', '--seeds', '42', '--resume'), 0)
         self.assertEqual(before, {str(p): p.stat().st_mtime_ns for p in self.output.rglob('*.mp4')})
         self.assertTrue(all(r['resumed'] for r in evaluate.read(self.work / 'summary.json')['records']))
         self.assertEqual(evaluate.main(['--manifest', str(self.output / 'manifest.json'), '--output', str(self.root / 'eval'), '--dry-run']), 0)
@@ -112,6 +117,7 @@ class GenerationTests(unittest.TestCase):
         moved, _ = evaluate.prepare_jobs(manifest, portable, evaluate.discover_tasks())
         self.assertTrue(all(not j['input_errors'] for j in moved))
         self.assertTrue(all(Path(j['image']).is_relative_to(portable) for j in moved))
+        self.assertTrue(Path(next(j for j in moved if j['task'] == 'P37')['annotation']).is_relative_to(portable))
 
     def test_changed_settings_cannot_relabel_an_existing_video_or_manifest(self):
         self.assertEqual(self.run_cli('--tasks', 'P19', '--seeds', '42'), 0)

@@ -153,10 +153,14 @@ def prepare_jobs(rows, base, tasks, default_model=None, selected=None, annotatio
         if selected and row.get('task') not in selected:
             continue
         job = make_job(row, base, tasks, default_model)
-        if annotation_root and not job['annotation']:
+        if annotation_root:
             candidate = annotation_root / job['model'] / job['task'] / (job['sample_id'] + '.json')
             if candidate.is_file():
                 job['annotation'] = str(candidate.absolute())
+        if not job['annotation']:
+            template = Path(job['path']) / 'first_frame_annotations.json'
+            if template.is_file():
+                job['annotation'] = str(template)
         job['files'], job['input_errors'] = {}, []
         for name in ('video', 'image', 'prompt', 'annotation'):
             if job[name] is None:
@@ -361,7 +365,7 @@ def main(argv=None):
     parser.add_argument('--output', type=Path, required=True)
     parser.add_argument('--model', help='Generator name for a flat or single-model input directory')
     parser.add_argument('--tasks', nargs='+', choices=sorted(tasks))
-    parser.add_argument('--annotation-root', type=Path, help='Per-video annotations: MODEL/TASK/SAMPLE_ID.json')
+    parser.add_argument('--annotation-root', type=Path, help='Optional per-video overrides of bundled annotations: MODEL/TASK/SAMPLE_ID.json')
     parser.add_argument('--require-all-tasks', action='store_true', help='Require every selected task for every input model')
     parser.add_argument('--workers', type=int, default=1, help='Concurrent evaluator processes; default 1 to bound GPU use')
     parser.add_argument('--timeout', type=float, default=1800, help='Maximum seconds per evaluator process and its children')
