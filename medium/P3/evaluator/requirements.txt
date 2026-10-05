@@ -1,0 +1,7 @@
+av
+numpy
+opencv-python-headless
+PyYAML
+scipy
+torch
+transformers

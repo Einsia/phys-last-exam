@@ -1,0 +1,11 @@
+{
+  "P44": {
+    "difficulty": "Easy",
+    "phenomenon": "链条悬垂静态形状",
+    "domain": "柔性结构",
+    "original_group": "g5",
+    "package_path": "../..",
+    "difficulty_score": 0.7085666934825214,
+    "difficulty_rank": 5
+  }
+}

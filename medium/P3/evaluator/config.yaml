@@ -1,0 +1,100 @@
+schema_version: '1.0'
+evaluator_version: p3-dual-projectile-1.0.0
+task_id: P3
+runtime:
+  tracking_python: null
+  sam2_snapshot: sam2.1-hiera-small-transformers
+  cotracker_source: cotracker3/source
+  cotracker_checkpoint: cotracker3/scaled_offline.pth
+  default_device: '3'
+  dtype: bfloat16
+gates:
+  min_frames: 12
+  min_duration_s: 0.4
+  min_fused_coverage_flight: 0.9
+  min_fused_coverage_overall: 0.8
+  min_primary_coverage_overall: 0.85
+  min_backend_overlap_frames: 20
+  max_internal_gap_frames: 3
+  max_backend_disagreement_radii: 0.5
+  max_camera_translation_diag: 0.02
+  max_camera_scale_error: 0.01
+  max_camera_rotation_deg: 0.5
+  min_horizontal_span_diameters: 5.0
+  border_margin_radii: 1.5
+  release_displacement_radii: 0.4
+  release_confirmation_frames: 3
+  max_landing_level_error_diameters: 0.75
+score_weights:
+  task: 0.15
+  parabola: 0.2
+  horizontal: 0.15
+  vertical: 0.2
+  pair_consistency: 0.3
+thresholds:
+  sync_frames:
+    good: 1.0
+    bad: 4.0
+  angle_error_deg:
+    good: 3.0
+    bad: 12.0
+  landing_level_d:
+    good: 0.1
+    bad: 0.5
+  camera_translation_diag:
+    good: 0.002
+    bad: 0.02
+  integrity_error:
+    good: 0.1
+    bad: 0.45
+  parabola_rmse_d:
+    good: 0.08
+    bad: 0.3
+  parabola_p95_d:
+    good: 0.15
+    bad: 0.6
+  x_fit_rmse_d:
+    good: 0.08
+    bad: 0.3
+  vx_robust_cv:
+    good: 0.05
+    bad: 0.2
+  y_fit_rmse_d:
+    good: 0.08
+    bad: 0.3
+  vy_line_residual:
+    good: 0.05
+    bad: 0.2
+  ay_robust_cv:
+    good: 0.1
+    bad: 0.35
+  range_ratio_error:
+    good: 0.03
+    bad: 0.15
+  initial_speed_error:
+    good: 0.05
+    bad: 0.2
+  gravity_error:
+    good: 0.08
+    bad: 0.3
+pass_rules:
+  overall_min: 70.0
+  task_min: 70.0
+  core_dimension_min: 60.0
+  range_error_max: 0.08
+  initial_speed_error_max: 0.1
+samples:
+  P3_gpt_01_modern:
+    method: gpt
+    first_frame: ../first_frame.png
+    balls:
+      upper:
+        cx: 230.0
+        cy: 346.0
+        radius: 22.0
+        angle_deg: 60.0
+      lower:
+        cx: 230.0
+        cy: 424.0
+        radius: 23.0
+        angle_deg: 30.0

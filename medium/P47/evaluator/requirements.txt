@@ -1,0 +1,5 @@
+numpy>=2.0
+scipy>=1.10
+opencv-python-headless>=4.8
+av>=12
+matplotlib>=3.7

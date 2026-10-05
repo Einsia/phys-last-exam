@@ -1,0 +1,33 @@
+{
+  "task_id": "P36",
+  "model": "minimax-h3",
+  "seed": 43,
+  "source_video": "/mnt/einsia/aws01-nvme/einsia-shared/homes/linxinjie/vdmbench/data/videos/all_test/minimax-h3/gpt/g5_P36_seed43.mp4",
+  "source_video_sha256": "6c363f17283175338b799a36b100d8a6b5675ae17fc9b81f7d3f67703855c7f9",
+  "source_frame": 0,
+  "coordinate_frame": "decoded_video_frame_0",
+  "frame_size": [
+    1152,
+    768
+  ],
+  "source_frame_rgb_sha256": "ad9579049200e0ab75450b6d6b21aa226f1d6b264d4c0f08b95573d80388e6c9",
+  "rois": {
+    "magnet": [
+      0.2152777777777778,
+      0.16145833333333334,
+      0.0625,
+      0.078125
+    ],
+    "control": [
+      0.2873263888888889,
+      0.140625,
+      0.06944444444444445,
+      0.07552083333333333
+    ]
+  },
+  "identity_evidence": {
+    "magnet": "Gray metallic cylinder below release gate in decoded frame zero.",
+    "control": "Off-white cylinder below release gate in decoded frame zero."
+  },
+  "annotation_policy": "Reviewed initial appearance and location only. No future tracks, arrival events, velocities or scores supplied."
+}

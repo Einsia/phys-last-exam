@@ -1,0 +1,11 @@
+{
+  "P27": {
+    "difficulty": "Hard",
+    "phenomenon": "碎冰与整冰融化对比",
+    "domain": "热学",
+    "original_group": "g7",
+    "package_path": "../..",
+    "difficulty_score": 0.19218749999999998,
+    "difficulty_rank": 32
+  }
+}

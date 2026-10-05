@@ -1,0 +1,11 @@
+{
+  "P3": {
+    "difficulty": "Medium",
+    "phenomenon": "互余角抛射",
+    "domain": "力学",
+    "original_group": "g3",
+    "package_path": "../..",
+    "difficulty_score": 0.22212525413810127,
+    "difficulty_rank": 29
+  }
+}

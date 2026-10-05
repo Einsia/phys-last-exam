@@ -1,0 +1,11 @@
+{
+  "P2": {
+    "difficulty": "Hard",
+    "phenomenon": "斜抛运动",
+    "domain": "力学",
+    "original_group": "g1",
+    "package_path": "../..",
+    "difficulty_score": 0.1833224718986792,
+    "difficulty_rank": 33
+  }
+}

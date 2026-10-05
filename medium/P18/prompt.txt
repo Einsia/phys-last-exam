@@ -1,0 +1,11 @@
+A single continuous real-time shot from a locked-off static side camera, matching the input first frame.
+
+Preserve the existing transparent container, clear still liquid, flat horizontal free surface, steel ball, stationary release apparatus, camera view, framing, and background.
+
+Exactly one small dense steel ball is initially motionless at its existing position beside the container, held by the existing stationary electromagnetic holder. The ball is one bare, smooth, rigid sphere with no string, hook, ring, cable, rod, clip, cap, or other object attached to it.
+
+At the beginning of the shot, the existing holder releases the ball cleanly and remains completely fixed. The ball separates fully from the holder and falls vertically downward under gravity as one bare sphere. No part of the holder detaches, falls, or follows the ball. The ball does not remain tethered, swing like a pendulum, or drift noticeably sideways.
+
+Keep the complete measured fall inside the frame and end before the ball reaches or touches the ground. The full ball and the flat liquid surface remain clearly visible simultaneously throughout the measured interval. The liquid surface remains still and horizontal.
+
+The container, liquid, release apparatus, background, and camera remain stationary. No camera movement, panning, zooming, cuts, slow motion, pauses, or time jumps. No hands or people. No additional balls, duplicated objects, motion trails, annotations, or newly appearing objects.

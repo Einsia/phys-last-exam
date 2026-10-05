@@ -1,0 +1,11 @@
+{
+  "P16": {
+    "difficulty": "Easy",
+    "phenomenon": "刚体共线点交比",
+    "domain": "刚体 / 几何",
+    "original_group": "g4",
+    "package_path": "../..",
+    "difficulty_score": 0.7108313980849613,
+    "difficulty_rank": 4
+  }
+}

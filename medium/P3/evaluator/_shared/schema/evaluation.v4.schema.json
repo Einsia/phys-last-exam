@@ -1,0 +1,604 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "task",
+    "sample",
+    "status",
+    "consistency",
+    "physics",
+    "metrics",
+    "score",
+    "failures",
+    "provenance"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "vdmbench.evaluation.v4"
+    },
+    "task": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "group",
+        "difficulty",
+        "phenomenon",
+        "domain"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^P[0-9]+[a-z]?$"
+        },
+        "group": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "difficulty": {
+          "enum": [
+            "Easy",
+            "Medium",
+            "Hard"
+          ]
+        },
+        "phenomenon": {
+          "type": "string"
+        },
+        "domain": {
+          "type": "string"
+        }
+      }
+    },
+    "sample": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "model",
+        "seed",
+        "video_path",
+        "image_path",
+        "video_prompt",
+        "video_sha256",
+        "image_sha256"
+      ],
+      "properties": {
+        "id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "model": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "seed": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "video_path": {
+          "type": "string"
+        },
+        "image_path": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "video_prompt": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "video_sha256": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "image_sha256": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "status": {
+      "enum": [
+        "complete",
+        "partial",
+        "unavailable",
+        "consistency_rejected",
+        "consistency_error",
+        "execution_error",
+        "scored_with_zero"
+      ]
+    },
+    "consistency": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "score",
+        "threshold",
+        "passed",
+        "reason",
+        "details"
+      ],
+      "properties": {
+        "status": {
+          "type": "string"
+        },
+        "score": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0,
+          "maximum": 1
+        },
+        "threshold": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0,
+          "maximum": 1
+        },
+        "passed": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "reason": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "details": {
+          "type": "object"
+        }
+      }
+    },
+    "physics": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "attempted",
+        "status",
+        "score",
+        "judgment",
+        "defined_metrics",
+        "measured_metrics",
+        "coverage",
+        "missing_metric_policy",
+        "reason"
+      ],
+      "properties": {
+        "attempted": {
+          "type": "boolean"
+        },
+        "status": {
+          "enum": [
+            "not_run",
+            "complete",
+            "partial",
+            "unavailable",
+            "scored_with_zero"
+          ]
+        },
+        "score": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0,
+          "maximum": 1
+        },
+        "judgment": {
+          "enum": [
+            "physics_pass",
+            "physics_fail",
+            "task_failed",
+            "evidence_insufficient"
+          ]
+        },
+        "defined_metrics": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 2
+        },
+        "measured_metrics": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 2
+        },
+        "coverage": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0,
+          "maximum": 1
+        },
+        "missing_metric_policy": {
+          "type": "string"
+        },
+        "reason": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "scored_metrics": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 2
+        },
+        "zero_policy_metrics": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "enum": [
+              "M1",
+              "M2"
+            ]
+          }
+        },
+        "observation_status": {
+          "enum": [
+            "identified_measurement_unstable"
+          ]
+        }
+      }
+    },
+    "metrics": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "M1",
+        "M2"
+      ],
+      "properties": {
+        "M1": {
+          "$ref": "#/$defs/metric"
+        },
+        "M2": {
+          "$ref": "#/$defs/metric"
+        }
+      }
+    },
+    "score": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "total",
+        "consistency_weight",
+        "physics_weight",
+        "consistency_contribution",
+        "physics_contribution",
+        "formula"
+      ],
+      "properties": {
+        "total": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0,
+          "maximum": 1
+        },
+        "consistency_weight": {
+          "const": 0.15
+        },
+        "physics_weight": {
+          "const": 0.85
+        },
+        "consistency_contribution": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0,
+          "maximum": 1
+        },
+        "physics_contribution": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0,
+          "maximum": 1
+        },
+        "formula": {
+          "type": "string"
+        }
+      }
+    },
+    "failures": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "stage",
+          "metric_id",
+          "code",
+          "message"
+        ],
+        "properties": {
+          "stage": {
+            "enum": [
+              "input",
+              "consistency",
+              "physics",
+              "schema"
+            ]
+          },
+          "metric_id": {
+            "enum": [
+              "M1",
+              "M2",
+              null
+            ]
+          },
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "provenance": {
+      "type": "object"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:vdmbench:evaluation:v4",
+  "title": "VDMBench V4 evaluation result",
+  "$defs": {
+    "metric": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "defined",
+        "status",
+        "measurement_attempted",
+        "judgment",
+        "raw_value",
+        "unit",
+        "physics_score",
+        "pass_threshold",
+        "reason",
+        "principle",
+        "measurement_steps",
+        "measurements",
+        "normalization",
+        "uncertainty",
+        "evidence"
+      ],
+      "properties": {
+        "id": {
+          "enum": [
+            "M1",
+            "M2"
+          ]
+        },
+        "defined": {
+          "type": "boolean"
+        },
+        "status": {
+          "enum": [
+            "measured",
+            "unmeasurable",
+            "not_run",
+            "not_applicable",
+            "error",
+            "not_observed"
+          ]
+        },
+        "measurement_attempted": {
+          "type": "boolean"
+        },
+        "judgment": {
+          "enum": [
+            "physics_pass",
+            "physics_fail",
+            "task_failed",
+            "evidence_insufficient",
+            "not_applicable"
+          ]
+        },
+        "raw_value": {},
+        "unit": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "physics_score": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0,
+          "maximum": 1
+        },
+        "pass_threshold": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0,
+          "maximum": 1
+        },
+        "reason": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "principle": {
+          "type": "string"
+        },
+        "measurement_steps": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "measurements": {},
+        "normalization": {
+          "type": "object"
+        },
+        "uncertainty": {
+          "type": [
+            "object",
+            "null"
+          ]
+        },
+        "evidence": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        },
+        "evaluation_source": {
+          "const": "unobserved_zero_policy"
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "measured"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "defined": {
+                "const": true
+              },
+              "measurement_attempted": {
+                "const": true
+              },
+              "physics_score": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              },
+              "raw_value": {
+                "not": {
+                  "type": "null"
+                }
+              }
+            }
+          },
+          "else": {
+            "if": {
+              "properties": {
+                "status": {
+                  "const": "not_observed"
+                }
+              }
+            },
+            "then": {
+              "required": [
+                "evaluation_source"
+              ],
+              "properties": {
+                "defined": {
+                  "const": true
+                },
+                "measurement_attempted": {
+                  "const": true
+                },
+                "physics_score": {
+                  "const": 0.0
+                },
+                "raw_value": {
+                  "type": "null"
+                },
+                "evidence": {
+                  "minItems": 1
+                }
+              }
+            },
+            "else": {
+              "properties": {
+                "physics_score": {
+                  "type": "null"
+                },
+                "raw_value": {
+                  "type": "null"
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "defined": {
+                "const": false
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "status": {
+                "const": "not_applicable"
+              },
+              "measurement_attempted": {
+                "const": false
+              }
+            }
+          }
+        }
+      ]
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "status": {
+            "enum": [
+              "execution_error",
+              "consistency_error"
+            ]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "score": {
+            "properties": {
+              "total": {
+                "type": "null"
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

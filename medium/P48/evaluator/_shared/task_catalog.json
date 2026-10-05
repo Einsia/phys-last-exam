@@ -1,0 +1,11 @@
+{
+  "P48": {
+    "difficulty": "Medium",
+    "phenomenon": "液滴合并体积守恒",
+    "domain": "表面张力",
+    "original_group": "g6",
+    "package_path": "../..",
+    "difficulty_score": 0.342852415753277,
+    "difficulty_rank": 21
+  }
+}

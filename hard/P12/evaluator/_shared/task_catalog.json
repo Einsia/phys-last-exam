@@ -1,0 +1,11 @@
+{
+  "P12": {
+    "difficulty": "Hard",
+    "phenomenon": "折射与全反射临界角",
+    "domain": "光学",
+    "original_group": "g7",
+    "package_path": "../..",
+    "difficulty_score": 0.1927736865878002,
+    "difficulty_rank": 31
+  }
+}

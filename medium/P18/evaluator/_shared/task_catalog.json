@@ -1,0 +1,11 @@
+{
+  "P18": {
+    "difficulty": "Medium",
+    "phenomenon": "静止液面与重力方向垂直",
+    "domain": "流体静力学 / 力学",
+    "original_group": "g4",
+    "package_path": "../..",
+    "difficulty_score": 0.3236246511521217,
+    "difficulty_rank": 23
+  }
+}

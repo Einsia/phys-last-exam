@@ -1,0 +1,11 @@
+{
+  "P41": {
+    "difficulty": "Hard",
+    "phenomenon": "沙子与水漏斗排出",
+    "domain": "颗粒 / 流体",
+    "original_group": "g8",
+    "package_path": "../..",
+    "difficulty_score": 0.1568246823722572,
+    "difficulty_rank": 35
+  }
+}

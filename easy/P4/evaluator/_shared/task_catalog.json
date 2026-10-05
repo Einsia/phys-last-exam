@@ -1,0 +1,11 @@
+{
+  "P4": {
+    "difficulty": "Easy",
+    "phenomenon": "弹跳高度衰减",
+    "domain": "力学",
+    "original_group": "g3",
+    "package_path": "../..",
+    "difficulty_score": 0.574568658841457,
+    "difficulty_rank": 9
+  }
+}

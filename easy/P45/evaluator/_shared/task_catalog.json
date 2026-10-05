@@ -1,0 +1,11 @@
+{
+  "P45": {
+    "difficulty": "Easy",
+    "phenomenon": "毛细上升与管径",
+    "domain": "毛细",
+    "original_group": "g6",
+    "package_path": "../..",
+    "difficulty_score": 0.511796875,
+    "difficulty_rank": 12
+  }
+}

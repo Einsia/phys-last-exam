@@ -1,0 +1,11 @@
+{
+  "P6": {
+    "difficulty": "Medium",
+    "phenomenon": "实心球纯滚动",
+    "domain": "力学",
+    "original_group": "g3",
+    "package_path": "../..",
+    "difficulty_score": 0.3596995336699429,
+    "difficulty_rank": 18
+  }
+}

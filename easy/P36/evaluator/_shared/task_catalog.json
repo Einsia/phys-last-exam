@@ -1,0 +1,11 @@
+{
+  "P36": {
+    "difficulty": "Easy",
+    "phenomenon": "磁性物块涡流制动",
+    "domain": "电磁感应",
+    "original_group": "g5",
+    "package_path": "../..",
+    "difficulty_score": 0.56875,
+    "difficulty_rank": 10
+  }
+}

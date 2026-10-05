@@ -1,0 +1,11 @@
+{
+  "P49": {
+    "difficulty": "Easy",
+    "phenomenon": "黏性流体中小球终端速度",
+    "domain": "低 Reynolds 流体",
+    "original_group": "g9",
+    "package_path": "../..",
+    "difficulty_score": 0.6425510377690191,
+    "difficulty_rank": 6
+  }
+}

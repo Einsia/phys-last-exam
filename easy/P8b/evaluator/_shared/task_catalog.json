@@ -1,0 +1,11 @@
+{
+  "P8b": {
+    "difficulty": "Easy",
+    "phenomenon": "单摆周期与质量无关",
+    "domain": "力学",
+    "original_group": "g6",
+    "package_path": "../..",
+    "difficulty_score": 0.5308683034437426,
+    "difficulty_rank": 11
+  }
+}

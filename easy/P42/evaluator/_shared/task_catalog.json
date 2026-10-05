@@ -1,0 +1,11 @@
+{
+  "P42": {
+    "difficulty": "Easy",
+    "phenomenon": "摩擦起滑与质量无关",
+    "domain": "摩擦",
+    "original_group": "g2",
+    "package_path": "../..",
+    "difficulty_score": 0.6084582473362969,
+    "difficulty_rank": 7
+  }
+}
