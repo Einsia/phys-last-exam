@@ -1,1 +1,0 @@
-P11 包含 3 种视频 prompt；精确逐视频文本见 video_prompts/ 和结果 JSON 的 video_prompt。不得将本索引作为生成提示词。

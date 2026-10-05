@@ -1,8 +1,0 @@
-# Core runtime
-numpy>=1.24
-opencv-python>=4.8
-
-# Optional model backends for a production detector/tracker
-torch>=2.1
-scipy>=1.10
-matplotlib>=3.7

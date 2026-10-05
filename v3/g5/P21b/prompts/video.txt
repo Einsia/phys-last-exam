@@ -1,9 +1,0 @@
-Locked-off static camera, front view, matching the input first frame.
-
-A dense stone is completely frozen inside a piece of freshwater ice that initially floats freely in fresh water inside a transparent straight-walled container.
-
-The ice remains at the water surface while it gradually melts completely and releases the stone. No solid ice remains by the end of the shot. The ice does not sink as an intact solid block; only the released stone sinks to the bottom of the container.
-
-No water or other material is added or removed. The waterline and the stone remain clearly visible throughout the shot.
-
-The camera does not move, pan, or zoom. Plain background, no unrelated objects.

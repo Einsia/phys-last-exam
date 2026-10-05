@@ -1,29 +1,24 @@
-# Local environments and downloaded model weights
+# Local environments, downloaded weights and caches
 .venv/
-v3/.models/
-v3/g8/P34/models/
+models/
+.models/
 .cache/
 **/__pycache__/
 *.py[cod]
 
-# Evaluation outputs (videos and reports stay outside the source tree)
+# Evaluation inputs and generated outputs
 runs/
-v3_evaluator/
-v3_*/
 **/eval_results/
 **/output_videos/
 **/results/
 **/work/
 **/*.mp4
 **/*.pt
+**/*.pth
 **/*.safetensors
 **/*.npz
 *.log
 
-# Editors and local metadata
 .vscode/
 .DS_Store
 .pytest_cache/
-
-# Local document-authoring workspaces
-/draft_*_folder/

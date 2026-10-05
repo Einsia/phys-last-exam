@@ -1,1 +1,0 @@
-Locked-off static camera, side view. A red ball on the ground launches immediately at 45 degrees above the horizontal, rises smoothly to the top of its arc, and falls back to the same ground level in one continuous trajectory. The whole arc stays inside the frame. The camera does not move, pan, or zoom. Plain flat background, no other objects, nothing enters the frame.
