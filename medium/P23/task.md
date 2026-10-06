@@ -1,37 +1,50 @@
-# P23：水冻结体积膨胀
+# P23 · 静止液面与重力方向垂直
 
-难度：中等；本轮任务排名：16/40；平均最终综合分：0.438451。
+分类：5. 流体静力学与浮力（Hydrostatics and Buoyancy）；原编号：`P18`。
 
-## 场景与目标
+难度：中等；本轮任务排名：23/40；平均最终综合分：0.323625。
 
-透明直壁容器中的液态水完全冻结成冰，不添加、移走或洒出物质。观察初始水位和最终冰面，在容器截面不变时检验水结冰后的体积膨胀。
+任务 ID：`P23`。
 
-## 输入与评测
+透明容器内静止液面的旁边，一个无绳裸钢球从固定电磁支架释放并竖直下落。完整可测下落段与平液面同时可见，球触地前结束。重力加速度方向应垂直于液面，球轨迹应符合恒加速度运动。
 
-首帧：[first_frame.png](first_frame.png)。生成提示词：[prompt.txt](prompt.txt)。视频为外部评测输入，应与所用首帧和提示词对应。
+## 输入
 
-在本题目录、已安装项目运行依赖的 Python 环境中执行：
+唯一参考首帧为题包根目录的 [first_frame.png](first_frame.png)。待评测视频由外部提供，不属于题包内容。
 
-```sh
-python evaluator/evaluate.py \
-  --video /absolute/path/video.mp4 \
-  --image first_frame.png --prompt prompt.txt \
-  --output /absolute/path/result.json
-```
+## 当前物理指标
 
-## 当前指标
+- M1：球加速度方向与液面切向夹角−90°，单位为度。
+- M2：组合液面直线拟合 RMS 与球轨迹恒加速度拟合 RMS；两项原始单位均为像素，分别归一化后的物理分数取几何均值。
 
-下表 P 为各指标的纯物理分，范围为0–1。原始量与物理分分别保留；观测不足时原始量为 null，适用的未观察到现象规则可计物理分0。完整输出另含一致性判断。
-
-| 指标 | 定义与公式 | 单位 |
-| --- | --- | --- |
-| M1：冻结高度比误差 | e=H冰/H水−1000/917；P=1/(1+abs(e))。 | e 无量纲；H 为像素。 |
-| M2：截面宽度一致性 | e=abs(W末−W初)/max(W初,1像素)；P=1/(1+abs(e))。 | e 无量纲；W 为像素。 |
-
-当前公式依据：`v4/g5/P23/evaluator/measure_backend.py:168`；`v4/g5/P23/evaluator/measure_backend.py:199`。
+以上为原始测量量；归一化后的物理分数取值为 0–1。
 
 ## 生成提示词原文
 
 ```text
-Locked-off static camera, front view. Pure liquid water fills part of a transparent straight-walled container and then freezes completely into solid ice. No water is added, removed, spilled, or visibly evaporated during the process. The initial liquid-water level and final top surface of the ice are both clearly visible. The camera does not move, pan, or zoom. Plain background.
+A single continuous real-time shot from a locked-off static side camera, matching the input first frame.
+
+Preserve the existing transparent container, clear still liquid, flat horizontal free surface, steel ball, stationary release apparatus, camera view, framing, and background.
+
+Exactly one small dense steel ball is initially motionless at its existing position beside the container, held by the existing stationary electromagnetic holder. The ball is one bare, smooth, rigid sphere with no string, hook, ring, cable, rod, clip, cap, or other object attached to it.
+
+At the beginning of the shot, the existing holder releases the ball cleanly and remains completely fixed. The ball separates fully from the holder and falls vertically downward under gravity as one bare sphere. No part of the holder detaches, falls, or follows the ball. The ball does not remain tethered, swing like a pendulum, or drift noticeably sideways.
+
+Keep the complete measured fall inside the frame and end before the ball reaches or touches the ground. The full ball and the flat liquid surface remain clearly visible simultaneously throughout the measured interval. The liquid surface remains still and horizontal.
+
+The container, liquid, release apparatus, background, and camera remain stationary. No camera movement, panning, zooming, cuts, slow motion, pauses, or time jumps. No hands or people. No additional balls, duplicated objects, motion trails, annotations, or newly appearing objects.
 ```
+
+## 评测入口
+
+在本题目录中执行，输入和输出视频路径均可放在题包外：
+
+```sh
+python evaluator/evaluate.py \
+  --video /absolute/path/to/video.mp4 \
+  --image first_frame.png \
+  --prompt prompt.txt \
+  --output /absolute/path/to/result.json
+```
+
+指标定义依据：`v4/g4/P18/evaluator/utils/physeval/tasks/p18.py:33`；`v4/unified_evaluators/contract.py:100`；`v4/g4/P18/evaluator/utils/physeval/tasks/p18.py:40`。

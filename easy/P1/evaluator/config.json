@@ -1,0 +1,76 @@
+{
+  "evaluator_version": "p1-bounce-1.0.2",
+  "task_id": "P1",
+  "physbench_project": "_shared/shared",
+  "tracker_backends": [
+    "cotracker",
+    "color",
+    "bgsub"
+  ],
+  "tracker_gpu": "4",
+  "max_tracking_width": 672,
+  "minimum_complete_arcs": 2,
+  "minimum_track_coverage": 0.72,
+  "minimum_confident_coverage": 0.58,
+  "maximum_backend_disagreement_radii": 2.0,
+  "maximum_camera_drift_fraction": 0.02,
+  "maximum_track_gap_frames": 4,
+  "minimum_arc_duration_frames": 4,
+  "minimum_arc_height_radii": 0.4,
+  "score_thresholds": {
+    "m1_height_time_consistency": [
+      0.06,
+      0.3
+    ],
+    "restitution_cv": [
+      0.08,
+      0.35
+    ],
+    "monotonic_height_excess": [
+      0.0,
+      0.15
+    ],
+    "monotonic_time_excess": [
+      0.0,
+      0.2
+    ],
+    "arc_shape_rmse": [
+      0.08,
+      0.3
+    ],
+    "apex_time_asymmetry": [
+      0.08,
+      0.3
+    ],
+    "impact_x_spread_radii": [
+      0.2,
+      1.5
+    ],
+    "arc_x_drift_radii": [
+      0.2,
+      2.0
+    ],
+    "camera_drift_fraction": [
+      0.002,
+      0.02
+    ],
+    "backend_disagreement_radii": [
+      0.35,
+      2.0
+    ]
+  },
+  "dimension_weights": {
+    "structure": 0.2,
+    "monotonic_energy_loss": 0.2,
+    "ballistic_arc_quality": 0.15,
+    "restitution_consistency": 0.35,
+    "spatial_stability": 0.1
+  },
+  "pass_rules": {
+    "overall_min": 70.0,
+    "dimension_min": 55.0,
+    "m1_max": 0.18,
+    "maximum_successive_height_ratio": 0.995,
+    "require_four_arcs": true
+  }
+}

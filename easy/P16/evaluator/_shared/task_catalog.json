@@ -6,6 +6,11 @@
     "original_group": "g4",
     "package_path": "../..",
     "difficulty_score": 0.7108313980849613,
-    "difficulty_rank": 4
+    "difficulty_rank": 4,
+    "legacy_id": "P16",
+    "category_index": 4,
+    "category": "Optics and Projective Geometry",
+    "category_zh": "光学与投影几何",
+    "title": "Collinear-point cross-ratio"
   }
 }

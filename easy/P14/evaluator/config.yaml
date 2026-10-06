@@ -1,0 +1,65 @@
+evaluator_version: p14-two-pendulum-1.0.0
+task_id: P14
+frozen: true
+frozen_at_utc: 2026-08-26 00:00:00+00:00
+runtime:
+  python_track: null
+  cotracker_source: cotracker3/source
+  cotracker_checkpoint: cotracker3/scaled_offline.pth
+  sam2_path: sam2.1-hiera-small-transformers
+  sam2_dtype: bfloat16
+  default_device: cuda:7
+tracking:
+  minimum_coverage: 0.82
+  maximum_gap_frames: 5
+  minimum_group_points: 4
+structure:
+  camera_translation_diagonal_fraction_max: 0.018
+  camera_scale_change_max: 0.012
+  camera_rotation_deg_max: 0.8
+  pivot_drift_short_length_fraction_max: 0.045
+  pivot_separation_change_fraction_max: 0.035
+  string_length_p95_relative_change_max: 0.15
+measurement:
+  minimum_motion_amplitude_deg: 4.0
+  minimum_fit_r2: 0.55
+  minimum_turning_points: 3
+  minimum_observed_cycles: 0.85
+physics:
+  m1_good: 0.08
+  m1_bad: 0.55
+  period_cv_good: 0.06
+  period_cv_bad: 0.3
+  sinusoid_r2_good: 0.92
+  sinusoid_r2_bad: 0.55
+  initial_length_ratio_target: 0.5
+  initial_length_ratio_tolerance: 0.12
+  simultaneous_release_good_s: 0.08
+  simultaneous_release_bad_s: 0.5
+  physics_pass_m1_max: 0.2
+  physics_pass_period_cv_max: 0.2
+  physics_pass_fit_r2_min: 0.7
+scores:
+  setup: 15
+  structural: 20
+  periodicity: 25
+  pendulum_law: 40
+samples:
+  P14_gpt_01_modern:
+    first_frame: ../first_frame.png
+    short:
+      pivot:
+      - 429
+      - 108
+      bob:
+      - 472
+      - 296
+      radius: 23
+    long:
+      pivot:
+      - 775
+      - 108
+      bob:
+      - 854
+      - 487
+      radius: 23

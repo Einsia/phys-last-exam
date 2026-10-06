@@ -4,6 +4,10 @@
 
 Visually convincing videos can still violate basic physical laws, making reliable physical evaluation essential for assessing video generation models. Existing evaluations often rely on learned judgments or reference videos, while direct physical tests largely focus on mechanics. We introduce PhysScope, a measurement-based benchmark comprising 40 controlled tasks spanning mechanics, optics, fluids, thermal and phase-change phenomena, electromagnetism, and surface-tension effects. Each task pairs an initial image and a generation prompt with observable quantities and predefined physical criteria. Our evaluation first screens for temporal consistency, excluding videos whose unstable object identities or structures make physical measurements unreliable. Videos that pass are then assessed through task-specific measurements, such as oscillation periods, reflection angles, and liquid levels. We distinguish failures of physical tests from cases with insufficient measurement evidence. Our protocol evaluates eight video generation models on 40 tasks with four seeds per task: 160 planned videos per model and 1,280 in total. Among the evaluated videos, 98.36% pass the temporal-consistency check, but only 159 of the 716 videos with sufficient measurement evidence (22.21%) pass all required physical checks. These findings reveal a substantial gap between temporal coherence and physical consistency, highlighting the need to report measurement coverage alongside physical performance. PhysScope provides an interpretable framework for evaluating diverse physical phenomena while making the limitations of measurement explicit.
 
+## Task numbering
+
+Tasks use **P1–P40**, following the nine physical categories. Within each category, tasks are grouped **Easy → Medium → Hard**, retaining the original results-table order within each difficulty, then numbered continuously. Original **P23 is Easy** (current **P24**) and original **P11 is Medium** (current **P17**). First frames, physical prompt descriptions, scoring rules, and frozen evaluation scores/ranks are unchanged. Commands, explicit prompt task tags, and generated filenames use the current IDs; existing experiment artifacts retain their legacy IDs.
+
 ## Setup
 
 Use a Linux machine with an NVIDIA GPU. We recommend an 80 GB GPU for the default [Qwen3.6-27B](https://huggingface.co/Qwen/Qwen3.6-27B) model and at least 100 GB of free disk space. Install [Conda](https://docs.conda.io/projects/conda/en/stable/user-guide/install/index.html) and Git first; the installer uses CUDA 12.8 PyTorch wheels, so a compatible NVIDIA driver is required.
@@ -36,11 +40,11 @@ Generate all 40 tasks with all 8 models and seeds 42–45:
 python generate.py --models all --output videos --resume
 ```
 
-To start with one model and task, add `--models cogvideox1.5-5b-i2v --tasks P19 --seeds 42` in place of `--models all`. Add `--dry-run` to preview the jobs without loading weights or calling an API.
+To start with one model and task, add `--models cogvideox1.5-5b-i2v --tasks P21 --seeds 42` in place of `--models all`. Add `--dry-run` to preview the jobs without loading weights or calling an API.
 
-Videos are written to `videos/MODEL/VIDEO_STEM.mp4`, with matching parameter records and an evaluation-ready `videos/manifest.json`. Special task filenames are handled automatically; P3/P9 receive the required 1344 × 768 evaluation copy while the native video and resize metadata are retained. Frozen images, prompts, and task annotations are stored in `videos/.inputs/`, so the manifest travels with the videos.
+Videos are written to `videos/MODEL/VIDEO_STEM.mp4`, with matching parameter records and an evaluation-ready `videos/manifest.json`. Special task filenames are handled automatically; P3/P14 receive the required 1344 × 768 evaluation copy while the native video and resize metadata are retained. Frozen images, prompts, and task annotations are stored in `videos/.inputs/`, so the manifest travels with the videos.
 
-The fixed first-frame annotations for P37/P38/P39/P41/P43/P49 are included in their task packages and loaded automatically. You do not need to create an `annotations/` directory for standard benchmark inputs.
+The fixed first-frame annotations for P33/P34/P30/P36/P10/P38 are included in their task packages and loaded automatically. You do not need to create an `annotations/` directory for standard benchmark inputs.
 
 <details>
 <summary>Calibrated filenames and custom first frames</summary>
@@ -49,20 +53,20 @@ The generator assigns these calibrated filenames. If you bring existing videos, 
 
 ```text
 P3_gpt_01_modern_seedN.mp4
-P6_gpt_01_modern_seedN.mp4
-P9_gpt_01_modern_seedN.mp4
-P11_gpt_01_30deg_seedN.mp4
+P8_gpt_01_modern_seedN.mp4
+P14_gpt_01_modern_seedN.mp4
+P17_gpt_01_30deg_seedN.mp4
 ```
 
-P3/P9 require a 1344 × 768 video canvas. Follow each task's `task.md` for its scene geometry; renaming an incompatible video does not make it calibrated.
+P3/P14 require a 1344 × 768 video canvas. Follow each task's `task.md` for its scene geometry; renaming an incompatible video does not make it calibrated.
 
-P37/P38/P39/P41/P43/P49 use the bundled `first_frame_annotations.json`. The evaluator verifies the input-image hash, scales coordinates to the video resolution, and checks the actual first frame before tracking. A layout that fails this correspondence check is reported as an initialization failure.
+P33/P34/P30/P36/P10/P38 use the bundled `first_frame_annotations.json`. The evaluator verifies the input-image hash, scales coordinates to the video resolution, and checks the actual first frame before tracking. A layout that fails this correspondence check is reported as an initialization failure.
 
 For a different input image or layout, provide reviewed video annotations with `--annotation-root annotations`. These optional overrides use:
 
 ```text
 annotations/MODEL/TASK/VIDEO_STEM.json
-# Example: annotations/my-model/P37/g8_P37_seed42.json
+# Example: annotations/my-model/P33/g8_P33_seed42.json
 ```
 
 Custom video annotations must match their video's image/video hashes. Standard task templates are bound to the fixed input image and reused automatically across models and seeds.
@@ -80,10 +84,10 @@ python evaluate.py --manifest videos/manifest.json \
 
 This evaluates all models and all 40 tasks, one video at a time, using the first visible GPU. It checks that every model has all 40 tasks and resumes completed videos when rerun. Qwen runs locally; no separate model server is needed. For a different GPU, prefix the command with `CUDA_VISIBLE_DEVICES=1`.
 
-To try just P19 first:
+To try just P21 first:
 
 ```bash
-python evaluate.py --manifest videos/manifest.json --tasks P19 --output runs/quick_test --resume
+python evaluate.py --manifest videos/manifest.json --tasks P21 --output runs/quick_test --resume
 ```
 
 Results are saved under `runs/all_tasks/`: `by_model.csv` and `by_task.csv` contain summaries; `results.csv` and `results.json` contain per-video results. Per-video folders include the detailed result and debug evidence. Add `--dry-run` to check the input inventory without loading models. See `python evaluate.py --help` for other options.

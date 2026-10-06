@@ -1,0 +1,16 @@
+{
+  "P8": {
+    "difficulty": "Medium",
+    "phenomenon": "实心球纯滚动",
+    "domain": "力学",
+    "original_group": "g3",
+    "package_path": "../..",
+    "difficulty_score": 0.3596995336699429,
+    "difficulty_rank": 18,
+    "legacy_id": "P6",
+    "category_index": 2,
+    "category": "Rolling, Friction, and Rigid-Body Statics",
+    "category_zh": "滚动、摩擦与刚体静力学",
+    "title": "Solid-sphere rolling"
+  }
+}

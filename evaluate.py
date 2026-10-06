@@ -83,7 +83,7 @@ def discover_tasks(root=ROOT):
             tasks[folder.name] = dict(path=str(folder), difficulty=difficulty, group=info['original_group'])
     if not tasks:
         raise ValueError('No task packages found beside evaluate.py')
-    return tasks
+    return dict(sorted(tasks.items(), key=lambda item: int(item[0][1:])))
 
 
 def checked_name(value, label):
@@ -182,7 +182,7 @@ def prepare_jobs(rows, base, tasks, default_model=None, selected=None, annotatio
         jobs.append(job)
     if not jobs:
         raise ValueError('No input videos selected')
-    return sorted(jobs, key=lambda j: (j['model'], j['task'], j['sample_id'])), duplicate_files
+    return sorted(jobs, key=lambda j: (j['model'], int(j['task'][1:]), j['sample_id'])), duplicate_files
 
 
 def task_fingerprint(folder):
@@ -203,7 +203,7 @@ def command_for(job, directory, python, gate, measurement_device=None):
         command += ['--annotation', job['annotation']]
     for name, value in gate.items():
         command += ['--consistency-' + name.replace('_', '-'), str(value)]
-    if measurement_device and (job['group'] in ('g8', 'g9') or job['task'] in ('P3', 'P9')):
+    if measurement_device and (job['group'] in ('g8', 'g9') or job['task'] in ('P3', 'P14')):
         command += ['--device', measurement_device]
     command += job['backend_args']
     return command
@@ -333,7 +333,7 @@ def write_csv(path, rows):
 
 
 def summarize(output, records, planned, missing_tasks):
-    records.sort(key=lambda r: (r['model'], r['task'], r['sample_id']))
+    records.sort(key=lambda r: (r['model'], int(r['task'][1:]), r['sample_id']))
     summary = dict(planned=planned, finished=len(records), complete=len(records) == planned and not any(r['status'] in ERROR_STATES for r in records),
                    overall=aggregate(records), missing_tasks_by_model=missing_tasks,
                    formula='0.15*C + 0.85*P if gate passes; 0.15*C if rejected; null on execution errors',
@@ -342,7 +342,7 @@ def summarize(output, records, planned, missing_tasks):
         groups = defaultdict(list)
         for row in records:
             groups[row[field]].append(row)
-        summary['by_' + field] = {k: aggregate(v) for k, v in sorted(groups.items())}
+        summary['by_' + field] = {k: aggregate(v) for k, v in sorted(groups.items(), key=lambda item: int(item[0][1:]) if field == 'task' else item[0])}
         write_csv(output / ('by_' + field + '.csv'), [{field: k, **v} for k, v in summary['by_' + field].items()])
     save(output / 'summary.json', summary)
     save(output / 'results.json', records)
@@ -364,13 +364,13 @@ def main(argv=None):
     inputs.add_argument('--manifest', type=Path, help='JSON array of task/model/video rows; paths are relative to this file')
     parser.add_argument('--output', type=Path, required=True)
     parser.add_argument('--model', help='Generator name for a flat or single-model input directory')
-    parser.add_argument('--tasks', nargs='+', choices=sorted(tasks))
+    parser.add_argument('--tasks', nargs='+', choices=list(tasks))
     parser.add_argument('--annotation-root', type=Path, help='Optional per-video overrides of bundled annotations: MODEL/TASK/SAMPLE_ID.json')
     parser.add_argument('--require-all-tasks', action='store_true', help='Require every selected task for every input model')
     parser.add_argument('--workers', type=int, default=1, help='Concurrent evaluator processes; default 1 to bound GPU use')
     parser.add_argument('--timeout', type=float, default=1800, help='Maximum seconds per evaluator process and its children')
     parser.add_argument('--python', default=sys.executable, help='Python interpreter for the per-task entrypoints')
-    parser.add_argument('--measurement-device', default='cuda:0', help='P3/P9/G8/G9 measurement device (default: cuda:0)')
+    parser.add_argument('--measurement-device', default='cuda:0', help='P3/P14/G8/G9 measurement device (default: cuda:0)')
     parser.add_argument('--resume', action='store_true', help='Reuse successful results only when input/code/settings signatures match')
     parser.add_argument('--dry-run', action='store_true', help='Validate inventory and write the plan without loading models')
     gate_module.add_arguments(parser)
@@ -399,7 +399,7 @@ def main(argv=None):
             rows = scan_videos(base, tasks, args.model)
         jobs, duplicates = prepare_jobs(rows, base, tasks, args.model, set(args.tasks or []), args.annotation_root)
         selected = set(args.tasks or tasks)
-        missing = {model: sorted(selected - {j['task'] for j in jobs if j['model'] == model}) for model in sorted({j['model'] for j in jobs})}
+        missing = {model: sorted(selected - {j['task'] for j in jobs if j['model'] == model}, key=lambda task: int(task[1:])) for model in sorted({j['model'] for j in jobs})}
         if args.require_all_tasks and any(missing.values()):
             raise ValueError('Missing tasks by model: ' + json.dumps(missing))
     except (OSError, ValueError, KeyError, TypeError) as exc:

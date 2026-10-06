@@ -1,0 +1,16 @@
+{
+  "P6": {
+    "difficulty": "Easy",
+    "phenomenon": "摩擦起滑与质量无关",
+    "domain": "摩擦",
+    "original_group": "g2",
+    "package_path": "../..",
+    "difficulty_score": 0.6084582473362969,
+    "difficulty_rank": 7,
+    "legacy_id": "P42",
+    "category_index": 2,
+    "category": "Rolling, Friction, and Rigid-Body Statics",
+    "category_zh": "滚动、摩擦与刚体静力学",
+    "title": "Mass-independent sliding"
+  }
+}

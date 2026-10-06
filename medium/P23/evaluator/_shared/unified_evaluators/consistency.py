@@ -17,7 +17,7 @@ RUBRIC_VERSION = 'task-observability-evidence-v26'
 TASK_CONTRACT_VERSION = 'neutral_observable_contracts_v1'
 TASK_SHARED_RULES = ['Judge whether the listed subjects, stages and comparisons are actually observable. A task description is not evidence that an event happened.', "Preserve identities and connections across time. A moving apparatus, a replacement object or an added duplicate does not establish the original subject's requested trajectory.", 'An incorrect but clearly observed physical response can be fully observable. Do not grade quantitative physical laws, predicted directions, timing ratios or conservation in this stage.', 'Do not infer hidden current, charge, mass, magnetism, friction, density or an unseen release mechanism from their expected physical effects.', 'Use the interval that provides the required comparison. Extra waiting or later contact does not erase already visible evidence unless the contract requires that terminal transformation itself.', 'Camera style, exact pauses, decorative colors and background appearance are not core requirements. They matter only when they hide subjects, break identity or prevent the listed comparison.']
 TASK_CONTRACTS = json.loads(r'''{
-  "P1": {
+  "P2": {
     "subjects": "One identifiable, visibly untethered ball and a stable spatial reference.",
     "required_observations": [
       "The same ball moves downward separately from its support over a readable interval; distinguish its movement from camera motion."
@@ -30,7 +30,7 @@ TASK_CONTRACTS = json.loads(r'''{
       "A particular speed, acceleration or gravitational law."
     ]
   },
-  "P2": {
+  "P4": {
     "subjects": "One identifiable projectile and a visible launch/landing level.",
     "required_observations": [
       "The same projectile leaves its initial location, rises, turns near its apex and descends; its return to the launch level is visible for a complete trajectory comparison."
@@ -55,7 +55,7 @@ TASK_CONTRACTS = json.loads(r'''{
       "Correct complementary angles, equal initial speeds, exact synchronization, particular arc heights, equal ranges or the predicted relative flight times."
     ]
   },
-  "P4": {
+  "P1": {
     "subjects": "One identifiable ball and one stable rebound surface.",
     "required_observations": [
       "The original ball descends, contacts the surface and makes successive complete rebounds whose peaks can be compared; an additional ball cannot substitute for the unreleased original."
@@ -80,7 +80,7 @@ TASK_CONTRACTS = json.loads(r'''{
       "Correct exchange of velocities, momentum or energy conservation, or visual proof of equal hidden masses."
     ]
   },
-  "P6": {
+  "P8": {
     "subjects": "One patterned ball, an incline and its connected level runout.",
     "required_observations": [
       "The original ball moves along the incline toward its runout; falling off to the side or directly to the table is a different event.",
@@ -94,7 +94,7 @@ TASK_CONTRACTS = json.loads(r'''{
       "A particular release-gate withdrawal path after the ball is moving freely."
     ]
   },
-  "P7": {
+  "P9": {
     "subjects": "A sphere and a ring, separately identifiable on the same inclined track.",
     "required_observations": [
       "Follow both subjects moving down the incline during a common observation window and reaching comparable track positions."
@@ -106,7 +106,7 @@ TASK_CONTRACTS = json.loads(r'''{
       "The correct winner, acceleration ratio, arrival-time ratio or no-slip relationship."
     ]
   },
-  "P8a": {
+  "P15": {
     "subjects": "Two pendulums with equal visible lengths and distinguishable initial amplitudes.",
     "required_observations": [
       "Both original bobs swing back and forth for complete cycles that allow their periods to be compared."
@@ -118,7 +118,7 @@ TASK_CONTRACTS = json.loads(r'''{
       "Equal periods, preserved phase synchronization or any predicted amplitude dependence."
     ]
   },
-  "P8b": {
+  "P12": {
     "subjects": "Two pendulums with equal visible lengths and distinguishable bobs.",
     "required_observations": [
       "Both bobs undergo trackable back-and-forth cycles in a common observation window."
@@ -130,7 +130,7 @@ TASK_CONTRACTS = json.loads(r'''{
       "Visual proof of hidden bob masses or correct mass independence of the period."
     ]
   },
-  "P8c": {
+  "P13": {
     "subjects": "Two separately identifiable pendulums with equal visible string lengths and distinguishable initial swing amplitudes.",
     "required_observations": [
       "Both bobs leave their initial poses and complete back-and-forth cycles, allowing the periods at their amplitudes to be compared."
@@ -142,7 +142,7 @@ TASK_CONTRACTS = json.loads(r'''{
       "The correct period ordering, exact release synchronization or predicted large-angle period correction."
     ]
   },
-  "P9": {
+  "P14": {
     "subjects": "Two pendulums with visibly different string lengths.",
     "required_observations": [
       "Both original bobs execute complete oscillation cycles so the two periods can be compared."
@@ -154,7 +154,7 @@ TASK_CONTRACTS = json.loads(r'''{
       "The correct square-root period-length relationship or period ordering."
     ]
   },
-  "P10": {
+  "P11": {
     "subjects": "One identifiable block and an inclined track.",
     "required_observations": [
       "The same block travels up the incline, reverses direction and returns down it; the turn connecting outward and return motion must be observable."
@@ -166,7 +166,7 @@ TASK_CONTRACTS = json.loads(r'''{
       "Correct friction, speed or acceleration values, or symmetric outward and return durations."
     ]
   },
-  "P11": {
+  "P17": {
     "subjects": "An incident light ray, a liquid interface, a normal/reference direction and the ray continuation at the interface.",
     "required_observations": [
       "A readable stationary ray/interface configuration is sufficient; connect the incident and outgoing segments to the same interface location."
@@ -179,7 +179,7 @@ TASK_CONTRACTS = json.loads(r'''{
       "Visible source switching or motion in an otherwise readable optical configuration."
     ]
   },
-  "P12": {
+  "P20": {
     "subjects": "Four distinguishable beam configurations at separate air-water interface locations: three incident from air and one from water.",
     "required_observations": [
       "Keep each beam associated with its interface point and show its visible continuation or reflected branch.",
@@ -194,7 +194,7 @@ TASK_CONTRACTS = json.loads(r'''{
       "Exact split into equal-duration stages or constant cosmetic interface styling."
     ]
   },
-  "P13": {
+  "P18": {
     "subjects": "An incident ray, an outgoing ray, a mirror and a normal/reference at their junction.",
     "required_observations": [
       "A stable, clearly connected incident/outgoing ray configuration at the mirror is sufficient."
@@ -206,7 +206,7 @@ TASK_CONTRACTS = json.loads(r'''{
       "Equality of the two angles or visible motion/switching."
     ]
   },
-  "P14": {
+  "P19": {
     "subjects": "One point-like light source, four distinguishable rods and their associated shadows.",
     "required_observations": [
       "Associate each rod base with its visible shadow and tip in a common scene; a static configuration is sufficient."
@@ -232,7 +232,7 @@ TASK_CONTRACTS = json.loads(r'''{
       "The correct cross-ratio or a particular trajectory or speed."
     ]
   },
-  "P18": {
+  "P23": {
     "subjects": "One detached bare ball beside a liquid container, with a readable free surface.",
     "required_observations": [
       "Observe the same ball descending over a common interval in which the direction of the liquid free surface is also readable, allowing trajectory and surface directions to be compared."
@@ -245,7 +245,7 @@ TASK_CONTRACTS = json.loads(r'''{
       "A fall into the liquid, impact, absence of impact or a particular last-frame position."
     ]
   },
-  "P19": {
+  "P21": {
     "subjects": "A connected U-shaped liquid system with two distinguishable arms and liquid surfaces.",
     "required_observations": [
       "Both arms and their connection remain identifiable, with readable surface positions for a common equilibrium comparison; an already stable comparison is usable."
@@ -258,7 +258,7 @@ TASK_CONTRACTS = json.loads(r'''{
       "A visible disturbance if the equilibrium geometry is already readable."
     ]
   },
-  "P20": {
+  "P22": {
     "subjects": "One intact rectangular ice block in a transparent liquid container.",
     "required_observations": [
       "Track the block's position relative to the liquid surface and observe its settled immersion geometry; a readable stable state can provide this comparison."
@@ -271,7 +271,7 @@ TASK_CONTRACTS = json.loads(r'''{
       "A particular transient settling motion when the immersion geometry is already available."
     ]
   },
-  "P21": {
+  "P25": {
     "subjects": "The original ice body, surrounding water and a readable waterline in one container.",
     "required_observations": [
       "Track the original solid ice actually reducing and melting completely into liquid, with the final absence of the original solid directly observable.",
@@ -284,7 +284,7 @@ TASK_CONTRACTS = json.loads(r'''{
       "A correct water-level change, prescribed melt rate or correct floating behavior while the transformation is readable."
     ]
   },
-  "P21b": {
+  "P26": {
     "subjects": "An original ice body containing a stone, the surrounding water and container.",
     "required_observations": [
       "The original ice visibly melts completely and releases its original stone; observe the final absence of solid ice rather than substituting an added stone or translating the intact ice.",
@@ -297,7 +297,7 @@ TASK_CONTRACTS = json.loads(r'''{
       "The predicted direction of water-level change, sink rate or correct buoyancy response."
     ]
   },
-  "P21c": {
+  "P27": {
     "subjects": "One original ice body in a transparent liquid container with a readable surface.",
     "required_observations": [
       "The original solid ice visibly reduces and melts completely into liquid, with the final absence of the original solid directly observable; an intact body moving downward does not substitute for melting.",
@@ -310,7 +310,7 @@ TASK_CONTRACTS = json.loads(r'''{
       "Correct salt-water density effects, mixing behavior, floating response or water-level change; salinity is not visually measurable here."
     ]
   },
-  "P23": {
+  "P24": {
     "subjects": "The original water volume and its container.",
     "required_observations": [
       "The entire original liquid water volume transforms into a final solid-ice state, allowing its initial liquid and completely frozen states to be compared; merely adding ice or forming a separate patch while the original water remains liquid does not establish complete freezing."
@@ -322,7 +322,7 @@ TASK_CONTRACTS = json.loads(r'''{
       "A correct expansion ratio, freezing rate or prescribed surface-height change."
     ]
   },
-  "P27": {
+  "P28": {
     "subjects": "Two distinguishable containers with compact ice and fragmented ice.",
     "required_observations": [
       "Follow the original solid material in both containers as it actually melts completely, with identifiable initial/intermediate states and final absence of solid ice for comparison."
@@ -334,7 +334,7 @@ TASK_CONTRACTS = json.loads(r'''{
       "The predicted relative melting rates, equal final water heights or a particular elapsed duration."
     ]
   },
-  "P28": {
+  "P31": {
     "subjects": "Two separate suspended balls, their complete strings and the shared support arrangement.",
     "required_observations": [
       "The balls' stable positions and string geometry are readable for an equilibrium comparison; a static configuration is valid."
@@ -346,7 +346,7 @@ TASK_CONTRACTS = json.loads(r'''{
       "Correct symmetry, separation angles, repulsion or visual proof of charge and mass."
     ]
   },
-  "P34": {
+  "P32": {
     "subjects": "Two compass needles with identifiable pivots/housings and the central conductor arrangement.",
     "required_observations": [
       "Both original needles remain distinguishable, with their orientations readable during a common observation interval and at the comparison state; track any actual rotation without inventing it."
@@ -358,7 +358,7 @@ TASK_CONTRACTS = json.loads(r'''{
       "The predicted opposite directions, correct angles, visible current switching or needle rotation when a stable orientation is already clearly shown."
     ]
   },
-  "P36": {
+  "P29": {
     "subjects": "Two independently identifiable blocks side by side on the same inclined plate.",
     "required_observations": [
       "Observe both blocks' actual positions and responses over a common interval with the plate as reference; a clearly tracked block remaining still is an observable response rather than an invisible subject."
@@ -370,7 +370,7 @@ TASK_CONTRACTS = json.loads(r'''{
       "Which block is faster, a minimum speed difference or visual proof of internal magnets, equal masses or an unseen release mechanism."
     ]
   },
-  "P37": {
+  "P33": {
     "subjects": "Two fixed coil/core assemblies, each with its own separately identifiable loose ring: one closed outline and one visibly gapped outline.",
     "required_observations": [
       "Observe each original ring's position relative to its own fixed core over the comparison interval, including an unchanged position when that is what the video shows.",
@@ -383,7 +383,7 @@ TASK_CONTRACTS = json.loads(r'''{
       "Either or both rings to jump, a predicted difference between rings, visible current activation or visual proof of hidden electrical continuity."
     ]
   },
-  "P38": {
+  "P34": {
     "subjects": "One solid plate and one slotted plate, each attached to its own pendulum suspension.",
     "required_observations": [
       "Both original plates undergo readable back-and-forth motion over a common interval long enough to compare changes between cycles."
@@ -395,7 +395,7 @@ TASK_CONTRACTS = json.loads(r'''{
       "The correct damping rate, which plate damps faster or matching periods."
     ]
   },
-  "P39": {
+  "P30": {
     "subjects": "One identifiable magnet, a fixed coil, its leads and a visible indicator lamp.",
     "required_observations": [
       "Track the original magnet from an outside position into and through the coil and out the other side, with stationary comparison intervals before and after passage.",
@@ -409,7 +409,7 @@ TASK_CONTRACTS = json.loads(r'''{
       "A particular hand path, grip or withdrawal action if the magnet passage and lamp remain readable."
     ]
   },
-  "P40": {
+  "P35": {
     "subjects": "Two separate piles of the same granular material with different visible sizes on a common supporting surface.",
     "required_observations": [
       "Observe each pile's formation or stable settled profile, with boundaries available for comparing their slopes."
@@ -422,7 +422,7 @@ TASK_CONTRACTS = json.loads(r'''{
       "A visible feeder or continued pouring once the stable comparison profiles are available."
     ]
   },
-  "P41": {
+  "P36": {
     "subjects": "Two separate funnel/container systems, one with liquid and one with granular material.",
     "required_observations": [
       "Observe actual discharge and material-level evolution in each system over a common interval; a substituted material or unrelated moving object does not establish the requested discharge."
@@ -434,7 +434,7 @@ TASK_CONTRACTS = json.loads(r'''{
       "Correct flow-rate dependence, which container empties first or an exact empty final frame once usable discharge/level comparisons exist."
     ]
   },
-  "P42": {
+  "P6": {
     "subjects": "Two original blocks on one hinged tilting board.",
     "required_observations": [
       "Observe increasing board inclination and each block's transition from rest to sliding, so their onset conditions can be compared."
@@ -447,7 +447,7 @@ TASK_CONTRACTS = json.loads(r'''{
       "A perfectly monotonic actuator speed when the onset comparison is still available."
     ]
   },
-  "P43": {
+  "P10": {
     "subjects": "One block, a contacting actuator pad and a supporting surface.",
     "required_observations": [
       "Track the same block from its supported upright state through visible rotation about a support region into a tipped state; translation alone is a different event."
@@ -460,7 +460,7 @@ TASK_CONTRACTS = json.loads(r'''{
       "A decorative final pause after a clearly observable tipped state."
     ]
   },
-  "P44": {
+  "P7": {
     "subjects": "One continuous chain attached to two distinct fixed endpoints.",
     "required_observations": [
       "The connected chain's settled hanging profile is visible for geometric comparison; a stable profile is sufficient."
@@ -472,7 +472,7 @@ TASK_CONTRACTS = json.loads(r'''{
       "A correct catenary equation, a particular settling transient or exact duration of the final pause."
     ]
   },
-  "P45": {
+  "P37": {
     "subjects": "Two capillary tubes of distinguishable bore sizes with their lower ends accessing the same liquid reservoir.",
     "required_observations": [
       "Both tubes visibly access the shared liquid through their lower ends; isolated prefilled columns do not establish this setup.",
@@ -486,7 +486,7 @@ TASK_CONTRACTS = json.loads(r'''{
       "Initially dry tubes, repeated insertion when the reference already shows immersion, visual proof of wetting chemistry or a particular liquid color."
     ]
   },
-  "P47": {
+  "P39": {
     "subjects": "Two differently sized connected bubbles with one distinguishable internal partition.",
     "required_observations": [
       "Observe the original two bubble boundaries and their connected partition together; a stable connected state is sufficient."
@@ -498,7 +498,7 @@ TASK_CONTRACTS = json.loads(r'''{
       "Correct partition curvature, its predicted direction or a curvature-radius ratio."
     ]
   },
-  "P48": {
+  "P40": {
     "subjects": "Two original separate liquid drops with distinguishable outlines.",
     "required_observations": [
       "Follow the same two drops from separation through contact into one connected liquid body with a readable final single-drop state; approaching, touching while remaining two drops, or replacing them with another object is incomplete."
@@ -510,7 +510,7 @@ TASK_CONTRACTS = json.loads(r'''{
       "Correct volume conservation, final radius ratio, merger speed or photorealistic decorative styling."
     ]
   },
-  "P49": {
+  "P38": {
     "subjects": "Two separately identifiable balls of different radii in the same transparent liquid tank.",
     "required_observations": [
       "Track both balls descending during a common interval with enough successive positions to compare their speed evolution; trajectories cut off before any usable comparison are incomplete."
@@ -694,7 +694,7 @@ quality_checks are true only if seen:
 multiple_balls: multiple distinct physical balls, excluding shadows/reflections.
 strong_background_flicker: repeated strong abrupt oscillation, not a smooth fade.
 poor_visual_quality: sustained severe smearing/fragmentation/corruption.
-Strong flicker is a failure for every task. P2 also requires one ball. P3 may
+Strong flicker is a failure for every task. P4 also requires one ball. P3 may
 contain multiple balls; poor rendering is its additional failure condition.
 Do not assume any of these problems exist without inspecting the images.
 
@@ -719,18 +719,18 @@ QUALITY_RUBRIC = RUBRIC
 
 
 def rubric_for(task_id):
-    return QUALITY_RUBRIC if task_id in ('P2', 'P3') else RUBRIC
+    return QUALITY_RUBRIC if task_id in ('P4', 'P3') else RUBRIC
 
 
 def apply_quality_rules(judgment, task_id):
-    if task_id not in ('P2', 'P3') and 'quality_checks' not in judgment:
+    if task_id not in ('P4', 'P3') and 'quality_checks' not in judgment:
         return judgment
     checks = judgment.get('quality_checks')
     required = ('multiple_balls', 'strong_background_flicker', 'poor_visual_quality')
     if not isinstance(checks, dict) or any(type(checks.get(k)) is not bool for k in required):
         raise ValueError('Gate requires explicit boolean quality_checks')
     rejected = [k for k in required if checks[k] and
-                (k == 'strong_background_flicker' or (task_id == 'P2' and k == 'multiple_balls')
+                (k == 'strong_background_flicker' or (task_id == 'P4' and k == 'multiple_balls')
                  or (task_id == 'P3' and k == 'poor_visual_quality'))]
     if rejected:
         judgment = dict(judgment, raw_vlm_score=judgment['score'],
@@ -815,7 +815,7 @@ def score_assessment(judgment, task_id, items=None):
     # accidentally missed by the VLM. Ordinary motion/lighting is severity zero.
     if checks['strong_background_flicker'] or assessment['scene_continuity']['severity'] >= 3:
         caps.append('strong_scene_discontinuity')
-    if task_id == 'P2' and checks['multiple_balls']:
+    if task_id == 'P4' and checks['multiple_balls']:
         caps.append('multiple_balls')
     if task_id == 'P3' and (checks['poor_visual_quality'] or assessment['rendering_clarity']['severity'] >= 3):
         caps.append('poor_visual_quality')
@@ -1520,7 +1520,7 @@ V24_ROI_CONFIG = {'reference_sha256': 'f24300c837f959ebdcabe54f20bdac487d6cc80d0
               'defect timestamp.',
  'shared_reference_verification': {'manifest_path': '/mnt/einsia/aws01-nvme/einsia-shared/homes/gaomingju/workspace/evaluator/videos_all/v4_evaluator/opinion_v2_20261002/input_manifest.json',
                                    'manifest_sha256': '6d1a9c2ec66d37ea5c6c343b282bde1bd92b45ba1d6f810f1a40e37d99f0c708',
-                                   'P34_input_count': 32,
+                                   'P32_input_count': 32,
                                    'model_count': 8,
                                    'unique_reference_hashes': ['f24300c837f959ebdcabe54f20bdac487d6cc80d02e4e761ca42210bfa180e9d']},
  'visual_boundary_review': {'videos_checked': 2,
@@ -1530,10 +1530,10 @@ V24_ROI_CONFIG = {'reference_sha256': 'f24300c837f959ebdcabe54f20bdac487d6cc80d0
                             'all_crops_have_surrounding_board_context': True,
                             'camera_drift_or_geometry_change_exits_crop': False,
                             'scope_limit': 'Only these48 sampled source frames actually reviewed. This does '
-                                           'not prove all P34 videos remain registered.',
+                                           'not prove all P32 videos remain registered.',
                             'cases': [{'identity': {'model': 'cogvideox1.5-5b-i2v',
-                                                    'task': 'P34',
-                                                    'sample_id': 'g8_P34_seed43'},
+                                                    'task': 'P32',
+                                                    'sample_id': 'g8_P32_seed43'},
                                        'source_dimensions_wh': [832, 480],
                                        'source_fps': 16.0,
                                        'source_video_sha256': '0fcaabd83528f5ebe829d90229a567631aaadeea6c544f2251e8b229c4273e03',
@@ -1563,8 +1563,8 @@ V24_ROI_CONFIG = {'reference_sha256': 'f24300c837f959ebdcabe54f20bdac487d6cc80d0
                                                           77,
                                                           80]},
                                       {'identity': {'model': 'minimax-h3',
-                                                    'task': 'P34',
-                                                    'sample_id': 'g8_P34_seed43'},
+                                                    'task': 'P32',
+                                                    'sample_id': 'g8_P32_seed43'},
                                        'source_dimensions_wh': [1344, 768],
                                        'source_fps': 24.0,
                                        'source_video_sha256': '5749fe1dc5d01eabec55f26b284975bc5fbeef5ad0df7d4c3bc3090887812b0b',
@@ -1776,7 +1776,7 @@ V24_LOCAL_RUBRIC = ('Judge visible experimental presentation and temporal visual
  'multiple_balls: multiple distinct physical balls, excluding shadows/reflections.\n'
  'strong_background_flicker: repeated strong abrupt oscillation, not a smooth fade.\n'
  'poor_visual_quality: sustained severe smearing/fragmentation/corruption.\n'
- 'Strong flicker is a failure for every task. P2 also requires one ball. P3 may\n'
+ 'Strong flicker is a failure for every task. P4 also requires one ball. P3 may\n'
  'contain multiple balls; poor rendering is its additional failure condition.\n'
  'Do not assume any of these problems exist without inspecting the images.\n'
  '\n'

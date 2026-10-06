@@ -1,11 +1,16 @@
 {
   "P23": {
     "difficulty": "Medium",
-    "phenomenon": "水冻结体积膨胀",
-    "domain": "热学",
-    "original_group": "g5",
+    "phenomenon": "静止液面与重力方向垂直",
+    "domain": "流体静力学 / 力学",
+    "original_group": "g4",
     "package_path": "../..",
-    "difficulty_score": 0.4384507020248576,
-    "difficulty_rank": 16
+    "difficulty_score": 0.3236246511521217,
+    "difficulty_rank": 23,
+    "legacy_id": "P18",
+    "category_index": 5,
+    "category": "Hydrostatics and Buoyancy",
+    "category_zh": "流体静力学与浮力",
+    "title": "Liquid-surface orientation"
   }
 }

@@ -39,7 +39,7 @@ _EXPLICIT_FAILURE_VALUES = {
 }
 _EXPLICIT_SUCCESS_VALUES = {'completed', 'complete', 'passed', 'valid', 'true', True}
 # Keep this deliberately narrow.  Strings such as
-# ``P28_thread_ball_tracks_incomplete`` describe an extractor, not an event.
+# ``P31_thread_ball_tracks_incomplete`` describe an extractor, not an event.
 _EVENT_WORDS = re.compile(
     r'\b(event|task)\s+(?:was\s+)?(?:not\s+completed|did\s+not\s+occur|failed)\b|'
     r'\b(?:condition|conditions)\s+(?:are\s+)?(?:invalid|not\s+satisfied|failed)\b', re.I)

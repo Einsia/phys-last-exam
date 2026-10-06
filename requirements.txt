@@ -2,7 +2,7 @@
 # This is not a fresh-environment installation lock or an all-40-task validation.
 # Recommended installation: bash setup.sh (installs the CUDA PyTorch pair first).
 # For manual installation, install matching PyTorch/torchvision builds FIRST.
-# The scientific stack below matches the successful P1/P19/P7 CPU regressions,
+# The scientific stack below matches the successful P2/P21/P9 CPU regressions,
 # including their OpenCV 4.11 overlay. Install only ONE cv2 wheel provider.
 numpy==2.4.4
 scipy==1.18.0
@@ -44,10 +44,10 @@ cotracker @ git+https://github.com/facebookresearch/co-tracker.git@82e02e8029753
 # jsonschema==4.26.0
 
 # Explicit historical lock exception, NOT silently merged away:
-# P6/evaluator/requirements.txt and requirements-lock.txt specify:
+# P8/evaluator/requirements.txt and requirements-lock.txt specify:
 # opencv-python-headless==5.0.0.93, numpy==2.5.2, scipy==1.18.1,
 # matplotlib==3.11.1, PyYAML==6.0.3.
 # The common profile above deliberately uses the observed OpenCV4/NumPy2.4.4/
-# SciPy1.18.0 stack instead. One fixed-scene P6 input was measured with both
+# SciPy1.18.0 stack instead. One fixed-scene P8 input was measured with both
 # source and packaged backends under this scientific stack. This is not a
-# fresh-environment installation check or full coverage of P6 inputs.
+# fresh-environment installation check or full coverage of P8 inputs.

@@ -1,1 +1,9 @@
-Locked-off static camera, front view. Continue from the supplied first frame. Two identical transparent straight-walled beakers sit side by side; the left holds one compact ice block and the right holds crushed ice of the same total mass. Melting begins at the same time and continues until all visible ice has turned into water, and a liquid surface appears and rises in each beaker. Both beakers remain fully visible. The camera does not move, pan, or zoom. Plain dark background.
+Locked-off static camera, front view, matching the input first frame.
+
+A piece of freshwater ice initially floats freely in denser salt water inside a transparent straight-walled container.
+
+The freshwater ice remains floating at the salt-water surface while it gradually melts completely, leaving no solid ice by the end of the shot. It does not sink as an intact solid block. The meltwater mixes naturally with the surrounding salt water.
+
+No liquid is added, removed, spilled, or visibly evaporated. The liquid surface remains clearly visible throughout the shot.
+
+The camera does not move, pan, or zoom. Plain background, no unrelated objects.

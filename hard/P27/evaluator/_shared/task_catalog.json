@@ -1,11 +1,16 @@
 {
   "P27": {
     "difficulty": "Hard",
-    "phenomenon": "碎冰与整冰融化对比",
-    "domain": "热学",
-    "original_group": "g7",
+    "phenomenon": "淡水冰在盐水中融化",
+    "domain": "热学 / 浮力",
+    "original_group": "g5",
     "package_path": "../..",
-    "difficulty_score": 0.19218749999999998,
-    "difficulty_rank": 32
+    "difficulty_score": 0.1484375,
+    "difficulty_rank": 36,
+    "legacy_id": "P21c",
+    "category_index": 6,
+    "category": "Phase Transitions and Melting",
+    "category_zh": "相变与融化",
+    "title": "Freshwater ice in saltwater"
   }
 }

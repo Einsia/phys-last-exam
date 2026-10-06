@@ -1,0 +1,16 @@
+{
+  "P15": {
+    "difficulty": "Medium",
+    "phenomenon": "小角度单摆等时性",
+    "domain": "力学",
+    "original_group": "g1",
+    "package_path": "../..",
+    "difficulty_score": 0.41733961518626966,
+    "difficulty_rank": 17,
+    "legacy_id": "P8a",
+    "category_index": 3,
+    "category": "Pendulum Motion and Oscillations",
+    "category_zh": "单摆运动与振荡",
+    "title": "Small-angle isochronism"
+  }
+}

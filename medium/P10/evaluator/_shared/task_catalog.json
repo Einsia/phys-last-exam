@@ -1,0 +1,16 @@
+{
+  "P10": {
+    "difficulty": "Medium",
+    "phenomenon": "刚体倾倒与支撑边",
+    "domain": "刚体 / 接触",
+    "original_group": "g9",
+    "package_path": "../..",
+    "difficulty_score": 0.2702303132322103,
+    "difficulty_rank": 26,
+    "legacy_id": "P43",
+    "category_index": 2,
+    "category": "Rolling, Friction, and Rigid-Body Statics",
+    "category_zh": "滚动、摩擦与刚体静力学",
+    "title": "Edge-pivot toppling"
+  }
+}

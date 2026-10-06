@@ -48,7 +48,7 @@ This checks paths and API configuration without inference or paid submissions. I
 
 ```bash
 # One task and one seed first.
-python generate.py --models cogvideox1.5-5b-i2v --tasks P19 --seeds 42 --output videos --resume
+python generate.py --models cogvideox1.5-5b-i2v --tasks P21 --seeds 42 --output videos --resume
 
 # All 8 models, all 40 tasks, seeds 42/43/44/45: 1,280 videos.
 python generate.py --models all --output videos --resume
@@ -57,7 +57,7 @@ python generate.py --models all --output videos --resume
 python evaluate.py --manifest videos/manifest.json --output runs/all_tasks --require-all-tasks --resume
 ```
 
-Use `--models NAME NAME` to choose several models and `--tasks P19 P1` to choose tasks. Each model's `num_frames` and `options` are configurable; legal frame-count adjustments and the measured output frame count/FPS are recorded. Automatic prompt rewriting is disabled so the recorded task prompt is the supplied conditioning prompt. These defaults do not reproduce every historical benchmark generation setting.
+Use `--models NAME NAME` to choose several models and `--tasks P21 P2` to choose tasks. Each model's `num_frames` and `options` are configurable; legal frame-count adjustments and the measured output frame count/FPS are recorded. Automatic prompt rewriting is disabled so the recorded task prompt is the supplied conditioning prompt. These defaults do not reproduce every historical benchmark generation setting.
 
 Output layout:
 
@@ -66,15 +66,15 @@ videos/
 ├── manifest.json
 ├── .inputs/                       # Frozen images/prompts/annotations
 └── MODEL/
-    ├── g2_P19_seed42.mp4
-    ├── g2_P19_seed42_config.json
+    ├── g2_P21_seed42.mp4
+    ├── g2_P21_seed42_config.json
     └── P3_gpt_01_modern_seed42.mp4
 runs/generation/OUTPUT_ID/           # Plans, raw videos, attempt logs, API job IDs
 ```
 
-The controller assigns the special calibrated filenames for P3/P6/P9/P11. For P3/P9, it exports a 1344 × 768 evaluation copy with an explicit spatial resize if needed; it retains the native raw video, records both dimensions and scale factors, and checks that frame count and timing are unchanged. This format conversion does not establish that the generated scene matches the calibration. Other tasks retain the native video dimensions.
+The controller assigns the special calibrated filenames for P3/P8/P14/P17. For P3/P14, it exports a 1344 × 768 evaluation copy with an explicit spatial resize if needed; it retains the native raw video, records both dimensions and scale factors, and checks that frame count and timing are unchanged. This format conversion does not establish that the generated scene matches the calibration. Other tasks retain the native video dimensions.
 
-P37/P38/P39/P41/P43/P49 include reviewed annotations for their fixed task image. Generation snapshots these templates into `.inputs/` and adds them to the manifest. Evaluation loads them automatically, checks the image hash, scales the coordinates to the output resolution, and validates correspondence with the decoded first frame. A successful check records the current video/frame hashes in the evaluation debug output. Standard benchmark inputs need no separate annotation directory.
+P33/P34/P30/P36/P10/P38 include reviewed annotations for their fixed task image. Generation snapshots these templates into `.inputs/` and adds them to the manifest. Evaluation loads them automatically, checks the image hash, scales the coordinates to the output resolution, and validates correspondence with the decoded first frame. A successful check records the current video/frame hashes in the evaluation debug output. Standard benchmark inputs need no separate annotation directory.
 
 The coordinate mapping supports full-image resizing. If a crop or changed layout fails the first-frame correspondence check, initialization fails explicitly. For custom inputs, place reviewed video annotations at `annotations/MODEL/TASK/VIDEO_STEM.json` and use `--annotation-root annotations`; a matching file overrides the bundled template. Explicit video annotations keep their video/image hash checks. This flag is optional for both generation and evaluation.
 

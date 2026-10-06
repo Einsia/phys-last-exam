@@ -1,0 +1,16 @@
+{
+  "P33": {
+    "difficulty": "Medium",
+    "phenomenon": "闭合环与开口环电磁跳环",
+    "domain": "电磁感应",
+    "original_group": "g8",
+    "package_path": "../..",
+    "difficulty_score": 0.2469866206546883,
+    "difficulty_rank": 28,
+    "legacy_id": "P37",
+    "category_index": 7,
+    "category": "Electrostatics, Magnetism, and Electromagnetic Induction",
+    "category_zh": "静电、磁学与电磁感应",
+    "title": "Closed vs. open jumping rings"
+  }
+}

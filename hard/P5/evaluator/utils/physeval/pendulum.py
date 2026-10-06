@@ -1,4 +1,4 @@
-"""Shared pendulum measurement for P8a and P8b.
+"""Shared pendulum measurement for P15 and P12.
 
 Both tasks film two pendulums side by side and compare their periods, so the
 extraction is identical and only the metric definition differs.

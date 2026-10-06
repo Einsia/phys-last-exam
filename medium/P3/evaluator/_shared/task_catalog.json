@@ -6,6 +6,11 @@
     "original_group": "g3",
     "package_path": "../..",
     "difficulty_score": 0.22212525413810127,
-    "difficulty_rank": 29
+    "difficulty_rank": 29,
+    "legacy_id": "P3",
+    "category_index": 1,
+    "category": "Translational Motion and Collisions",
+    "category_zh": "平动与碰撞",
+    "title": "Complementary-angle throws"
   }
 }

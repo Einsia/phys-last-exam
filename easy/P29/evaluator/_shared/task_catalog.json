@@ -1,0 +1,16 @@
+{
+  "P29": {
+    "difficulty": "Easy",
+    "phenomenon": "磁性物块涡流制动",
+    "domain": "电磁感应",
+    "original_group": "g5",
+    "package_path": "../..",
+    "difficulty_score": 0.56875,
+    "difficulty_rank": 10,
+    "legacy_id": "P36",
+    "category_index": 7,
+    "category": "Electrostatics, Magnetism, and Electromagnetic Induction",
+    "category_zh": "静电、磁学与电磁感应",
+    "title": "Eddy-current braking"
+  }
+}

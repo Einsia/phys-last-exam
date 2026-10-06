@@ -325,7 +325,7 @@ def _distribution(values: Iterable[float]) -> dict[str, float | int | None]:
     clean = sorted(float(value) for value in values if math.isfinite(float(value)))
     if not clean:
         return {"n": 0, "zero_count": 0, "positive_count": 0, "min": None,
-                "p25": None, "median": None, "mean": None, "p75": None,
+                "p26": None, "median": None, "mean": None, "p75": None,
                 "max": None, "std_population": None}
 
     def percentile(fraction: float) -> float:
@@ -340,7 +340,7 @@ def _distribution(values: Iterable[float]) -> dict[str, float | int | None]:
         "zero_count": sum(value == 0.0 for value in clean),
         "positive_count": sum(value > 0.0 for value in clean),
         "min": clean[0],
-        "p25": percentile(0.25),
+        "p26": percentile(0.25),
         "median": statistics.median(clean),
         "mean": statistics.fmean(clean),
         "p75": percentile(0.75),

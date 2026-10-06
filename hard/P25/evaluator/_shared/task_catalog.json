@@ -1,0 +1,16 @@
+{
+  "P25": {
+    "difficulty": "Hard",
+    "phenomenon": "浮冰融化液面变化",
+    "domain": "热学 / 浮力",
+    "original_group": "g4",
+    "package_path": "../..",
+    "difficulty_score": 0.14295559818986275,
+    "difficulty_rank": 38,
+    "legacy_id": "P21",
+    "category_index": 6,
+    "category": "Phase Transitions and Melting",
+    "category_zh": "相变与融化",
+    "title": "Ice melting: water level"
+  }
+}

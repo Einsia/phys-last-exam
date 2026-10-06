@@ -10,7 +10,7 @@ from copy import deepcopy
 
 
 TASK_PROTOCOLS = {
-    'P9': {
+    'P14': {
         'phenomenon': '单摆周期与摆长关系',
         'domain': '力学',
         'applicable_conditions': [
@@ -25,7 +25,7 @@ TASK_PROTOCOLS = {
         'insufficient_evidence': ['周期不足', '严重遮挡', '摆点跟踪失败', '视角不允许比较摆长'],
         'pass_threshold': 0.80,
     },
-    'P13': {
+    'P18': {
         'phenomenon': '光的反射',
         'domain': '光学',
         'applicable_conditions': [
@@ -39,7 +39,7 @@ TASK_PROTOCOLS = {
         'insufficient_evidence': ['镜面或法线不可见', '光线严重模糊', '二维测量前提不成立'],
         'pass_threshold': 0.80,
     },
-    'P21': {
+    'P25': {
         'phenomenon': '浮冰融化液面变化',
         'domain': '热学 / 浮力',
         'applicable_conditions': [
@@ -56,7 +56,7 @@ TASK_PROTOCOLS = {
         # for measurement noise.
         'pass_threshold': 0.65,
     },
-    'P48': {
+    'P40': {
         'phenomenon': '液滴合并体积守恒',
         'domain': '表面张力',
         'applicable_conditions': [

@@ -1,4 +1,4 @@
-"""Validate video output and prepare the fixed P3/P9 measurement canvas."""
+"""Validate video output and prepare the fixed P3/P14 measurement canvas."""
 from fractions import Fraction
 from pathlib import Path
 import shutil
@@ -34,7 +34,7 @@ def prepare_video(raw, output, task):
     import av
     raw, output = Path(raw), Path(output)
     info = inspect_video(raw)
-    resize = task in {'P3', 'P9'} and (info['width'], info['height']) != (1344, 768)
+    resize = task in {'P3', 'P14'} and (info['width'], info['height']) != (1344, 768)
     if resize:
         with av.open(str(raw)) as source, av.open(str(output), 'w', format='mp4') as destination:
             stream = destination.add_stream('libx264', rate=Fraction(info['rate']))

@@ -11,9 +11,9 @@ from urllib.parse import urlsplit
 MODELS = ('seedance-2.5', 'minimax-h3', 'cosmos3-super-image2video', 'vbvr-wan2.2',
           'wan2.2-i2v-a14b', 'lingbot-video-moe-30b-a3b',
           'hunyuan-video-1.5-i2v', 'cogvideox1.5-5b-i2v')
-ANNOTATED = {'P37', 'P38', 'P39', 'P41', 'P43', 'P49'}
-SCENES = {'P3': 'P3_gpt_01_modern', 'P6': 'P6_gpt_01_modern',
-          'P9': 'P9_gpt_01_modern', 'P11': 'P11_gpt_01_30deg'}
+ANNOTATED = {'P33', 'P34', 'P30', 'P36', 'P10', 'P38'}
+SCENES = {'P3': 'P3_gpt_01_modern', 'P8': 'P8_gpt_01_modern',
+          'P14': 'P14_gpt_01_modern', 'P17': 'P17_gpt_01_30deg'}
 
 
 def default_config(root):

@@ -1,0 +1,16 @@
+{
+  "P35": {
+    "difficulty": "Easy",
+    "phenomenon": "沙堆休止角尺度一致性",
+    "domain": "颗粒",
+    "original_group": "g2",
+    "package_path": "../..",
+    "difficulty_score": 0.8550372137923641,
+    "difficulty_rank": 2,
+    "legacy_id": "P40",
+    "category_index": 8,
+    "category": "Granular Media and Discharge Flow",
+    "category_zh": "颗粒介质与排出流动",
+    "title": "Sandpile angle scaling"
+  }
+}

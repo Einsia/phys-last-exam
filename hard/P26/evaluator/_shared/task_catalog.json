@@ -1,0 +1,16 @@
+{
+  "P26": {
+    "difficulty": "Hard",
+    "phenomenon": "含石浮冰融化",
+    "domain": "热学 / 浮力",
+    "original_group": "g5",
+    "package_path": "../..",
+    "difficulty_score": 0.034453125,
+    "difficulty_rank": 40,
+    "legacy_id": "P21b",
+    "category_index": 6,
+    "category": "Phase Transitions and Melting",
+    "category_zh": "相变与融化",
+    "title": "Ice with a stone: melting"
+  }
+}

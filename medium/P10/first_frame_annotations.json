@@ -1,0 +1,73 @@
+{
+  "objects": [
+    {
+      "name": "block",
+      "box": [
+        518,
+        90,
+        665,
+        551
+      ],
+      "positive": [
+        [
+          590,
+          330
+        ]
+      ],
+      "negative": [
+        [
+          506,
+          275
+        ],
+        [
+          590,
+          561
+        ]
+      ],
+      "identity_evidence": "Uniform tall rectangular body, excluding black push pad."
+    }
+  ],
+  "geometry": {
+    "ground_points": [
+      [
+        100,
+        548
+      ],
+      [
+        1200,
+        548
+      ]
+    ],
+    "fixed_reference_boxes": [
+      [
+        72,
+        233,
+        425,
+        369
+      ]
+    ],
+    "up_axis": [
+      0,
+      -1
+    ]
+  },
+  "review": "independent COM crossing and angular-motion onset; actuator is externally driving rotation",
+  "task_id": "P10",
+  "annotation_type": "task_first_frame_template",
+  "source_image_sha256": "8739550a35917071f6ad0c0e8cc9139cd467fa3c2f43d41d805dc7adcfdbf6ed",
+  "coordinate_frame": "resized_input_image",
+  "size_wh": [
+    1344,
+    768
+  ],
+  "note": "Reusable initialization for the fixed task image, without video-specific measurements or scores. Coordinates refer to the input image resized to size_wh. The evaluator scales them to the video and checks first-frame correspondence before tracking.",
+  "template_version": 1,
+  "source_size_wh": [
+    2048,
+    1152
+  ],
+  "template_review": {
+    "accepted": true,
+    "evidence": "Object identities and initialization prompts reviewed against the bundled task input image on the declared annotation canvas."
+  }
+}

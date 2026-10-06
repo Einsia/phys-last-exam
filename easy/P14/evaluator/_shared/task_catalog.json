@@ -1,0 +1,16 @@
+{
+  "P14": {
+    "difficulty": "Easy",
+    "phenomenon": "单摆周期与摆长关系",
+    "domain": "力学",
+    "original_group": "g3",
+    "package_path": "../..",
+    "difficulty_score": 0.47979152261959435,
+    "difficulty_rank": 14,
+    "legacy_id": "P9",
+    "category_index": 3,
+    "category": "Pendulum Motion and Oscillations",
+    "category_zh": "单摆运动与振荡",
+    "title": "Pendulum period vs. length"
+  }
+}

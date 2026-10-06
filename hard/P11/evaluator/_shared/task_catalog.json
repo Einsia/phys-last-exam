@@ -1,0 +1,16 @@
+{
+  "P11": {
+    "difficulty": "Hard",
+    "phenomenon": "粗糙斜面往返滑动",
+    "domain": "力学 / 摩擦",
+    "original_group": "g7",
+    "package_path": "../..",
+    "difficulty_score": 0.14655768459704607,
+    "difficulty_rank": 37,
+    "legacy_id": "P10",
+    "category_index": 2,
+    "category": "Rolling, Friction, and Rigid-Body Statics",
+    "category_zh": "滚动、摩擦与刚体静力学",
+    "title": "Rough-incline round trip"
+  }
+}

@@ -10,9 +10,9 @@ from .video import Clip
 
 # Only the tasks this delivery covers: Group 1, Group 4, Group 6.
 TASK_MODULES = {
-    "P1": "p1", "P2": "p2", "P5": "p5", "P8a": "p8a", "P8b": "p8b",
-    "P14": "p14", "P16": "p16", "P18": "p18", "P20": "p20", "P21": "p21",
-    "P45": "p45", "P48": "p48",
+    "P2": "p2", "P4": "p4", "P5": "p5", "P15": "p15", "P12": "p12",
+    "P19": "p19", "P16": "p16", "P23": "p23", "P22": "p22", "P25": "p25",
+    "P37": "p37", "P40": "p40",
 }
 
 

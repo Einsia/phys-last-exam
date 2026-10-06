@@ -68,7 +68,7 @@ def to_v4(result, *, task_root=None, runtime_error=None):
         reason=b.get('failure_reason') or b.get('reason') or b.get('measurement_status_reason')
         value=copy.deepcopy(b.get('raw_metric')) if state=='measured' else None
         details=copy.deepcopy(b.get('raw_measurement',b.get('measurements',b.get('quantities',{}))))
-        if task_id=='P7':
+        if task_id=='P9':
             # G7 raw_measurement is the scalar residual; identity and tracking
             # diagnostics are in measurements, including recognized failures.
             details=copy.deepcopy(b.get('measurements') or {})
@@ -121,7 +121,7 @@ def to_v4(result, *, task_root=None, runtime_error=None):
         invalidate_runtime_result(data,runtime_error if runtime_error is not None else summary.get('measurement_status_reason') or status)
     from .zero_policy import apply
     data=apply(data)
-    if task_id=='P7' and (metrics['M1'].get('measurements') or {}).get('identification_status')=='identified_measurement_unstable':
+    if task_id=='P9' and (metrics['M1'].get('measurements') or {}).get('identification_status')=='identified_measurement_unstable':
         data['physics']['observation_status']='identified_measurement_unstable'
         data['physics']['reason']='已识别但测量不稳定；可靠公共区间不足，不归为完全未测。'
     validate(data);return data

@@ -137,7 +137,7 @@ def prepare_track_cache(task, metadata, debug):
         job = json.loads((original/'track_job.json').read_text())
         sample = source.stem.rsplit('_seed',1)[0]
         if job['seeds'] != cfg['samples'][sample]:
-            raise ValueError('P9 cached track-job seeds differ from frozen first-frame config')
+            raise ValueError('P14 cached track-job seeds differ from frozen first-frame config')
         association = 'original per-video cache directory and track-job seeds; current video/config SHA-256 frozen in rerun manifest'
     if not source_cache.exists():
         raise FileNotFoundError(source_cache)
@@ -160,7 +160,7 @@ def backend_command(task, row, raw_path, debug, forward):
         command += ['--prompt',str(prompt_path)]
         if row.get('route'):
             command += ['--route',row['route']]
-        if task.name == 'P45' and row.get('annotation'):
+        if task.name == 'P37' and row.get('annotation'):
             command += ['--annotation',str(task/row['annotation'])]
     elif group in ('g2','g5'):
         command += ['--video',str(video),'--output',str(raw_path),'--image-path',str(task/row['image_path']), '--sample-id',row['sample_id']]
@@ -169,8 +169,8 @@ def backend_command(task, row, raw_path, debug, forward):
         if digest(source_video) != row['video_sha256']:
             raise ValueError('Original-filename input is not byte-identical to canonical video')
         command = [sys.executable,str(task/'evaluator/evaluate_raw_legacy.py'), '--video',str(source_video), '--task_id',task.name, '--output',str(raw_path)]
-        command += ['--artifacts-dir' if task.name == 'P6' else '--debug-dir',str(debug)]
-        if task.name == 'P4':
+        command += ['--artifacts-dir' if task.name == 'P8' else '--debug-dir',str(debug)]
+        if task.name == 'P1':
             command += ['--no-cotracker']
         return command + forward
     elif group == 'g7':
@@ -184,9 +184,9 @@ def backend_command(task, row, raw_path, debug, forward):
         command += ['--video_prompt_file',str(prompt_path)]
         if row.get('annotation'):
             command += ['--annotation',str(task/row['annotation'])]
-        if task.name != 'P47':
+        if task.name != 'P39':
             command += ['--reuse_masks']
-            if task.name != 'P34':
+            if task.name != 'P32':
                 command += ['--reuse_tracks']
         command += ['--device','cpu','--threads','2']
     if row.get('model'):
@@ -346,7 +346,7 @@ def main(task_id, task_root, argv=None):
                           elapsed_seconds=time.time()-started)
         if error:
             provenance['runtime_error'] = error
-        metrics = {k:metric(defined=not (k == 'M2' and (task_group(task) in ('g8','g9') or task_id in ('P5','P7','P10','P12','P21b','P27','P45')))) for k in KEYS}
+        metrics = {k:metric(defined=not (k == 'M2' and (task_group(task) in ('g8','g9') or task_id in ('P5','P9','P11','P20','P26','P28','P37')))) for k in KEYS}
         blocks = {k:{'defined':m['extract_success'] is not None,
                      'principle':'一致性检查未通过或未完成，物理测量未执行。'} for k,m in metrics.items()}
         evidence = ensure_visual_evidence(artifacts(debug,task,started),video,debug,task)
@@ -357,7 +357,7 @@ def main(task_id, task_root, argv=None):
     raw = None
     error = None
     try:
-        if task_group(task) == 'g3' and task_id in ('P3','P9'):
+        if task_group(task) == 'g3' and task_id in ('P3','P14'):
             source = task/row.get('source_video_path',row['video_path'])
             source_cache = task/'eval_results/debug'/source.stem/'tracks_raw.npz'
             if source_cache.is_file():
@@ -371,7 +371,7 @@ def main(task_id, task_root, argv=None):
                 provenance['track_cache'] = {'cache_used':False,'cache_source':None}
                 provenance['fresh_tracking_requested'] = True
                 provenance['execution_mode'] = 'fresh_video_tracking_then_physics'
-        if task_id == 'P4':
+        if task_id == 'P1':
             provenance['tracking_backends'] = ['color','bgsub']
             provenance['backend_note'] = 'Fresh CPU extraction with the existing --no-cotracker option; two independent backends and unchanged validity thresholds.'
         command = backend_command(task,row,staged_raw,debug,forward)
@@ -407,7 +407,7 @@ def main(task_id, task_root, argv=None):
         else:
             metrics,blocks = already_scored_result(raw)
             provenance['extraction_run'] = raw.get('verbose',{}).get('M1',{}).get('extraction_run')
-            provenance['execution_mode'] = 'fresh_video_measurement_with_validated_segmentation_cache' if task_id != 'P47' else 'fresh_video_measurement'
+            provenance['execution_mode'] = 'fresh_video_measurement_with_validated_segmentation_cache' if task_id != 'P39' else 'fresh_video_measurement'
             extraction = provenance['extraction_run'] or {}
             provenance['neural_inference_rerun'] = bool(extraction) and not (
                 extraction.get('sam2_cache_reused') is True and extraction.get('cotracker_cache_reused') is True)
@@ -418,7 +418,7 @@ def main(task_id, task_root, argv=None):
         error = f'{type(exc).__name__}: {exc}'
         provenance['runtime_error'] = error
         (debug/'runtime_error.txt').write_text(traceback.format_exc())
-        metrics = {k:metric(defined=not (k == 'M2' and (task_group(task) in ('g8','g9') or task_id in ('P5','P7','P10','P12','P21b','P27','P45')))) for k in KEYS}
+        metrics = {k:metric(defined=not (k == 'M2' and (task_group(task) in ('g8','g9') or task_id in ('P5','P9','P11','P20','P26','P28','P37')))) for k in KEYS}
         blocks = {k:measurement_block('测量运行未完成，详见运行日志。',None,reason=error) for k in KEYS}
         for k in KEYS:
             blocks[k]['defined'] = metrics[k]['extract_success'] is not None

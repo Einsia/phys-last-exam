@@ -1,0 +1,16 @@
+{
+  "P32": {
+    "difficulty": "Medium",
+    "phenomenon": "通电导线与指南针",
+    "domain": "电磁",
+    "original_group": "g8",
+    "package_path": "../..",
+    "difficulty_score": 0.21020589270876186,
+    "difficulty_rank": 30,
+    "legacy_id": "P34",
+    "category_index": 7,
+    "category": "Electrostatics, Magnetism, and Electromagnetic Induction",
+    "category_zh": "静电、磁学与电磁感应",
+    "title": "Final compass orientations"
+  }
+}

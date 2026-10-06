@@ -1,0 +1,108 @@
+{
+  "objects": [
+    {
+      "name": "water",
+      "box": [
+        339,
+        164,
+        559,
+        379
+      ],
+      "positive": [
+        [
+          442,
+          230
+        ]
+      ],
+      "negative": [
+        [
+          449,
+          398
+        ]
+      ],
+      "identity_evidence": "Blue transparent fill in left funnel."
+    },
+    {
+      "name": "sand",
+      "box": [
+        778,
+        164,
+        998,
+        381
+      ],
+      "positive": [
+        [
+          887,
+          241
+        ]
+      ],
+      "negative": [
+        [
+          887,
+          399
+        ]
+      ],
+      "identity_evidence": "Tan granular fill with visible surface on right."
+    }
+  ],
+  "geometry": {
+    "outlet_points": [
+      [
+        451,
+        381
+      ],
+      [
+        886,
+        381
+      ]
+    ],
+    "stream_boxes": [
+      [
+        424,
+        497,
+        482,
+        763
+      ],
+      [
+        857,
+        497,
+        915,
+        763
+      ]
+    ],
+    "fixed_reference_boxes": [
+      [
+        203,
+        51,
+        245,
+        741
+      ],
+      [
+        1101,
+        51,
+        1139,
+        741
+      ]
+    ],
+    "axisymmetric": true
+  },
+  "review": "left water; right sand; recover volume from cavity and visible free surface, not projected area",
+  "task_id": "P36",
+  "annotation_type": "task_first_frame_template",
+  "source_image_sha256": "cf55a31eeb0944425f0d8585aabf7bf7d5741ff1a5a787564dfbd0c8c97ce5cf",
+  "coordinate_frame": "resized_input_image",
+  "size_wh": [
+    1344,
+    768
+  ],
+  "note": "Reusable initialization for the fixed task image, without video-specific measurements or scores. Coordinates refer to the input image resized to size_wh. The evaluator scales them to the video and checks first-frame correspondence before tracking.",
+  "template_version": 1,
+  "source_size_wh": [
+    1659,
+    948
+  ],
+  "template_review": {
+    "accepted": true,
+    "evidence": "Object identities and initialization prompts reviewed against the bundled task input image on the declared annotation canvas."
+  }
+}

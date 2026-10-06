@@ -23,14 +23,14 @@ This is an observability gate, not a physics score. An observed wrong speed, dir
 
 Check the whole sampled sequence before claiming that an event never happens. Distinguish an unsupported identity replacement from visible occlusion, out-of-frame motion, ordinary blur, reflection/shadow or a natural material transformation. A detail too small to read is uncertain, not proof that the part disappeared. Do not invent intermediate events across sampling gaps. A positive decision requires the necessary observations to be supported; unresolved sampling/readability limitations must be stated rather than silently converted into completion or a definite physical defect.
 
-Support both positive and negative decisions with actual supplied frame times and concrete visible states. For a rejection, identify the specific missing subject, phase or comparison, what is seen instead, and why the remaining visible interval cannot supply that measurement. A statement such as 'the setup changes' or 'the motion looks wrong' is insufficient. If substantial visual corruption is present while the required measurement is still available, describe that separately and preserve the observable-event finding; do not call the event absent merely to penalize appearance. P2 and P3 additionally have explicit user-required visual rejection rules specified below: those rules can independently reject an otherwise measurable event, with concrete timestamped pixel evidence. Follow the response schema supplied by the caller. Do not introduce extra scoring criteria.
+Support both positive and negative decisions with actual supplied frame times and concrete visible states. For a rejection, identify the specific missing subject, phase or comparison, what is seen instead, and why the remaining visible interval cannot supply that measurement. A statement such as 'the setup changes' or 'the motion looks wrong' is insufficient. If substantial visual corruption is present while the required measurement is still available, describe that separately and preserve the observable-event finding; do not call the event absent merely to penalize appearance. P4 and P3 additionally have explicit user-required visual rejection rules specified below: those rules can independently reject an otherwise measurable event, with concrete timestamped pixel evidence. Follow the response schema supplied by the caller. Do not introduce extra scoring criteria.
 """
 
 
 # Each record is intentionally task-specific. Families are dispatch metadata,
 # never a fallback prompt: unknown IDs raise rather than borrowing a neighbour.
 TASK_PROMPTS = {
-    "P1": {
+    "P2": {
         "family": "single_body_motion",
         "measurement": "An untethered ball's downward trajectory relative to a stable scene reference.",
         "inspect": [
@@ -41,7 +41,7 @@ TASK_PROMPTS = {
         "reject_only_if": "No independently moving original ball can be followed, the apparent descent is only camera/apparatus motion, or the ball/reference is unreadable throughout the necessary interval.",
         "guardrails": "Do not require ground impact, absence of impact, an exact last-frame height, motion until the final frame, a particular speed, or gravitational acceleration. Later contact cannot erase a measurable fall.",
     },
-    "P2": {
+    "P4": {
         "family": "single_body_motion",
         "measurement": "One projectile's complete outward, rising and falling trajectory at a readable launch/landing level.",
         "inspect": [
@@ -64,7 +64,7 @@ TASK_PROMPTS = {
         "reject_only_if": "One original ball stays attached, an extra/replacement object supplies its apparent flight, a needed trajectory or endpoint is unavailable, or rendering prevents distinguishing the two flights. In addition, the user explicitly requires rejection for repeated strong background flicker or clearly severe visual corruption, even if some trajectory measurement is possible. Name the actual times and affected pixel regions or corrupted structures, such as sustained fragmentation/smearing or grossly incoherent rendering; keep this visual rejection separate from the event-observability finding.",
         "guardrails": "Do not require exact synchronization, complementary launch angles, equal initial speeds/ranges, a particular arc-height ordering or the predicted flight-time relationship. Harmless apparatus blemishes, ordinary brief motion blur, mild local defects and smooth lighting changes do not meet the user's strong-flicker/severe-quality rejection rule. Two intended original balls are correct for this task.",
     },
-    "P4": {
+    "P1": {
         "family": "single_body_motion",
         "measurement": "Successive rebound peaks of one original ball above one contact surface.",
         "inspect": [
@@ -87,7 +87,7 @@ TASK_PROMPTS = {
         "reject_only_if": "The balls never encounter, a ball is substituted or merged beyond identification, or one necessary side of the before/after motion comparison is unavailable.",
         "guardrails": "One or both balls stopping, moving together, reversing, rebounding, or exchanging velocities incorrectly are all observable post-contact outcomes. Zero post-contact velocity is not a missing post-contact phase. Compare each original ball center against the fixed background at early, middle and late post-contact times before calling it stationary; unchanged distance between the balls does not mean their centers are stationary. Do not infer equal hidden masses or judge momentum, energy, speed ratios or perfect head-on alignment here.",
     },
-    "P6": {
+    "P8": {
         "family": "rolling",
         "measurement": "Translation and visible rotation of one patterned ball along an incline.",
         "inspect": [
@@ -98,7 +98,7 @@ TASK_PROMPTS = {
         "reject_only_if": "The original ball does not traverse the incline, falls directly off it instead, or no attached pattern/orientation can be followed during the movement.",
         "guardrails": "Do not enforce no-slip rolling, correct acceleration or a predicted angular/linear-speed ratio. A readable pattern that does not rotate is an observable response. Gate motion and a later runout blemish do not invalidate an earlier readable ramp interval.",
     },
-    "P7": {
+    "P9": {
         "family": "rolling",
         "measurement": "The motions of a sphere and a ring down a common inclined track.",
         "inspect": [
@@ -109,7 +109,7 @@ TASK_PROMPTS = {
         "reject_only_if": "One subject is missing or replaced, the two outlines cannot be distinguished, or a necessary trajectory/comparable track interval is unavailable.",
         "guardrails": "Do not require the expected winner, equal releases, a specific arrival-time ratio, the correct accelerations or no-slip kinematics. A clearly observed unexpected ordering belongs to physical evaluation.",
     },
-    "P8a": {
+    "P15": {
         "family": "oscillation",
         "measurement": "Periods of two equal-length pendulums with distinguishable small initial amplitudes.",
         "inspect": [
@@ -120,7 +120,7 @@ TASK_PROMPTS = {
         "reject_only_if": "A bob/string/pivot needed for the comparison is missing, the intended paired setup is unavailable, or only isolated poses/incomplete swings are visible without a readable cycle.",
         "guardrails": "Do not require equal periods, phase locking, exact simultaneous release, textbook sinusoidal motion or an exact small-angle value. Ordinary smooth bob displacement and string rotation are the event.",
     },
-    "P8b": {
+    "P12": {
         "family": "oscillation",
         "measurement": "Periods of two distinguishable pendulum bobs on equal visible lengths.",
         "inspect": [
@@ -131,7 +131,7 @@ TASK_PROMPTS = {
         "reject_only_if": "One pendulum cannot be followed through a cycle, its essential connection is absent/unreadable, or the paired comparison is replaced by another motion.",
         "guardrails": "Mass cannot be verified from pixels. Do not require visual proof of mass, correct mass independence, equal periods, equal bob sizes or continuing synchronization. Compare each bob center against its fixed support at several different times before calling it static. A damped cycle need not return to the exact original amplitude. Preserve an earlier readable cycle even if the bob later stops or the image deteriorates.",
     },
-    "P8c": {
+    "P13": {
         "family": "oscillation",
         "measurement": "Periods of two equal-length pendulums with distinguishable initial swing amplitudes, including a large swing.",
         "inspect": [
@@ -143,7 +143,7 @@ TASK_PROMPTS = {
         "reject_only_if": "An amplitude or pendulum identity is unavailable, the paired setup is missing, or one motion never provides a complete readable cycle.",
         "guardrails": "Do not enforce a large-angle correction, predicted period ordering, exact release synchronization or matching decay. A wrong but measurable period relationship is still observable. A damped cycle need not return to the exact original amplitude; corresponding repeated turning or crossing phases identify a cycle even with amplitude decay. Earlier readable full cycles remain valid if the bobs stop or the scene degrades later.",
     },
-    "P9": {
+    "P14": {
         "family": "oscillation",
         "measurement": "Periods of two pendulums with visibly different string lengths.",
         "inspect": [
@@ -154,7 +154,7 @@ TASK_PROMPTS = {
         "reject_only_if": "The two suspension lengths cannot be distinguished, a bob/connection is missing, or one complete cycle cannot be followed.",
         "guardrails": "Do not require the longer pendulum to be slower or enforce a square-root relation. Unequal amplitudes, loss of synchronization or incorrect period ratios are not themselves missing observations.",
     },
-    "P10": {
+    "P11": {
         "family": "single_body_motion",
         "measurement": "The outward and return motion of one block on the same incline.",
         "inspect": [
@@ -166,7 +166,7 @@ TASK_PROMPTS = {
         "reject_only_if": "The block only translates one way, leaves view before a usable turn/return, is replaced, or the block/track relationship is unreadable during a necessary segment.",
         "guardrails": "Do not require symmetric travel times, a particular friction value, correct accelerations or an exact stopping pause. The reversal need not coincide with one sampled frame when adjacent readable positions establish both connected branches. Readable upward and downward segments of the same block joined by the turn are sufficient: the return need not reach or pass the original starting position. Judge only the supplied clip; do not invent a loop, repetition or future continuation beyond its end, and do not erase an already visible turn/return because its last pose resembles its first.",
     },
-    "P11": {
+    "P17": {
         "family": "optics",
         "measurement": "Connected incident and outgoing ray geometry at a liquid interface.",
         "inspect": [
@@ -178,7 +178,7 @@ TASK_PROMPTS = {
         "reject_only_if": "A necessary ray arm or interface junction is absent, disconnected beyond association or unreadable, so the angle comparison cannot be formed.",
         "guardrails": "A static configuration is sufficient. Do not require source switching, motion, the correct bending direction, refractive index or Snell-law angles. Schematic rays and normal lines are intentional graphics, not extra physical bodies.",
     },
-    "P12": {
+    "P20": {
         "family": "optics",
         "measurement": "Four distinguishable beam/interface configurations across changing incident angles.",
         "inspect": [
@@ -189,7 +189,7 @@ TASK_PROMPTS = {
         "reject_only_if": "The required beam configurations cannot be identified, changing incidence conditions are absent/unreadable, or branches cannot be associated with their interface points.",
         "guardrails": "Do not enforce the correct branch, critical angle or refraction/reflection law. A straight ray, wrong bend or fully reflected water-side beam is an observable response. Do not require a transmitted air branch in every condition, equal-duration stages or exact interface styling.",
     },
-    "P13": {
+    "P18": {
         "family": "optics",
         "measurement": "Incident and outgoing ray angles at one mirror junction.",
         "inspect": [
@@ -200,7 +200,7 @@ TASK_PROMPTS = {
         "reject_only_if": "An essential ray arm, mirror reference or connected junction is absent/unreadable, preventing the angle comparison.",
         "guardrails": "Do not require equality of angles, ray motion, source switching or photorealistic beam rendering. A visibly wrong reflection angle remains measurable.",
     },
-    "P14": {
+    "P19": {
         "family": "optics",
         "measurement": "The common-scene geometry of four rods and their associated shadows from one point-like source.",
         "inspect": [
@@ -223,7 +223,7 @@ TASK_PROMPTS = {
         "reject_only_if": "A marker or rod/reference geometry is unavailable, marker substitution prevents correspondence, or there is no readable pose comparison.",
         "guardrails": "Do not enforce a cross-ratio value, a particular speed or expected endpoint trajectory. Perspective changes are not marker sliding; explain the actual correspondence failure before rejecting.",
     },
-    "P18": {
+    "P23": {
         "family": "single_body_motion",
         "measurement": "A geometric direction comparison: a detached ball falls BESIDE the liquid container, while the separate liquid surface supplies a simultaneously readable direction reference. Entry into the liquid is not part of this task.",
         "inspect": [
@@ -235,7 +235,7 @@ TASK_PROMPTS = {
         "reject_only_if": "The ball's free trajectory is missing/unreadable, motion is only apparent camera/support motion, or the free-surface direction cannot be read during the usable fall.",
         "guardrails": "Do not require perpendicularity, correct acceleration, a fall into the liquid, impact, absence of impact or a prescribed endpoint. A crooked measurable trajectory remains a physical result.",
     },
-    "P19": {
+    "P21": {
         "family": "static_liquid",
         "measurement": "The two surface heights in an identifiable connected U-shaped liquid vessel.",
         "inspect": [
@@ -246,7 +246,7 @@ TASK_PROMPTS = {
         "reject_only_if": "The connecting setup or one liquid surface is unavailable/unreadable, so the two surface levels cannot be compared.",
         "guardrails": "Do not require equal heights, a correct pressure relation, an initial disturbance or visible settling. A persistent height difference is an observable physical outcome.",
     },
-    "P20": {
+    "P22": {
         "family": "static_liquid",
         "measurement": "The immersion geometry of one intact rectangular ice block relative to the liquid surface.",
         "inspect": [
@@ -257,7 +257,7 @@ TASK_PROMPTS = {
         "reject_only_if": "The block is missing/replaced or its complete outline/waterline cannot be read well enough to establish immersion geometry.",
         "guardrails": "Do not require a correct immersed fraction, visual proof of density, textbook floating behavior or a transient settling motion. A clearly visible unexpected position is still a response to measure.",
     },
-    "P21": {
+    "P25": {
         "family": "phase_change",
         "measurement": "The before/after waterline when the original floating ice actually melts completely.",
         "inspect": [
@@ -269,7 +269,7 @@ TASK_PROMPTS = {
         "reject_only_if": "The original solid remains intact or unaccounted for, the complete transformation is not observed, or one waterline needed for comparison is unreadable.",
         "guardrails": "Do not require unchanged water height, correct buoyancy while melting or a prescribed melt rate. Natural shrinking, fragmentation and changing outlines can be the transformation, not identity defects, when the original material remains accounted for.",
     },
-    "P21b": {
+    "P26": {
         "family": "phase_change",
         "measurement": "Waterline change across complete melting of an original ice body containing a stone and release of that stone.",
         "inspect": [
@@ -280,7 +280,7 @@ TASK_PROMPTS = {
         "reject_only_if": "An intact ice body only translates/sinks, a new stone substitutes for the embedded stone, original solid remains/unaccounted for, or a necessary initial/final comparison is unreadable.",
         "guardrails": "Do not enforce a predicted water-level decrease, stone sink rate or correct buoyancy. A stone at an unexpected but readable final location is observable; the crucial issue is whether it is the original released stone.",
     },
-    "P21c": {
+    "P27": {
         "family": "phase_change",
         "measurement": "The initial and final liquid levels across complete melting of the original ice body in the container.",
         "inspect": [
@@ -292,7 +292,7 @@ TASK_PROMPTS = {
         "reject_only_if": "The solid remains intact/unaccounted for, complete melting is unavailable, or the initial/final level comparison is unreadable.",
         "guardrails": "Salinity and density are not visually measurable here. Do not require the expected salt-water level change, correct floating response, a particular mixing pattern or melting rate.",
     },
-    "P23": {
+    "P24": {
         "family": "phase_change",
         "measurement": "The original water volume before and after its complete transition to solid ice.",
         "inspect": [
@@ -303,7 +303,7 @@ TASK_PROMPTS = {
         "reject_only_if": "The original water remains liquid, only a separate piece of ice appears, complete freezing is not established, or initial/final geometry cannot be associated.",
         "guardrails": "Do not require the correct expansion ratio, surface-height change, a prescribed freezing front or realistic elapsed freezing time. A measurable wrong final volume belongs to physics scoring. Do not invent a chemical reaction or added reagent solely because an internal front turns the water opaque or white. A visibly advancing internal transformation through the original volume into a stable solid-looking final body can establish the task without a particular crystal texture; actual external pouring or inserted preformed solids must be separately identified from frames.",
     },
-    "P27": {
+    "P28": {
         "family": "phase_change",
         "measurement": "The relative melting progress of compact ice versus fragmented ice in two distinguishable containers, comparing meltwater levels over common times.",
         "inspect": [
@@ -314,7 +314,7 @@ TASK_PROMPTS = {
         "reject_only_if": "One population has no identifiable melting/progress, apparent melting is only displacement/occlusion, the two identities mix, or the common meltwater-level comparison is unreadable throughout.",
         "guardrails": "Do not require fragments to melt faster, a predicted rate ratio, equal final heights or a particular video duration. Fragmentation, shrinking and coalescing meltwater are natural transformation observations when identifiable.",
     },
-    "P28": {
+    "P31": {
         "family": "static_geometry",
         "measurement": "Two suspended balls' equilibrium positions and complete string geometry relative to their support.",
         "inspect": [
@@ -325,7 +325,7 @@ TASK_PROMPTS = {
         "reject_only_if": "A ball/string/attachment required to establish the paired geometry is absent or unreadable, or substituted objects prevent the comparison.",
         "guardrails": "Do not infer charge or mass from appearance, require visible repulsion, enforce symmetry or require equal separation angles. An asymmetric readable equilibrium remains measurable.",
     },
-    "P34": {
+    "P32": {
         "family": "electromagnetic",
         "measurement": "The orientations of two original compass needles relative to their fixed housings and central conductor arrangement.",
         "inspect": [
@@ -336,7 +336,7 @@ TASK_PROMPTS = {
         "reject_only_if": "A needle is missing/unreadable through the needed comparison, the conductor/needle setup is unavailable, or substitution prevents associating the original orientations.",
         "guardrails": "Do not require visible current activation, any rotation, opposite directions or predicted deflection angles. Mere housing clarity is insufficient if the main needles cannot be located.",
     },
-    "P36": {
+    "P29": {
         "family": "electromagnetic",
         "measurement": "The responses of two separately identifiable original bodies side by side on the same inclined plate. Match their actual shape to the reference: short cylindrical pucks/discs are valid subjects; rectangular blocks are not required.",
         "inspect": [
@@ -347,7 +347,7 @@ TASK_PROMPTS = {
         "reject_only_if": "One original body is actually missing/replaced, the shared incline setup is lost, or its boundaries/positions cannot be followed during any usable comparison interval.",
         "guardrails": "Do not require the expected faster block, any minimum speed difference, a visible release mechanism or proof of hidden magnets/equal masses. Small cumulative displacement is motion; visible stationarity is not invisibility.",
     },
-    "P37": {
+    "P33": {
         "family": "electromagnetic",
         "measurement": "The positions of separate closed and gapped loose rings relative to their respective fixed coil/core assemblies.",
         "inspect": [
@@ -359,7 +359,7 @@ TASK_PROMPTS = {
         "reject_only_if": "A separate original ring or the visible gap distinction cannot be located, an apparatus deformation/replacement substitutes for ring motion, or the ring/core relationships are unreadable.",
         "guardrails": "Neither ring is required to jump, and no predicted difference/current activation may be assumed. A clearly stationary ring is an observed response. Do not treat an unreadable gap as definite closure; report the actual visibility limitation.",
     },
-    "P38": {
+    "P34": {
         "family": "electromagnetic",
         "measurement": "Changes between oscillation cycles of one solid plate and one slotted plate on distinct pendulum suspensions.",
         "inspect": [
@@ -370,7 +370,7 @@ TASK_PROMPTS = {
         "reject_only_if": "One plate or suspension cannot be followed, plate identity/slots are lost, or the sampled motion lacks the necessary readable oscillation-cycle comparison.",
         "guardrails": "Do not require the predicted faster damping plate, a correct decay rate or equal periods. Ordinary rotation and perspective-dependent silhouettes are not rigid deformation by themselves.",
     },
-    "P39": {
+    "P30": {
         "family": "electromagnetic",
         "measurement": "The lamp's visible state during one original magnet's observed entry into and movement relative to a fixed coil.",
         "inspect": [
@@ -381,7 +381,7 @@ TASK_PROMPTS = {
         "reject_only_if": "The original magnet never enters or moves at the coil opening, an unrelated replacement movement substitutes for it, or the original magnet/coil opening/lamp cannot be read during a usable response interval.",
         "guardrails": "Do not require correct illumination, polarity, brightness timing, a far-side exit, a particular hand grip/path or prescribed stationary waiting. Same-side withdrawal and a dark lamp are observed outcomes, not absent experiments.",
     },
-    "P40": {
+    "P35": {
         "family": "granular",
         "measurement": "The settled slope profiles of two differently sized piles of the same granular material.",
         "inspect": [
@@ -392,7 +392,7 @@ TASK_PROMPTS = {
         "reject_only_if": "One pile or its face/base boundary is unavailable, the piles are not separately identifiable, or no settled profile can be read.",
         "guardrails": "Do not require equal repose angles, scale invariance, visible feeders, continued pouring or a particular grain texture when both slopes are readable.",
     },
-    "P41": {
+    "P36": {
         "family": "granular",
         "measurement": "The discharge and material-level evolution of a liquid system and a granular system over a common interval.",
         "inspect": [
@@ -403,7 +403,7 @@ TASK_PROMPTS = {
         "reject_only_if": "One system/material/outlet is unavailable, actual discharge is not observed, or the necessary level/stream comparison cannot be read.",
         "guardrails": "Do not require a correct head dependence, the expected system to empty first, equal flow rates or a perfectly empty final frame after usable discharge comparisons already exist.",
     },
-    "P42": {
+    "P6": {
         "family": "contact",
         "measurement": "The responses of two original blocks to an actual increase in one hinged board's inclination: sliding onset where present, or clearly observed non-sliding where absent.",
         "inspect": [
@@ -414,7 +414,7 @@ TASK_PROMPTS = {
         "reject_only_if": "The board never visibly tilts, an original block is lost/replaced before a usable tilt-response comparison, or board/block geometry is unreadable throughout that comparison. Missing sliding alone is not a rejection.",
         "guardrails": "Do not enforce equal onset angles, a friction coefficient, mass independence, actual sliding by either block, or perfectly monotonic actuator speed. Distinct onset angles and both blocks remaining fixed on a visibly tilting board are observable outcomes. A late scene break cannot erase an earlier readable tilt-response interval.",
     },
-    "P43": {
+    "P10": {
         "family": "contact",
         "measurement": "One block's tipping transition about a support region under a contacting actuator pad.",
         "inspect": [
@@ -425,7 +425,7 @@ TASK_PROMPTS = {
         "reject_only_if": "Only translation/pad motion occurs, the original block is substituted, or the support/contact/outline is unreadable during the necessary rotation.",
         "guardrails": "Do not enforce a tipping threshold, center-of-mass relation, correct angular trajectory or a decorative final pause. A readable unexpected pivot/trajectory is available to the physical evaluator.",
     },
-    "P44": {
+    "P7": {
         "family": "static_geometry",
         "measurement": "The full hanging profile of one connected chain between two fixed endpoints.",
         "inspect": [
@@ -436,7 +436,7 @@ TASK_PROMPTS = {
         "reject_only_if": "The chain or an endpoint is missing/unreadable, continuity cannot be established, or no usable settled profile is visible.",
         "guardrails": "Do not require a catenary equation, a particular sag, an initial settling transient or an exact final pause. The chain is flexible; natural changes in curvature are not rigid-body deformation.",
     },
-    "P45": {
+    "P37": {
         "family": "static_liquid",
         "measurement": "Internal meniscus heights in two different-bore capillary tubes relative to one shared liquid reservoir.",
         "inspect": [
@@ -447,7 +447,7 @@ TASK_PROMPTS = {
         "reject_only_if": "Shared liquid access cannot be established, tube identities/bore distinction are unavailable, or an internal/external surface needed for the comparison cannot be read.",
         "guardrails": "Do not require the narrow tube to rise higher, any nonzero rise, inverse-radius scaling, initially dry tubes or repeated insertion. Wetting chemistry and liquid composition cannot be inferred from the expected rise.",
     },
-    "P47": {
+    "P39": {
         "family": "surface_geometry",
         "measurement": "The shared partition and outer contours of two differently sized connected bubbles.",
         "inspect": [
@@ -458,7 +458,7 @@ TASK_PROMPTS = {
         "reject_only_if": "A bubble or the common partition is absent/unreadable, the two connected identities cannot be associated, or an unrelated object replaces the intended partition geometry.",
         "guardrails": "Do not enforce partition curvature, its predicted bending direction, radius ratios or visible motion. An incorrectly curved but readable partition remains measurable.",
     },
-    "P48": {
+    "P40": {
         "family": "surface_transformation",
         "measurement": "Two original separate liquid drops joining into one connected final liquid body.",
         "inspect": [
@@ -469,7 +469,7 @@ TASK_PROMPTS = {
         "reject_only_if": "The drops merely approach or remain separate, one original is lost/replaced, or the final connected single body cannot be established.",
         "guardrails": "Do not require volume conservation, a radius ratio, expected merger speed or photorealistic styling. Count changing from two to one is the required natural transformation, not an identity defect by itself.",
     },
-    "P49": {
+    "P38": {
         "family": "paired_motion",
         "measurement": "Speed evolution of two differently sized original balls descending in the same transparent liquid tank.",
         "inspect": [

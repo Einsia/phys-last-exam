@@ -1,0 +1,145 @@
+{
+  "objects": [
+    {
+      "name": "magnet",
+      "box": [
+        42,
+        344,
+        351,
+        423
+      ],
+      "positive": [
+        [
+          124,
+          390
+        ],
+        [
+          275,
+          379
+        ]
+      ],
+      "negative": [
+        [
+          92,
+          456
+        ]
+      ],
+      "identity_evidence": "Red/blue bar supported to the left of coil."
+    },
+    {
+      "name": "coil",
+      "box": [
+        452,
+        235,
+        787,
+        419
+      ],
+      "positive": [
+        [
+          610,
+          295
+        ]
+      ],
+      "negative": [
+        [
+          650,
+          457
+        ]
+      ],
+      "identity_evidence": "Fixed copper winding and two dark rims."
+    },
+    {
+      "name": "lamp",
+      "box": [
+        1107,
+        344,
+        1182,
+        433
+      ],
+      "positive": [
+        [
+          1150,
+          394
+        ]
+      ],
+      "negative": [
+        [
+          1150,
+          463
+        ]
+      ],
+      "identity_evidence": "Transparent lamp envelope, excluding socket."
+    }
+  ],
+  "geometry": {
+    "entry_plane": [
+      [
+        486,
+        264
+      ],
+      [
+        486,
+        406
+      ]
+    ],
+    "exit_plane": [
+      [
+        774,
+        243
+      ],
+      [
+        774,
+        398
+      ]
+    ],
+    "lamp_emission_box": [
+      1127,
+      380,
+      1167,
+      430
+    ],
+    "lamp_background_box": [
+      1209,
+      351,
+      1247,
+      428
+    ],
+    "fixed_reference_boxes": [
+      [
+        451,
+        486,
+        837,
+        578
+      ],
+      [
+        1057,
+        484,
+        1239,
+        564
+      ]
+    ],
+    "pass_direction": [
+      1,
+      0
+    ]
+  },
+  "review": "track leading red end crossing the two coil mouths; brightness independently measured",
+  "task_id": "P30",
+  "annotation_type": "task_first_frame_template",
+  "source_image_sha256": "11be4e0afbe664f3660376886174453d9f36a7c579b927d4cf49b99922e9975e",
+  "coordinate_frame": "resized_input_image",
+  "size_wh": [
+    1344,
+    768
+  ],
+  "note": "Reusable initialization for the fixed task image, without video-specific measurements or scores. Coordinates refer to the input image resized to size_wh. The evaluator scales them to the video and checks first-frame correspondence before tracking.",
+  "template_version": 1,
+  "source_size_wh": [
+    1376,
+    768
+  ],
+  "template_review": {
+    "accepted": true,
+    "evidence": "Object identities and initialization prompts reviewed against the bundled task input image on the declared annotation canvas."
+  }
+}

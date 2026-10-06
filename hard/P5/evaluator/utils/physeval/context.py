@@ -15,7 +15,7 @@ class Context:
     seed: int | None = None
     debug_path: str | None = None
     # Angle-like scene constants a task cannot measure from pixels and that the
-    # benchmark states in the prompt (e.g. P2's launch angle).
+    # benchmark states in the prompt (e.g. P4's launch angle).
     params: dict = None  # type: ignore[assignment]
 
     def __post_init__(self) -> None:

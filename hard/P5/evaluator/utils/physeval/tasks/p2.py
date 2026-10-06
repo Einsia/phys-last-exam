@@ -1,14 +1,13 @@
-"""P2 - a ball launched at a stated angle, landing back at launch height.
+"""P2 - a dense steel ball released from rest falls freely.
 
 Benchmark metrics, taken verbatim:
-  M1  H/R - tan(theta)/4, where H is the apex height above the launch level and
-      R the horizontal range. For ideal projectile motion H/R = tan(theta)/4
-      exactly, independent of speed and of any pixel calibration.
-  M2  three auxiliary quantities: CV(v_x), CV(dv_y) and the residual of a
-      quadratic fit to the trajectory.
+  M1  CV(dv_y): the vertical velocity increment over equal time intervals should
+      be near constant, so its coefficient of variation is the metric.
+  M2  dy1 : dy2 : dy3 ~ 1 : 3 : 5, the displacement ratio over three consecutive
+      equal intervals starting from rest.
 
-The launch angle is not measurable from a single frame, so it comes from the
-prompt, which states it.
+Both come from one trajectory: the ball's sub-pixel centroid per frame. No
+calibration is needed because both metrics are ratios of pixel displacements.
 """
 from __future__ import annotations
 
@@ -16,203 +15,225 @@ import numpy as np
 
 from .. import viz
 from ..context import Context
-from ..fitting import cv, longest_finite_run, moving_phase, polyfit
+from ..fitting import cv, longest_finite_run, moving_phase
 from ..schema import Result
-from ..track import camera_drift, find_color_targets, track_target
+from ..track import camera_drift, track_moving_blob
 from ..video import Clip
 
-MIN_FLIGHT_FRAMES = 16
-MIN_INTERVAL_FRAMES = 8
+# The ball must move at least this many pixels in total for the fall to be a
+# fall rather than tracker noise.
+MIN_FALL_PX = 30.0
+MIN_FRAMES = 12
+# Velocity is measured over multi-frame intervals rather than frame pairs. A
+# single-frame difference of a sub-pixel centroid is dominated by codec noise,
+# and taking a second difference of it doubles that noise, so the interval is
+# made long enough that the real velocity change is well above it.
+MIN_INTERVAL_FRAMES = 10
 N_INTERVALS = 6
-DEFAULT_THETA_DEG = 45.0
 
 
 def evaluate(clip: Clip, ctx: Context) -> Result:
     res = Result(task_id=ctx.task_id, video_path=ctx.video_path,
                  image_path=ctx.image_path, video_prompt=ctx.video_prompt,
                  model=ctx.model, seed=ctx.seed)
-    theta = float(ctx.params.get("theta_deg") or DEFAULT_THETA_DEG)
-    target_ratio = np.tan(np.radians(theta)) / 4.0
+    M1 = res.add("M1", "CV(dv_y): equal-interval vertical velocity increments "
+                       "should be constant", principle=(
+        "Free fall has constant acceleration, so the change in vertical velocity "
+        "over successive equal time intervals is the same every time. The metric "
+        "is CV(dv_y) = std/mean of those increments; exact free fall gives 0."), tol=0.1)
+    M2 = res.add("M2", "dy1:dy2:dy3 ~ 1:3:5", principle=(
+        "Starting from rest, the distances fallen in three consecutive equal time "
+        "intervals are in the ratio 1:3:5. The metric is the RMS relative "
+        "deviation of the measured dy2/dy1 and dy3/dy1 from 3 and 5."), tol=0.1)
 
-    M1 = res.add("M1", "H/R - tan(theta)/4", principle=(
-        f"For projectile motion launched at {theta:g} deg and landing at the "
-        "launch height, the apex height over the range is H/R = tan(theta)/4 = "
-        f"{target_ratio:.4f}. Both H and R are pixel lengths in the same frame, "
-        "so the ratio needs no calibration. The metric is the signed difference "
-        "H/R - tan(theta)/4."), tol=0.1)
-    # The benchmark lists three auxiliary quantities for P2, so each takes its
-    # own slot rather than being collapsed into one number.
-    M2 = res.add("M2", "CV(v_x): horizontal velocity should be constant",
-                 principle=("With no horizontal force the horizontal velocity "
-                            "is constant, so the coefficient of variation of "
-                            "the per-interval v_x is zero for ideal motion."), tol=0.1)
-    M3 = res.add("M3", "CV(dv_y): equal-interval vertical velocity increments",
-                 principle=("Gravity is constant, so the vertical velocity "
-                            "changes by the same amount over each equal time "
-                            "interval and CV(dv_y) is zero for ideal motion."), tol=0.1)
-    M4 = res.add("M4", "quadratic-fit residual of the trajectory",
-                 principle=("An ideal trajectory is a parabola y(x). The metric "
-                            "is the RMS distance of the tracked points from the "
-                            "least-squares parabola, divided by the range R so "
-                            "it is scale-free."), tol=0.05)
-    aux = (M2, M3, M4)
-
-    # The clip paints a trail behind the ball, so the ball is segmented by its
-    # own chroma rather than by motion: the trail is neutral grey, the ball is not.
-    targets = find_color_targets(clip[0], k=1)
-    if not targets:
-        res.fail_all("no chromatic ball found in the first frame")
-        return res
-
-    tr = track_target(clip, targets[0])
-    a0, b0 = longest_finite_run(tr.x)
-    if b0 - a0 < MIN_FLIGHT_FRAMES:
-        res.fail_all(f"ball tracked for only {b0 - a0} consecutive frames")
-        return res
-
-    x, y = tr.x[a0:b0], tr.y[a0:b0]
-    # Flight starts when the ball leaves the ground and ends when it comes back
-    # down to the launch level; frames before launch and after landing are
-    # outside the arc the metric is defined on.
-    start, _ = moving_phase(x)
-    apex = int(np.nanargmin(y[start:])) + start
-    y_launch = float(y[start])
-    land = _landing_index(y, apex, y_launch)
-
-    H = y_launch - float(y[apex])
-    R = abs(float(x[land]) - float(x[start]))
+    tr = track_moving_blob(clip)
+    a0, b0 = longest_finite_run(tr.y)
+    # The benchmark measures the free fall only: the clip may hold the ball at
+    # rest before release and may show it resting after it lands, and both would
+    # corrupt an acceleration measured across them.
+    # Release is where motion begins; the fall ends at the lowest point the ball
+    # reaches, which is the contact instant when it lands and the final frame
+    # when it does not. Using the extremum rather than a speed threshold keeps a
+    # small bounce after contact out of the measured interval.
+    ma, _ = moving_phase(tr.y[a0:b0])
+    seg = tr.y[a0:b0]
+    landing = int(np.nanargmax(seg))
+    a, b = a0 + ma, a0 + max(landing + 1, ma + 4)
     res.scene = {"camera_drift_frac_diag": camera_drift(clip),
                  "track_coverage": tr.coverage,
                  "tracked_span_frames": [int(a0), int(b0)],
-                 "flight_phase_frames": [int(a0 + start), int(a0 + land + 1)],
-                 "launch_xy": [float(x[start]), y_launch],
-                 "apex_xy": [float(x[apex]), float(y[apex])],
-                 "landing_xy": [float(x[land]), float(y[land])],
-                 "theta_deg_from_prompt": theta}
+                 "free_fall_phase_frames": [int(a), int(b)],
+                 "phase_note": ("frames outside the free-fall phase (held at "
+                                "rest, or resting after landing) are excluded"),
+                 "extractor": tr.quantities}
 
-    M1.steps = [
-        "segment the ball by its first-frame colour and take the sub-pixel "
-        "centroid of the nearest connected component in every frame",
-        "launch = first frame with horizontal motion; apex = frame of minimum "
-        "image y; landing = frame where the descending path returns to the "
-        "launch height (linearly interpolated between frames)",
-        "H = y_launch - y_apex   (pixels, upward)",
-        "R = |x_landing - x_launch|   (pixels)",
-        f"M1 = H/R - tan({theta:g} deg)/4",
-    ]
-    if land - start < MIN_FLIGHT_FRAMES:
-        M1.fail(f"flight phase is only {land - start} frames",
-                    flight_frames=int(land - start))
-    elif H <= 2.0 or R <= 2.0:
-        M1.fail(f"degenerate arc: H={H:.1f} px, R={R:.1f} px",
-                    apex_height_px=H, range_px=R)
+    if b - a < MIN_FRAMES:
+        msg = f"ball tracked for only {b - a} consecutive frames"
+        M1.fail(msg, tracked_frames=int(b - a))
+        M2.fail(msg, tracked_frames=int(b - a))
+        return _finish(res, ctx, clip, tr, a, b, None, None, None)
+
+    y = tr.y[a:b]
+    # Image y grows downward, so falling is increasing y; flip to make the
+    # measured displacement positive downward-as-positive-fall.
+    fall = y - y[0]
+    if float(fall[-1]) < MIN_FALL_PX:
+        msg = (f"ball fell only {float(fall[-1]):.1f} px over the tracked span, "
+               "no measurable fall")
+        M1.fail(msg, total_fall_px=float(fall[-1]))
+        M2.fail(msg, total_fall_px=float(fall[-1]))
+        return _finish(res, ctx, clip, tr, a, b, fall, None, None)
+
+    # --- M1: CV of velocity increments over equal intervals -----------------
+    span = b - a
+    k = max(MIN_INTERVAL_FRAMES, span // N_INTERVALS)
+    edges = np.arange(0, span, k)
+    if edges.size < 4:
+        M1.fail(f"tracked span {span} frames only yields {edges.size - 1} "
+                    f"intervals of {k} frames, need at least 3 to form "
+                    "two velocity increments")
+        v = dv = np.asarray([], float)
     else:
-        M1.succeed(H / R - target_ratio, apex_height_px=H, range_px=R,
-                       measured_H_over_R=H / R,
-                       expected_H_over_R=target_ratio,
-                       flight_frames=int(land - start))
+        # Mean velocity in each equal-length interval, from its endpoints.
+        v = np.asarray([(fall[edges[i + 1]] - fall[edges[i]]) / k
+                        for i in range(edges.size - 1)], float)
+        dv = np.diff(v)
+        M1.steps = [
+            "take the static scene as the temporal median frame, then per frame "
+            "keep the compact blob that differs from it and is nearest the "
+            "previous position; its intensity-weighted centroid is the ball",
+            f"use the longest continuous tracked span, frames {a}-{b - 1}",
+            f"split it into equal intervals of {k} frames "
+            f"({edges.size - 1} intervals)",
+            "v_y[j] = (y at interval end - y at interval start) / interval length",
+            "dv_y[j] = v_y[j+1] - v_y[j]",
+            "M1 = std(dv_y) / |mean(dv_y)|; constant acceleration gives 0",
+        ]
+        m1 = cv(dv)
+        if np.isfinite(m1):
+            M1.succeed(m1, interval_frames=int(k),
+                           n_intervals=int(v.size),
+                           interval_velocities_px_per_frame=v.tolist(),
+                           dv_y_px_per_frame=dv.tolist(),
+                           mean_dv_y=float(np.mean(dv)),
+                           std_dv_y=float(np.std(dv, ddof=1)),
+                           total_fall_px=float(fall[-1]))
+            M1.note = (
+                "a large value means the velocity increments are not consistent, "
+                "i.e. the fall is not uniformly accelerated; CV grows without "
+                "bound as the mean increment approaches zero, which is what a "
+                "constant-velocity fall produces")
+        else:
+            M1.fail("fewer than two velocity increments, CV undefined",
+                        n_intervals=int(v.size))
 
-    _aux(aux, x[start:land + 1], y[start:land + 1], R)
+    # --- M2: 1:3:5 displacement ratio ---------------------------------------
+    # Three equal windows measured from the first tracked frame, which is the
+    # release instant because the ball is at rest before it.
+    # (span-1)//3 so the third window's end index is the last tracked frame.
+    k = (span - 1) // 3
+    if k >= 3:
+        d1 = float(fall[k] - fall[0])
+        d2 = float(fall[2 * k] - fall[k])
+        d3 = float(fall[3 * k] - fall[2 * k])
+        M2.steps = [
+            f"split the tracked span into three equal windows of {k} frames",
+            "dy1, dy2, dy3 = vertical displacement in each window",
+            "compare dy2/dy1 and dy3/dy1 against the from-rest law 3 and 5",
+            "M2 = sqrt(mean(((dy2/dy1)/3 - 1)^2, ((dy3/dy1)/5 - 1)^2))",
+        ]
+        if d1 > 1.0:
+            r2, r3 = d2 / d1, d3 / d1
+            m2 = float(np.sqrt(np.mean([(r2 / 3.0 - 1) ** 2,
+                                        (r3 / 5.0 - 1) ** 2])))
+            M2.succeed(m2, window_frames=int(k),
+                           dy1_px=d1, dy2_px=d2, dy3_px=d3,
+                           ratio_dy2_dy1=r2, ratio_dy3_dy1=r3,
+                           expected_ratios=[3.0, 5.0])
+        else:
+            M2.fail(f"first window displacement {d1:.1f} px is too small "
+                        "to normalise the ratio", dy1_px=d1)
+    else:
+        M2.fail(f"tracked span {span} frames gives windows of {k} frames, "
+                    "too short for a three-window ratio")
 
+    return _finish(res, ctx, clip, tr, a, b, fall, v, dv)
+
+
+def _finish(res, ctx, clip, tr, a, b, fall, v, dv):
+    # A figure is produced even when nothing could be measured: the reason a
+    # sample failed is exactly what a reader needs to see, and an empty slot
+    # tells them nothing.
     if ctx.debug_path:
-        res.debug_image = _debug(clip, ctx, tr, a0, start, apex, land,
-                                 x, y, H, R, target_ratio, res)
+        res.debug_image = _debug(clip, ctx, tr, a, b, fall, v, dv, res)
     return res
 
 
-def _landing_index(y: np.ndarray, apex: int, y_launch: float) -> int:
-    """First index after the apex where the ball is back at the launch level."""
-    for i in range(apex + 1, y.size):
-        if y[i] >= y_launch:
-            return i
-    return int(y.size - 1)
-
-
-def _aux(aux, x: np.ndarray, y: np.ndarray, R: float) -> None:
-    M2, M3, M4 = aux
-    n = x.size
-    k = max(MIN_INTERVAL_FRAMES, n // N_INTERVALS)
-    edges = np.arange(0, n, k)
-    common = [f"over the flight phase, split into equal intervals of {k} frames",
-              "v_x, v_y = interval endpoint displacement / interval length"]
-    M2.steps = common + ["M2 = std/|mean| of the interval v_x"]
-    M3.steps = common + ["dv_y = differences of successive interval v_y",
-                         "M3 = std/|mean| of dv_y"]
-    M4.steps = ["fit y = a x^2 + b x + c to the tracked flight points",
-                "M4 = RMS residual in pixels, divided by the range R"]
-
-    if edges.size < 4 or R <= 2.0:
-        msg = "flight phase too short to form three equal intervals"
-        for m in aux:
-            m.fail(msg)
-        return
-
-    vx = np.asarray([(x[edges[i + 1]] - x[edges[i]]) / k
-                     for i in range(edges.size - 1)], float)
-    vy = np.asarray([(y[edges[i + 1]] - y[edges[i]]) / k
-                     for i in range(edges.size - 1)], float)
-    fit = polyfit(x, y, 2)
-    shared = {"interval_frames": int(k), "vx_px_per_frame": vx.tolist(),
-              "vy_px_per_frame": vy.tolist()}
-
-    for metric, value, extra in (
-            (M2, cv(vx), {"mean_vx_px_per_frame": float(np.mean(vx))}),
-            (M3, cv(np.diff(vy)),
-             {"dvy_px_per_frame": np.diff(vy).tolist()}),
-            (M4, fit.rms / R, {"parabola_rms_px": fit.rms, "range_px": R,
-                               "parabola_coefficients": fit.coef.tolist()})):
-        if np.isfinite(value):
-            metric.succeed(value, **shared, **extra)
-        else:
-            metric.fail("quantity undefined: the mean it normalises by is zero",
-                        **shared, **extra)
-
-
-def _debug(clip, ctx, tr, a0, start, apex, land, x, y, H, R, target, res) -> str:
-    M1 = res.metrics["M1"]
+def _debug(clip, ctx, tr, a, b, fall, v, dv, res) -> str:
     fig, ax = viz.figure(ncols=3, width_each=5.0)
 
-    viz.show_frame(ax[0], clip[min(a0 + land, clip.n - 1)],
-                   "trajectory, H and R")
-    xs, ys = x[start:land + 1], y[start:land + 1]
-    ax[0].plot(xs, ys, "-", color="#00e5ff", lw=1.8, label="tracked arc")
-    ax[0].plot([x[start], x[land]], [y[start], y[start]], "-",
-               color="#ffd400", lw=1.6, label=f"R = {R:.0f} px")
-    ax[0].plot([x[apex], x[apex]], [y[apex], y[start]], "-",
-               color="#ff3b30", lw=1.6, label=f"H = {H:.0f} px")
-    ax[0].scatter([x[start], x[apex], x[land]], [y[start], y[apex], y[land]],
-                  s=26, color="#ffffff", edgecolor="k", zorder=4)
-    ax[0].legend(loc="lower left", fontsize=7)
+    viz.show_frame(ax[0], clip[max(0, b - 1)],
+                   f"trajectory on frame {max(0, b - 1)}")
+    if b > a:
+        ax[0].plot(tr.x[a:b], tr.y[a:b], "-", color="#00e5ff", lw=1.6,
+                   label="tracked centroid")
+        ax[0].scatter(tr.x[a:b:8], tr.y[a:b:8], s=14, color="#ff3b30", zorder=3)
+        k = (b - a - 1) // 3
+        for j, lab in ((0, "start"), (k, "1/3"), (2 * k, "2/3"), (3 * k, "end")):
+            if a + j < b:
+                ax[0].axhline(tr.y[a + j], color="#ffd400", lw=0.8, ls="--")
+                ax[0].annotate(lab, (10, tr.y[a + j] - 6), color="#ffd400",
+                               fontsize=7)
+        ax[0].legend(loc="lower left", fontsize=7)
+    else:
+        ax[0].set_title(f"frame {max(0, b - 1)}: the ball was not tracked")
 
-    ax[1].plot(xs, -ys, ".", ms=3, color="#0a84ff", label="tracked points")
-    if xs.size > 3:
-        fit = polyfit(xs, ys, 2)
-        xg = np.linspace(xs.min(), xs.max(), 200)
-        ax[1].plot(xg, -fit(xg), "-", color="#ff9500", lw=1.3,
-                   label=f"parabola fit, RMS {fit.rms:.2f} px")
-    ax[1].set_xlabel("x  [px]")
-    ax[1].set_ylabel("height  [px, up]")
-    ax[1].set_title("arc vs least-squares parabola")
-    ax[1].legend(fontsize=7)
+    if fall is None:
+        for k in (1, 2):
+            ax[k].set_axis_off()
+        note = next((m.note for m in res.metrics.values() if m.note), "")
+        ax[1].text(0.5, 0.5, note, ha="center", va="center", wrap=True,
+                   fontsize=10, transform=ax[1].transAxes)
+        ax[1].set_title("nothing measurable in this clip")
+        return _save(fig, ctx, res)
 
-    q = res.metrics["M2"].quantities
-    if q.get("vx_px_per_frame"):
-        vx = np.asarray(q["vx_px_per_frame"], float)
-        vy = np.asarray(q["vy_px_per_frame"], float)
-        ax[2].plot(vx, "o-", ms=4, color="#34c759", label="v_x per interval")
-        ax[2].plot(np.diff(vy), "o-", ms=4, color="#ff9500",
+    t = np.arange(fall.size)
+    ax[1].plot(t, fall, ".-", ms=3, color="#0a84ff", label="measured fall  [px]")
+    # A true from-rest free fall is a pure quadratic through the origin; drawing
+    # it makes a constant-velocity fall obvious by eye.
+    q = float(fall[-1]) / max(1.0, t[-1] ** 2)
+    ax[1].plot(t, q * t ** 2, "--", color="#ff3b30", lw=1.2,
+               label="from-rest free fall through same endpoint")
+    ax[1].set_xlabel("frame (from first tracked)")
+    ax[1].set_ylabel("distance fallen  [px]")
+    ax[1].set_title("displacement vs the from-rest law")
+    ax[1].legend(fontsize=7, loc="upper left")
+
+    if v is not None and v.size:
+        ax[2].step(np.arange(v.size), v, where="mid", color="#34c759",
+                   marker="o", ms=4, label="interval velocity  [px/frame]")
+        ax[2].plot(np.arange(dv.size) + 0.5, dv, "o-", ms=4, color="#ff9500",
                    label="dv_y between intervals")
-        ax[2].axhline(0, color="#8e8e93", lw=0.8)
+        ax[2].axhline(0.0, color="#8e8e93", lw=0.8)
+        if dv.size and np.isfinite(np.mean(dv)):
+            ax[2].axhline(float(np.mean(dv)), color="#ff3b30", ls="--", lw=1.0,
+                          label=f"mean dv_y = {np.mean(dv):.3f}")
         ax[2].legend(fontsize=7)
     ax[2].set_xlabel("interval index")
-    ax[2].set_title("v_x flat and dv_y constant if projectile")
+    ax[2].set_title("velocity per interval and its increments")
 
-    m1 = "n/a" if M1.value is None else f"{M1.value:+.4f}"
-    cap = (f"{ctx.task_id}  M1 = H/R - tan(theta)/4 = {m1}"
-           f"   (H/R = {H / R:.4f} vs {target:.4f})")
-    def fmt(key: str) -> str:
-        m = res.metrics[key]
-        return "n/a" if m.value is None else f"{m.value:.4f}"
-    cap += (f"   |   M2 CV(v_x) = {fmt('M2')}   M3 CV(dv_y) = {fmt('M3')}   "
-            f"M4 parabola resid = {fmt('M4')}")
+    return _save(fig, ctx, res)
+
+
+def _save(fig, ctx, res) -> str:
+    M1, M2 = res.metrics["M1"], res.metrics["M2"]
+    q = M2.quantities
+    cap = (f"{ctx.task_id}  M1 CV(dv_y) = "
+           f"{'n/a' if M1.value is None else f'{M1.value:.4f}'}"
+           f"   |   M2 1:3:5 deviation = "
+           f"{'n/a' if M2.value is None else f'{M2.value:.4f}'}")
+    if q.get("dy1_px"):
+        cap += (f"   (dy1:dy2:dy3 = {q['dy1_px']:.0f}:{q['dy2_px']:.0f}:"
+                f"{q['dy3_px']:.0f} px, normalised 1:{q['ratio_dy2_dy1']:.2f}:"
+                f"{q['ratio_dy3_dy1']:.2f} vs 1:3:5)")
     return viz.save(fig, ctx.debug(), cap)
