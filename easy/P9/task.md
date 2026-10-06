@@ -45,4 +45,4 @@ The support frame, beam, pivots, background, and camera remain stationary. Prese
 
 当前测量后端根据文件名选择已有首帧标定。使用本题唯一首帧生成的视频应命名为 `P9_gpt_01_modern_seedN.mp4`（N 为任意整数），并保持与配置相同的 1344×768 测量画布；视频可位于题包外。`--sample-id` 不替代后端的文件名匹配。
 
-首帧到既有测量画布的变换为 PIL LANCZOS 缩放到 1344×768；已验证其像素与原标定输入图一致。参考图本身仍只保留根目录 `first_frame.png`。
+首帧到测量画布的变换仍为 PIL LANCZOS 缩放到 1344×768。根目录 `first_frame.png` 已于 2026-10-06 更新为新场景，不能沿用此前与旧标定输入图像素一致的结论；现有后端标定尚未按新首帧更新，评测新场景前需重新核对并更新标定。
