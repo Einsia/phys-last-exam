@@ -1,6 +1,6 @@
 # P40 · Droplet volume conservation
 
-Category: 9. Surface Tension and Viscous Flow; legacy ID: `P48`.
+Category: 9. Surface Tension and Viscous Flow.
 
 Difficulty: Medium; task rank: 21/40; mean final total score: 0.342852.
 
@@ -30,7 +30,6 @@ In the table below, P is the pure physics score for each metric, ranging from 0 
 | M1: Droplet-volume residual | e=abs(r_final^3/(r1^3+r2^3)-1); P=1/(1+e/0.10). | e is dimensionless; radii r are in pixels. |
 | M2: Circularity change | circularity=1-radial outline RMS error/fitted radius; e=abs(final circularity-mean initial circularity of both drops); P=1/(1+e/0.10). | Circularity, e, and P are dimensionless. |
 
-Formula references: `v4/g6/P48/evaluator/utils/physeval/tasks/p48.py:32`; `v4/g6/P48/evaluator/utils/physeval/tasks/p48.py:112`; `v4/g6/P48/evaluator/utils/physeval/tasks/p48.py:37`; `v4/g6/P48/evaluator/utils/physeval/tasks/p48.py:121`.
 
 ## Original generation prompt
 

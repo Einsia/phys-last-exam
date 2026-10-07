@@ -640,6 +640,6 @@ def summarize(rows, times, cfg, verbose, image_reference=None):
     verbose['measurements']={'final_frame_indices':indices,'final_direction_separation_deg':separation,
         'per_frame_direction_separation_deg':differences.tolist(),'final_window_frame_count':len(rows)-start,
         'first_frame_direction_used':False}
-    verbose['score_details']={'version':'opinion_v2_final_direction','formula':'(1-cos(final_direction_separation))/2','range':[0,1]}
+    verbose['score_details']={'version':'final_direction_v1','formula':'(1-cos(final_direction_separation))/2','range':[0,1]}
     verbose['status']='scored';verbose['reason']="Compare only observed needle directions in readable final frames; rotation trajectories and stabilization duration are not required."
     return score

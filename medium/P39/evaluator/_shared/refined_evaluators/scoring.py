@@ -102,7 +102,7 @@ def measurement_and_physics(task, verbose, previous_score):
         if abs(previous_score-expected)>1e-9:
             raise ValueError('P32 score disagrees with measured final directions')
         value={'final_direction_separation_deg':separation}
-        info.update(type='final_direction_alignment',version='opinion_v2_final_direction',
+        info.update(type='final_direction_alignment',version='final_direction_v1',
                     formula='(1-cos(final_direction_separation_deg*pi/180))/2',
                     metric_unit='degrees',first_frame_direction_used=False)
     elif task == 'P33':
@@ -157,7 +157,7 @@ def measurement_and_physics(task, verbose, previous_score):
 def score_result(result):
     """Finalize a fresh extractor result without changing measurement eligibility.
 
-    Idempotent for already finalized output; historical values are retained under
+    Idempotent for finalized output; raw values are retained under
     normalization_source and verbose.M1.raw_measurement.
     """
     if result.get('normalization_source', {}).get('version') == VERSION:

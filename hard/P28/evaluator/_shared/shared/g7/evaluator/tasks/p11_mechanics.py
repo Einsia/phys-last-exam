@@ -11,7 +11,7 @@ assuming the nominal prompt angle.
 Public entry points
 -------------------
 ``evaluate(frames, fps, debug_dir, sample_id=0)`` is the integration API.
-``evaluate_video(video_path, ...)`` is a convenience wrapper for tests/CLI use.
+``evaluate_video(video_path, ...)`` is a convenience wrapper for file-based evaluation.
 ``evaluate_p11`` is an alias for dispatchers that prefer task-qualified names.
 """
 
@@ -67,7 +67,7 @@ def expected_acceleration_ratio(
 
 
 # Public compatibility constant.  New evaluations use the observed angle and
-# ``expected_acceleration_ratio`` below; tests and older integrations can still
+# ``expected_acceleration_ratio`` below; direct integrations can
 # import the nominal 30-degree value.
 EXPECTED_ACCELERATION_RATIO = expected_acceleration_ratio(RAMP_ANGLE_DEG)
 
@@ -836,7 +836,7 @@ def evaluate(
                 and np.mean(np.diff(points[:,1])<=1.)>=.80
                 and frame_indices[-1]>=len(materialized)-max(3,int(.1*len(materialized))))
     if turn_index is None and upward and failures==['turning_point_not_found']:
-        base_measurements.update(observed_outcome='ascent_only',opinion_v2_physics_score=.1)
+        base_measurements.update(observed_outcome='ascent_only',observed_outcome_physics_score=.1)
         result=_result(sample_id,True,base_measurements,metrics={'M1':None},debug_artifacts=artifacts)
         result['debug_artifacts']['summary']=_write_summary(debug_path,result)
         return result

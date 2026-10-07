@@ -1,6 +1,6 @@
 # P23 · Liquid-surface orientation
 
-Category: 5. Hydrostatics and Buoyancy; legacy ID: `P18`.
+Category: 5. Hydrostatics and Buoyancy.
 
 Difficulty: Medium; task rank: 23/40; mean final total score: 0.323625.
 
@@ -46,5 +46,3 @@ python evaluator/evaluate.py \
   --prompt prompt.txt \
   --output /absolute/path/to/result.json
 ```
-
-Metric definition references: `v4/g4/P18/evaluator/utils/physeval/tasks/p18.py:33`; `v4/unified_evaluators/contract.py:100`; `v4/g4/P18/evaluator/utils/physeval/tasks/p18.py:40`.

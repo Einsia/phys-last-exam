@@ -1,6 +1,6 @@
 # P11 · Rough-incline round trip
 
-Category: 2. Rolling, Friction, and Rigid-Body Statics; legacy ID: `P10`.
+Category: 2. Rolling, Friction, and Rigid-Body Statics.
 
 Difficulty: Hard; task rank: 37/40; mean final total score: 0.146558.
 
@@ -29,7 +29,6 @@ In the table below, P is the pure physics score for each metric, ranging from 0 
 | --- | --- | --- |
 | M1: Ascending/descending acceleration-ratio error | R_theory=(sin(theta)+0.20*cos(theta))/(sin(theta)-0.20*cos(theta)); e=abs((a_up/a_down)/R_theory-1); P=1/(1+e/0.10). A separately confirmed ascent-only partial event receives P=0.1. | Ratios and e are dimensionless; acceleration is in pixels/second^2; theta is incline angle. |
 
-Formula references: `v4/g7/evaluator/tasks/p10_mechanics.py:913`; `v4/unified_evaluators/physics.py:151`.
 
 ## Original generation prompt
 

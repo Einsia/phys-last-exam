@@ -1,6 +1,6 @@
 # P25 · Ice melting: water level
 
-Category: 6. Phase Transitions and Melting; legacy ID: `P21`.
+Category: 6. Phase Transitions and Melting.
 
 Difficulty: Hard; task rank: 38/40; mean final total score: 0.142956.
 
@@ -44,5 +44,3 @@ python evaluator/evaluate.py \
   --prompt prompt.txt \
   --output /absolute/path/to/result.json
 ```
-
-Metric definition references: `v4/g4/P21/evaluator/utils/physeval/tasks/p21.py:33`; `v4/unified_evaluators/contract.py:100`; `v4/g4/P21/evaluator/utils/physeval/tasks/p21.py:40`.

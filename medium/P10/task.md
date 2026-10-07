@@ -1,6 +1,6 @@
 # P10 · Edge-pivot toppling
 
-Category: 2. Rolling, Friction, and Rigid-Body Statics; legacy ID: `P43`.
+Category: 2. Rolling, Friction, and Rigid-Body Statics.
 
 Difficulty: Medium; task rank: 26/40; mean final total score: 0.270230.
 

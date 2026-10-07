@@ -1,6 +1,6 @@
 # P34 · Solid vs. slotted plate damping
 
-Category: 7. Electrostatics, Magnetism, and Electromagnetic Induction; legacy ID: `P38`.
+Category: 7. Electrostatics, Magnetism, and Electromagnetic Induction.
 
 Difficulty: Hard; task rank: 39/40; mean final total score: 0.142813.
 

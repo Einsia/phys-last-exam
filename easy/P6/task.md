@@ -1,6 +1,6 @@
 # P6 · Mass-independent sliding
 
-Category: 2. Rolling, Friction, and Rigid-Body Statics; legacy ID: `P42`.
+Category: 2. Rolling, Friction, and Rigid-Body Statics.
 
 Difficulty: Easy; task rank: 7/40; mean final total score: 0.608458.
 
@@ -37,5 +37,3 @@ python evaluator/evaluate.py \
   --prompt prompt.txt \
   --output /absolute/path/to/result.json
 ```
-
-Metric definition references: `v4/g2/P42/evaluator/measure_backend.py:503`; `v4/unified_evaluators/contract.py:155`.

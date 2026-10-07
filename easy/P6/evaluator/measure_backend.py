@@ -511,7 +511,7 @@ def evaluate_video(video: str, output: Path, sample_id: str, max_frames: int | N
             }
             if measurement.get('both_not_started_sliding'):
                 for key in ('M1','M2'):
-                    measurement['score_normalization'][key].update(raw_measurement='observed_outcome',formula='opinion_v2: both stationary => physics score 0.7')
+                    measurement['score_normalization'][key].update(raw_measurement='observed_outcome',formula='both stationary => physics score 0.7')
             payload = result_payload(video, image_path, seed, model, True, measurement,
                                      m1, m2, None, debug, sample_id, violations)
     except Exception as exc:

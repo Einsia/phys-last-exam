@@ -4,13 +4,10 @@
     "phenomenon": "Water-level change as floating ice melts",
     "domain": "Thermal physics / Buoyancy",
     "original_group": "g4",
-    "package_path": "../..",
     "difficulty_score": 0.14295559818986275,
     "difficulty_rank": 38,
-    "legacy_id": "P21",
     "category_index": 6,
     "category": "Phase Transitions and Melting",
-    "category_zh": "Phase Transitions and Melting",
     "title": "Ice melting: water level"
   }
 }

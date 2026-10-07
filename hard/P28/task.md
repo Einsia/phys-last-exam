@@ -1,6 +1,6 @@
 # P28 · Crushed vs. intact ice
 
-Category: 6. Phase Transitions and Melting; legacy ID: `P27`.
+Category: 6. Phase Transitions and Melting.
 
 Difficulty: Hard; task rank: 32/40; mean final total score: 0.192187.
 
@@ -29,7 +29,6 @@ In the table below, P is the pure physics score for each metric, ranging from 0 
 | --- | --- | --- |
 | M1: Sustained crushed-ice liquid-level lead | Confirm sustained melting on both sides; compare same-frame levels relative to each vessel base and normalized by height. P=1 if the crushed-ice vessel lead exceeds the sum of localization errors for at least 0.25 seconds. P=0 if no lead is observed within at least 0.50 seconds of continuously readable shared evidence. | Normalized level difference is dimensionless; duration is in seconds; localization error is normalized from pixels. |
 
-Formula references: `v4/unified_evaluators/physics.py:132`; `v4/g7/P27/README.md:30`; `v4/g7/P27/README.md:36`.
 
 ## Original generation prompt
 

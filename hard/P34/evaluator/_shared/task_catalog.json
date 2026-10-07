@@ -4,13 +4,10 @@
     "phenomenon": "Electromagnetic damping of solid and slotted conducting plates",
     "domain": "Electromagnetic induction",
     "original_group": "g8",
-    "package_path": "../..",
     "difficulty_score": 0.1428125,
     "difficulty_rank": 39,
-    "legacy_id": "P38",
     "category_index": 7,
     "category": "Electrostatics, Magnetism, and Electromagnetic Induction",
-    "category_zh": "Electrostatics, Magnetism, and Electromagnetic Induction",
     "title": "Solid vs. slotted plate damping"
   }
 }

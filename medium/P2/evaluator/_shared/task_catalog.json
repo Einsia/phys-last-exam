@@ -4,13 +4,10 @@
     "phenomenon": "Free fall",
     "domain": "Mechanics",
     "original_group": "g1",
-    "package_path": "../..",
     "difficulty_score": 0.266127552222827,
     "difficulty_rank": 27,
-    "legacy_id": "P1",
     "category_index": 1,
     "category": "Translational Motion and Collisions",
-    "category_zh": "Translation and Collisions",
     "title": "Free fall"
   }
 }

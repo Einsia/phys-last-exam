@@ -4,13 +4,10 @@
     "phenomenon": "Refraction of light",
     "domain": "Optics",
     "original_group": "g3",
-    "package_path": "../..",
     "difficulty_score": 0.44549721944263887,
     "difficulty_rank": 15,
-    "legacy_id": "P11",
     "category_index": 4,
     "category": "Optics and Projective Geometry",
-    "category_zh": "Optics and Projective Geometry",
     "title": "Light refraction",
     "empirical_difficulty": "Easy",
     "difficulty_source": "manual_override"

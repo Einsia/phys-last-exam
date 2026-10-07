@@ -27,7 +27,7 @@ import numpy as np
 import yaml
 
 from runtime_paths import resolve_tracking_runtime
-from rescore_continuous import rescore_result
+from scoring import rescore_result
 from scipy.signal import savgol_filter
 
 
@@ -1031,8 +1031,8 @@ def evaluate(video: Path, output: Path, config_path: Path, debug_dir: Path,
             "raw_tracks": str(debug_dir / "tracks_raw.npz"),
         },
     }
-    # Keep the legacy 0--100 decision procedure above intact so historical
-    # physics/structure labels remain comparable, then expose the graded
+    # Keep the measurement-validity decisions fixed so
+    # physics/structure labels remain consistent, then expose the graded
     # continuous 0--1 score profile.  Only measurement-invalid samples receive
     # an overall score of exactly zero; measurable hard failures retain a
     # positive, continuously varying quality score.

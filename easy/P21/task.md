@@ -1,6 +1,6 @@
 # P21 · Communicating vessels
 
-Category: 5. Hydrostatics and Buoyancy; legacy ID: `P19`.
+Category: 5. Hydrostatics and Buoyancy.
 
 Difficulty: Easy; task rank: 1/40; mean final total score: 0.964831.
 
@@ -36,5 +36,3 @@ python evaluator/evaluate.py \
   --prompt prompt.txt \
   --output /absolute/path/to/result.json
 ```
-
-Metric definition references: `v4/g2/P19/evaluator/measure_backend.py:350`; `v4/unified_evaluators/contract.py:155`.

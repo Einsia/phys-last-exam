@@ -14,7 +14,7 @@ each task:
   ``extract_success: null``, which is different from a defined metric that could
   not be extracted (false).
 
-Scoring follows SCORING_RULES_V2 (``physical-bench-proxy-v2-recognition015-
+Scoring follows physical scoring specification (``physical-bench-proxy-v2-recognition015-
 arithmetic``):
 
 * pure physics score ``q(e; a) = 1 / (1 + |e| / a)`` for residual quantities,
@@ -41,7 +41,7 @@ from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any
 
-# SCORING_RULES_V2: a measurable metric earns this much for being measurable at
+# physical scoring specification: a measurable metric earns this much for being measurable at
 # all, and the remaining 0.85 is scaled by the pure physics score. Added once
 # per M slot, never per sub-item.
 RECOGNITION = 0.15
@@ -61,7 +61,7 @@ class Metric:
     defined: bool = True
     extract_success: bool = False
     value: float | None = None
-    # --- the 0..1 proxy, SCORING_RULES_V2 -----------------------------------
+    # --- the 0..1 proxy, physical scoring specification -----------------------------------
     # The benchmark's metrics are deviations in whatever unit each one is
     # naturally written in, so their raw values cannot be compared or pooled
     # across tasks. Each slot declares where perfection sits and the error
@@ -140,7 +140,7 @@ class Metric:
     def _rule(self) -> str:
         if not self.extract_success:
             return ("Extraction failed: physics_score is null, no recognition reward is awarded, and proxy_score = 0"
-                    "(SCORING_RULES_V2 §3.1)")
+                    "(physical scoring specification §3.1)")
         if self.non_residual:
             return ("This quantity is already a 0~1 ratio/coverage/confidence value; V2 section 2.1 retains its original "
                     f"mapping: physics_score equals this value; proxy_score = "
@@ -149,7 +149,7 @@ class Metric:
                 f"{self.a:g}); an error of {self.a:g}"
                 f"{self.unit and ' ' + self.unit} gives 0.5; "
                 f"proxy_score = {RECOGNITION:g} + {1 - RECOGNITION:g} × "
-                "physics_score (SCORING_RULES_V2 §2.1, §2.2)")
+                "physics_score (physical scoring specification §2.1, §2.2)")
 
     def to_verbose_json(self) -> dict[str, Any]:
         if not self.defined:
@@ -216,7 +216,7 @@ class Result:
         self.metrics[name] = m
         return m
 
-    # ---- SCORING_RULES_V2 aggregation --------------------------------------
+    # ---- physical scoring specification aggregation --------------------------------------
     @property
     def aux(self) -> list[Metric]:
         """The auxiliary quantities, i.e. everything the benchmark hangs off M2.
@@ -301,7 +301,7 @@ class Result:
             "model": self.model,
             "seed": self.seed,
             # The one number for this video, 0 worst to 1 best, per
-            # SCORING_RULES_V2 §2.3.
+            # physical scoring specification §2.3.
             "score": None if self.score is None else round(self.score, 6),
             "proxy": self._proxy_json(),
             "metrics": {k: m.to_metric_json() for k, m in self.metrics.items()},
@@ -319,7 +319,7 @@ class Result:
         subs = self.aux
         status = self.score_status
         out: dict[str, Any] = {
-            "rules": "SCORING_RULES_V2 (physical-bench-proxy-v2-"
+            "rules": "physical scoring specification (physical-bench-proxy-v2-"
                      "recognition015-arithmetic)",
             "recognition_score_weight": RECOGNITION,
             "M1_physics_score": (None if m1 is None or m1.physics_score is None
@@ -346,7 +346,7 @@ class Result:
                 for m in subs]
             out["M2_combination"] = (
                 "q_M2 = equal-weight geometric mean of component physics_score values; the recognition reward is added at the M2 level "
-                "once (SCORING_RULES_V2 sections 2.2 and 3.2)" if len(subs) > 1 else
+                "once (physical scoring specification sections 2.2 and 3.2)" if len(subs) > 1 else
                 "This task has one auxiliary component; q_M2 equals that component physics_score")
         return out
 

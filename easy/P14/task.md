@@ -1,6 +1,6 @@
 # P14 · Pendulum period vs. length
 
-Category: 3. Pendulum Motion and Oscillations; legacy ID: `P9`.
+Category: 3. Pendulum Motion and Oscillations.
 
 Difficulty: Easy; task rank: 14/40; mean final total score: 0.479792.
 
@@ -41,7 +41,6 @@ The support frame, beam, pivots, background, and camera remain stationary. Prese
 
 The entrypoint is `evaluator/evaluate.py`. Supply an external video path, the first frame with `--image first_frame.png`, and the prompt file with `--prompt`. The measurement backend uses the bundled scene calibration, so the video must match the selected first-frame calibration.
 
-Metric definition references: `v4/unified_evaluators/physics.py:22`; `v4/g3/P9/evaluator/evaluate_raw_legacy.py:1`.
 
 ## Current scene calibration
 

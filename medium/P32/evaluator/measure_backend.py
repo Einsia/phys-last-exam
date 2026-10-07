@@ -78,7 +78,7 @@ def evaluate(args):
             from utils.media import decode, save_segments
             from utils.models import segment
             from utils.measurement import match_static, track_needles, summarize, measure_image_reference
-            from utils.debug import save_measurements
+            from utils.evidence import save_measurements
         except Exception as e:
             raise EnvironmentError(f'Install evaluator/requirements.txt and official SAM 2: {e}') from e
         if args.threads < 1:

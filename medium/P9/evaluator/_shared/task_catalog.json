@@ -4,13 +4,10 @@
     "phenomenon": "Rolling comparison of a solid sphere and a hoop",
     "domain": "Rotational dynamics",
     "original_group": "g7",
-    "package_path": "../..",
     "difficulty_score": 0.28411415438886384,
     "difficulty_rank": 25,
-    "legacy_id": "P7",
     "category_index": 2,
     "category": "Rolling, Friction, and Rigid-Body Statics",
-    "category_zh": "Rolling, Friction, and Rigid-Body Statics",
     "title": "Solid sphere vs. hoop"
   }
 }

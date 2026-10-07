@@ -1,9 +1,6 @@
-# Consolidated dependencies for the 40 final task packages; observed Python: 3.12.
-# This is not a fresh-environment installation lock or an all-40-task validation.
-# Recommended installation: bash setup.sh (installs the CUDA PyTorch pair first).
-# For manual installation, install matching PyTorch/torchvision builds FIRST.
-# The scientific stack below matches the successful P2/P21/P9 CPU regressions,
-# including their OpenCV 4.11 overlay. Install only ONE cv2 wheel provider.
+# Evaluation dependencies for Python 3.12 on Linux.
+# Run bash setup.sh to install the matching CUDA PyTorch packages and model weights.
+
 numpy==2.4.4
 scipy==1.18.0
 opencv-python-headless==4.11.0.86
@@ -11,10 +8,6 @@ matplotlib==3.11.1
 PyYAML==6.0.3
 av==18.0.0
 Pillow==12.2.0
-
-# Neural measurement backends and the default local consistency backend.
-# The >=5 Transformers lower bound is required by the native SAM2 task routes.
-# The platform-specific torch/torchvision pair must also be mutually compatible.
 torch>=2.5.1
 torchvision>=0.20.1
 transformers>=5.0,<6
@@ -25,29 +18,5 @@ iopath>=0.1.10
 einops>=0.8
 tqdm>=4.66.1
 requests>=2.32,<3
-
-# External source packages: network/git is needed to install these lines unless
-# equivalent source checkouts or wheels are supplied locally. Weights are NOT
-# installed by pip; separately supply SAM2.1, DINO, CoTracker3 and the chosen VLM.
-# Official upstream distribution is SAM-2 (import name sam2); avoid installing
-# a second unrelated distribution named sam2 alongside it.
 SAM-2 @ git+https://github.com/facebookresearch/sam2.git@2b90b9f5ceec907a1c18123530e92e794ad901a4
 cotracker @ git+https://github.com/facebookresearch/co-tracker.git@82e02e8029753ad4ef13cf06be7f4fc5facdda4d
-
-# Conditional runtime dependency, required ONLY when --consistency-backend=vllm:
-# vllm==0.19.0
-# Prefer a separately managed compatible vLLM server environment with HTTP mode
-# when its torch/transformers requirements conflict with the measurement stack.
-# The HTTP client path uses Python urllib; it does not require local vLLM.
-
-# Separate validation tooling (not required by a task measurement backend):
-# jsonschema==4.26.0
-
-# Explicit historical lock exception, NOT silently merged away:
-# P8/evaluator/requirements.txt and requirements-lock.txt specify:
-# opencv-python-headless==5.0.0.93, numpy==2.5.2, scipy==1.18.1,
-# matplotlib==3.11.1, PyYAML==6.0.3.
-# The common profile above deliberately uses the observed OpenCV4/NumPy2.4.4/
-# SciPy1.18.0 stack instead. One fixed-scene P8 input was measured with both
-# source and packaged backends under this scientific stack. This is not a
-# fresh-environment installation check or full coverage of P8 inputs.

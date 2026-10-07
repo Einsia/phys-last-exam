@@ -4,13 +4,10 @@
     "phenomenon": "Static shape of a hanging chain",
     "domain": "Flexible structures",
     "original_group": "g5",
-    "package_path": "../..",
     "difficulty_score": 0.7085666934825214,
     "difficulty_rank": 5,
-    "legacy_id": "P44",
     "category_index": 2,
     "category": "Rolling, Friction, and Rigid-Body Statics",
-    "category_zh": "Rolling, Friction, and Rigid-Body Statics",
     "title": "Hanging-chain equilibrium"
   }
 }

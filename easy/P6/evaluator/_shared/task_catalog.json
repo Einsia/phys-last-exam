@@ -4,13 +4,10 @@
     "phenomenon": "Mass-independent sliding onset",
     "domain": "Friction",
     "original_group": "g2",
-    "package_path": "../..",
     "difficulty_score": 0.6084582473362969,
     "difficulty_rank": 7,
-    "legacy_id": "P42",
     "category_index": 2,
     "category": "Rolling, Friction, and Rigid-Body Statics",
-    "category_zh": "Rolling, Friction, and Rigid-Body Statics",
     "title": "Mass-independent sliding"
   }
 }

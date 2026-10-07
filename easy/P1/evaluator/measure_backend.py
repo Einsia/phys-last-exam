@@ -35,7 +35,7 @@ import numpy as np
 from scipy.ndimage import median_filter
 from scipy.signal import find_peaks, savgol_filter
 
-from rescore_continuous import score_record as continuous_score_record
+from scoring import score_record as continuous_score_record
 
 
 HERE = Path(__file__).resolve().parent

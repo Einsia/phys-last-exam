@@ -92,7 +92,7 @@ def evaluate(task_id: str, video: str | Path, sample_id: int | str, debug_dir: s
     if task_id not in EVALUATORS:
         raise ValueError(f"unsupported task_id: {task_id}")
     # The CLI always supplies a debug directory, but the public Python API is
-    # also used by batch tools and smoke tests.  P11/P28 need a concrete path
+    # also used by batch callers. P11/P28 need a concrete path
     # for their plots; normalize ``None`` here instead of letting individual
     # task modules fail with ``Path(None)``.
     if debug_dir is None:

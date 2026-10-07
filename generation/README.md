@@ -45,8 +45,8 @@ For gated checkpoints, accept the upstream license and configure `HF_TOKEN` or H
 Each command defaults to 40 tasks × four samples. Run one sample first, then evaluate it:
 
 ```bash
-bash scripts/generate.sh seedance-2.5 --tasks P21 --seeds 42 --output videos/smoke
-bash scripts/evaluate_all.sh videos/smoke --output runs/smoke
+bash scripts/generate.sh seedance-2.5 --tasks P21 --seeds 42 --output videos/example
+bash scripts/evaluate_all.sh videos/example --output runs/example
 ```
 
 The same task, seed, output, and dry-run flags work for all eight models. `--dry-run` creates the input plan without downloading generator checkpoints, loading a generator, or calling the API. It can install the lightweight controller dependencies. Interrupted runs resume automatically. A failed generation exits nonzero; review its per-video worker log under `runs/generation/`. The existing `generate_seedance.sh` and `generate_open.sh` launchers also remain available.
@@ -108,7 +108,7 @@ For the bundled Diffusers runners, `proj` can be any existing working directory.
 
 `options.devices` selects visible GPUs for each local model. MiniMax's bundled full-precision recipe requires four GPUs; the Cosmos and LingBot presets also select four. Other presets select one GPU with offloading where supported. The evaluation quickstart's single-GPU recommendation applies to evaluation, not to every video generator. Runs are sequential, so different generators can reuse the same devices.
 
-For Seedance, configure a gateway that supports the JSON Videos API used by the existing experiments, or choose `request_format: "multipart"` for a compatible multipart endpoint:
+For Seedance, configure a gateway that supports the Seedance JSON Videos API, or choose `request_format: "multipart"` for a compatible multipart endpoint:
 
 ```bash
 export SEEDANCE_BASE_URL="https://your-video-gateway/v1"
@@ -133,7 +133,7 @@ First, run one configured model on one task and validate its inputs:
 python generate.py --models cogvideox1.5-5b-i2v --check
 python generate.py --models cogvideox1.5-5b-i2v --tasks P21 --seeds 42 --output videos --resume
 python evaluate.py --manifest videos/manifest.json --tasks P21 --output runs/input_check --dry-run
-python evaluate.py --manifest videos/manifest.json --tasks P21 --output runs/quick_test --resume
+python evaluate.py --manifest videos/manifest.json --tasks P21 --output runs/evaluation --resume
 ```
 
 Only after all eight environments and the Seedance endpoint are configured, expand to the full benchmark:

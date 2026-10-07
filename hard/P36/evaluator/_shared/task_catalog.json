@@ -4,13 +4,10 @@
     "phenomenon": "Sand and water discharge through funnels",
     "domain": "Granular materials / Fluids",
     "original_group": "g8",
-    "package_path": "../..",
     "difficulty_score": 0.1568246823722572,
     "difficulty_rank": 35,
-    "legacy_id": "P41",
     "category_index": 8,
     "category": "Granular Media and Discharge Flow",
-    "category_zh": "Granular Media and Discharge Flow",
     "title": "Sand vs. water discharge"
   }
 }

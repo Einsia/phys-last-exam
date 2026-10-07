@@ -34,7 +34,7 @@ import yaml
 from scipy.optimize import least_squares
 from scipy.signal import medfilt, savgol_filter
 
-from rescore_continuous import rescore_result
+from scoring import rescore_result
 
 
 EPS = 1e-9
@@ -49,7 +49,7 @@ def apply_continuous_scoring(
     legacy ``structural_ok``/``physics_pass`` labels first. Only after those
     decisions are frozen do we translate the already-computed measurements to
     the public continuous-0-1-v1 score contract. This ordering makes the
-    migration score-only: it cannot change the historical pass labels.
+    mapping preserves the measurement-validity and physics-pass labels.
     """
     continuous_config_path = continuous_config_path.resolve()
     with continuous_config_path.open("r", encoding="utf-8") as handle:

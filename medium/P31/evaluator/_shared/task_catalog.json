@@ -4,13 +4,10 @@
     "phenomenon": "Symmetric equilibrium of charged balls",
     "domain": "Electrostatics",
     "original_group": "g2",
-    "package_path": "../..",
     "difficulty_score": 0.35158162141088994,
     "difficulty_rank": 20,
-    "legacy_id": "P28",
     "category_index": 7,
     "category": "Electrostatics, Magnetism, and Electromagnetic Induction",
-    "category_zh": "Electrostatics, Magnetism, and Electromagnetic Induction",
     "title": "Charged-sphere equilibrium"
   }
 }

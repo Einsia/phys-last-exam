@@ -1,6 +1,6 @@
 # P18 · Light reflection
 
-Category: 4. Optics and Projective Geometry; legacy ID: `P13`.
+Category: 4. Optics and Projective Geometry.
 
 Difficulty: Medium; task rank: 22/40; mean final total score: 0.337269.
 
@@ -36,5 +36,3 @@ python evaluator/evaluate.py \
   --prompt prompt.txt \
   --output /absolute/path/to/result.json
 ```
-
-Metric definition references: `v4/g2/P13/evaluator/measure_backend.py:652`; `v4/unified_evaluators/contract.py:155`; `v4/g2/P13/evaluator/measure_backend.py:551`.

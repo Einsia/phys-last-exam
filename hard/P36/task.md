@@ -1,6 +1,6 @@
 # P36 · Sand vs. water discharge
 
-Category: 8. Granular Media and Discharge Flow; legacy ID: `P41`.
+Category: 8. Granular Media and Discharge Flow.
 
 Difficulty: Hard; task rank: 35/40; mean final total score: 0.156825.
 

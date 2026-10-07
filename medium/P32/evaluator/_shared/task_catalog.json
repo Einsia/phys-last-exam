@@ -4,13 +4,10 @@
     "phenomenon": "A current-carrying wire and compasses",
     "domain": "Electromagnetism",
     "original_group": "g8",
-    "package_path": "../..",
     "difficulty_score": 0.21020589270876186,
     "difficulty_rank": 30,
-    "legacy_id": "P34",
     "category_index": 7,
     "category": "Electrostatics, Magnetism, and Electromagnetic Induction",
-    "category_zh": "Electrostatics, Magnetism, and Electromagnetic Induction",
     "title": "Final compass orientations"
   }
 }

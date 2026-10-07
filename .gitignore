@@ -24,4 +24,3 @@ generation.local.json
 
 .vscode/
 .DS_Store
-.pytest_cache/

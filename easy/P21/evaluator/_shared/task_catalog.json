@@ -4,13 +4,10 @@
     "phenomenon": "Water-level equilibrium in communicating vessels",
     "domain": "Hydrostatics",
     "original_group": "g2",
-    "package_path": "../..",
     "difficulty_score": 0.9648314527519346,
     "difficulty_rank": 1,
-    "legacy_id": "P19",
     "category_index": 5,
     "category": "Hydrostatics and Buoyancy",
-    "category_zh": "Hydrostatics and Buoyancy",
     "title": "Communicating vessels"
   }
 }

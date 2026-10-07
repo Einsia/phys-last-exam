@@ -1,6 +1,6 @@
 # P29 · Eddy-current braking
 
-Category: 7. Electrostatics, Magnetism, and Electromagnetic Induction; legacy ID: `P36`.
+Category: 7. Electrostatics, Magnetism, and Electromagnetic Induction.
 
 Difficulty: Easy; task rank: 10/40; mean final total score: 0.568750.
 
@@ -30,7 +30,6 @@ In the table below, P is the pure physics score for each metric, ranging from 0 
 | M1: Trajectory event-time ratio | r_t=(f_magnetic-f_start+1)/(f_control-f_start+1); P=1 when r_t>1, otherwise P=0. f is an event frame detected by the backend. | r_t is dimensionless; f is a frame index. |
 | M2: Motion-speed ratio | r_v=v_magnetic/v_control; P=1 when r_v<1, otherwise P=0. | r_v is dimensionless; v is in pixels/second. |
 
-Formula reference: `v4/g5/P36/evaluator/measure_backend.py:271`.
 
 ## Original generation prompt
 

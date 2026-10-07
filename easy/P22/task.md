@@ -1,6 +1,6 @@
 # P22 · Floating-ice immersion
 
-Category: 5. Hydrostatics and Buoyancy; legacy ID: `P20`.
+Category: 5. Hydrostatics and Buoyancy.
 
 Difficulty: Easy; task rank: 3/40; mean final total score: 0.761774.
 
@@ -46,5 +46,3 @@ python evaluator/evaluate.py \
   --prompt prompt.txt \
   --output /absolute/path/to/result.json
 ```
-
-Metric definition references: `v4/g4/P20/evaluator/utils/physeval/tasks/p20.py:35`; `v4/unified_evaluators/contract.py:100`; `v4/g4/P20/evaluator/utils/physeval/tasks/p20.py:41`.

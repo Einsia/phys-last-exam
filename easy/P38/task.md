@@ -1,6 +1,6 @@
 # P38 · Viscous settling speed
 
-Category: 9. Surface Tension and Viscous Flow; legacy ID: `P49`.
+Category: 9. Surface Tension and Viscous Flow.
 
 Difficulty: Easy; task rank: 6/40; mean final total score: 0.642551.
 

@@ -1,6 +1,6 @@
 # P27 · Freshwater ice in saltwater
 
-Category: 6. Phase Transitions and Melting; legacy ID: `P21c`.
+Category: 6. Phase Transitions and Melting.
 
 Difficulty: Hard; task rank: 36/40; mean final total score: 0.148438.
 
@@ -30,7 +30,6 @@ In the table below, P is the pure physics score for each metric, ranging from 0 
 | M1: Water-level rise after melting | e=(y_initial-y_final)/H_initial; P=1 when y_initial-y_final exceeds measurement uncertainty, otherwise P=0. | e is dimensionless; y and H are in pixels. |
 | M2: Residual-solid evidence | r=final solid evidence/initial solid evidence; P=clip(1-r,0,1). P=0 if residual ice is detected in the final frame. | r and P are dimensionless. |
 
-Formula references: `v4/g5/P21c/evaluator/measure_backend.py:292`; `v4/g5/P21c/evaluator/measure_backend.py:235`; `v4/g5/P21c/evaluator/measure_backend.py:293`; `v4/g5/P21c/evaluator/measure_backend.py:299`.
 
 ## Original generation prompt
 

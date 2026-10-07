@@ -4,13 +4,10 @@
     "phenomenon": "Concurrent projections from a point light source",
     "domain": "Optics / Geometry",
     "original_group": "g4",
-    "package_path": "../..",
     "difficulty_score": 0.35708318399531613,
     "difficulty_rank": 19,
-    "legacy_id": "P14",
     "category_index": 4,
     "category": "Optics and Projective Geometry",
-    "category_zh": "Optics and Projective Geometry",
     "title": "Projection concurrency"
   }
 }

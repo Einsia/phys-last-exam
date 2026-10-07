@@ -261,7 +261,7 @@ def p10(c):
 
 
 def p30(c):
-    """Two observed events requested by the review: entry and light response."""
+    """Measure two observed events: entry and light response."""
     import importlib.util
     from .resources import task_resource
     path = task_resource('P30') / 'evaluator' / 'entry_light.py'

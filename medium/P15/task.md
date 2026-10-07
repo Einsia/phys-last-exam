@@ -1,6 +1,6 @@
 # P15 · Small-angle isochronism
 
-Category: 3. Pendulum Motion and Oscillations; legacy ID: `P8a`.
+Category: 3. Pendulum Motion and Oscillations.
 
 Difficulty: Medium; task rank: 17/40; mean final total score: 0.417340.
 
@@ -40,5 +40,3 @@ python evaluator/evaluate.py \
   --prompt prompt.txt \
   --output /absolute/path/to/result.json
 ```
-
-Metric definition references: `v4/g1/P8a/evaluator/utils/physeval/tasks/p8a.py:28`; `v4/unified_evaluators/contract.py:100`; `v4/g1/P8a/evaluator/utils/physeval/tasks/p8a.py:34`.

@@ -1,6 +1,6 @@
 # P4 · Projectile motion
 
-Category: 1. Translational Motion and Collisions; legacy ID: `P2`.
+Category: 1. Translational Motion and Collisions.
 
 Difficulty: Hard; task rank: 33/40; mean final total score: 0.183322.
 
@@ -36,5 +36,3 @@ python evaluator/evaluate.py \
   --prompt prompt.txt \
   --output /absolute/path/to/result.json
 ```
-
-Metric definition references: `v4/g1/P2/evaluator/utils/physeval/tasks/p2.py:37`; `v4/unified_evaluators/contract.py:100`; `v4/g1/P2/evaluator/utils/physeval/tasks/p2.py:45`.

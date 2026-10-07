@@ -1,6 +1,6 @@
 # P37 · Capillary rise vs. diameter
 
-Category: 9. Surface Tension and Viscous Flow; legacy ID: `P45`.
+Category: 9. Surface Tension and Viscous Flow.
 
 Difficulty: Easy; task rank: 12/40; mean final total score: 0.511797.
 
@@ -29,7 +29,6 @@ In the table below, P is the pure physics score for each metric, ranging from 0 
 | --- | --- | --- |
 | M1: Direction of capillary-rise difference | h=y_common_surface-y_tube_surface; d=median final paired difference h_narrow-h_wide. P=1 when d exceeds measurement resolution, otherwise P=0. Both tubes and the common surface must be jointly readable. | h, d, and resolution are in pixels; P is dimensionless. |
 
-Formula references: `v4/g6/P45/evaluator/utils/physeval/tasks/p45.py:141`; `v4/g6/P45/evaluator/utils/physeval/tasks/p45.py:230`.
 
 ## Original generation prompt
 

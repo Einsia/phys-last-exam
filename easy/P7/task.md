@@ -1,6 +1,6 @@
 # P7 · Hanging-chain equilibrium
 
-Category: 2. Rolling, Friction, and Rigid-Body Statics; legacy ID: `P44`.
+Category: 2. Rolling, Friction, and Rigid-Body Statics.
 
 Difficulty: Easy; task rank: 5/40; mean final total score: 0.708567.
 
@@ -30,7 +30,6 @@ In the table below, P is the pure physics score for each metric, ranging from 0 
 | M1: Catenary-fit error | e=outline-fit RMSE/measured sag; P=1/(1+abs(e)/0.10). | e is dimensionless; geometric lengths are in pixels. |
 | M2: Equal-support-height error | e=support-height error/horizontal span; P=1/(1+abs(e)/0.02). | e is dimensionless; geometric lengths are in pixels. |
 
-Formula references: `v4/g5/P44/evaluator/measure_backend.py:151`; `v4/g5/P44/evaluator/measure_backend.py:179`; `v4/g5/P44/evaluator/measure_backend.py:152`.
 
 ## Original generation prompt
 

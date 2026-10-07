@@ -1331,7 +1331,7 @@ def parse_judgment(text):
                  'quality_checks': {name: value[name] for name in checks}}
     if 'assessment' in value:
         _validate_assessment(value)
-        # Historical four-dimension replies remain readable; fresh scoring
+        # Four-dimension replies remain readable; scoring
         # requires the expanded task evidence and never silently grants a pass.
         if 'task_assessment' in value:
             _validate_task_assessment(value)
@@ -1403,7 +1403,7 @@ def final_judgment_with_retry(raw, messages, items, settings, directory, reply_f
 def task_prompt_for_video(prompt, video):
     """Accept plain prompts or select exactly one audited generation manifest row.
 
-    Some historical inputs use a whole manifest as prompt_source. Never send
+    A prompt source may contain a whole manifest. Never send
     its unrelated tasks, model names or generation commands to the judge.
     """
     text = prompt.strip()
@@ -1492,7 +1492,7 @@ import math
 from pathlib import Path
 
 V24_ROI_CONFIG = {'reference_sha256': 'f24300c837f959ebdcabe54f20bdac487d6cc80d02e4e761ca42210bfa180e9d',
- 'reference_path': '/mnt/einsia/aws01-nvme/einsia-shared/homes/linxinjie/vdmbench/data/g1_g9/g8/P34/first_frame.png',
+ 'reference_path': 'medium/P32/first_frame.png',
  'reference_dimensions_wh': [1659, 948],
  'coordinate_basis_wh': [640, 366],
  'regions': [{'name': 'Region A',
@@ -1506,99 +1506,23 @@ V24_ROI_CONFIG = {'reference_sha256': 'f24300c837f959ebdcabe54f20bdac487d6cc80d0
  'font_path': '/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf',
  'font_sha256': '690243adfefe0ce154b547db6205794bd30ac4277275179517a90994f4980648',
  'font_size_px': 24,
- 'resize_policy': 'Crop original source frames at unchanged24 indices; floor(left/top),ceil(right/bottom); '
-                  'LANCZOS aspect-preserving scale with white padding to320x320. No content-adaptive crop or '
-                  'extra timestamps.',
- 'reference_localization': 'Reference-only circle outer-rim proposals, visually confirmed before any '
-                           'frame-specific crop; one shared fixed normalized ROI pair.',
+ 'resize_policy': 'Crop original source frames at unchanged24 indices; '
+                  'floor(left/top),ceil(right/bottom); LANCZOS aspect-preserving scale with white '
+                  'padding to320x320. No content-adaptive crop or extra timestamps.',
+ 'reference_localization': 'Reference-only circle outer-rim proposals, visually confirmed before '
+                           'any frame-specific crop; one shared fixed normalized ROI pair.',
  'circle_proposals': {'left': [179.5, 176.5, 43.6], 'right': [463.5, 179.5, 44.4]},
  'circle_proposal_parameters': 'OpenCV grayscale GaussianBlur5x5 sigma1, '
                                'HoughCircles(dp1,minDist120,param1=100,param2=30,minRadius25,maxRadius65). '
-                               'Centers rounded to integers; common80px half-side, approximately1.8times '
-                               'largest rim radius. Proposals unchanged at param2=25/35.',
- 'scope_key': 'The shared reference SHA only; never generator name, predicted score, extracted physics, or '
-              'defect timestamp.',
- 'shared_reference_verification': {'manifest_path': '/mnt/einsia/aws01-nvme/einsia-shared/homes/gaomingju/workspace/evaluator/videos_all/v4_evaluator/opinion_v2_20261002/input_manifest.json',
-                                   'manifest_sha256': '6d1a9c2ec66d37ea5c6c343b282bde1bd92b45ba1d6f810f1a40e37d99f0c708',
-                                   'P32_input_count': 32,
-                                   'model_count': 8,
-                                   'unique_reference_hashes': ['f24300c837f959ebdcabe54f20bdac487d6cc80d02e4e761ca42210bfa180e9d']},
- 'visual_boundary_review': {'videos_checked': 2,
-                            'same24_sample_frames_per_video': 24,
-                            'detail_crops_actually_viewed': 96,
-                            'all_outer_rims_complete': True,
-                            'all_crops_have_surrounding_board_context': True,
-                            'camera_drift_or_geometry_change_exits_crop': False,
-                            'scope_limit': 'Only these48 sampled source frames actually reviewed. This does '
-                                           'not prove all P32 videos remain registered.',
-                            'cases': [{'identity': {'model': 'cogvideox1.5-5b-i2v',
-                                                    'task': 'P32',
-                                                    'sample_id': 'g8_P32_seed43'},
-                                       'source_dimensions_wh': [832, 480],
-                                       'source_fps': 16.0,
-                                       'source_video_sha256': '0fcaabd83528f5ebe829d90229a567631aaadeea6c544f2251e8b229c4273e03',
-                                       'mapped_source_boxes': [[130, 125, 338, 336], [499, 131, 708, 341]],
-                                       'sample_indices': [0,
-                                                          3,
-                                                          7,
-                                                          10,
-                                                          14,
-                                                          17,
-                                                          21,
-                                                          24,
-                                                          28,
-                                                          31,
-                                                          35,
-                                                          38,
-                                                          42,
-                                                          45,
-                                                          49,
-                                                          52,
-                                                          56,
-                                                          59,
-                                                          63,
-                                                          66,
-                                                          70,
-                                                          73,
-                                                          77,
-                                                          80]},
-                                      {'identity': {'model': 'minimax-h3',
-                                                    'task': 'P32',
-                                                    'sample_id': 'g8_P32_seed43'},
-                                       'source_dimensions_wh': [1344, 768],
-                                       'source_fps': 24.0,
-                                       'source_video_sha256': '5749fe1dc5d01eabec55f26b284975bc5fbeef5ad0df7d4c3bc3090887812b0b',
-                                       'mapped_source_boxes': [[210, 201, 546, 538], [806, 209, 1143, 546]],
-                                       'sample_indices': [0,
-                                                          5,
-                                                          11,
-                                                          16,
-                                                          21,
-                                                          27,
-                                                          32,
-                                                          37,
-                                                          43,
-                                                          48,
-                                                          53,
-                                                          59,
-                                                          64,
-                                                          70,
-                                                          75,
-                                                          80,
-                                                          86,
-                                                          91,
-                                                          96,
-                                                          102,
-                                                          107,
-                                                          112,
-                                                          118,
-                                                          123]}]},
- 'interpretation_boundary': 'Always retain full-frame sheets/native context. Blank, clipped, off-screen, '
-                            'shifted or unregistered crop is unavailable auxiliary evidence, not proof an '
-                            'object/part disappeared. Cropping changes visibility only, never the scoring '
-                            'rubric or thresholds.',
- 'evidence_directory': '/mnt/einsia/aws01-nvme/einsia-shared/homes/gaomingju/workspace/evaluator/videos_all/v4_evaluator/consistency_observability_20261003/p34_reference_crop_study',
- 'frozen_before_R18_results': True}
+                               'Centers rounded to integers; common80px half-side, '
+                               'approximately1.8times largest rim radius. Proposals unchanged at '
+                               'param2=25/35.',
+ 'scope_key': 'The shared reference SHA only; never generator name, predicted score, extracted '
+              'physics, or defect timestamp.',
+ 'interpretation_boundary': 'Always retain full-frame sheets/native context. Blank, clipped, '
+                            'off-screen, shifted or unregistered crop is unavailable auxiliary '
+                            'evidence, not proof an object/part disappeared. Cropping changes '
+                            'visibility only, never the scoring rubric or thresholds.'}
 
 V24_FONT_PATH = '/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf'
 

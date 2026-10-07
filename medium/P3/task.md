@@ -1,6 +1,6 @@
 # P3 · Complementary-angle throws
 
-Category: 1. Translational Motion and Collisions; legacy ID: `P3`.
+Category: 1. Translational Motion and Collisions.
 
 Difficulty: Medium; task rank: 29/40; mean final total score: 0.222125.
 
@@ -35,7 +35,6 @@ The launchers, lanes, supports, background, and camera remain stationary. Preser
 
 The entrypoint is `evaluator/evaluate.py`. Supply an external video path, the first frame with `--image first_frame.png`, and the prompt file with `--prompt`. The measurement backend uses the bundled scene calibration, so the video must match the selected first-frame calibration.
 
-Metric definition references: `v4/unified_evaluators/physics.py:22`; `v4/g3/P3/evaluator/evaluate_raw_legacy.py:735`; `v4/g3/P3/evaluator/evaluate_raw_legacy.py:1`.
 
 ## Current scene calibration
 

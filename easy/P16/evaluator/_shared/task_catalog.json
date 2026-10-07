@@ -4,13 +4,10 @@
     "phenomenon": "Cross-ratio of collinear rigid-body points",
     "domain": "Rigid bodies / Geometry",
     "original_group": "g4",
-    "package_path": "../..",
     "difficulty_score": 0.7108313980849613,
     "difficulty_rank": 4,
-    "legacy_id": "P16",
     "category_index": 4,
     "category": "Optics and Projective Geometry",
-    "category_zh": "Optics and Projective Geometry",
     "title": "Collinear-point cross-ratio"
   }
 }

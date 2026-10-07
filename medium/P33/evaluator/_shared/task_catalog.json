@@ -4,13 +4,10 @@
     "phenomenon": "Electromagnetic jumping of closed and open rings",
     "domain": "Electromagnetic induction",
     "original_group": "g8",
-    "package_path": "../..",
     "difficulty_score": 0.2469866206546883,
     "difficulty_rank": 28,
-    "legacy_id": "P37",
     "category_index": 7,
     "category": "Electrostatics, Magnetism, and Electromagnetic Induction",
-    "category_zh": "Electrostatics, Magnetism, and Electromagnetic Induction",
     "title": "Closed vs. open jumping rings"
   }
 }

@@ -1,6 +1,6 @@
 # P31 · Charged-sphere equilibrium
 
-Category: 7. Electrostatics, Magnetism, and Electromagnetic Induction; legacy ID: `P28`.
+Category: 7. Electrostatics, Magnetism, and Electromagnetic Induction.
 
 Difficulty: Medium; task rank: 20/40; mean final total score: 0.351582.
 
@@ -37,5 +37,3 @@ python evaluator/evaluate.py \
   --prompt prompt.txt \
   --output /absolute/path/to/result.json
 ```
-
-Metric definition references: `v4/g2/P28/evaluator/measure_backend.py:378`; `v4/unified_evaluators/contract.py:155`.

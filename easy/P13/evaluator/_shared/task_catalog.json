@@ -4,13 +4,10 @@
     "phenomenon": "Large-amplitude pendulum period",
     "domain": "Nonlinear pendulum",
     "original_group": "g7",
-    "package_path": "../..",
     "difficulty_score": 0.5745973236159432,
     "difficulty_rank": 8,
-    "legacy_id": "P8c",
     "category_index": 3,
     "category": "Pendulum Motion and Oscillations",
-    "category_zh": "Pendulum Motion and Oscillations",
     "title": "Large-angle pendulum"
   }
 }

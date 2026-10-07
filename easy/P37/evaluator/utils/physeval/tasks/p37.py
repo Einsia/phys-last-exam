@@ -146,7 +146,7 @@ def _evaluate(clip: Clip, ctx: Context) -> Result:
         "equal or lower rises score 0. No inverse-radius magnitude is imposed."),
         ideal=1.0, non_residual=True)
     for key in ("M2", "M3"):
-        res.add(key, defined=False).note = "removed from scoring by review; diagnostics only"
+        res.add(key, defined=False).note = "Excluded from scoring; retained as measurement diagnostics."
     head = np.mean(np.stack([clip[i] for i in range(min(5, clip.n))]),
                    axis=0).astype(np.uint8)
     tailf = np.mean(np.stack([clip[i] for i in range(max(0, clip.n - 5), clip.n)]),

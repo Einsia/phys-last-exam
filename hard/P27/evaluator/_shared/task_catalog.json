@@ -4,13 +4,10 @@
     "phenomenon": "Freshwater ice melting in salt water",
     "domain": "Thermal physics / Buoyancy",
     "original_group": "g5",
-    "package_path": "../..",
     "difficulty_score": 0.1484375,
     "difficulty_rank": 36,
-    "legacy_id": "P21c",
     "category_index": 6,
     "category": "Phase Transitions and Melting",
-    "category_zh": "Phase Transitions and Melting",
     "title": "Freshwater ice in saltwater"
   }
 }

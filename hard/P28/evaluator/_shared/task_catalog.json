@@ -4,13 +4,10 @@
     "phenomenon": "Melting comparison of crushed and intact ice",
     "domain": "Thermal physics",
     "original_group": "g7",
-    "package_path": "../..",
     "difficulty_score": 0.19218749999999998,
     "difficulty_rank": 32,
-    "legacy_id": "P27",
     "category_index": 6,
     "category": "Phase Transitions and Melting",
-    "category_zh": "Phase Transitions and Melting",
     "title": "Crushed vs. intact ice"
   }
 }

@@ -4,13 +4,10 @@
     "phenomenon": "Reflection of light",
     "domain": "Optics",
     "original_group": "g2",
-    "package_path": "../..",
     "difficulty_score": 0.33726880440650914,
     "difficulty_rank": 22,
-    "legacy_id": "P13",
     "category_index": 4,
     "category": "Optics and Projective Geometry",
-    "category_zh": "Optics and Projective Geometry",
     "title": "Light reflection"
   }
 }

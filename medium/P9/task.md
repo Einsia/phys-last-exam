@@ -1,6 +1,6 @@
 # P9 · Solid sphere vs. hoop
 
-Category: 2. Rolling, Friction, and Rigid-Body Statics; legacy ID: `P7`.
+Category: 2. Rolling, Friction, and Rigid-Body Statics.
 
 Difficulty: Medium; task rank: 25/40; mean final total score: 0.284114.
 
@@ -29,7 +29,6 @@ In the table below, P is the pure physics score for each metric, ranging from 0 
 | --- | --- | --- |
 | M1: Equal-distance travel-time-ratio error | Take the median hoop/sphere time ratio r at multiple virtual equal-distance positions; e=abs(r/sqrt(10/7)-1); P=1/(1+e/0.10). | r, e, and P are dimensionless; time is in seconds. |
 
-Formula references: `v4/g7/evaluator/tasks/p7_rotational.py:691`; `v4/unified_evaluators/physics.py:150`.
 
 ## Original generation prompt
 

@@ -82,7 +82,7 @@ def g3_result(raw):
         metrics={key:metric({'observed_outcome':'single_motion_no_repeated_bounce'},.1,True) for key in KEYS}
         blocks={key:measurement_block(G3_LOGIC[task][i],metrics[key]['raw_value'] if 'raw_value' in metrics[key] else {'observed_outcome':'single_motion_no_repeated_bounce'},
             measurements=measurements,steps=["Continuous tracking confirms a single motion segment without multiple comparable bounces."],
-            normalization={'policy':'opinion_v2_observed_single_motion','physics_score':.1},reason="A single motion segment was measured; the evaluation specification assigns a physics score of 0.1.") for i,key in enumerate(KEYS)}
+            normalization={'policy':'observed_single_motion_v1','physics_score':.1},reason="A single motion segment was measured; the evaluation specification assigns a physics score of 0.1.") for i,key in enumerate(KEYS)}
         return metrics,blocks
     return score_g3(task, values, valid, measurements,
         raw.get('failure_reason') or status.get('measurement_invalid_reasons') or raw.get('errors'))
@@ -150,7 +150,7 @@ def g7_result(raw):
         c1 = {'error':component(first, {'P9':0.10,'P13':0.05,'P11':0.10,'P20':0.05}[task])}
     if task == 'P11' and measures.get('observed_outcome') == 'ascent_only':
         base_ok=True;first={'observed_outcome':'ascent_only'}
-        c1={'observed_ascent_only':component(first,physics=.1,formula='opinion_v2_ascent_only_score_0.1')}
+        c1={'observed_ascent_only':component(first,physics=.1,formula='ascent_only => physics score 0.1')}
     metrics, blocks = {}, {}
     for i,(key,value,components) in enumerate((('M1',first,c1),('M2',aux,c2))):
         if task in ('P9','P11','P20') and key == 'M2':

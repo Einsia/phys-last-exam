@@ -1,6 +1,6 @@
 # P24 · Freezing-induced expansion
 
-Category: 6. Phase Transitions and Melting; legacy ID: `P23`.
+Category: 6. Phase Transitions and Melting.
 
 Difficulty: Easy; task rank: 16/40; mean final total score: 0.438451.
 
@@ -30,7 +30,6 @@ In the table below, P is the pure physics score for each metric, ranging from 0 
 | M1: Freezing-height-ratio error | e=H_ice/H_water-1000/917; P=1/(1+abs(e)). | e is dimensionless; H is in pixels. |
 | M2: Cross-sectional width consistency | e=abs(W_final-W_initial)/max(W_initial,1 pixel); P=1/(1+abs(e)). | e is dimensionless; W is in pixels. |
 
-Formula references: `v4/g5/P23/evaluator/measure_backend.py:168`; `v4/g5/P23/evaluator/measure_backend.py:199`.
 
 ## Original generation prompt
 

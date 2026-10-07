@@ -24,7 +24,7 @@ from scipy.optimize import minimize_scalar
 from scipy.signal import find_peaks, savgol_filter
 
 from runtime_paths import resolve_tracking_runtime
-from rescore_continuous import score_record as continuous_score_record
+from scoring import score_record as continuous_score_record
 
 
 HERE = Path(__file__).resolve().parent

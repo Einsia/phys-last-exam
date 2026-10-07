@@ -1,6 +1,6 @@
 # P32 · Final compass orientations
 
-Category: 7. Electrostatics, Magnetism, and Electromagnetic Induction; legacy ID: `P34`.
+Category: 7. Electrostatics, Magnetism, and Electromagnetic Induction.
 
 Difficulty: Medium; task rank: 30/40; mean final total score: 0.210206.
 

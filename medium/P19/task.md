@@ -1,6 +1,6 @@
 # P19 · Projection concurrency
 
-Category: 4. Optics and Projective Geometry; legacy ID: `P14`.
+Category: 4. Optics and Projective Geometry.
 
 Difficulty: Medium; task rank: 19/40; mean final total score: 0.357083.
 
@@ -42,5 +42,3 @@ python evaluator/evaluate.py \
   --prompt prompt.txt \
   --output /absolute/path/to/result.json
 ```
-
-Metric definition references: `v4/g4/P14/evaluator/utils/physeval/tasks/p14.py:48`; `v4/unified_evaluators/contract.py:100`; `v4/g4/P14/evaluator/utils/physeval/tasks/p14.py:56`.

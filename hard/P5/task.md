@@ -1,6 +1,6 @@
 # P5 · Equal-mass collision
 
-Category: 1. Translational Motion and Collisions; legacy ID: `P5`.
+Category: 1. Translational Motion and Collisions.
 
 Difficulty: Hard; task rank: 34/40; mean final total score: 0.157530.
 
@@ -36,5 +36,3 @@ python evaluator/evaluate.py \
   --prompt prompt.txt \
   --output /absolute/path/to/result.json
 ```
-
-Metric definition references: `v4/g1/P5/evaluator/utils/physeval/tasks/p5.py:49`; `v4/unified_evaluators/contract.py:100`; `v4/g1/P5/evaluator/utils/physeval/tasks/p5.py:58`.

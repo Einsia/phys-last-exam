@@ -1,6 +1,6 @@
 # P26 · Ice with a stone: melting
 
-Category: 6. Phase Transitions and Melting; legacy ID: `P21b`.
+Category: 6. Phase Transitions and Melting.
 
 Difficulty: Hard; task rank: 40/40; mean final total score: 0.034453.
 
@@ -29,7 +29,6 @@ In the table below, P is the pure physics score for each metric, ranging from 0 
 | --- | --- | --- |
 | M1: Water-level change after melting | e=(y_initial-y_final)/H_initial; P=1 when e<0, otherwise P=0. Melting must first be observed and the level change must exceed measurement resolution. | e is dimensionless; y and H are in pixels. |
 
-Formula references: `v4/g5/P21b/evaluator/measure_backend.py:460`; `v4/g5/P21b/evaluator/measure_backend.py:558`; `v4/g5/P21b/evaluator/measure_backend.py:568`.
 
 ## Original generation prompt
 

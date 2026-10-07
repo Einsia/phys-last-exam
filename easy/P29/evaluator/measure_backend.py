@@ -272,15 +272,12 @@ def payload(video,image,seed,model,m,d,reason,sample):
     return finite({"task_id":TASK_ID,"video_path":vp,"image_path":ip,"seed":sd,"model":model or "unknown","metrics":{"M1":{"extract_success":ok,"metric":m1},"M2":{"extract_success":ok,"metric":m2},"M3":None},"verbose":{"sample_id":sample,"failure_reason":reason,"quality_warnings":warn,"measurements":m or {},"debug":d}})
 def evaluate(video,out,sample,image,seed,model,limit=None,roi_path=None):
     try:
-        if roi_path is None:
-            registered=TASK_ROOT/'evaluator'/'initializations'/(file_sha256(video)+'.json')
-            if registered.is_file():roi_path=registered
         f,fps=read_video(video,limit);m,d,r=extract(f,fps,roi_path,video);root=out.parent.parent/"debug" if out.parent.name=="json" else out.parent/"debug";dbg=artifacts(f,d,m,root,sample,fps);p=payload(video,image,seed,model,m,dbg,r,sample);rc=0 if r is None else 1
     except Exception as e:
         root=out.parent.parent/"debug" if out.parent.name=="json" else out.parent/"debug";folder=root/sample;folder.mkdir(parents=True,exist_ok=True);ep=folder/"error.txt";ep.write_text(f"{type(e).__name__}: {e}\n");p=payload(video,image,seed,model,None,{"directory":str(folder),"error":str(ep)},f"{type(e).__name__}: {e}",sample);rc=2
     out.parent.mkdir(parents=True,exist_ok=True);out.write_text(json.dumps(p,indent=2,allow_nan=False));return rc
 def main():
-    a=argparse.ArgumentParser();a.add_argument("--video");a.add_argument("--videos");a.add_argument("--output");a.add_argument("--outdir");a.add_argument("--task_id",default=TASK_ID);a.add_argument("--model",default="unknown");a.add_argument("--image-path","--image_path",dest="image");a.add_argument("--seed",type=int);a.add_argument("--sample-id");a.add_argument("--max-frames",type=int);a.add_argument('--roi','--annotation',dest='roi',help='JSON with normalized frame-zero magnet/control regions; overrides registered video initialization');x=a.parse_args()
+    a=argparse.ArgumentParser();a.add_argument("--video");a.add_argument("--videos");a.add_argument("--output");a.add_argument("--outdir");a.add_argument("--task_id",default=TASK_ID);a.add_argument("--model",default="unknown");a.add_argument("--image-path","--image_path",dest="image");a.add_argument("--seed",type=int);a.add_argument("--sample-id");a.add_argument("--max-frames",type=int);a.add_argument('--roi','--annotation',dest='roi',help='JSON with normalized frame-zero magnet/control regions');x=a.parse_args()
     if x.task_id.upper()!=TASK_ID:a.error(f"this evaluator only supports {TASK_ID}")
     if x.video:
         if not x.output:a.error("--video requires --output")

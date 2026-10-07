@@ -1,6 +1,6 @@
 # P17 · Light refraction
 
-Category: 4. Optics and Projective Geometry; legacy ID: `P11`.
+Category: 4. Optics and Projective Geometry.
 
 Difficulty: Medium; task rank: 15/40; mean final total score: 0.445497.
 
@@ -55,7 +55,6 @@ python evaluator/evaluate.py \
 
 The measurement backend uses the bundled scene calibration; the input video must match the selected 30-degree first-frame calibration.
 
-Metric definition references: `v4/unified_evaluators/physics.py:22`; `v4/g3/P11/evaluator/evaluate_raw_legacy.py:900`.
 
 ## Current scene calibration
 

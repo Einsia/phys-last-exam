@@ -4,13 +4,10 @@
     "phenomenon": "Refraction and the critical angle of total internal reflection",
     "domain": "Optics",
     "original_group": "g7",
-    "package_path": "../..",
     "difficulty_score": 0.1927736865878002,
     "difficulty_rank": 31,
-    "legacy_id": "P12",
     "category_index": 4,
     "category": "Optics and Projective Geometry",
-    "category_zh": "Optics and Projective Geometry",
     "title": "Total-reflection critical angle"
   }
 }

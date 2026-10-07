@@ -1,6 +1,6 @@
 # P13 · Large-angle pendulum
 
-Category: 3. Pendulum Motion and Oscillations; legacy ID: `P8c`.
+Category: 3. Pendulum Motion and Oscillations.
 
 Difficulty: Easy; task rank: 8/40; mean final total score: 0.574597.
 
@@ -30,7 +30,6 @@ In the table below, P is the pure physics score for each metric, ranging from 0 
 | M1: Finite-amplitude period-ratio error | r=T_large_amplitude/T_small_amplitude; e=abs(r-r_theory), with r_theory from the finite-amplitude model; P=1/(1+e/0.05). | r, e, and P are dimensionless; periods are in seconds. |
 | M2: Direction of period difference | P=clip((r-1)/(r_theory-1),0,1). | Ratios and P are dimensionless. |
 
-Formula references: `v4/g7/evaluator/tasks/p8c_pendulum.py:755`; `v4/unified_evaluators/physics.py:150`; `v4/unified_evaluators/physics.py:111`; `v4/unified_evaluators/physics.py:116`.
 
 ## Original generation prompt
 

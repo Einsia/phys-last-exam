@@ -1,6 +1,6 @@
 # P12 · Pendulum period vs. mass
 
-Category: 3. Pendulum Motion and Oscillations; legacy ID: `P8b`.
+Category: 3. Pendulum Motion and Oscillations.
 
 Difficulty: Easy; task rank: 11/40; mean final total score: 0.530868.
 
@@ -30,7 +30,6 @@ In the table below, P is the pure physics score for each metric, ranging from 0 
 | M1: Period ratio of different-mass pendulums | e=T_heavy/T_light-1; P=1/(1+abs(e)/0.10). | e is dimensionless; T uses consistent time units. |
 | M2: Relative first-frame length difference | e=abs(L_left-L_right)/mean(L_left,L_right); P=1/(1+e/0.10). Suspension points are fitted from video trajectories. | e is dimensionless; L is in pixels. |
 
-Formula references: `v4/g6/P8b/evaluator/utils/physeval/tasks/p8b.py:51`; `v4/g6/P8b/evaluator/utils/physeval/tasks/p8b.py:148`; `v4/g6/P8b/evaluator/utils/physeval/tasks/p8b.py:56`; `v4/g6/P8b/evaluator/utils/physeval/tasks/p8b.py:118`.
 
 ## Original generation prompt
 

@@ -4,13 +4,10 @@
     "phenomenon": "Rigid-body toppling about a support edge",
     "domain": "Rigid bodies / Contact",
     "original_group": "g9",
-    "package_path": "../..",
     "difficulty_score": 0.2702303132322103,
     "difficulty_rank": 26,
-    "legacy_id": "P43",
     "category_index": 2,
     "category": "Rolling, Friction, and Rigid-Body Statics",
-    "category_zh": "Rolling, Friction, and Rigid-Body Statics",
     "title": "Edge-pivot toppling"
   }
 }

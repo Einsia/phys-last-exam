@@ -21,7 +21,7 @@ def load_annotation(args, frames, directory):
         a=bind_task_template(a,args,frames[0],directory,path)
     else:
         if a['source_video_sha256']!=fingerprint(args.video_path):
-            raise ExtractionError('Annotation video hash mismatch; do not reuse fixture coordinates on another video.')
+            raise ExtractionError('Annotation video hash mismatch; do not reuse coordinates from another video.')
         if args.image_path and a['source_image_sha256']!=fingerprint(args.image_path):
             raise ExtractionError('Annotation first-frame image hash mismatch')
         if a['size_wh']!=list(frames[0].shape[1::-1]):

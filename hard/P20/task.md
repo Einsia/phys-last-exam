@@ -1,6 +1,6 @@
 # P20 · Total-reflection critical angle
 
-Category: 4. Optics and Projective Geometry; legacy ID: `P12`.
+Category: 4. Optics and Projective Geometry.
 
 Difficulty: Hard; task rank: 31/40; mean final total score: 0.192774.
 
@@ -29,7 +29,6 @@ In the table below, P is the pure physics score for each metric, ranging from 0 
 | --- | --- | --- |
 | M1: Refractive-index consistency | Estimate n from each measurable beam using Snell geometry; e=std(n)/mean(n); P=1/(1+e/0.05). Ordinary total internal reflection supplies only a lower bound, not a critical-angle equality. | n, e, and P are dimensionless. |
 
-Formula references: `v4/g7/evaluator/tasks/p12_optics.py:1193`; `v4/unified_evaluators/physics.py:150`.
 
 ## Original generation prompt
 

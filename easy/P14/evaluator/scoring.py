@@ -1,25 +1,12 @@
 #!/usr/bin/env python3
-"""Rescore frozen P14 measurements with continuous 0–1 quality functions."""
+"""Continuous 0-1 scoring for P14 measurements."""
 
 from __future__ import annotations
 
-import argparse
-import csv
 import hashlib
 import json
-import statistics
-from pathlib import Path
 
-from continuous_scoring import (
-    SCORE_FLOOR,
-    SCORE_VERSION,
-    assert_score_contract,
-    evidence_fraction,
-    high_quality,
-    measurable_floor,
-    residual_quality,
-    weighted_geometric,
-)
+from continuous_scoring import SCORE_FLOOR, SCORE_VERSION, assert_score_contract, evidence_fraction, high_quality, measurable_floor, residual_quality, weighted_geometric
 
 
 DIMENSION_WEIGHTS = {"setup": .15, "structural": .20, "periodicity": .25, "pendulum_law": .40}
@@ -33,19 +20,6 @@ SCALES = {
     "period_cv": .20,
     "m1_pendulum_law": .20,
 }
-
-
-def flatten(value: dict, prefix: str = "") -> dict:
-    out: dict[str, object] = {}
-    for key, item in value.items():
-        name = f"{prefix}.{key}" if prefix else key
-        if isinstance(item, dict):
-            out.update(flatten(item, name))
-        elif isinstance(item, list):
-            out[name] = json.dumps(item, ensure_ascii=False, separators=(",", ":"))
-        else:
-            out[name] = item
-    return out
 
 
 def stable_payload(record: dict) -> str:
@@ -126,62 +100,3 @@ def score_record(record: dict) -> dict:
     if stable_payload(record) != before:
         raise AssertionError(f"rescoring changed metrics/status for {record.get('sample_id')}")
     return record
-
-
-def self_test() -> None:
-    assert residual_quality(0.0, .2) == 1.0
-    assert residual_quality(.1, .2) > residual_quality(.2, .2) > residual_quality(.5, .2) > 0
-    assert abs(residual_quality(.2 - 1e-9, .2) - residual_quality(.2 + 1e-9, .2)) < 1e-7
-    assert_score_contract([.01, .5], True, .2)
-    assert_score_contract([0.0], False, 0.0)
-
-
-def main() -> int:
-    parser = argparse.ArgumentParser()
-    parser.add_argument("--results", type=Path, required=True)
-    args = parser.parse_args()
-    self_test()
-    paths = sorted((args.results / "json").glob("P14_*_seed*.json"))
-    if len(paths) != 24:
-        raise SystemExit(f"expected 24 P14 records, found {len(paths)}")
-    records = []
-    for path in paths:
-        record = score_record(json.loads(path.read_text(encoding="utf-8")))
-        path.write_text(json.dumps(record, ensure_ascii=False, indent=2), encoding="utf-8")
-        records.append(record)
-
-    rows = [flatten(record) for record in records]
-    fields = sorted({key for row in rows for key in row})
-    with (args.results / "results_continuous.csv").open("w", newline="", encoding="utf-8") as handle:
-        writer = csv.DictWriter(handle, fieldnames=fields, extrasaction="ignore")
-        writer.writeheader(); writer.writerows(rows)
-
-    values = [record["overall_score"] for record in records]
-    valid_values = [record["overall_score"] for record in records if record.get("status", {}).get("measurement_valid")]
-    report_path = args.results / "batch_report.json"
-    report = json.loads(report_path.read_text(encoding="utf-8")) if report_path.exists() else {}
-    legacy_mean = report.get("legacy_overall_mean_0_100")
-    if legacy_mean is None:
-        legacy_mean = report.get("overall_mean")
-    current_mean = statistics.fmean(values)
-    report.update({
-        "score_version": SCORE_VERSION,
-        "score_range": [0.0, 1.0],
-        "zero_score_policy": "measurement_invalid_only",
-        "overall_mean": current_mean,
-        "legacy_overall_mean_0_100": legacy_mean,
-        "continuous_score_mean_all": current_mean,
-        "continuous_score_mean_valid": statistics.fmean(valid_values) if valid_values else 0.0,
-        "continuous_score_median_valid": statistics.median(valid_values) if valid_values else 0.0,
-        "continuous_score_min_valid": min(valid_values) if valid_values else 0.0,
-        "continuous_score_max_valid": max(valid_values) if valid_values else 0.0,
-        "continuous_score_zero_count": sum(value == 0 for value in values),
-        "status_and_measurements_preserved": True,
-    })
-    report_path.write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding="utf-8")
-    print(json.dumps({key: value for key, value in report.items() if key.startswith("continuous_") or key in {"score_version", "continuous_score_zero_count"}}, indent=2))
-    return 0
-
-
-if __name__ == "__main__":
-    raise SystemExit(main())

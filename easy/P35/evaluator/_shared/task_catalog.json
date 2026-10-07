@@ -4,13 +4,10 @@
     "phenomenon": "Scale independence of sand-pile angles of repose",
     "domain": "Granular materials",
     "original_group": "g2",
-    "package_path": "../..",
     "difficulty_score": 0.8550372137923641,
     "difficulty_rank": 2,
-    "legacy_id": "P40",
     "category_index": 8,
     "category": "Granular Media and Discharge Flow",
-    "category_zh": "Granular Media and Discharge Flow",
     "title": "Sandpile angle scaling"
   }
 }

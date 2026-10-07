@@ -1,6 +1,6 @@
 # P33 · Closed vs. open jumping rings
 
-Category: 7. Electrostatics, Magnetism, and Electromagnetic Induction; legacy ID: `P37`.
+Category: 7. Electrostatics, Magnetism, and Electromagnetic Induction.
 
 Difficulty: Medium; task rank: 28/40; mean final total score: 0.246987.
 

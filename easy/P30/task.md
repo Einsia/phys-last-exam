@@ -1,6 +1,6 @@
 # P30 · Coil-induced light emission
 
-Category: 7. Electrostatics, Magnetism, and Electromagnetic Induction; legacy ID: `P39`.
+Category: 7. Electrostatics, Magnetism, and Electromagnetic Induction.
 
 Difficulty: Easy; task rank: 13/40; mean final total score: 0.503125.
 

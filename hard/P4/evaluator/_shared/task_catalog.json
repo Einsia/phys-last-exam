@@ -4,13 +4,10 @@
     "phenomenon": "Oblique projectile motion",
     "domain": "Mechanics",
     "original_group": "g1",
-    "package_path": "../..",
     "difficulty_score": 0.1833224718986792,
     "difficulty_rank": 33,
-    "legacy_id": "P2",
     "category_index": 1,
     "category": "Translational Motion and Collisions",
-    "category_zh": "Translation and Collisions",
     "title": "Projectile motion"
   }
 }

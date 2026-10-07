@@ -350,9 +350,9 @@ def _candidate_laser_mask(frame: np.ndarray) -> tuple[np.ndarray, dict[str, Any]
             }
     elif candidate_pool and not multi_color_enabled and thin_candidates:
         # Legacy compatibility path: when one colour dominates, retain the
-        # historical hue-band union (adjacent bins within 20° are one stripe).
-        # This keeps previously scored H3 videos numerically stable while the
-        # component-aware path above is reserved for true multi-colour frames.
+        # hue-band union (adjacent bins within 20° are one stripe).
+        # Use the component-aware path for multi-colour frames and the
+        # dominant-colour path for a single visible beam colour.
         ordered = sorted(thin_candidates, key=lambda item: item[0], reverse=True)
         legacy_best = ordered[0][0]
         legacy_union = np.zeros((h, w), np.uint8)
@@ -619,7 +619,7 @@ def _cluster_ray_segments(
     x_tol = max(12.0, 0.018 * width)
     # Thick antialiased multi-colour beams may request a slightly wider
     # tolerance from the caller; legacy single-colour clips retain 4° here so
-    # their historical segment counts/metrics remain stable.
+    # their segment counts and metric definitions stay consistent.
     clusters: list[list[dict[str, Any]]] = []
     # Long candidates seed clusters first, making the result insensitive to Hough order.
     for seg in sorted(segments, key=lambda item: item["length"], reverse=True):
@@ -1135,7 +1135,7 @@ def analyze_frame(frame: np.ndarray, background: np.ndarray | None = None) -> Fr
                 air_segments=len(air), water_segments=len(water),
             )
         )
-        # Keep the historical, human-readable diagnostic as well.  It is
+        # Retain the human-readable diagnostic. It is
         # useful when inspecting incident-only first frames, while the new
         # extraction policy still treats it as a hard failure only because no
         # pair at all exists.

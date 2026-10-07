@@ -216,14 +216,12 @@ def _localize_rois(
 
 
 def _looks_like_tall_beakers(frame: np.ndarray) -> bool:
-    """Detect the revised tall-beaker layout from long vertical wall edges.
+    """Detect a tall-beaker layout from long vertical wall edges.
 
-    P28's current first frame fixes the semantic roles spatially (left block,
-    right crushed).  Earlier tray assets used the opposite ordering in some
-    regression fixtures, so role inference is retained for those fixtures.
-    Two long, high-contrast wall edges in each image half are a deterministic
-    way to distinguish the new beakers from the old shallow trays without
-    relying on task text or a learned model.
+    The bundled P28 first frame places the intact block on the left and
+    crushed ice on the right. Two long, high-contrast wall edges in each image
+    half distinguish tall beakers from shallow trays, allowing role selection
+    from the visible scene without task text or a learned model.
     """
 
     array = np.asarray(frame)
@@ -1180,7 +1178,7 @@ def evaluate(
         ratio = float(crushed_time / block_time)
 
     # Primary M1: a sustained same-frame normalized liquid-level lead.
-    # Half-rise values below are retained solely as historical diagnostics.
+    # Half-rise values below are retained as measurement diagnostics.
     crushed_water = water_events[crushed_side]
     block_water = water_events[block_side]
     signal_pair = (

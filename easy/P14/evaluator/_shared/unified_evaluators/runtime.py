@@ -29,7 +29,7 @@ def task_group(task):
 def digest(path):
     with Path(path).open('rb') as handle:
         # hashlib.file_digest was added in Python 3.11; the evaluator also
-        # supports the Python 3.10 environments used by the legacy task tests.
+        # supports Python 3.10 environments when used independently.
         if hasattr(hashlib, 'file_digest'):
             return hashlib.file_digest(handle, 'sha256').hexdigest()
         digest_value = hashlib.sha256()
@@ -168,7 +168,7 @@ def backend_command(task, row, raw_path, debug, forward):
         source_video = task/row.get('source_video_path',row['video_path'])
         if digest(source_video) != row['video_sha256']:
             raise ValueError('Original-filename input is not byte-identical to canonical video')
-        command = [sys.executable,str(task/'evaluator/evaluate_raw_legacy.py'), '--video',str(source_video), '--task_id',task.name, '--output',str(raw_path)]
+        command = [sys.executable,str(task/'evaluator/measure_backend.py'), '--video',str(source_video), '--task_id',task.name, '--output',str(raw_path)]
         command += ['--artifacts-dir' if task.name == 'P8' else '--debug-dir',str(debug)]
         if task.name == 'P1':
             command += ['--no-cotracker']
@@ -366,8 +366,8 @@ def main(task_id, task_root, argv=None):
                 provenance['execution_mode'] = ('fresh_video_tracking_then_physics' if provenance['neural_inference_rerun']
                                                 else 'fresh_physics_from_cached_coordinates_and_decoded_video')
             else:
-                # Clean task packages contain no historical per-video coordinate caches.
-                # The unchanged raw backend already runs its tracking worker when absent.
+                # Track coordinates are generated when no validated cache is available.
+                # The measurement backend runs its tracking worker when needed.
                 provenance['track_cache'] = {'cache_used':False,'cache_source':None}
                 provenance['fresh_tracking_requested'] = True
                 provenance['execution_mode'] = 'fresh_video_tracking_then_physics'

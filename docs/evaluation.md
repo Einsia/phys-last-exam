@@ -114,4 +114,4 @@ Inspect the dry-run output and its `input_manifest.json` for input errors, video
 
 An exit code of zero means the batch completed without execution or input errors. A failed consistency gate or low physics score is a valid evaluation result. Missing measurement evidence does not establish a measured physical violation. Consult the per-video evidence when interpreting scores.
 
-Dry runs validate input inventory without model inference. A successful single-task run checks that route; it does not validate every task evaluator or video generator. Failed generation samples remain in the manifest and become input errors when their videos are unavailable. Review generation logs under `runs/generation/OUTPUT_ID/` and evaluation logs under the selected output directory.
+Dry runs validate input inventory without model inference. Failed generation samples remain in the manifest and become input errors when their videos are unavailable. Review generation logs under `runs/generation/OUTPUT_ID/` and evaluation logs under the selected output directory.

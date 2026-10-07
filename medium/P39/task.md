@@ -1,6 +1,6 @@
 # P39 · Bubble-film curvature
 
-Category: 9. Surface Tension and Viscous Flow; legacy ID: `P47`.
+Category: 9. Surface Tension and Viscous Flow.
 
 Difficulty: Medium; task rank: 24/40; mean final total score: 0.320569.
 

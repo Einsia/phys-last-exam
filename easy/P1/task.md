@@ -1,6 +1,6 @@
 # P1 · Bounce-height decay
 
-Category: 1. Translational Motion and Collisions; legacy ID: `P4`.
+Category: 1. Translational Motion and Collisions.
 
 Difficulty: Easy; task rank: 9/40; mean final total score: 0.574569.
 
@@ -37,5 +37,3 @@ The holder, support frame, impact plate, table, background, and camera remain st
 ## Evaluation entrypoint
 
 The entrypoint is `evaluator/evaluate.py`. Supply an external video path, the first frame with `--image first_frame.png`, and the prompt file with `--prompt`. The measurement backend uses the bundled scene calibration, so the video must match the selected first-frame calibration.
-
-Metric definition references: `v4/unified_evaluators/physics.py:22`; `v4/g3/P4/evaluator/evaluate_raw_legacy.py:102`; `v4/g3/P4/evaluator/evaluate_raw_legacy.py:651`.

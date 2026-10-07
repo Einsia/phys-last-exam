@@ -1,6 +1,6 @@
 # P16 · Collinear-point cross-ratio
 
-Category: 4. Optics and Projective Geometry; legacy ID: `P16`.
+Category: 4. Optics and Projective Geometry.
 
 Difficulty: Easy; task rank: 4/40; mean final total score: 0.710831.
 
@@ -46,5 +46,3 @@ python evaluator/evaluate.py \
   --prompt prompt.txt \
   --output /absolute/path/to/result.json
 ```
-
-Metric definition references: `v4/g4/P16/evaluator/utils/physeval/tasks/p16.py:48`; `v4/unified_evaluators/contract.py:100`; `v4/g4/P16/evaluator/utils/physeval/tasks/p16.py:55`.

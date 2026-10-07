@@ -1,6 +1,6 @@
 # P35 · Sandpile angle scaling
 
-Category: 8. Granular Media and Discharge Flow; legacy ID: `P40`.
+Category: 8. Granular Media and Discharge Flow.
 
 Difficulty: Easy; task rank: 2/40; mean final total score: 0.855037.
 
@@ -36,5 +36,3 @@ python evaluator/evaluate.py \
   --prompt prompt.txt \
   --output /absolute/path/to/result.json
 ```
-
-Metric definition references: `v4/g2/P40/evaluator/measure_backend.py:315`; `v4/unified_evaluators/contract.py:155`.

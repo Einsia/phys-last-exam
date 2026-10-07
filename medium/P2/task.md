@@ -1,6 +1,6 @@
 # P2 · Free fall
 
-Category: 1. Translational Motion and Collisions; legacy ID: `P1`.
+Category: 1. Translational Motion and Collisions.
 
 Difficulty: Medium; task rank: 27/40; mean final total score: 0.266128.
 
@@ -36,5 +36,3 @@ python evaluator/evaluate.py \
   --prompt prompt.txt \
   --output /absolute/path/to/result.json
 ```
-
-Metric definition references: `v4/g1/P1/evaluator/utils/physeval/tasks/p1.py:129`; `v4/unified_evaluators/contract.py:100`; `v4/g1/P1/evaluator/utils/physeval/tasks/p1.py:134`.
