@@ -15,18 +15,18 @@ bash scripts/generate.sh cogvideox1.5-5b-i2v
 bash scripts/evaluate_all.sh videos
 ```
 
-Replace `cogvideox1.5-5b-i2v` with any available model name:
+Choose a model and copy its generation command below, then run `bash scripts/evaluate_all.sh videos`:
 
-| Model | Model name |
+| Model | Generation command |
 | --- | --- |
-| Seedance 2.5 | `seedance-2.5` |
-| MiniMax H3 | `minimax-h3` |
-| Cosmos 3 Super | `cosmos3-super-image2video` |
-| VBVR Wan2.2 | `vbvr-wan2.2` |
-| Wan 2.2-A14B | `wan2.2-i2v-a14b` |
-| LingBot 30B-A3B | `lingbot-video-moe-30b-a3b` |
-| Hunyuan 1.5 | `hunyuan-video-1.5-i2v` |
-| CogVideoX 1.5-5B | `cogvideox1.5-5b-i2v` |
+| Seedance 2.5 | `bash scripts/generate.sh seedance-2.5` |
+| MiniMax H3 | `bash scripts/generate.sh minimax-h3` |
+| Cosmos 3 Super | `bash scripts/generate.sh cosmos3-super-image2video` |
+| VBVR Wan2.2 | `bash scripts/generate.sh vbvr-wan2.2` |
+| Wan 2.2-A14B | `bash scripts/generate.sh wan2.2-i2v-a14b` |
+| LingBot 30B-A3B | `bash scripts/generate.sh lingbot-video-moe-30b-a3b` |
+| Hunyuan 1.5 | `bash scripts/generate.sh hunyuan-video-1.5-i2v` |
+| CogVideoX 1.5-5B | `bash scripts/generate.sh cogvideox1.5-5b-i2v` |
 
 [Environment and API setup](generation/README.md#setup) · [Generation options](generation/README.md#one-command-generation) · [Evaluation options](docs/evaluation.md)
 
