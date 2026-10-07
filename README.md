@@ -8,7 +8,7 @@ Video world models can generate plausible scenes that violate physics, limiting 
 
 ## Quick Start
 
-From the repository root, generate videos with a model below, then evaluate them:
+On Linux with Python 3.12 and a compatible NVIDIA GPU/driver, run these commands from the repository root:
 
 ```bash
 bash scripts/generate.sh cogvideox1.5-5b-i2v
@@ -27,6 +27,9 @@ Choose a model and copy its generation command below, then run `bash scripts/eva
 | LingBot 30B-A3B | `bash scripts/generate.sh lingbot-video-moe-30b-a3b` |
 | Hunyuan 1.5 | `bash scripts/generate.sh hunyuan-video-1.5-i2v` |
 | CogVideoX 1.5-5B | `bash scripts/generate.sh cogvideox1.5-5b-i2v` |
+
+- **Seedance:** the launcher prompts for your compatible Videos API base URL and API key; key input is hidden. For unattended runs, set `SEEDANCE_BASE_URL` and `SEEDANCE_API_KEY`. See [API setup](generation/README.md#setup) for provider formats.
+- **Local models:** the launcher installs the selected model's environment and downloads its checkpoints on first use. To reuse an existing installation, add `--config generation.local.json` with [your Python, source, checkpoint, and GPU paths](generation/README.md#reuse-an-existing-installation). Model-specific prerequisites are listed in [setup](generation/README.md#setup).
 
 [Environment and API setup](generation/README.md#setup) · [Generation options](generation/README.md#one-command-generation) · [Evaluation options](docs/evaluation.md)
 

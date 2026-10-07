@@ -53,7 +53,33 @@ The same task, seed, output, and dry-run flags work for all eight models. `--dry
 
 ## Reuse an existing installation
 
-To reuse model environments and checkpoints you already have, initialize the path template and edit its Python, source, checkpoint, and GPU paths once:
+For an already working CogVideoX installation, save this as `generation.local.json`, replacing the three example paths. `python_bin` is the model environment's executable, `model_dir` is its checkpoint directory, and `proj` is its working directory; `devices` selects physical GPU IDs.
+
+```json
+{
+  "models": {
+    "cogvideox1.5-5b-i2v": {
+      "backend": "cogvideox1.5-5b-i2v",
+      "num_frames": 81,
+      "options": {
+        "python_bin": "/path/to/cogvideox-env/bin/python",
+        "model_dir": "/path/to/CogVideoX1.5-5B-I2V",
+        "proj": "/path/to/working-directory",
+        "devices": "0"
+      }
+    }
+  }
+}
+```
+
+```bash
+bash scripts/generate.sh cogvideox1.5-5b-i2v --config generation.local.json
+bash scripts/evaluate_all.sh videos
+```
+
+With `--config`, the launcher calls your model's Python environment directly and skips automatic generator installation and checkpoint downloads. If your model is exposed through an HTTP service instead, use a [custom inference command](#add-a-custom-model) that calls that service and saves the returned MP4.
+
+For the other built-in models, initialize an all-model path template and edit the entries you intend to use:
 
 ```bash
 python generate.py --init-config --model-root /path/to/checkpoints
