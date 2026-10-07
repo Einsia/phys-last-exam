@@ -12,6 +12,8 @@ python generate.py --init-config --model-root /path/to/checkpoints
 
 Open the generated `generation.local.json`. For each local model, check `options.python_bin` (its Python executable), `options.model_dir` or `options.ckpt_dir` (weights), and `options.proj` (source checkout or working directory). Relative paths are resolved against this configuration file. The initializer detects common `source/PROJECT/.venv/` and sibling `envs/` layouts. The file is ignored by Git.
 
+Replace `/path/to/checkpoints` with your generation checkpoint root. The initializer writes a template and refuses to overwrite an existing file; it does not download weights or create Python environments. Edit the existing file to connect an installation in a different layout. Keep the controller's evaluation environment active when invoking `generate.py`; the adapter launches `options.python_bin` for model inference.
+
 | Model name | Runtime / upstream setup | Checkpoint directory under `--model-root` |
 | --- | --- | --- |
 | `seedance-2.5` | [Videos API](https://docs.aihubmix.com/en/api/Video-Gen), configured below | None |
@@ -46,16 +48,25 @@ This checks paths and API configuration without inference or paid submissions. I
 
 ## Generate and evaluate
 
+First, run one configured model on one task and validate its inputs:
+
 ```bash
-# One task and one seed first.
+python generate.py --models cogvideox1.5-5b-i2v --check
 python generate.py --models cogvideox1.5-5b-i2v --tasks P21 --seeds 42 --output videos --resume
+python evaluate.py --manifest videos/manifest.json --tasks P21 --output runs/input_check --dry-run
+python evaluate.py --manifest videos/manifest.json --tasks P21 --output runs/quick_test --resume
+```
 
-# All 8 models, all 40 tasks, seeds 42/43/44/45: 1,280 videos.
+Only after all eight environments and the Seedance endpoint are configured, expand to the full benchmark:
+
+```bash
+python generate.py --models all --check
 python generate.py --models all --output videos --resume
-
-# The manifest includes the exact input images, prompts, and bundled task annotations.
+python evaluate.py --manifest videos/manifest.json --output runs/input_check_all --require-all-tasks --dry-run
 python evaluate.py --manifest videos/manifest.json --output runs/all_tasks --require-all-tasks --resume
 ```
+
+The full generation plan has 1,280 samples (eight models × 40 tasks × seeds 42–45). A generation dry run creates a plan, not a manifest; generate actual videos before running the evaluation commands. The generated manifest references the exact input images, prompts, and annotation snapshots. Evaluation weights can live elsewhere through `FINAL_MODELS_DIR`; this variable is separate from the generation checkpoint paths in the configuration.
 
 Use `--models NAME NAME` to choose several models and `--tasks P21 P2` to choose tasks. Each model's `num_frames` and `options` are configurable; legal frame-count adjustments and the measured output frame count/FPS are recorded. Automatic prompt rewriting is disabled so the recorded task prompt is the supplied conditioning prompt. These defaults do not reproduce every historical benchmark generation setting.
 
@@ -74,9 +85,9 @@ runs/generation/OUTPUT_ID/           # Plans, raw videos, attempt logs, API job 
 
 The controller assigns the special calibrated filenames for P3/P8/P14/P17. For P3/P14, it exports a 1344 × 768 evaluation copy with an explicit spatial resize if needed; it retains the native raw video, records both dimensions and scale factors, and checks that frame count and timing are unchanged. This format conversion does not establish that the generated scene matches the calibration. Other tasks retain the native video dimensions.
 
-P33/P34/P30/P36/P10/P38 include reviewed annotations for their fixed task image. Generation snapshots these templates into `.inputs/` and adds them to the manifest. Evaluation loads them automatically, checks the image hash, scales the coordinates to the output resolution, and validates correspondence with the decoded first frame. A successful check records the current video/frame hashes in the evaluation debug output. Standard benchmark inputs need no separate annotation directory.
+P33/P34/P30/P36/P10/P38 include reviewed annotations for their fixed task image. Generation snapshots these templates and any supplied per-video annotation overrides into `.inputs/` and adds them to the manifest. Move the complete `videos/` directory, including its hidden `.inputs/` directory, to keep those inputs portable. Evaluation loads the annotations automatically, checks the image hash, scales the coordinates to the output resolution, and validates correspondence with the decoded first frame. A successful check records the current video/frame hashes in the evaluation debug output. Standard benchmark inputs need no separate annotation directory.
 
-The coordinate mapping supports full-image resizing. If a crop or changed layout fails the first-frame correspondence check, initialization fails explicitly. For custom inputs, place reviewed video annotations at `annotations/MODEL/TASK/VIDEO_STEM.json` and use `--annotation-root annotations`; a matching file overrides the bundled template. Explicit video annotations keep their video/image hash checks. This flag is optional for both generation and evaluation.
+The coordinate mapping supports full-image resizing. If a crop or changed layout fails the first-frame correspondence check, initialization fails explicitly. To override initialization, place reviewed video annotations at `annotations/MODEL/TASK/VIDEO_STEM.json` and use `--annotation-root annotations`; a matching file overrides the bundled template. This flag does not change the task image or prompt. When evaluating a different first frame, supply its actual `image` and `prompt` in a custom manifest as shown in the [main README](../README.md#prepare-your-videos). Explicit video annotations keep their video/image hash checks. This flag is optional for both generation and evaluation. A generation resume updates the manifest snapshot when an override changes; the annotation is an evaluation input and does not require regenerating the video. Direct evaluation with this flag reads the external annotation directory, so keep it available for that command.
 
 `--resume` skips only files whose input/settings/controller-code signature and video hash match. Changed settings or modified videos require a new output directory. Use a new output directory when changing model weights, upstream environments, or custom inference code too; those external files are not hashed. Failed samples remain in the manifest and produce explicit evaluator input errors instead of disappearing from the sample count. Check `runs/generation/OUTPUT_ID/summary.json` for failures.
 
