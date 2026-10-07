@@ -877,6 +877,19 @@ class OpenAIStyleVideo(VideoModel):
 
     def _request_body(self, *, first_frame: str, prompt: str,
                       num_frames: int, seed: int) -> dict[str, Any]:
+        if self.request_format == "litellm_json":
+            # Provider-specific JSON belongs in extra_body on this video route.
+            # Keep the exact first frame as a data URL rather than a binary upload.
+            if self.seconds <= 0:
+                raise ValueError("video duration seconds must be positive")
+            return {
+                "model": self.model, "prompt": prompt,
+                "extra_body": {
+                    "duration": self.seconds, "aspect_ratio": "adaptive",
+                    "frame_images": [{"frame_type": "first_frame",
+                                      "image_url": {"url": self._image_payload(first_frame)}}],
+                },
+            }
         if self.request_format == "aihubmix_json":
             if self.seconds <= 0:
                 raise ValueError("video duration seconds must be positive")
@@ -1082,7 +1095,7 @@ class OpenAIStyleVideo(VideoModel):
         return total, url
 
     def _download_result(self, payload: dict[str, Any], out: str) -> tuple[int, str]:
-        if self.request_format in {"multipart", "aihubmix_json"}:
+        if self.request_format in {"multipart", "aihubmix_json", "litellm_json"}:
             job_id = payload.get("id") or payload.get("job_id")
             if not job_id:
                 raise RuntimeError(f"{self.name} video response missing job id")
@@ -1173,7 +1186,7 @@ class OpenAIStyleVideo(VideoModel):
                 record(message)
                 print(f"    {self.name}: {message}", flush=True)
                 time.sleep(delay)
-        videos_api = self.request_format in {"multipart", "aihubmix_json"}
+        videos_api = self.request_format in {"multipart", "aihubmix_json", "litellm_json"}
         if videos_api:
             # LiteLLM may return a re-encoded ID without model routing data when
             # polling. Always download using the original ID from creation.

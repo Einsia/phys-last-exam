@@ -23,9 +23,9 @@ python - <<'PY'
 import os
 import sys
 if sys.version_info[:2] != (3, 12):
-    sys.exit("Use Python 3.12: conda create -n physscope python=3.12 -y && conda activate physscope")
+    sys.exit("Use Python 3.12: conda create -n phys-last-exam python=3.12 -y && conda activate phys-last-exam")
 if sys.prefix == sys.base_prefix and not os.environ.get("CONDA_PREFIX"):
-    sys.exit("Activate your physscope Conda environment or a Python 3.12 virtual environment first.")
+    sys.exit("Activate your phys-last-exam Conda environment or a Python 3.12 virtual environment first.")
 if sys.platform != "linux":
     sys.exit("This installer targets Linux with an NVIDIA GPU.")
 PY
@@ -50,7 +50,7 @@ if [[ "${1:-}" == "--skip-models" ]]; then
     exit 0
 fi
 
-echo "[2/3] Downloading models (the Qwen model is about 55 GB)..."
+echo "[2/3] Downloading evaluation models..."
 model_dir="$(python -c 'import os; from pathlib import Path; print(Path(os.environ.get("FINAL_MODELS_DIR", "models")).expanduser().resolve())')"
 mkdir -p -- "$model_dir"
 # Pin upstream snapshots so rerunning setup does not silently change the models.

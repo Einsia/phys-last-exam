@@ -8,65 +8,55 @@ Video world models can generate plausible scenes that violate physics, limiting 
 
 ## Setup
 
-Use **Linux, Bash, Python 3.12, Conda, Git, and an NVIDIA driver compatible with CUDA 12.8**. For the default Qwen3.6-27B evaluator, we recommend an **80 GB GPU** and **100 GB of free disk space**. Run all commands below from the repository root.
+Use **Linux, Bash, Python 3.12 (with `venv`), and Git**. Local video generation and evaluation also need an NVIDIA GPU and a compatible driver. Run the commands below from the repository root.
 
 ```bash
 git clone https://github.com/Einsia/phys-last-exam.git
 cd phys-last-exam
-conda create -n phys-last-exam python=3.12 -y
-conda activate phys-last-exam
-bash setup.sh
 ```
 
-`setup.sh` installs evaluator dependencies and downloads about 60 GB of weights into `models/`. In a new terminal, activate the same environment again. To use another model directory, set `FINAL_MODELS_DIR` before setup and evaluation; see [evaluation configuration](docs/evaluation.md#evaluation-models).
+The scripts below create their own environments and download the selected models on first use. No manual JSON editing or environment activation is needed. If your Python executable has another name, set `PLE_PYTHON=/absolute/path/to/python3.12`.
 
 ## Prepare your videos
 
 The benchmark contains **40 tasks: 15 Easy, 15 Medium, and 10 Hard**. `generate.py` loads each task’s bundled `first_frame.png` and `prompt.txt`. If you already have videos, go to [Evaluate videos](#evaluate-videos).
 
-Install your chosen video generator in its own environment, then create and edit `generation.local.json` with its Python, source, checkpoint, and GPU paths. See the [generation guide](generation/README.md) for the eight supported models and custom adapters.
+**Seedance:** set your provider's Videos API base URL, then run the script and enter your API key at the hidden prompt. For unattended runs, set `SEEDANCE_API_KEY` in the environment instead.
 
 ```bash
-python generate.py --init-config --model-root /path/to/generation-checkpoints
-# Edit generation.local.json, then check and run one configured model.
-python generate.py --models cogvideox1.5-5b-i2v --check
-python generate.py --models cogvideox1.5-5b-i2v --tasks P21 --seeds 42 --output videos --resume
+export SEEDANCE_BASE_URL="https://your-provider/v1"
+bash scripts/generate_seedance.sh
 ```
 
-`--init-config` creates a path template; it does not install generators. `--check` checks paths and client configuration without inference. Once all eight adapters are configured, including Seedance API credentials, generate the full benchmark:
+**Open-source models:** select a model; the script installs its runtime, downloads its checkpoints, and generates its videos. For example:
 
 ```bash
-python generate.py --models all --output videos --resume
+bash scripts/generate_open.sh cogvideox1.5-5b-i2v
 ```
 
-Outputs are `videos/MODEL/VIDEO_STEM.mp4` and `videos/manifest.json`. Move the complete `videos/` directory, including `.inputs/`, to preserve its images, prompts, and annotations. Add `--dry-run` to preview generation jobs without inference or API calls.
+Both commands default to **all 40 tasks, four samples per task (seeds 42–45)**. Start with a one-video smoke test by adding `--tasks P21 --seeds 42 --output videos/smoke`. Add `--dry-run` to preview jobs without downloading generator weights, running inference, or submitting API requests. See the [generation guide](generation/README.md) for the other six open-source model names, GPU selection, provider formats, and existing installations.
+
+Outputs are `videos/MODEL/VIDEO_STEM.mp4` and `videos/manifest.json`. Move the complete output directory, including `.inputs/`, to keep its input images, prompts, and annotations. Scripts resume matching successful samples automatically.
 
 ## Evaluate videos
 
-Check and evaluate the single-task example first:
+Run one command to evaluate **every video** in your output directory. On first use, it installs evaluation dependencies and downloads the local Qwen3.6-27B and measurement models:
 
 ```bash
-python evaluate.py --manifest videos/manifest.json --tasks P21 --output runs/input_check --dry-run
-python evaluate.py --manifest videos/manifest.json --tasks P21 --output runs/quick_test --resume
+bash scripts/evaluate_all.sh videos
 ```
 
-After preparing the full benchmark:
+For the smoke-test directory, use `bash scripts/evaluate_all.sh videos/smoke --output runs/smoke`. The script reads `manifest.json` when present, otherwise scans `videos/MODEL/VIDEO_STEM.mp4` files containing the task ID. You can also pass a manifest path directly.
+
+To check inputs before model installation or inference:
 
 ```bash
-python evaluate.py --manifest videos/manifest.json --output runs/input_check_all --require-all-tasks --dry-run
-python evaluate.py --manifest videos/manifest.json --output runs/all_tasks --require-all-tasks --resume
+bash scripts/evaluate_all.sh videos --dry-run
 ```
 
-For existing videos without a manifest, arrange files as `videos/MODEL/VIDEO_STEM.mp4`, with the current task ID in each filename:
+Confirm `input_errors: 0` and the expected video counts. Add `--require-all-tasks` to require 40-task coverage for every included model.
 
-```bash
-python evaluate.py --video-root videos --output runs/existing_input_check --dry-run
-python evaluate.py --video-root videos --output runs/existing_videos --resume
-```
-
-Confirm `input_errors: 0` and the expected counts in the dry run. `--require-all-tasks` checks 40-task coverage for each included model; verify the eight models and four samples per task separately for the full 1,280-video experiment.
-
-Evaluation runs one video at a time on the first visible GPU, with Qwen loaded locally. Results include `by_model.csv`, `by_task.csv`, `results.csv`, `results.json`, and per-video evidence under the selected output directory. `--resume` reuses matching successful results. If a command fails, inspect its `summary.json` and per-video logs before rerunning. See [evaluation details](docs/evaluation.md) for GPU selection, calibrated filenames, custom inputs, and score interpretation.
+Evaluation uses one worker and the first visible GPU by default. Results are saved to `runs/evaluation/`, including `by_model.csv`, `by_task.csv`, `results.csv`, `results.json`, and per-video evidence. Matching successful results are resumed automatically. See [evaluation details](docs/evaluation.md) for GPU selection, reusing existing environments and weights, and custom inputs.
 
 ## Video generation model results
 

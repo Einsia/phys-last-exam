@@ -99,8 +99,8 @@ def resolve_profile(name, profile, base):
     if backend == 'seedance-2.5':
         options['base_url'] = os.environ.get('SEEDANCE_BASE_URL', options.get('base_url', ''))
         options['model'] = os.environ.get('SEEDANCE_MODEL', options.get('model', 'doubao-seedance-2-5-260628'))
-        if options.get('request_format', 'aihubmix_json') not in ('aihubmix_json', 'multipart'):
-            raise ValueError('Seedance supports aihubmix_json or multipart Videos API requests')
+        if options.get('request_format', 'aihubmix_json') not in ('aihubmix_json', 'multipart', 'litellm_json'):
+            raise ValueError('Seedance supports aihubmix_json, multipart, or litellm_json Videos API requests')
         if options.get('headers') or options.get('extra_body'):
             raise ValueError('Use api_key_env for authentication; custom headers/body are not supported by this adapter')
     elif options.get('use_prompt_rewriter') or options.get('rewrite') or options.get('use_prompt_extend'):

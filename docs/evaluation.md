@@ -2,6 +2,24 @@
 
 Run batch commands from the repository root with the evaluation environment active. The [main README](../README.md#evaluate-videos) contains the standard workflow; `python evaluate.py --help` lists all options.
 
+## One-command evaluation
+
+```bash
+bash scripts/evaluate_all.sh videos
+```
+
+This evaluates all videos in `videos/`, using its `manifest.json` when available or scanning model subdirectories otherwise. A manifest path can be supplied directly. First use creates `.venv/eval/` and runs `setup.sh`; subsequent runs reuse the environment and weights. The launcher uses Python 3.12 (`PLE_PYTHON` can override its executable), one worker, and automatic resume. Pass `--output runs/my-run`, `--tasks P21`, or `--require-all-tasks` as needed; evaluator settings such as worker count, timeout, and gate options are also forwarded. A `--dry-run` uses only the lightweight controller environment and does not install evaluation models.
+
+For an existing evaluation environment, set `PLE_EVAL_PYTHON=/absolute/path/to/its/bin/python`. The launcher then skips installation; that environment and the weights selected by `FINAL_MODELS_DIR` must already be ready. To reuse a lightweight controller, set `PLE_CONTROLLER_PYTHON` similarly.
+
+```bash
+export PLE_EVAL_PYTHON=/path/to/existing/env/bin/python
+export FINAL_MODELS_DIR=/path/to/evaluation-models
+CUDA_VISIBLE_DEVICES=1 bash scripts/evaluate_all.sh videos --output runs/gpu1
+```
+
+The low-level commands below remain available for manual setup and custom workflows.
+
 ## Evaluation models
 
 `bash setup.sh` installs dependencies and downloads evaluator weights. To store those weights outside the repository, set this variable before setup and keep it set when evaluating:
@@ -23,7 +41,7 @@ cotracker3/scaled_offline.pth
 cotracker3/source/                 # Pinned CoTracker checkout from setup.sh
 ```
 
-These are evaluation weights. Video generator environments and checkpoints are configured separately in [generation.local.json](../generation/README.md#connect-your-model-environments-once).
+These are evaluation weights. Video generators are prepared separately by the [generation launcher](../generation/README.md#one-command-generation), or connected through an existing local configuration.
 
 ## GPU selection
 

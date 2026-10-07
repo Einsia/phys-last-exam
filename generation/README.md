@@ -2,9 +2,41 @@
 
 `generate.py` reads each benchmark task's image and prompt, calls a model, and exports videos and a manifest for `evaluate.py`. The eight built-in adapters use the existing generation implementations, with model-specific dependencies kept in their own Python environments.
 
-## Connect your model environments once
+## One-command generation
 
-Install the models you want to run using their upstream instructions, or reuse your existing installations. The evaluation `setup.sh` installs the controller and video validation dependencies; generation model weights and their separate environments are configured here.
+The launch scripts create isolated Python environments and prepare only the model you select. Use Linux and Python 3.12; set `PLE_PYTHON` if the executable is not named `python3.12`.
+
+For Seedance, set the Videos API base URL and enter the key at the hidden prompt:
+
+```bash
+export SEEDANCE_BASE_URL="https://your-provider/v1"
+bash scripts/generate_seedance.sh
+```
+
+For unattended execution, supply `SEEDANCE_API_KEY` in the environment. Keys are never written into the generated configuration. The default model is `doubao-seedance-2-5-260628`; override it with `SEEDANCE_MODEL` when necessary. The default `SEEDANCE_REQUEST_FORMAT=litellm_json` places Seedance fields in the gateway's `extra_body`. For a direct AiHubMix JSON route use `aihubmix_json`; for a provider accepting uploaded `input_reference` files use `multipart`. Five-second requests use seed values as sample labels; the API metadata records `seed_sent: false`.
+
+For an open-source model:
+
+```bash
+bash scripts/generate_open.sh cogvideox1.5-5b-i2v
+```
+
+Use any of the seven names in the table below. The launcher installs each generator into its own environment, downloads pinned checkpoints under `models/generation/`, and creates its path configuration automatically. Select another checkpoint location with `--model-root /path/to/checkpoints`, or GPUs with `--devices 1` / `--devices 0,1,2,3`. The MiniMax, Cosmos, and LingBot defaults select four GPUs; other defaults select one. GPU IDs are physical IDs, so use `--devices` for generation rather than nesting a separate `CUDA_VISIBLE_DEVICES` setting.
+
+For gated checkpoints, accept the upstream license and configure `HF_TOKEN` or Hugging Face login first. Hunyuan also downloads its separate text and vision encoders; its FLUX.1-Redux-dev encoder requires approved Hugging Face access. Wan2.2 builds FlashAttention and needs a CUDA toolkit (`nvcc`) and a C++ compiler.
+
+Each command defaults to 40 tasks × four samples. Run one sample first, then evaluate it:
+
+```bash
+bash scripts/generate_seedance.sh --tasks P21 --seeds 42 --output videos/smoke
+bash scripts/evaluate_all.sh videos/smoke --output runs/smoke
+```
+
+The same task, seed, output, and dry-run flags work with `generate_open.sh`. `--dry-run` creates the input plan without downloading generator checkpoints, loading a generator, or calling the API. It can install the lightweight controller dependencies. Interrupted runs resume automatically. A failed generation exits nonzero; review its per-video worker log under `runs/generation/`.
+
+## Reuse an existing installation
+
+To reuse model environments and checkpoints you already have, initialize the path template and edit its Python, source, checkpoint, and GPU paths once:
 
 ```bash
 python generate.py --init-config --model-root /path/to/checkpoints
@@ -13,6 +45,8 @@ python generate.py --init-config --model-root /path/to/checkpoints
 Open the generated `generation.local.json`. For each local model, check `options.python_bin` (its Python executable), `options.model_dir` or `options.ckpt_dir` (weights), and `options.proj` (source checkout or working directory). Relative paths are resolved against this configuration file. The initializer detects common `source/PROJECT/.venv/` and sibling `envs/` layouts. The file is ignored by Git.
 
 Replace `/path/to/checkpoints` with your generation checkpoint root. The initializer writes a template and refuses to overwrite an existing file; it does not download weights or create Python environments. Edit the existing file to connect an installation in a different layout. Keep the controller's evaluation environment active when invoking `generate.py`; the adapter launches `options.python_bin` for model inference.
+
+Pass `--config generation.local.json` to either generation launch script to use that installation and skip automatic generator provisioning. To reuse a controller environment too, set `PLE_CONTROLLER_PYTHON=/absolute/path/to/its/bin/python`.
 
 | Model name | Runtime / upstream setup | Checkpoint directory under `--model-root` |
 | --- | --- | --- |
@@ -68,7 +102,7 @@ python evaluate.py --manifest videos/manifest.json --output runs/all_tasks --req
 
 The full generation plan has 1,280 samples (eight models × 40 tasks × seeds 42–45). A generation dry run creates a plan, not a manifest; generate actual videos before running the evaluation commands. The generated manifest references the exact input images, prompts, and annotation snapshots. Evaluation weights can live elsewhere through `FINAL_MODELS_DIR`; this variable is separate from the generation checkpoint paths in the configuration.
 
-Use `--models NAME NAME` to choose several models and `--tasks P21 P2` to choose tasks. Each model's `num_frames` and `options` are configurable; legal frame-count adjustments and the measured output frame count/FPS are recorded. Automatic prompt rewriting is disabled so the recorded task prompt is the supplied conditioning prompt. These defaults do not reproduce every historical benchmark generation setting.
+Use `--models NAME NAME` to choose several models and `--tasks P21 P2` to choose tasks. Each model's `num_frames` and `options` are configurable; legal frame-count adjustments and the measured output frame count/FPS are recorded. Automatic prompt rewriting is disabled so the recorded task prompt is the supplied conditioning prompt.
 
 Output layout:
 
