@@ -154,7 +154,15 @@ def update_manifest(output, work, jobs, annotation_root=None):
         if annotation_root:
             annotation = annotation_root / job['model'] / job['task'] / (job['sample_id'] + '.json')
             if annotation.is_file():
-                row['annotation'] = os.path.relpath(annotation, output)
+                # Overrides are evaluation inputs too: keep them with the video
+                # rather than retaining a dependency on an external directory.
+                annotation_hash = batch.sha(annotation)
+                snapshot = output / '.inputs' / job['task'] / (annotation_hash + '.json')
+                if not snapshot.exists():
+                    shutil.copyfile(annotation, snapshot)
+                if batch.sha(snapshot) != annotation_hash:
+                    raise ValueError(f'Generation annotation snapshot is corrupt: {snapshot}')
+                row['annotation'] = os.path.relpath(snapshot, output)
         entries[(row['model'], row['task'], row['sample_id'])] = row
     batch.save(path, [entries[key] for key in sorted(entries)])
 
