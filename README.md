@@ -8,7 +8,7 @@ Video world models can generate plausible scenes that violate physics, limiting 
 
 ## Quick Start
 
-On Linux with Python 3.12 and a compatible NVIDIA GPU/driver, run these commands from the repository root:
+For the eight built-in models, run these commands from the repository root on Linux with Python 3.12 and a compatible NVIDIA GPU/driver:
 
 ```bash
 bash scripts/generate.sh cogvideox1.5-5b-i2v
@@ -33,20 +33,32 @@ Choose a model and copy its generation command below, then run `bash scripts/eva
 
 [Environment and API setup](generation/README.md#setup) · [Generation options](generation/README.md#one-command-generation) · [Evaluation options](docs/evaluation.md)
 
-## Evaluate your own model
+## Custom models
 
-Generate videos using each task's bundled `first_frame.png` and `prompt.txt`. Save them in `videos/my-model/` with the task ID in each filename, for example `P21_seed42.mp4`, then run:
+### Generate and evaluate
 
-```bash
-bash scripts/evaluate_all.sh videos/my-model --model my-model
-```
+First set up your model's inference environment and checkpoints. Create `custom-model.json` using the [configuration example](generation/README.md#add-a-custom-model), filling in your Python executable, inference script, working directory, and command arguments. Your command must accept an image, prompt, seed, and output path, and write a playable MP4 there.
 
-To run your own generator through the benchmark, create `custom-model.json` with [your inference command](generation/README.md#add-a-custom-model), then use the same two-step workflow:
+Use the same model name in the JSON and the generation command (`my-model` below), then generate benchmark videos and evaluate them:
 
 ```bash
 bash scripts/generate.sh my-model --config custom-model.json
 bash scripts/evaluate_all.sh videos
 ```
+
+The benchmark passes each task's image and prompt to your command, saves videos under `videos/my-model/`, and writes `videos/manifest.json` with their model and task information. Evaluation reads this manifest automatically, so no `--model` flag or manual video naming is needed for this workflow.
+
+### Evaluate existing videos
+
+If you have already generated videos with your own tools, evaluate them directly. Use each task's bundled `first_frame.png` and `prompt.txt`, and put the videos in `videos/my-model/` with the task ID in each filename, for example `videos/my-model/P21_seed42.mp4`:
+
+```bash
+bash scripts/evaluate_all.sh videos/my-model --model my-model
+```
+
+This command evaluates that directory only; `--model my-model` supplies the model name for the results. An inference command and `custom-model.json` are not needed for existing videos.
+
+Both workflows save scores and evidence to `runs/evaluation/`. See [evaluation options](docs/evaluation.md) for custom inputs and output locations.
 
 ## Video generation model results
 

@@ -172,6 +172,8 @@ Interrupted Seedance polling/downloads reuse the saved job ID. If submission tim
 
 ## Add a custom model
 
+Set up your model's dependencies and checkpoints, and confirm its inference command works. The benchmark calls this command for each task and sample; for an API or HTTP service, the command should submit the request and save the returned video. If you already have videos, use [direct evaluation](../README.md#evaluate-existing-videos).
+
 Save this as `custom-model.json`, replacing the three example paths:
 
 ```json
