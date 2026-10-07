@@ -4,21 +4,38 @@
 
 ## One-command generation
 
-The launch scripts create isolated Python environments and prepare only the model you select. Use Linux and Python 3.12; set `PLE_PYTHON` if the executable is not named `python3.12`.
-
-For Seedance, set the Videos API base URL and enter the key at the hidden prompt:
+The unified launcher creates isolated Python environments and prepares only the model you select:
 
 ```bash
-export SEEDANCE_BASE_URL="https://your-provider/v1"
-bash scripts/generate_seedance.sh
+bash scripts/generate.sh cogvideox1.5-5b-i2v
+bash scripts/evaluate_all.sh videos
 ```
 
-For unattended execution, supply `SEEDANCE_API_KEY` in the environment. Keys are never written into the generated configuration. The default model is `doubao-seedance-2-5-260628`; override it with `SEEDANCE_MODEL` when necessary. The default `SEEDANCE_REQUEST_FORMAT=litellm_json` places Seedance fields in the gateway's `extra_body`. For a direct AiHubMix JSON route use `aihubmix_json`; for a provider accepting uploaded `input_reference` files use `multipart`. Five-second requests use seed values as sample labels; the API metadata records `seed_sent: false`.
+Choose any of the eight model names in the [Quick Start](../README.md#quick-start). Each generator defaults to all 40 tasks and four samples per task (seeds 42–45). Generation and evaluation resume matching completed work automatically. Results are saved to `runs/evaluation/`.
+
+## Setup
+
+Use Linux, Bash, Git, Python 3.12 with `venv`, and a compatible NVIDIA GPU/driver for local generation and evaluation. Clone the repository and run commands from its root:
+
+```bash
+git clone https://github.com/Einsia/phys-last-exam.git
+cd phys-last-exam
+```
+
+The launchers install dependencies and download the selected models on first use. If your Python executable is not named `python3.12`, set `PLE_PYTHON=/absolute/path/to/python3.12`.
+
+For Seedance, the launcher prompts for the Videos API base URL and then the key at a hidden prompt:
+
+```bash
+bash scripts/generate.sh seedance-2.5
+```
+
+For unattended execution, supply `SEEDANCE_BASE_URL` and `SEEDANCE_API_KEY` in the environment. Keys are never written into the generated configuration. The default model is `doubao-seedance-2-5-260628`; override it with `SEEDANCE_MODEL` when necessary. The default `SEEDANCE_REQUEST_FORMAT=litellm_json` places Seedance fields in the gateway's `extra_body`. For a direct AiHubMix JSON route use `aihubmix_json`; for a provider accepting uploaded `input_reference` files use `multipart`. Five-second requests use seed values as sample labels; the API metadata records `seed_sent: false`.
 
 For an open-source model:
 
 ```bash
-bash scripts/generate_open.sh cogvideox1.5-5b-i2v
+bash scripts/generate.sh cogvideox1.5-5b-i2v
 ```
 
 Use any of the seven names in the table below. The launcher installs each generator into its own environment, downloads pinned checkpoints under `models/generation/`, and creates its path configuration automatically. Select another checkpoint location with `--model-root /path/to/checkpoints`, or GPUs with `--devices 1` / `--devices 0,1,2,3`. The MiniMax, Cosmos, and LingBot defaults select four GPUs; other defaults select one. GPU IDs are physical IDs, so use `--devices` for generation rather than nesting a separate `CUDA_VISIBLE_DEVICES` setting.
@@ -28,11 +45,11 @@ For gated checkpoints, accept the upstream license and configure `HF_TOKEN` or H
 Each command defaults to 40 tasks × four samples. Run one sample first, then evaluate it:
 
 ```bash
-bash scripts/generate_seedance.sh --tasks P21 --seeds 42 --output videos/smoke
+bash scripts/generate.sh seedance-2.5 --tasks P21 --seeds 42 --output videos/smoke
 bash scripts/evaluate_all.sh videos/smoke --output runs/smoke
 ```
 
-The same task, seed, output, and dry-run flags work with `generate_open.sh`. `--dry-run` creates the input plan without downloading generator checkpoints, loading a generator, or calling the API. It can install the lightweight controller dependencies. Interrupted runs resume automatically. A failed generation exits nonzero; review its per-video worker log under `runs/generation/`.
+The same task, seed, output, and dry-run flags work for all eight models. `--dry-run` creates the input plan without downloading generator checkpoints, loading a generator, or calling the API. It can install the lightweight controller dependencies. Interrupted runs resume automatically. A failed generation exits nonzero; review its per-video worker log under `runs/generation/`. The existing `generate_seedance.sh` and `generate_open.sh` launchers also remain available.
 
 ## Reuse an existing installation
 
@@ -46,7 +63,7 @@ Open the generated `generation.local.json`. For each local model, check `options
 
 Replace `/path/to/checkpoints` with your generation checkpoint root. The initializer writes a template and refuses to overwrite an existing file; it does not download weights or create Python environments. Edit the existing file to connect an installation in a different layout. Keep the controller's evaluation environment active when invoking `generate.py`; the adapter launches `options.python_bin` for model inference.
 
-Pass `--config generation.local.json` to either generation launch script to use that installation and skip automatic generator provisioning. To reuse a controller environment too, set `PLE_CONTROLLER_PYTHON=/absolute/path/to/its/bin/python`.
+Pass `--config generation.local.json` to `generate.sh MODEL` to use that installation and skip automatic generator provisioning. To reuse a controller environment too, set `PLE_CONTROLLER_PYTHON=/absolute/path/to/its/bin/python`.
 
 | Model name | Runtime / upstream setup | Checkpoint directory under `--model-root` |
 | --- | --- | --- |
@@ -121,7 +138,7 @@ The controller assigns the special calibrated filenames for P3/P8/P14/P17. For P
 
 P33/P34/P30/P36/P10/P38 include reviewed annotations for their fixed task image. Generation snapshots these templates and any supplied per-video annotation overrides into `.inputs/` and adds them to the manifest. Move the complete `videos/` directory, including its hidden `.inputs/` directory, to keep those inputs portable. Evaluation loads the annotations automatically, checks the image hash, scales the coordinates to the output resolution, and validates correspondence with the decoded first frame. A successful check records the current video/frame hashes in the evaluation debug output. Standard benchmark inputs need no separate annotation directory.
 
-The coordinate mapping supports full-image resizing. If a crop or changed layout fails the first-frame correspondence check, initialization fails explicitly. To override initialization, place reviewed video annotations at `annotations/MODEL/TASK/VIDEO_STEM.json` and use `--annotation-root annotations`; a matching file overrides the bundled template. This flag does not change the task image or prompt. When evaluating a different first frame, supply its actual `image` and `prompt` in a custom manifest as shown in the [main README](../README.md#prepare-your-videos). Explicit video annotations keep their video/image hash checks. This flag is optional for both generation and evaluation. A generation resume updates the manifest snapshot when an override changes; the annotation is an evaluation input and does not require regenerating the video. Direct evaluation with this flag reads the external annotation directory, so keep it available for that command.
+The coordinate mapping supports full-image resizing. If a crop or changed layout fails the first-frame correspondence check, initialization fails explicitly. To override initialization, place reviewed video annotations at `annotations/MODEL/TASK/VIDEO_STEM.json` and use `--annotation-root annotations`; a matching file overrides the bundled template. This flag does not change the task image or prompt. When evaluating a different first frame, supply its actual `image` and `prompt` in a [custom manifest](../docs/evaluation.md#custom-first-frames-and-annotations). Explicit video annotations keep their video/image hash checks. This flag is optional for both generation and evaluation. A generation resume updates the manifest snapshot when an override changes; the annotation is an evaluation input and does not require regenerating the video. Direct evaluation with this flag reads the external annotation directory, so keep it available for that command.
 
 `--resume` skips only files whose input/settings/controller-code signature and video hash match. Changed settings or modified videos require a new output directory. Use a new output directory when changing model weights, upstream environments, or custom inference code too; those external files are not hashed. Failed samples remain in the manifest and produce explicit evaluator input errors instead of disappearing from the sample count. Check `runs/generation/OUTPUT_ID/summary.json` for failures.
 
@@ -148,6 +165,13 @@ Save this as `custom-model.json`, replacing the three example paths:
 }
 ```
 
-Then run `python generate.py --config custom-model.json --models my-model --output videos --resume`. You can also add this model entry to the `models` object in `generation.local.json` to keep all generators in one configuration. The command must write a playable MP4 to `{output}` and return zero on success. Arguments are passed directly, without a shell; multiline prompts and spaces are preserved. Other placeholders are `{num_frames}`, `{model}`, `{task}`, and `{sample_id}`.
+Then generate and evaluate with the unified launchers:
+
+```bash
+bash scripts/generate.sh my-model --config custom-model.json
+bash scripts/evaluate_all.sh videos
+```
+
+You can also add this model entry to the `models` object in `generation.local.json` to keep all generators in one configuration. The command must write a playable MP4 to `{output}` and return zero on success. Arguments are passed directly, without a shell; multiline prompts and spaces are preserved. Other placeholders are `{num_frames}`, `{model}`, `{task}`, and `{sample_id}`.
 
 Alternatively pass `--request {request}` to your script. That JSON file contains `image`, `prompt`, `seed`, `num_frames`, `output`, `model`, and `task`, as well as provenance fields. Write the video to its `output` path; the controller handles naming, validation, metadata, calibrated export, and evaluator manifests.

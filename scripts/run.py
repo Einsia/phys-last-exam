@@ -14,6 +14,10 @@ import venv
 
 ROOT = Path(__file__).resolve().parents[1]
 CONTROLLER_PACKAGES = ('av==18.0.0', 'Pillow==12.2.0', 'requests>=2.32,<3')
+LOCAL_MODELS = ('minimax-h3', 'cosmos3-super-image2video', 'vbvr-wan2.2',
+                'wan2.2-i2v-a14b', 'lingbot-video-moe-30b-a3b',
+                'hunyuan-video-1.5-i2v', 'cogvideox1.5-5b-i2v')
+MODELS = ('seedance-2.5', *LOCAL_MODELS)
 
 
 def run(command, **kwargs):
@@ -102,18 +106,27 @@ def main(argv=None):
         'Extra flags are forwarded to generate.py or evaluate.py. '
         'Examples: --tasks P21 --seeds 42; --dry-run; --output PATH.'))
     commands = parser.add_subparsers(dest='action', required=True)
+    generation = commands.add_parser('generate', help='Generate with any built-in or configured custom model',
+                                    epilog='Available models: ' + ', '.join(MODELS))
+    generation.add_argument('model', help='Built-in model name, or custom name with --config')
+    generation.add_argument('--config', type=Path, help='Use an existing or custom generator configuration')
+    generation.add_argument('--model-root', type=Path, default=ROOT / 'models/generation')
+    generation.add_argument('--devices', help='Physical GPU IDs for local generation, e.g. 1 or 0,1,2,3')
     seedance = commands.add_parser('seedance', help='Generate using a Seedance Videos API')
     seedance.add_argument('--config', type=Path, help='Optional existing generator configuration')
     local = commands.add_parser('open', help='Install and run one open-source generator')
-    local.add_argument('model', choices=(
-        'minimax-h3', 'cosmos3-super-image2video', 'vbvr-wan2.2', 'wan2.2-i2v-a14b',
-        'lingbot-video-moe-30b-a3b', 'hunyuan-video-1.5-i2v', 'cogvideox1.5-5b-i2v'))
+    local.add_argument('model', choices=LOCAL_MODELS)
     local.add_argument('--config', type=Path, help='Reuse an existing installation; skip provisioning')
     local.add_argument('--model-root', type=Path, default=ROOT / 'models/generation')
     local.add_argument('--devices', help='Visible physical GPU IDs, e.g. 1 or 0,1,2,3')
     evaluation = commands.add_parser('evaluate', help='Evaluate every video in a directory or manifest')
     evaluation.add_argument('--input', default='videos', help='Video directory or manifest (default: videos)')
     args, forwarded = parser.parse_known_args(argv)
+    if args.action == 'generate':
+        if args.model not in MODELS and not args.config:
+            parser.error('Unknown model. Choose ' + ', '.join(MODELS)
+                         + ', or supply --config for your custom model.')
+        args.action = 'seedance' if args.model == 'seedance-2.5' else 'open'
     if sys.platform != 'linux' or sys.version_info[:2] != (3, 12):
         parser.error('Use Linux and Python 3.12. Set PLE_PYTHON to its executable if needed.')
     os.chdir(ROOT)
@@ -125,7 +138,10 @@ def main(argv=None):
     else:
         if args.action == 'seedance' and not args.config and '--dry-run' not in forwarded:
             if not os.environ.get('SEEDANCE_BASE_URL'):
-                parser.error('Export SEEDANCE_BASE_URL to your Videos API base URL.')
+                if sys.stdin.isatty():
+                    os.environ['SEEDANCE_BASE_URL'] = input('Seedance Videos API base URL: ').strip()
+                if not os.environ.get('SEEDANCE_BASE_URL'):
+                    parser.error('Set SEEDANCE_BASE_URL in the environment, or run interactively to enter it.')
             if not os.environ.get('SEEDANCE_API_KEY'):
                 if sys.stdin.isatty():
                     os.environ['SEEDANCE_API_KEY'] = getpass.getpass('Seedance API key: ').strip()

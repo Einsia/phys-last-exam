@@ -14,6 +14,56 @@ spec.loader.exec_module(launcher)
 
 
 class LauncherTests(unittest.TestCase):
+    def test_unified_entry_routes_all_eight_models_without_changing_flags(self):
+        for model in launcher.MODELS:
+            with self.subTest(model=model), tempfile.TemporaryDirectory() as directory, \
+                    patch.object(launcher.sys, 'platform', 'linux'), patch.object(launcher.os, 'chdir'), \
+                    patch.object(launcher, 'ROOT', Path(directory)), \
+                    patch.object(launcher, 'environment', return_value='/ready/bin/python'), \
+                    patch.object(launcher, 'run') as run:
+                # A configured installation works for both API and local models.
+                config = Path(directory) / 'existing configuration.json'
+                flags = ['--tasks', 'P21', '--seeds', '42', '--dry-run']
+                launcher.main(['generate', model, '--config', str(config), *flags])
+                command = run.call_args.args[0]
+                self.assertEqual(command[command.index('--models') + 1], model)
+                self.assertEqual(command[command.index('--config') + 1], config)
+                self.assertEqual(command[-len(flags):], flags)
+
+    def test_custom_generator_uses_config_without_automatic_provisioning(self):
+        with patch.object(launcher.sys, 'platform', 'linux'), patch.object(launcher.os, 'chdir'), \
+                patch.object(launcher, 'environment', return_value='/ready/bin/python'), \
+                patch.object(launcher, 'run') as run:
+            launcher.main(['generate', 'my-model', '--config', 'custom-model.json', '--dry-run'])
+            command = run.call_args.args[0]
+            self.assertEqual(command[command.index('--models') + 1], 'my-model')
+            self.assertEqual(command[command.index('--config') + 1], Path('custom-model.json'))
+
+    def test_unknown_model_fails_before_environment_installation(self):
+        with patch.object(launcher, 'environment') as provision, patch('sys.stderr'):
+            with self.assertRaises(SystemExit) as raised:
+                launcher.main(['generate', 'model-typo'])
+            self.assertEqual(raised.exception.code, 2)
+            provision.assert_not_called()
+
+    def test_seedance_unified_entry_prompts_for_url_and_hides_key(self):
+        key = 'fixture-private-credential'
+        with tempfile.TemporaryDirectory() as directory, patch.dict(os.environ, {}, clear=True), \
+                patch.object(launcher.sys, 'platform', 'linux'), patch.object(launcher.os, 'chdir'), \
+                patch.object(launcher.sys.stdin, 'isatty', return_value=True), \
+                patch('builtins.input', return_value='https://provider.example/v1') as url_prompt, \
+                patch.object(launcher.getpass, 'getpass', return_value=key) as key_prompt, \
+                patch.object(launcher, 'ROOT', Path(directory)), \
+                patch.object(launcher, 'environment', return_value='/ready/bin/python'), \
+                patch.object(launcher, 'run') as run:
+            launcher.main(['generate', 'seedance-2.5', '--tasks', 'P21', '--seeds', '42'])
+            url_prompt.assert_called_once()
+            key_prompt.assert_called_once()
+            contents = (Path(directory) / 'runs/launch/seedance-2.5.json').read_text()
+            self.assertNotIn(key, contents)
+            self.assertNotIn(key, str(run.call_args))
+            self.assertEqual(os.environ['SEEDANCE_API_KEY'], key)
+
     def test_evaluation_flags_are_forwarded_when_input_is_omitted(self):
         for forwarded in (['--tasks', 'P21', '--dry-run'],
                           ['--output', 'runs/custom', '--dry-run']):

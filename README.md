@@ -6,57 +6,44 @@
 
 Video world models can generate plausible scenes that violate physics, limiting their usefulness for prediction and planning in embodied AI. World Models’ Last Exam in Physics evaluates physical consistency through 40 controlled tasks covering mechanics, optics, fluids, thermal and phase-change phenomena, electromagnetism, and surface tension. Every task supplies an initial image, a generation prompt, and measurable physical criteria, allowing evaluation without reference videos. The evaluator screens task observability and temporal consistency, independently measures task-specific physical quantities, and uses the screening outcome to gate their contribution to the composite score. Across eight video generation models and 1,280 videos, results show persistent inconsistencies and substantial differences between tasks; the strongest model scores 57.76 out of 100. Tests on synthetic videos with known physical relationships support the measurement module under controlled conditions. The evaluator also agrees more closely with human judgments than direct VLM scoring in both within-task rankings and pairwise comparisons. Its measurements and explicit evidence limitations help diagnose model failures and track progress in physical consistency.
 
-## Setup
+## Quick Start
 
-Use **Linux, Bash, Python 3.12 (with `venv`), and Git**. Local video generation and evaluation also need an NVIDIA GPU and a compatible driver. Run the commands below from the repository root.
-
-```bash
-git clone https://github.com/Einsia/phys-last-exam.git
-cd phys-last-exam
-```
-
-The scripts below create their own environments and download the selected models on first use. No manual JSON editing or environment activation is needed. If your Python executable has another name, set `PLE_PYTHON=/absolute/path/to/python3.12`.
-
-## Prepare your videos
-
-The benchmark contains **40 tasks: 15 Easy, 15 Medium, and 10 Hard**. `generate.py` loads each task’s bundled `first_frame.png` and `prompt.txt`. If you already have videos, go to [Evaluate videos](#evaluate-videos).
-
-**Seedance:** set your provider's Videos API base URL, then run the script and enter your API key at the hidden prompt. For unattended runs, set `SEEDANCE_API_KEY` in the environment instead.
+From the repository root, generate videos with a model below, then evaluate them:
 
 ```bash
-export SEEDANCE_BASE_URL="https://your-provider/v1"
-bash scripts/generate_seedance.sh
-```
-
-**Open-source models:** select a model; the script installs its runtime, downloads its checkpoints, and generates its videos. For example:
-
-```bash
-bash scripts/generate_open.sh cogvideox1.5-5b-i2v
-```
-
-Both commands default to **all 40 tasks, four samples per task (seeds 42–45)**. Start with a one-video smoke test by adding `--tasks P21 --seeds 42 --output videos/smoke`. Add `--dry-run` to preview jobs without downloading generator weights, running inference, or submitting API requests. See the [generation guide](generation/README.md) for the other six open-source model names, GPU selection, provider formats, and existing installations.
-
-Outputs are `videos/MODEL/VIDEO_STEM.mp4` and `videos/manifest.json`. Move the complete output directory, including `.inputs/`, to keep its input images, prompts, and annotations. Scripts resume matching successful samples automatically.
-
-## Evaluate videos
-
-Run one command to evaluate **every video** in your output directory. On first use, it installs evaluation dependencies and downloads the local Qwen3.6-27B and measurement models:
-
-```bash
+bash scripts/generate.sh cogvideox1.5-5b-i2v
 bash scripts/evaluate_all.sh videos
 ```
 
-For the smoke-test directory, use `bash scripts/evaluate_all.sh videos/smoke --output runs/smoke`. The script reads `manifest.json` when present, otherwise scans `videos/MODEL/VIDEO_STEM.mp4` files containing the task ID. You can also pass a manifest path directly.
+Replace `cogvideox1.5-5b-i2v` with any available model name:
 
-To check inputs before model installation or inference:
+| Model | Model name |
+| --- | --- |
+| Seedance 2.5 | `seedance-2.5` |
+| MiniMax H3 | `minimax-h3` |
+| Cosmos 3 Super | `cosmos3-super-image2video` |
+| VBVR Wan2.2 | `vbvr-wan2.2` |
+| Wan 2.2-A14B | `wan2.2-i2v-a14b` |
+| LingBot 30B-A3B | `lingbot-video-moe-30b-a3b` |
+| Hunyuan 1.5 | `hunyuan-video-1.5-i2v` |
+| CogVideoX 1.5-5B | `cogvideox1.5-5b-i2v` |
+
+[Environment and API setup](generation/README.md#setup) · [Generation options](generation/README.md#one-command-generation) · [Evaluation options](docs/evaluation.md)
+
+## Evaluate your own model
+
+Generate videos using each task's bundled `first_frame.png` and `prompt.txt`. Save them in `videos/my-model/` with the task ID in each filename, for example `P21_seed42.mp4`, then run:
 
 ```bash
-bash scripts/evaluate_all.sh videos --dry-run
+bash scripts/evaluate_all.sh videos/my-model --model my-model
 ```
 
-Confirm `input_errors: 0` and the expected video counts. Add `--require-all-tasks` to require 40-task coverage for every included model.
+To run your own generator through the benchmark, create `custom-model.json` with [your inference command](generation/README.md#add-a-custom-model), then use the same two-step workflow:
 
-Evaluation uses one worker and the first visible GPU by default. Results are saved to `runs/evaluation/`, including `by_model.csv`, `by_task.csv`, `results.csv`, `results.json`, and per-video evidence. Matching successful results are resumed automatically. See [evaluation details](docs/evaluation.md) for GPU selection, reusing existing environments and weights, and custom inputs.
+```bash
+bash scripts/generate.sh my-model --config custom-model.json
+bash scripts/evaluate_all.sh videos
+```
 
 ## Video generation model results
 

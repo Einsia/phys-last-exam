@@ -1,6 +1,6 @@
 # Evaluation configuration and input details
 
-Run batch commands from the repository root with the evaluation environment active. The [main README](../README.md#evaluate-videos) contains the standard workflow; `python evaluate.py --help` lists all options.
+Run launch scripts from the repository root. The [main README](../README.md#quick-start) contains the standard workflow; `python evaluate.py --help` lists all low-level options when the evaluation environment is active.
 
 ## One-command evaluation
 
