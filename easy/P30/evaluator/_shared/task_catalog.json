@@ -1,8 +1,8 @@
 {
   "P30": {
     "difficulty": "Easy",
-    "phenomenon": "磁铁穿线圈与感应发光",
-    "domain": "电磁感应",
+    "phenomenon": "Magnet passage through a coil and induced illumination",
+    "domain": "Electromagnetic induction",
     "original_group": "g8",
     "package_path": "../..",
     "difficulty_score": 0.5031249999999999,
@@ -10,7 +10,7 @@
     "legacy_id": "P39",
     "category_index": 7,
     "category": "Electrostatics, Magnetism, and Electromagnetic Induction",
-    "category_zh": "静电、磁学与电磁感应",
+    "category_zh": "Electrostatics, Magnetism, and Electromagnetic Induction",
     "title": "Coil-induced light emission"
   }
 }

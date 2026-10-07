@@ -84,9 +84,9 @@ def run(task,argv=None):
                 m['artifacts']=export(c)
             except Exception as e:
                 m['export_error']=f'{type(e).__name__}: {e}';m.update(status='runtime_error',reason='Artifact export failed: '+str(e));result['metrics']['M1']={'extract_success':False,'metric':None};write_json(out/'export_failure.json',{'traceback':traceback.format_exc()});code=2
-        lines=[f'# {task} M1 calculation',f'状态: {m["status"]}',f'原因: {m["reason"]}',f'参数: {json.dumps(m["thresholds"],ensure_ascii=False)}']
+        lines=[f'# {task} M1 calculation',f'Status: {m["status"]}',f'Reason: {m["reason"]}',f'Parameters: {json.dumps(m["thresholds"],ensure_ascii=False)}']
         if c is not None:lines+=c.calculation
-        lines += ['## 测量与评分',json.dumps({'measurements':m['measurements'],'score_details':m['score_details'],'M1':result['metrics']['M1']},ensure_ascii=False,indent=2,default=lambda x:x.tolist() if hasattr(x,'tolist') else str(x)),'M2 未计算。标注只用于物体身份和初态几何，提示词不参与测量或评分。']
+        lines += ["## Measurement and scoring",json.dumps({'measurements':m['measurements'],'score_details':m['score_details'],'M1':result['metrics']['M1']},ensure_ascii=False,indent=2,default=lambda x:x.tolist() if hasattr(x,'tolist') else str(x)),"M2 is not computed. Annotations provide object identity and initial geometry only; prompts do not enter measurement or scoring."]
         (out/'calculation.md').write_text('\n\n'.join(lines)+'\n',encoding='utf-8');m['elapsed_sec']=round(time.monotonic()-started,3)
         result=finalize(result,task_resource(task),out)
         if code == 0 and result['metrics']['M1']['extract_success'] is not True:code=1

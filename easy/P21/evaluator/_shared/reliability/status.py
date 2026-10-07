@@ -89,19 +89,19 @@ def classify_metric_status(metric: Mapping[str, Any], block: Mapping[str, Any] |
                            *, physics_attempted: bool, threshold: float = DEFAULT_PASS_THRESHOLD):
     """Classify one metric without conflating missing measurements and events."""
     if not physics_attempted:
-        return 'evidence_insufficient', '物理测量未执行；一致性门控或运行状态未允许测量，未推断任务失败。'
+        return 'evidence_insufficient', "Physical measurement was not performed because the consistency gate or runtime status did not permit it; task failure is not inferred."
     evidence = explicit_event_evidence(block)
     if evidence and any(item['kind'] in {'explicit_failure', 'explicit_text'} for item in evidence):
-        return 'task_failed', '结果包含明确的事件未完成或实验条件无效证据。'
+        return 'task_failed', "The result contains explicit evidence of an incomplete event or invalid experimental conditions."
     flag = metric.get('extract_success')
     if flag is not True:
-        return 'evidence_insufficient', '关键物理量未可靠提取；仅凭提取失败不能判定事件未发生。'
+        return 'evidence_insufficient', "Key physical quantities were not reliably extracted; extraction failure alone does not establish that the event did not occur."
     score = _finite_score(metric.get('physics_score'))
     if score is None:
-        return 'evidence_insufficient', '测量标记存在但没有有效的纯物理分数。'
+        return 'evidence_insufficient', "Measurement markers are present, but no valid pure physics score is available."
     if score >= threshold:
-        return 'physics_pass', f'测量有效，纯物理分数 {score:.4f} 达到阈值 {threshold:.2f}。'
-    return 'physics_fail', f'测量有效，纯物理分数 {score:.4f} 低于阈值 {threshold:.2f}。'
+        return 'physics_pass', f'Measurement is valid; pure physics score {score:.4f} meets threshold {threshold:.2f}.'
+    return 'physics_fail', f'Measurement is valid; pure physics score {score:.4f} is below threshold {threshold:.2f}.'
 
 
 def classify_result_status(metrics: Mapping[str, Mapping[str, Any]], blocks: Mapping[str, Mapping[str, Any]],
@@ -116,20 +116,20 @@ def classify_result_status(metrics: Mapping[str, Mapping[str, Any]], blocks: Map
                                               physics_attempted=physics_attempted,
                                               threshold=threshold)
     if not details:
-        return 'evidence_insufficient', '没有定义的物理指标可用于判断。', details
+        return 'evidence_insufficient', "No defined physical metric is available for assessment.", details
     statuses = [item[0] for item in details.values()]
     if 'task_failed' in statuses:
         status = 'task_failed'
-        reason = '至少一个指标有明确的事件未完成或条件无效证据。'
+        reason = "At least one metric has explicit evidence of an incomplete event or invalid conditions."
     elif all(item == 'physics_pass' for item in statuses):
         status = 'physics_pass'
-        reason = '所有已定义且可测指标均达到冻结的物理通过阈值。'
+        reason = "All defined and measurable metrics meet the fixed physical pass thresholds."
     elif all(item in {'physics_pass', 'physics_fail'} for item in statuses) and 'physics_fail' in statuses:
         status = 'physics_fail'
-        reason = '所有已定义指标均可测，但至少一个物理约束未达到通过阈值。'
+        reason = "All defined metrics are measurable, but at least one physical constraint does not meet the pass threshold."
     else:
         status = 'evidence_insufficient'
-        reason = '至少一个必要指标证据不足；未把提取失败直接解释为任务失败。'
+        reason = "Evidence is insufficient for at least one required metric; extraction failure is not treated as task failure."
     return status, reason, details
 
 
@@ -139,11 +139,11 @@ def status_summary(status: str, details: Mapping[str, Any], *, defined_count: in
         'measurement_status': status,
         'measurement_statuses': list(MEASUREMENT_STATUSES),
         'measurement_status_reason': {
-            'task_failed': '事件未完成或实验条件无效，且有明确证据支持。',
-            'physics_pass': '关键量可测且满足冻结物理约束。',
-            'physics_fail': '关键量可测但违反冻结物理约束。',
-            'evidence_insufficient': '证据不足；不能从提取失败推断事件未发生。',
-        }.get(status, '未定义'),
+            'task_failed': "Explicit evidence supports an incomplete event or invalid experimental conditions.",
+            'physics_pass': "Key quantities are measurable and satisfy the fixed physical constraints.",
+            'physics_fail': "Key quantities are measurable but violate the fixed physical constraints.",
+            'evidence_insufficient': "Insufficient evidence; extraction failure does not establish that the event did not occur.",
+        }.get(status, "Undefined"),
         'measurement_coverage': reliable_count / defined_count if defined_count else 0.0,
         'reliably_judged': status in {'task_failed', 'physics_pass', 'physics_fail'},
         'defined_metric_count': defined_count,

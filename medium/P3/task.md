@@ -1,25 +1,25 @@
-# P3 · 互余角抛射
+# P3 · Complementary-angle throws
 
-分类：1. 平动与碰撞（Translational Motion and Collisions）；原编号：`P3`。
+Category: 1. Translational Motion and Collisions; legacy ID: `P3`.
 
-难度：中等；本轮任务排名：29/40；平均最终综合分：0.222125。
+Difficulty: Medium; task rank: 29/40; mean final total score: 0.222125.
 
-任务 ID：`P3`。
+Task ID: `P3`.
 
-两个固定发射器分别以 30° 和 60° 仰角，同时向右发射初速度大小相同的两个球。每球保持独立飞行，在自己的水平通道上落到与发射时等高的位置，完整飞行和首次落点可见。理想重力抛射中，两球射程应相同。
+Two fixed launchers simultaneously fire balls rightward at 30 and 60 degrees with equal initial speed magnitudes. Each flies independently along its own horizontal lane and lands at its launch height. Complete flights and first landing points remain visible. Ideal gravitational projectiles should have equal ranges.
 
-## 输入
+## Inputs
 
-唯一参考首帧为题包根目录的 [first_frame.png](first_frame.png)。待评测视频由外部提供，不属于题包内容。
+The only reference first frame is [first_frame.png](first_frame.png) in the task root. Videos are supplied externally for evaluation and are not included in the task package.
 
-## 当前物理指标
+## Current physical metrics
 
-- M1：R₃₀/R₆₀−1，比较互余角射程；无量纲。
-- M2：组合两条轨迹各自按球直径归一化的抛物线拟合残差，以及初速度大小的相对偏差；各分量均无量纲，归一化后的物理分数取几何均值。
+- M1: R_30/R_60-1, comparing complementary-angle ranges; dimensionless.
+- M2: Combine each trajectory parabolic-fit residual normalized by ball diameter with relative initial-speed-magnitude deviation. All components are dimensionless; normalized physics scores are combined by geometric mean.
 
-以上为原始测量量；归一化后的物理分数取值为 0–1。
+These are raw measured quantities; normalized physics scores range from 0 to 1.
 
-## 生成提示词原文
+## Original generation prompt
 
 ```text
 A single continuous real-time shot from a locked-off, slightly elevated near-orthographic side camera, matching the input first frame.
@@ -31,14 +31,14 @@ After release, both balls move freely through the air under gravity. Each ball r
 The launchers, lanes, supports, background, and camera remain stationary. Preserve the appearance and geometry of the input frame. No camera movement, panning, zooming, cuts, slow motion, pauses, or time jumps. No new objects or people. No trajectory lines, annotations, motion trails, ghost images, duplicated balls, disappearing balls, or collisions between the two balls. End shortly after both balls make their first landing contact.
 ```
 
-## 评测入口
+## Evaluation entrypoint
 
-当前入口为 `evaluator/evaluate.py`。视频由外部路径传入，首帧参数为 `--image first_frame.png`，提示词文件参数为 `--prompt`。现行测量后端仍使用题内场景标定；输入视频须与所选首帧标定对应。
+The entrypoint is `evaluator/evaluate.py`. Supply an external video path, the first frame with `--image first_frame.png`, and the prompt file with `--prompt`. The measurement backend uses the bundled scene calibration, so the video must match the selected first-frame calibration.
 
-指标定义依据：`v4/unified_evaluators/physics.py:22`；`v4/g3/P3/evaluator/evaluate_raw_legacy.py:735`；`v4/g3/P3/evaluator/evaluate_raw_legacy.py:1`。
+Metric definition references: `v4/unified_evaluators/physics.py:22`; `v4/g3/P3/evaluator/evaluate_raw_legacy.py:735`; `v4/g3/P3/evaluator/evaluate_raw_legacy.py:1`.
 
-## 当前场景标定
+## Current scene calibration
 
-当前测量后端根据文件名选择已有首帧标定。使用本题唯一首帧生成的视频应命名为 `P3_gpt_01_modern_seedN.mp4`（N 为任意整数），并保持与配置相同的 1344×768 测量画布；视频可位于题包外。`--sample-id` 不替代后端的文件名匹配。
+The measurement backend selects an existing first-frame calibration by filename. Videos generated from this task's first frame should be named `P3_gpt_01_modern_seedN.mp4` (N is any integer) and use the configured 1344x768 measurement canvas. Videos may reside outside the task package. `--sample-id` does not replace backend filename matching.
 
-首帧到测量画布的变换仍为 PIL LANCZOS 缩放到 1344×768。根目录 `first_frame.png` 已于 2026-10-06 更新为新场景，不能沿用此前与旧标定输入图像素一致的结论；现有后端标定尚未按新首帧更新，评测新场景前需重新核对并更新标定。
+The first-frame-to-measurement transform remains PIL LANCZOS resizing to 1344x768. The root `first_frame.png` was updated to a new scene on 2026-10-06. Earlier conclusions about pixel identity with the old calibrated input no longer apply; the backend calibration has not yet been updated for the new first frame and must be checked and updated before evaluating the new scene.

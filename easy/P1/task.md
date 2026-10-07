@@ -1,26 +1,26 @@
-# P1 · 弹跳高度衰减
+# P1 · Bounce-height decay
 
-分类：1. 平动与碰撞（Translational Motion and Collisions）；原编号：`P4`。
+Category: 1. Translational Motion and Collisions; legacy ID: `P4`.
 
-难度：简单；本轮任务排名：9/40；平均最终综合分：0.574569。
+Difficulty: Easy; task rank: 9/40; mean final total score: 0.574569.
 
-任务 ID：`P1`。
+Task ID: `P1`.
 
-一个球由固定电磁支架释放，竖直落到坚硬水平台面并连续反弹。生成要求至少四次清楚回跳，反弹峰高逐次降低；释放点、接触和各峰值均在画面内，台面及支架保持固定。
+A ball is released from a fixed electromagnetic support, falls vertically onto a hard horizontal surface, and bounces repeatedly. Generation requires at least four clear bounces with successively decreasing peak heights. The release point, contacts, and all peaks remain in view; the surface and support stay fixed.
 
-## 输入
+## Inputs
 
-唯一参考首帧为题包根目录的 [first_frame.png](first_frame.png)。待评测视频由外部提供，不属于题包内容。
+The only reference first frame is [first_frame.png](first_frame.png) in the task root. Videos are supplied externally for evaluation and are not included in the task package.
 
-## 当前物理指标
+## Current physical metrics
 
-- M1：相邻回跳的恢复系数一致性 mean(|√(h后/h前)−Δt后/Δt前|)，并在分数中结合恢复系数超过 1 的幅度；无量纲。
-- M2：相邻峰高增加的平均相对幅度 mean(max(0,h后/h前−1))，并在可测时结合相邻恢复系数的变异系数；无量纲。
-- 当前实现对可跟踪但仅单段运动、没有多次回跳的情况，另记录该结果，两项物理分数均为 0.1。
+- M1: Consistency of restitution estimates from successive bounces, mean(|sqrt(h_after/h_before)-dt_after/dt_before|), with the score also accounting for restitution exceeding 1; dimensionless.
+- M2: Mean relative increase of successive peak heights, mean(max(0,h_after/h_before-1)), combined with the coefficient of variation of successive restitution estimates when measurable; dimensionless.
+- For a trackable single motion segment without repeated bounces, the implementation separately records that outcome and assigns both physics scores 0.1.
 
-以上为原始测量量；归一化后的物理分数取值为 0–1。
+These are raw measured quantities; normalized physics scores range from 0 to 1.
 
-## 生成提示词原文
+## Original generation prompt
 
 ```text
 A single continuous real-time shot from a locked-off, near-orthographic side camera, matching the input first frame.
@@ -34,8 +34,8 @@ The complete motion remains visible inside the frame: the initial release point,
 The holder, support frame, impact plate, table, background, and camera remain stationary. No camera movement, panning, zooming, cuts, slow motion, pauses, or time jumps. No hands or people. No additional balls, ghost images, motion trails, trajectory lines, arrows, measurements, annotations, or new objects. End shortly after the ball completes its fourth clearly visible rebound arc and returns to the plate.
 ```
 
-## 评测入口
+## Evaluation entrypoint
 
-当前入口为 `evaluator/evaluate.py`。视频由外部路径传入，首帧参数为 `--image first_frame.png`，提示词文件参数为 `--prompt`。现行测量后端仍使用题内场景标定；输入视频须与所选首帧标定对应。
+The entrypoint is `evaluator/evaluate.py`. Supply an external video path, the first frame with `--image first_frame.png`, and the prompt file with `--prompt`. The measurement backend uses the bundled scene calibration, so the video must match the selected first-frame calibration.
 
-指标定义依据：`v4/unified_evaluators/physics.py:22`；`v4/g3/P4/evaluator/evaluate_raw_legacy.py:102`；`v4/g3/P4/evaluator/evaluate_raw_legacy.py:651`。
+Metric definition references: `v4/unified_evaluators/physics.py:22`; `v4/g3/P4/evaluator/evaluate_raw_legacy.py:102`; `v4/g3/P4/evaluator/evaluate_raw_legacy.py:651`.

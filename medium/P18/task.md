@@ -1,33 +1,33 @@
-# P18 · 光的反射
+# P18 · Light reflection
 
-分类：4. 光学与投影几何（Optics and Projective Geometry）；原编号：`P13`。
+Category: 4. Optics and Projective Geometry; legacy ID: `P13`.
 
-难度：中等；本轮任务排名：22/40；平均最终综合分：0.337269。
+Difficulty: Medium; task rank: 22/40; mean final total score: 0.337269.
 
-任务 ID：`P18`。
+Task ID: `P18`.
 
-固定镜头下，一束细激光斜射平面镜，入射光、反射光、镜面、入射点及法线清楚可见。应呈现同一入射点处的镜面反射，入射角与反射角相等。
+A fixed camera observes a thin laser beam striking a flat mirror obliquely. The incident and reflected rays, mirror, incidence point, and normal are clearly visible. Specular reflection should occur at the same incidence point with equal incidence and reflection angles.
 
-## 输入
+## Inputs
 
-唯一参考首帧为题包根目录的 [first_frame.png](first_frame.png)。待评测视频由外部提供，不属于题包内容。
+The only reference first frame is [first_frame.png](first_frame.png) in the task root. Videos are supplied externally for evaluation and are not included in the task package.
 
-## 当前物理指标
+## Current physical metrics
 
-- M1：入射角与反射角的绝对差，单位为度。
-- M2：反射光在镜面处的接触定位误差中位数，除以画面对角线长度；无量纲。
+- M1: Absolute incidence/reflection angle difference; degrees.
+- M2: Median reflected-ray contact-localization error at the mirror divided by image diagonal; dimensionless.
 
-以上为原始测量量；归一化后的物理分数取值为 0–1。
+These are raw measured quantities; normalized physics scores range from 0 to 1.
 
-## 生成提示词原文
+## Original generation prompt
 
 ```text
 Locked-off static camera. A thin clearly visible laser beam strikes a flat plane mirror at an oblique angle. The incident ray, reflected ray, mirror surface, point of incidence, and mirror normal are all clearly visible. The camera does not move, pan, or zoom. Plain dark background, no other objects.
 ```
 
-## 评测入口
+## Evaluation entrypoint
 
-在本题目录中执行，输入和输出视频路径均可放在题包外：
+Run from this task directory; input and output paths may reside outside the task package:
 
 ```sh
 python evaluator/evaluate.py \
@@ -37,4 +37,4 @@ python evaluator/evaluate.py \
   --output /absolute/path/to/result.json
 ```
 
-指标定义依据：`v4/g2/P13/evaluator/measure_backend.py:652`；`v4/unified_evaluators/contract.py:155`；`v4/g2/P13/evaluator/measure_backend.py:551`。
+Metric definition references: `v4/g2/P13/evaluator/measure_backend.py:652`; `v4/unified_evaluators/contract.py:155`; `v4/g2/P13/evaluator/measure_backend.py:551`.

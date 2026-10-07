@@ -276,10 +276,10 @@ def publish(result, output, debug, task, raw_path, error):
     public = to_v4(result, task_root=task, runtime_error=error)
     if public['status']=='scored_with_zero':
         with calculation.open('a') as stream:
-            stream.write('\n\n## 未观测现象的计分\n\n'+public['physics']['reason']+'\n')
+            stream.write("\n\n## Scoring unobserved phenomena\n\n"+public['physics']['reason']+'\n')
             for key in public['physics']['zero_policy_metrics']:
-                stream.write(f"\n- {key}: 0；{public['metrics'][key]['reason']}\n")
-            stream.write('\n这些0分不计入定量测量覆盖率；原始测量值保持null。\n')
+                stream.write(f"\n- {key}: 0; {public['metrics'][key]['reason']}\n")
+            stream.write("\nThese zero scores do not count toward quantitative measurement coverage; raw measured values remain null.\n")
     write_json(output,public)
     summary = result['verbose']['M1']['_scoring_summary']
     print(json.dumps({'task_id':result['task_id'],'sample_id':result['verbose']['M1']['_sample_id'],
@@ -348,7 +348,7 @@ def main(task_id, task_root, argv=None):
             provenance['runtime_error'] = error
         metrics = {k:metric(defined=not (k == 'M2' and (task_group(task) in ('g8','g9') or task_id in ('P5','P9','P11','P20','P26','P28','P37')))) for k in KEYS}
         blocks = {k:{'defined':m['extract_success'] is not None,
-                     'principle':'一致性检查未通过或未完成，物理测量未执行。'} for k,m in metrics.items()}
+                     'principle':"The consistency check failed or did not complete; physical measurement was not performed."} for k,m in metrics.items()}
         evidence = ensure_visual_evidence(artifacts(debug,task,started),video,debug,task)
         result = finalize(task_id,row,metrics,blocks,evidence,provenance,
                           consistency=gate,physics_attempted=False)
@@ -419,7 +419,7 @@ def main(task_id, task_root, argv=None):
         provenance['runtime_error'] = error
         (debug/'runtime_error.txt').write_text(traceback.format_exc())
         metrics = {k:metric(defined=not (k == 'M2' and (task_group(task) in ('g8','g9') or task_id in ('P5','P9','P11','P20','P26','P28','P37')))) for k in KEYS}
-        blocks = {k:measurement_block('测量运行未完成，详见运行日志。',None,reason=error) for k in KEYS}
+        blocks = {k:measurement_block("The measurement run did not complete; see the runtime log.",None,reason=error) for k in KEYS}
         for k in KEYS:
             blocks[k]['defined'] = metrics[k]['extract_success'] is not None
     provenance['finished_at_utc'] = datetime.datetime.now(datetime.timezone.utc).isoformat()

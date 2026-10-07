@@ -1,29 +1,29 @@
-# P17 · 光的折射
+# P17 · Light refraction
 
-分类：4. 光学与投影几何（Optics and Projective Geometry）；原编号：`P11`。
+Category: 4. Optics and Projective Geometry; legacy ID: `P11`.
 
-难度：中等（人工调整）；冻结评测排名：15/40；平均最终综合分：0.445497。
+Difficulty: Medium; task rank: 15/40; mean final total score: 0.445497.
 
-任务 ID：`P17`。
+Task ID: `P17`.
 
-固定激光源照向透明水槽中静止的空气—水界面。激光由关闭转为稳定照明，入射光、界面及水中折射光的方向和交点清楚可见。应呈现符合 Snell 定律的折射；各段光线在各自均匀介质内保持直线。
+A fixed laser source illuminates a stationary air-water interface in a transparent tank. The laser turns on and reaches steady illumination. The incident ray, interface, and refracted underwater ray directions and intersection points are clearly visible. Refraction should follow Snell's law, with straight ray segments within each uniform medium.
 
-## 输入
+## Inputs
 
-唯一参考首帧为题包根目录的 [first_frame.png](first_frame.png)。待评测视频由外部提供，不属于题包内容。
+The only reference first frame is [first_frame.png](first_frame.png) in the task root. Videos are supplied externally for evaluation and are not included in the task package.
 
-## 当前物理指标
+## Current physical metrics
 
-- M1：sin(入射角)/sin(折射角)−n水；角度相对界面法线测量，结果无量纲。
-- M2：入射光和折射光各自与液面相交位置之间的距离，除以首帧标定容器宽度；无量纲。
+- M1: sin(incidence angle)/sin(refraction angle)-n_water, with angles measured relative to the interface normal; dimensionless.
+- M2: Distance between the incident and refracted ray intersections with the waterline, divided by the first-frame calibrated vessel width; dimensionless.
 
-以上为原始测量量；归一化后的物理分数取值为 0–1。
+These are raw measured quantities; normalized physics scores range from 0 to 1.
 
-## 生成提示词原文
+## Original generation prompt
 
-### 当前生成提示词
+### Current generation prompt
 
-采用与 30° 首帧对应的 v4 提示词；以下是本题唯一活动生成提示词。
+The v4 prompt corresponding to the 30-degree first frame is used. The following is the only active generation prompt for this task.
 
 ```text
 A single continuous real-time shot from a locked-off static side camera, matching the input first frame.
@@ -41,9 +41,9 @@ No camera movement, panning, zooming, cuts, slow motion, or time jumps. No peopl
 End after the visible optical behavior has remained stable for a short moment.
 ```
 
-## 评测入口
+## Evaluation entrypoint
 
-在本题目录中显式传入外部视频、根目录首帧和保留的完整提示词文件：
+From this task directory, explicitly supply the external video, root first frame, and retained full prompt file:
 
 ```sh
 python evaluator/evaluate.py \
@@ -53,10 +53,10 @@ python evaluator/evaluate.py \
   --output /absolute/path/to/result.json
 ```
 
-现行测量后端使用题内场景标定；输入视频须与所选 30° 首帧标定对应。
+The measurement backend uses the bundled scene calibration; the input video must match the selected 30-degree first-frame calibration.
 
-指标定义依据：`v4/unified_evaluators/physics.py:22`；`v4/g3/P11/evaluator/evaluate_raw_legacy.py:900`。
+Metric definition references: `v4/unified_evaluators/physics.py:22`; `v4/g3/P11/evaluator/evaluate_raw_legacy.py:900`.
 
-## 当前场景标定
+## Current scene calibration
 
-为使用与本题唯一 30° 首帧对应的已有标定，外部视频应命名为 `P17_gpt_01_30deg_seedN.mp4`（N 为任意整数）。其他文件名会触发后端原有的通用标定，不能视为同一场景标定。
+To use the existing calibration for this task's 30-degree first frame, name the external video `P17_gpt_01_30deg_seedN.mp4` (N is any integer). Other filenames trigger the original generic backend calibration and must not be treated as the same scene calibration.

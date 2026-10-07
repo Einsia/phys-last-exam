@@ -38,7 +38,7 @@ def observed_track(c,j):
 
 
 def p33(c):
-    c.m['principle']='由首帧缺口固定环身份，比较相对初始位置、固定初始外径归一化的最大升高量。'
+    c.m['principle']="Fix ring identities using the first-frame gap; compare maximum rises relative to initial positions, normalized by fixed initial outer diameters."
     c.m['score_details']={'formula':'clip((1 - h_open/h_closed)/margin,0,1)','range':[0,1],'full_score_max_height_ratio':1-c.cfg['margin']}
     drift,res=camera_motion(c.xy,c.vis,c.groups);write_json(c.out/'camera_motion.json',{'offset_xy':drift,'reference_residual_px':res})
     heights=[]; peaks={};cal={};curves={}; columns={'frame':np.arange(len(c.t)),'time_sec':c.t}
@@ -69,14 +69,14 @@ def p33(c):
         if hclosed<=c.cfg['height_noise_diameter']:
             c.m['measurements']['height_ratio']=None;score=0.;c.m['reason']='zero_closed_height; both continuous visibility and noise bound checked'
         else:raise ExtractionError('Closed height is comparable to measurement noise')
-    else:c.m['reason']='两环身份由可见缺口固定；两个峰值均有平台/下降证据。按实际高度比给分。'
-    c.calculation=[f'闭合环 h={hclosed:.8f} 外径 ({cal["closed_ring"]["height_px"]:.4f} px)，开口环 h={hopen:.8f} 外径 ({cal["open_ring"]["height_px"]:.4f} px)。',f'峰值: {peaks}',f'height_ratio={ratio}; margin={c.cfg["margin"]}; full-score boundary={1-c.cfg["margin"]}; score={score:.8f}.']
+    else:c.m['reason']="Ring identities are fixed by the visible gap; both peaks have plateau or descent evidence. Score using the measured height ratio."
+    c.calculation=[f'Closed ring h={hclosed:.8f} outer diameters ({cal["closed_ring"]["height_px"]:.4f} px), open ring h={hopen:.8f} outer diameters ({cal["open_ring"]["height_px"]:.4f} px).',f'Peaks: {peaks}',f'height_ratio={ratio}; margin={c.cfg["margin"]}; full-score boundary={1-c.cfg["margin"]}; score={score:.8f}.']
     return score
 
 
 def p34(c):
-    c.m['principle']='共同观察窗口、共同角振幅门槛下，比较实心板与开槽板的有效完整周期数。'
-    c.m['score_details']={'version':'p34_directional_v1','formula':'1.0 if N_solid < N_slotted else 0.0; zero reference remains 0','range':[0,1],'equal_positive_counts_score':0.,'zero_reference_score':0.,'interpretation':'共同窗口内实心板完整周期数少于开槽板即支持目标关系；相等或更多不支持。分数不是物理成立概率。'}
+    c.m['principle']="Compare valid complete-cycle counts for solid and slotted plates using the same observation window and angular-amplitude threshold."
+    c.m['score_details']={'version':'p34_directional_v1','formula':'1.0 if N_solid < N_slotted else 0.0; zero reference remains 0','range':[0,1],'equal_positive_counts_score':0.,'zero_reference_score':0.,'interpretation':"Fewer complete cycles for the solid plate within the shared window support the target relationship; equal or greater counts do not. The score is not a probability that the physical relationship holds."}
     drift,res=camera_motion(c.xy,c.vis,c.groups);series=[];cal={};columns={'frame':np.arange(len(c.t)),'time_sec':c.t}
     for j,obj in enumerate(c.a['objects']):
         name=obj['name'];xy,valid=observed_track(c,j);source=xy[0];centroid=np.mean(source,axis=0);reference=[];fits=[]
@@ -109,9 +109,9 @@ def p34(c):
         if np.ptp(series[1])>cutoff and len([p for p in peaks['slotted_plate'] if p['accepted']])<3:raise ExtractionError('Slotted trajectory is truncated before an observable full cycle')
         c.m['reason']='zero_reference_count; observed continuous reference trajectory'
     else:
-        relation='实心板次数较少，支持目标关系。' if counts[0]<counts[1] else '两板次数相同或实心板次数更多，不支持目标关系。'
-        c.m['reason']='完整周期由固定极性边界配对；'+relation+'只计算共同窗口内次数，未计算 M2 衰减率。'
-    c.calculation=[f'W={c.m["measurements"]["observation_window_sec"]}; A_cut={cutoff:.6f} deg.',f'有效周期逐项时刻：{cycles}',f'N_solid={counts[0]}, N_slotted={counts[1]}, ratio={ratio}; scoring_version=p34_directional_v1.',f'score = 1.0 if {counts[0]} < {counts[1]} else 0.0 = {score:.8f}.' if counts[1]>0 else 'N_slotted=0: zero_reference_count，score=0；不将 0/0 记为中性分。','只按完整周期数的方向判定：实心板更少为 1，相等或更多为 0。']
+        relation="The solid plate has fewer cycles, supporting the target relationship." if counts[0]<counts[1] else "Cycle counts are equal or the solid plate has more cycles, so the target relationship is not supported."
+        c.m['reason']="Complete cycles pair boundaries of a fixed polarity; "+relation+"Count only within the shared window; the M2 decay rate is not computed."
+    c.calculation=[f'W={c.m["measurements"]["observation_window_sec"]}; A_cut={cutoff:.6f} deg.',f'Individual valid-cycle timestamps: {cycles}',f'N_solid={counts[0]}, N_slotted={counts[1]}, ratio={ratio}; scoring_version=p34_directional_v1.',f'score = 1.0 if {counts[0]} < {counts[1]} else 0.0 = {score:.8f}.' if counts[1]>0 else "N_slotted=0: zero_reference_count, score=0; 0/0 is not assigned a neutral score.","Assess only the direction of complete-cycle counts: 1 when the solid plate has fewer, otherwise 0."]
     return score
 
 
@@ -128,7 +128,7 @@ def circle_observation(mask):
 
 
 def p38(c):
-    c.m['principle']='固定大球为球1、小球为球2；独立拟合各自终端窗口与真实外轮廓半径，计算 Stokes 平方律相对误差。'
+    c.m['principle']="Fix ball 1 as the large ball and ball 2 as the small ball; independently fit terminal windows and observed outer radii, then compute relative error against the Stokes square law."
     c.m['score_details']={'formula':'1 / (1 + abs((v1/v2)/(r1/r2)^2-1)/error_at_zero)','range':[0,1], 'half_score_error':c.cfg['error_at_zero'], 'finite_error_cutoff':False, 'parameter_note':'error_at_zero is retained as a legacy CLI name; its unchanged value is now the half-score scale a'}
     drift,res=camera_motion(c.xy,c.vis,c.groups);radii={};windows={};chosen=[];columns={'frame':np.arange(len(c.t)),'time_sec':c.t};curves={};obsall={}
     for j,obj in enumerate(c.a['objects']):
@@ -148,8 +148,8 @@ def p38(c):
     rr=r1/r2;vr=v1/v2;err=abs(vr/rr**2-1);score=soft_error_score(err,c.cfg['error_at_zero'])
     c.m['measurements']={'r_1_large_px':r1,'r_2_small_px':r2,'v_1_large_px_per_sec':v1,'v_2_small_px_per_sec':v2,'radius_ratio':rr,'velocity_ratio':vr,'normalized_velocity_ratio':vr/rr**2,'raw_m1_error':err,'large_terminal_window_sec':chosen[0]['window_sec'],'small_terminal_window_sec':chosen[1]['window_sec']}
     c.m['applicability']={'same_material_and_fluid':'task assumption, not image measurement','low_Reynolds_number':'not measured without physical length and fluid calibration','projection':'near frontal shared tank scale','wall_effects':'visible side clearance recorded; no fabricated 3D wall correction'}
-    c.m['reason']='外球轮廓与触底前非零匀速窗口已独立拟合；理论偏离正常计低分。'
-    c.calculation=[f'球1=大球，球2=小球。r1={r1:.6f} px，r2={r2:.6f} px。',f'v1={v1:.6f} px/s @ {chosen[0]["window_sec"]}; v2={v2:.6f} px/s @ {chosen[1]["window_sec"]}.',f'r1/r2={rr:.8f}; v1/v2={vr:.8f}; E=abs({vr:.8f}/{rr:.8f}^2-1)={err:.8f}; score={score:.8f}.']
+    c.m['reason']="Outer ball outlines and nonzero constant-speed windows before bottom contact were independently fitted; deviations from theory receive lower scores as usual."
+    c.calculation=[f'Ball 1=large ball, ball 2=small ball. r1={r1:.6f} px, r2={r2:.6f} px.',f'v1={v1:.6f} px/s @ {chosen[0]["window_sec"]}; v2={v2:.6f} px/s @ {chosen[1]["window_sec"]}.',f'r1/r2={rr:.8f}; v1/v2={vr:.8f}; E=abs({vr:.8f}/{rr:.8f}^2-1)={err:.8f}; score={score:.8f}.']
     return score
 
 
@@ -210,7 +210,7 @@ def quad_observation(mask,previous=None):
 
 def p10(c):
     """A continuously pushed block is checked for rigid rotation about its support."""
-    c.m['principle']='在持续外力推动条件下，测量支撑接触点漂移、离地距离和刚体形状变化；不把角运动起点等同于自由失稳时刻。'
+    c.m['principle']="Under continuous external pushing, measure support-contact drift, lift-off distance, and rigid-body shape changes; do not equate angular-motion onset with free-instability onset."
     c.m['score_details']={'version':'p10_forced_support_v4','formula':'1/(1+max(resolved_pivot_drift, resolved_contact_error, rigid_shape_error)/geometry_error_half_score)',
                           'range':[0,1],'half_score_relative_error':c.cfg['geometry_error_half_score']}
     drift,res=camera_motion(c.xy,c.vis,c.groups);quad=[];fiterrors=[];previous=None
@@ -254,7 +254,7 @@ def p10(c):
     plot(c.out/'pose_events.png',c.t,{'pivot drift / diagonal':displacement/diag,'contact gap / diagonal':contact/diag,'shape change':rigid},'Relative observed geometry error')
     write_json(c.out/'corners.json',{'corners_TL_TR_BR_BL':quad,'fit_area_relative_errors':fiterrors})
     write_json(c.out/'events.json',{'driving':'forced rotation','support_position_px':support,'rotation_deg':theta})
-    c.m['reason']='依据持续推动任务检查固定支撑边和刚体约束；取消不适用的质心越界/自由倾倒同步要求。'
+    c.m['reason']="Check fixed-support-edge and rigid-body constraints for the continuously pushed task; omit inapplicable center-of-mass crossing and free-toppling synchronization requirements."
     c.calculation=[f'Pivot drift={drift_px:.5f}px; contact gap={contact_px:.5f}px; block diagonal={diag:.5f}px.',
        f'Resolved geometry error={error:.8f}; half-score scale={c.cfg["geometry_error_half_score"]}; score={score:.8f}.']
     return score
@@ -272,8 +272,8 @@ def p30(c):
 
 
 def p36(c):
-    c.m['principle']='由可见内腔与自由表面恢复轴对称体积，独立拟合 Q∝h^beta，比较 abs(beta_water-.5)+abs(beta_sand)。'
-    c.m['score_details']={'version':'p36_soft_exponent_error_v3','formula':'1 / (1 + (abs(beta_water - 0.5) + abs(beta_sand)) / error_half_score)','range':[0,1],'half_score_error':c.cfg['error_half_score'],'finite_error_cutoff':False,'fitting_policy':'observed positive-flow data; no relative-height window or minimum height ratio','interpretation':'按拟合指数误差平滑扣分；有限误差不截零。分数不是物理成立概率，拟合不确定度单独报告。'}
+    c.m['principle']="Recover axisymmetric volume from the visible interior and free surface, independently fit Q proportional to h^beta, and compare abs(beta_water-.5)+abs(beta_sand)."
+    c.m['score_details']={'version':'p36_soft_exponent_error_v3','formula':'1 / (1 + (abs(beta_water - 0.5) + abs(beta_sand)) / error_half_score)','range':[0,1],'half_score_error':c.cfg['error_half_score'],'finite_error_cutoff':False,'fitting_policy':'observed positive-flow data; no relative-height window or minimum height ratio','interpretation':"Apply a smooth penalty for exponent error; finite errors are not truncated to zero. Scores are not probabilities of physical correctness; fitting uncertainty is reported separately."}
     drift,res=camera_motion(c.xy,c.vis,c.groups);geometry={};surfaces={};fit_details={};columns={'frame':np.arange(len(c.t)),'time_sec':c.t};curves={};errors=[];betas=[];streams=[]
     for j,obj in enumerate(c.a['objects']):
         name=obj['name'];apex=np.array(c.a['geometry']['outlet_points'][j],float)
@@ -357,9 +357,9 @@ def p36(c):
     c.m['uncertainty']={'note':'OLS 95% intervals conditional on selected observations and reconstructed geometry; wide intervals are reported, not rejected','warnings':{name:fit_details[name]['warnings'] for name in ['water','sand']}}
     for name in ['water','sand']:
         fit=fit_details[name]['fit'];c.m['measurements']['beta_'+name+'_ci']=fit['slope_ci95'] if fit else None;c.m['measurements'][name+'_fit_window_sec']=fit_details[name]['fit_window_sec']
-    c.calculation=[f'真实测得的高度范围与拟合资格: {fit_details}',f'体积恢复几何: axisymmetric surface/wall integration; cone apex and open outlet treated separately.','未把 -dh/dt 或二维掩码面积变化当作流量。']
+    c.calculation=[f'Observed height ranges and fitting eligibility: {fit_details}',f'Volume-recovery geometry: axisymmetric surface/wall integration; cone apex and open outlet treated separately.',"Neither -dh/dt nor changes in two-dimensional mask area were treated as flow rate."]
     if errors:raise ExtractionError('; '.join(errors))
-    err=abs(betas[0]-.5)+abs(betas[1]);score=soft_error_score(err,c.cfg['error_half_score']);c.m['measurements']['raw_m1_error']=err;c.m['reason']='按实际可测排出数据拟合，取消固定高度门槛；指数误差平滑扣分，不再超过阈值直接归零，拟合不确定度单独报告。';c.calculation.append(f'p36_soft_exponent_error_v3: beta_water={betas[0]}, beta_sand={betas[1]}; E={err}; half-score error={c.cfg["error_half_score"]}; score=1/(1+{err}/{c.cfg["error_half_score"]})={score}')
+    err=abs(betas[0]-.5)+abs(betas[1]);score=soft_error_score(err,c.cfg['error_half_score']);c.m['measurements']['raw_m1_error']=err;c.m['reason']="Fit the observed discharge without a fixed height threshold; penalize exponent error smoothly rather than forcing zero beyond a cutoff, and report fitting uncertainty separately.";c.calculation.append(f'p36_soft_exponent_error_v3: beta_water={betas[0]}, beta_sand={betas[1]}; E={err}; half-score error={c.cfg["error_half_score"]}; score=1/(1+{err}/{c.cfg["error_half_score"]})={score}')
     return score
 
 TASKS={'P33':p33,'P34':p34,'P30':p30,'P36':p36,'P10':p10,'P38':p38}

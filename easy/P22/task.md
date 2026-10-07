@@ -1,25 +1,25 @@
-# P22 · 冰柱漂浮吃水比
+# P22 · Floating-ice immersion
 
-分类：5. 流体静力学与浮力（Hydrostatics and Buoyancy）；原编号：`P20`。
+Category: 5. Hydrostatics and Buoyancy; legacy ID: `P20`.
 
-难度：简单；本轮任务排名：3/40；平均最终综合分：0.761774。
+Difficulty: Easy; task rank: 3/40; mean final total score: 0.761774.
 
-任务 ID：`P22`。
+Task ID: `P22`.
 
-透明直壁容器内，一根均匀竖直淡水冰柱从首帧浸没深度释放，在重力和浮力下自由调整并稳定漂浮。冰柱完整、不融化、不触壁或触底，水线和完整冰柱始终可见。平衡时浸没高度比应接近冰水密度比 0.917。
+A uniform vertical freshwater ice column in a transparent straight-walled vessel is released from the first-frame immersion depth. It freely adjusts under gravity and buoyancy and reaches stable flotation. The column remains intact, does not melt or contact the vessel, and stays fully visible with the waterline. The equilibrium submerged-height ratio should approach the ice/water density ratio, 0.917.
 
-## 输入
+## Inputs
 
-唯一参考首帧为题包根目录的 [first_frame.png](first_frame.png)。待评测视频由外部提供，不属于题包内容。
+The only reference first frame is [first_frame.png](first_frame.png) in the task root. Videos are supplied externally for evaluation and are not included in the task package.
 
-## 当前物理指标
+## Current physical metrics
 
-- M1：|稳定段浸没高度比中位数−0.917|，无量纲。
-- M2：冰柱左右水线高度差绝对值/容器宽度的中位数；无量纲。
+- M1: |median stable submerged-height ratio-0.917|; dimensionless.
+- M2: Median absolute left-right waterline difference along the ice column divided by vessel width; dimensionless.
 
-以上为原始测量量；归一化后的物理分数取值为 0–1。
+These are raw measured quantities; normalized physics scores range from 0 to 1.
 
-## 生成提示词原文
+## Original generation prompt
 
 ```text
 Locked-off static camera, front view, matching the input first frame.
@@ -35,9 +35,9 @@ The container, background, and camera remain stationary. No camera movement, cut
 End after the motion has settled for a short moment.
 ```
 
-## 评测入口
+## Evaluation entrypoint
 
-在本题目录中执行，输入和输出视频路径均可放在题包外：
+Run from this task directory; input and output paths may reside outside the task package:
 
 ```sh
 python evaluator/evaluate.py \
@@ -47,4 +47,4 @@ python evaluator/evaluate.py \
   --output /absolute/path/to/result.json
 ```
 
-指标定义依据：`v4/g4/P20/evaluator/utils/physeval/tasks/p20.py:35`；`v4/unified_evaluators/contract.py:100`；`v4/g4/P20/evaluator/utils/physeval/tasks/p20.py:41`。
+Metric definition references: `v4/g4/P20/evaluator/utils/physeval/tasks/p20.py:35`; `v4/unified_evaluators/contract.py:100`; `v4/g4/P20/evaluator/utils/physeval/tasks/p20.py:41`.

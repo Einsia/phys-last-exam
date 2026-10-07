@@ -57,7 +57,7 @@ def aggregate(metrics):
         'coverage_scope': 'defined_metrics',
         'missing_metric_policy': 'defined_metric_failure_zero_no_redistribution',
         'not_applicable_metric_policy': 'excluded_from_denominator',
-        'interpretation': '分数包含可测量性和物理表现；不是物理正确概率。只对已定义指标等权平均；complete 表示已定义指标全部可测，partial 表示部分可测且不强制清零。',
+        'interpretation': "Scores combine measurability and physical performance; they are not probabilities of physical correctness. Average only defined metrics. complete means all defined metrics are measurable; partial means some are measurable without forcing the total to zero.",
     }
 
 

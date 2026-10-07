@@ -1,25 +1,25 @@
-# P15 · 小角度单摆等时性
+# P15 · Small-angle isochronism
 
-分类：3. 单摆运动与振荡（Pendulum Motion and Oscillations）；原编号：`P8a`。
+Category: 3. Pendulum Motion and Oscillations; legacy ID: `P8a`.
 
-难度：中等；本轮任务排名：17/40；平均最终综合分：0.417340。
+Difficulty: Medium; task rank: 17/40; mean final total score: 0.417340.
 
-任务 ID：`P15`。
+Task ID: `P15`.
 
-同一固定横梁上悬挂两个等长单摆，红球初始角度较小、蓝球较大。两摆同时从静止释放，分别完成多次往返；悬点和摆长保持不变。小角度条件下，两摆完整周期应近似相等。
+Two equal-length pendulums hang from the same fixed beam. The red bob starts at a smaller angle and the blue bob at a larger angle. Both are released simultaneously from rest and complete multiple oscillations with fixed suspension points and lengths. Under the small-angle approximation, their full periods should be approximately equal.
 
-## 输入
+## Inputs
 
-唯一参考首帧为题包根目录的 [first_frame.png](first_frame.png)。待评测视频由外部提供，不属于题包内容。
+The only reference first frame is [first_frame.png](first_frame.png) in the task root. Videos are supplied externally for evaluation and are not included in the task package.
 
-## 当前物理指标
+## Current physical metrics
 
-- M1：T左/T右−1，比较两摆周期；无量纲。
-- M2：两摆 θ(t) 的正弦拟合均方根残差，分别以弧度计量；左右残差归一化后的物理分数取几何均值。
+- M1: T_left/T_right-1, comparing both pendulum periods; dimensionless.
+- M2: RMS residuals of sinusoidal fits to both theta(t) trajectories, each in radians; normalized left and right physics scores are combined by geometric mean.
 
-以上为原始测量量；归一化后的物理分数取值为 0–1。
+These are raw measured quantities; normalized physics scores range from 0 to 1.
 
-## 生成提示词原文
+## Original generation prompt
 
 ```text
 Locked-off static camera, front view. Continue from the supplied first frame, which shows two pendulums hanging from the same horizontal bar: a red ball on the left and a blue ball on the right, on strings of exactly the same length, each already pulled aside and held at rest.
@@ -29,9 +29,9 @@ Both pendulums are let go at the very same instant. From the first moment of the
 Hard negative constraints: no frozen, still or motionless ball; no ball that stays hanging at its first-frame position while the other swings; no delayed or staggered release; no change of string length; no stretching, bending or slack string; no ball leaving its string; no collision between the two balls; no camera pan, zoom, shake or reframing; no hand, person, arrow, label, number, ruler, text or watermark; nothing else enters the frame.
 ```
 
-## 评测入口
+## Evaluation entrypoint
 
-在本题目录中执行，输入和输出视频路径均可放在题包外：
+Run from this task directory; input and output paths may reside outside the task package:
 
 ```sh
 python evaluator/evaluate.py \
@@ -41,4 +41,4 @@ python evaluator/evaluate.py \
   --output /absolute/path/to/result.json
 ```
 
-指标定义依据：`v4/g1/P8a/evaluator/utils/physeval/tasks/p8a.py:28`；`v4/unified_evaluators/contract.py:100`；`v4/g1/P8a/evaluator/utils/physeval/tasks/p8a.py:34`。
+Metric definition references: `v4/g1/P8a/evaluator/utils/physeval/tasks/p8a.py:28`; `v4/unified_evaluators/contract.py:100`; `v4/g1/P8a/evaluator/utils/physeval/tasks/p8a.py:34`.

@@ -139,17 +139,17 @@ class Metric:
 
     def _rule(self) -> str:
         if not self.extract_success:
-            return ("提取失败：physics_score 记 null，不给识别分，proxy_score = 0"
-                    "（SCORING_RULES_V2 §3.1）")
+            return ("Extraction failed: physics_score is null, no recognition reward is awarded, and proxy_score = 0"
+                    "(SCORING_RULES_V2 §3.1)")
         if self.non_residual:
-            return ("本量本身即 0~1 的比例/覆盖率/置信度，按 V2 §2.1 保留其原有"
-                    f"映射，physics_score 直接取该值；proxy_score = "
+            return ("This quantity is already a 0~1 ratio/coverage/confidence value; V2 section 2.1 retains its original "
+                    f"mapping: physics_score equals this value; proxy_score = "
                     f"{RECOGNITION:g} + {1 - RECOGNITION:g} × physics_score")
         return (f"physics_score = 1 / (1 + |metric − {self.ideal:g}| / "
-                f"{self.a:g})，误差达 {self.a:g}"
-                f"{self.unit and ' ' + self.unit} 时为 0.5；"
+                f"{self.a:g}); an error of {self.a:g}"
+                f"{self.unit and ' ' + self.unit} gives 0.5; "
                 f"proxy_score = {RECOGNITION:g} + {1 - RECOGNITION:g} × "
-                "physics_score（SCORING_RULES_V2 §2.1、§2.2）")
+                "physics_score (SCORING_RULES_V2 §2.1, §2.2)")
 
     def to_verbose_json(self) -> dict[str, Any]:
         if not self.defined:
@@ -333,8 +333,8 @@ class Result:
             "score_status": status,
             "overall_proxy_valid": status == "complete",
             "total_rule": ("S_total = 0.5*S_M1 + 0.5*S_M2" if subs else
-                           "S_total = S_M1（题包未给本题定义辅助指标，"
-                           "不为一个不存在的 M2 扣掉一半分）"),
+                           "S_total = S_M1 (the task package defines no auxiliary metric; "
+                           "an absent M2 does not halve the score)"),
         }
         if subs:
             out["M2_sub_items"] = [
@@ -345,9 +345,9 @@ class Result:
                                    else round(m.physics_score, 6))}
                 for m in subs]
             out["M2_combination"] = (
-                "q_M2 = 等权几何平均(各子项 physics_score)，识别分只在 M2 层加"
-                "一次（SCORING_RULES_V2 §2.2、§3.2）" if len(subs) > 1 else
-                "本题辅助指标只有一个子项，q_M2 即该子项的 physics_score")
+                "q_M2 = equal-weight geometric mean of component physics_score values; the recognition reward is added at the M2 level "
+                "once (SCORING_RULES_V2 sections 2.2 and 3.2)" if len(subs) > 1 else
+                "This task has one auxiliary component; q_M2 equals that component physics_score")
         return out
 
     def write(self, path: str | Path, sample_id: str | None = None,

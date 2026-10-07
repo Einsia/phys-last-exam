@@ -364,7 +364,7 @@ def run(argv=None):
     out=Path(args.debug_dir) if args.debug_dir else Path(args.output).parent/('debug_'+sid)
     out.mkdir(parents=True,exist_ok=True);result=new_result('P39',args.video_path,args.image_path,args.video_prompt,args.model,args.seed,sid)
     verbose=result['verbose']['M1'];code=0
-    verbose['principle']='独立拟合两泡外弧与可唯一识别的有符号隔膜圆弧；按真实 PTS 加权中位数聚合 abs(r_s*(1/r_small-1/r_large)-1)，不加入理论曲率约束。'
+    verbose['principle']="Independently fit both outer bubble arcs and the uniquely identifiable signed partition arc; aggregate abs(r_s*(1/r_small-1/r_large)-1) using the real-PTS-weighted median, without imposing theoretical curvature constraints."
     try:
         cfg=dict(DEFAULTS['P39'])
         if args.config:

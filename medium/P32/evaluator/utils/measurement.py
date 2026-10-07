@@ -634,12 +634,12 @@ def summarize(rows, times, cfg, verbose, image_reference=None):
     score=float((1-np.cos(np.radians(separation)))/2)
     for row in rows:
         for name in ('left','right'):row[name]['unwrapped_angle_deg']=row[name].get('angle_deg')
-    verbose['principle']='仅根据末尾5帧两针最终磁极朝向的夹角评分；反向180度为1，同向0度为0。'
+    verbose['principle']="Score only the angle between final magnetic-pole directions in the last 5 frames: opposite at 180 degrees gives 1; aligned at 0 degrees gives 0."
     verbose['initial_reference']=None
     verbose['windows']={'final':{'start_time_sec':float(times[start]),'end_time_sec':float(times[-1]),'stable':True,'stability_required':False}}
     verbose['measurements']={'final_frame_indices':indices,'final_direction_separation_deg':separation,
         'per_frame_direction_separation_deg':differences.tolist(),'final_window_frame_count':len(rows)-start,
         'first_frame_direction_used':False}
     verbose['score_details']={'version':'opinion_v2_final_direction','formula':'(1-cos(final_direction_separation))/2','range':[0,1]}
-    verbose['status']='scored';verbose['reason']='只比较末尾可读帧中的实际两针朝向；不要求转动轨迹或稳定时长。'
+    verbose['status']='scored';verbose['reason']="Compare only observed needle directions in readable final frames; rotation trajectories and stabilization duration are not required."
     return score

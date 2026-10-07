@@ -1,40 +1,40 @@
-# P36：水与沙的漏斗排放
+# P36 · Sand vs. water discharge
 
-分类：8. 颗粒介质与排出流动（Granular Media and Discharge Flow）；原编号：`P41`。
+Category: 8. Granular Media and Discharge Flow; legacy ID: `P41`.
 
-难度：困难；本轮任务排名：35/40；平均最终综合分：0.156825。
+Difficulty: Hard; task rank: 35/40; mean final total score: 0.156825.
 
-## 场景与目标
+## Scene and objective
 
-固定镜头观察两个相同的透明圆锥漏斗，出口尺寸相同、初始填充高度相同。左侧为浅蓝色水，右侧为干沙；两出口同时打开并保持打开，材料排至接近空。观察两侧料位及流束，比较水和沙的流量随剩余高度变化的关系。
+A fixed camera observes two identical transparent conical funnels with matching outlet sizes and initial fill heights. Light-blue water is on the left and dry sand on the right. Both outlets open simultaneously and remain open until nearly empty. Observe material levels and streams to compare how water and sand flow rates depend on remaining height.
 
-## 输入
+## Inputs
 
-- 首帧：[first_frame.png](first_frame.png)。
-- 视频生成提示词：[prompt.txt](prompt.txt)。
-- 待评视频：外部输入，通过 `--video` 指定。
+- First frame: [first_frame.png](first_frame.png).
+- Video generation prompt: [prompt.txt](prompt.txt).
+- Evaluation video: external input specified with `--video`.
 
-## 提示词原文
+## Original prompt
 
 ```text
 Locked-off static camera, front view. Continue from the supplied first frame. Two identical transparent funnels sit side by side with identical outlet sizes and the same initial fill height; the left contains pale blue water and the right contains dry sand. Both outlets open simultaneously and remain fully open while each funnel discharges its own material until nearly empty. Both fill levels and both outlet streams remain clearly visible. The camera does not move, pan, or zoom. Plain background.
 ```
 
-## M1 物理指标
+## M1 physical metric
 
-M1 分别拟合水和沙的 `Q ∝ h^β`，再比较水的指数与 0.5、沙的指数与 0 的偏差。
+M1 independently fits `Q proportional to h^beta` for water and sand, then compares the water exponent with 0.5 and the sand exponent with 0.
 
 `E = |β_water - 0.5| + |β_sand|`
 
-`M1 = 1 / (1 + E / a)`，默认 `a=1.0`。
+`M1 = 1 / (1 + E / a)`, with default `a=1.0`.
 
-指数和误差均无量纲。高度以像素测量；由已审查的圆锥内腔及自由表面恢复相对体积，通过积分体积/水头关系自由拟合指数。相对体积单位为 px³，流量为 px³/s，不是经过物理尺寸标定的 SI 体积或流量。有限指数误差平滑扣分，拟合不确定度单独报告。
+Exponents and errors are dimensionless. Heights are measured in pixels. Relative volume is recovered from reviewed conical-interior and free-surface geometry, and exponents are freely fitted through the integrated volume/head relationship. Relative volume is in px^3 and flow rate in px^3/s, not physically calibrated SI units. Finite exponent errors receive smooth penalties; fitting uncertainty is reported separately.
 
-实现依据：[measured_discharge.py](evaluator/measured_discharge.py) 的 `p36` 与 [discharge_integral.py](evaluator/discharge_integral.py)，版本 `p36_fixed_cone_integrated_exponent_v5`。
+Implementation: `p36` in [measured_discharge.py](evaluator/measured_discharge.py) and [discharge_integral.py](evaluator/discharge_integral.py), version `p36_fixed_cone_integrated_exponent_v5`.
 
-## 评测入口
+## Evaluation entrypoint
 
-从本题目录运行：
+Run from this task directory:
 
 ```bash
 python evaluator/evaluate.py \

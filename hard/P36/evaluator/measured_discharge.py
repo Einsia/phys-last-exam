@@ -90,8 +90,8 @@ def cone_and_outlet(geometry, index):
 
 
 def p36(c):
-    c.m['principle']='由可见内腔与自由表面恢复轴对称体积，独立拟合 Q∝h^beta，比较 abs(beta_water-.5)+abs(beta_sand)。'
-    c.m['score_details']={'version':'p36_fixed_cone_integrated_exponent_v5','formula':'1 / (1 + (abs(beta_water - 0.5) + abs(beta_sand)) / error_half_score)','range':[0,1],'half_score_error':c.cfg['error_half_score'],'finite_error_cutoff':False,'fitting_policy':'Integrated observed volume and head; beta free; no noisy derivative selection or target-exponent prior','interpretation':'按拟合指数误差平滑扣分；有限误差不截零。分数不是物理成立概率，拟合不确定度单独报告。'}
+    c.m['principle']="Recover axisymmetric volume from the visible interior and free surface, independently fit Q proportional to h^beta, and compare abs(beta_water-.5)+abs(beta_sand)."
+    c.m['score_details']={'version':'p36_fixed_cone_integrated_exponent_v5','formula':'1 / (1 + (abs(beta_water - 0.5) + abs(beta_sand)) / error_half_score)','range':[0,1],'half_score_error':c.cfg['error_half_score'],'finite_error_cutoff':False,'fitting_policy':'Integrated observed volume and head; beta free; no noisy derivative selection or target-exponent prior','interpretation':"Apply a smooth penalty for exponent error; finite errors are not truncated to zero. Scores are not probabilities of physical correctness; fitting uncertainty is reported separately."}
     drift,res=camera_motion(c.xy,c.vis,c.groups);geometry={};surfaces={};fit_details={};columns={'frame':np.arange(len(c.t)),'time_sec':c.t};curves={};errors=[];betas=[];streams=[]
     for j,obj in enumerate(c.a['objects']):
         name=obj['name'];apex,outlet_y,outlet_reference=cone_and_outlet(c.a['geometry'],j)
@@ -184,7 +184,7 @@ def p36(c):
     c.m['uncertainty']={'note':'Linearized 95% intervals conditional on integrated volume/head fit and reconstructed geometry; wide intervals are reported, not rejected','warnings':{name:fit_details[name]['warnings'] for name in ['water','sand']}}
     for name in ['water','sand']:
         fit=fit_details[name]['fit'];c.m['measurements']['beta_'+name+'_ci']=fit['slope_ci95'] if fit else None;c.m['measurements'][name+'_fit_window_sec']=fit_details[name]['fit_window_sec']
-    c.calculation=[f'真实测得的高度范围与拟合资格: {fit_details}',f'体积恢复几何: axisymmetric surface/wall integration; cone apex and open outlet treated separately.','未把 -dh/dt 或二维掩码面积变化当作流量。']
+    c.calculation=[f'Observed height ranges and fitting eligibility: {fit_details}',f'Volume-recovery geometry: axisymmetric surface/wall integration; cone apex and open outlet treated separately.',"Neither -dh/dt nor changes in two-dimensional mask area were treated as flow rate."]
     if errors:raise ExtractionError('; '.join(errors))
-    err=abs(betas[0]-.5)+abs(betas[1]);score=soft_error_score(err,c.cfg['error_half_score']);c.m['measurements']['raw_m1_error']=err;c.m['reason']='以已审查圆锥几何恢复体积，实际排出段自由拟合指数；数值范围自适应扩展，指数偏差仍按原公式扣分，几何假设与拟合不确定度单独报告。';c.calculation.append(f'p36_fixed_cone_integrated_exponent_v5: beta_water={betas[0]}, beta_sand={betas[1]}; E={err}; half-score error={c.cfg["error_half_score"]}; score=1/(1+{err}/{c.cfg["error_half_score"]})={score}')
+    err=abs(betas[0]-.5)+abs(betas[1]);score=soft_error_score(err,c.cfg['error_half_score']);c.m['measurements']['raw_m1_error']=err;c.m['reason']="Recover volume from reviewed cone geometry and freely fit the exponent over observed discharge; expand the numerical range adaptively, retain the original exponent-error penalty, and report geometric assumptions and fitting uncertainty separately.";c.calculation.append(f'p36_fixed_cone_integrated_exponent_v5: beta_water={betas[0]}, beta_sand={betas[1]}; E={err}; half-score error={c.cfg["error_half_score"]}; score=1/(1+{err}/{c.cfg["error_half_score"]})={score}')
     return score

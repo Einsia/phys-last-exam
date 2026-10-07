@@ -1,8 +1,8 @@
 {
   "P22": {
     "difficulty": "Easy",
-    "phenomenon": "冰柱漂浮吃水比",
-    "domain": "浮力",
+    "phenomenon": "Submerged-height ratio of a floating ice column",
+    "domain": "Buoyancy",
     "original_group": "g4",
     "package_path": "../..",
     "difficulty_score": 0.7617736369507146,
@@ -10,7 +10,7 @@
     "legacy_id": "P20",
     "category_index": 5,
     "category": "Hydrostatics and Buoyancy",
-    "category_zh": "流体静力学与浮力",
+    "category_zh": "Hydrostatics and Buoyancy",
     "title": "Floating-ice immersion"
   }
 }

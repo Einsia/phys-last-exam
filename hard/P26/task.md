@@ -1,18 +1,18 @@
-# P26：含石浮冰融化
+# P26 · Ice with a stone: melting
 
-分类：6. 相变与融化（Phase Transitions and Melting）；原编号：`P21b`。
+Category: 6. Phase Transitions and Melting; legacy ID: `P21b`.
 
-难度：困难；本轮任务排名：40/40；平均最终综合分：0.034453。
+Difficulty: Hard; task rank: 40/40; mean final total score: 0.034453.
 
-## 场景与目标
+## Scene and objective
 
-透明直壁容器内，包裹高密度石块的淡水冰漂浮在淡水中。冰逐渐融化，释放石块并使其沉下；在不增减水或其他物质的条件下，比较融化前后的水位，目标行为是水位降低。
+Freshwater ice containing a dense stone floats in fresh water inside a transparent straight-walled vessel. It gradually melts, releasing the stone to sink. With no water or other material added or removed, compare initial and final water levels; the target behavior is a falling water level.
 
-## 输入与评测
+## Inputs and evaluation
 
-首帧：[first_frame.png](first_frame.png)。生成提示词：[prompt.txt](prompt.txt)。视频为外部评测输入，应与所用首帧和提示词对应。
+First frame: [first_frame.png](first_frame.png). Generation prompt: [prompt.txt](prompt.txt). Videos are external evaluation inputs and must correspond to the supplied first frame and prompt.
 
-在本题目录、已安装项目运行依赖的 Python 环境中执行：
+Run from this task directory using a Python environment with the project runtime dependencies installed:
 
 ```sh
 python evaluator/evaluate.py \
@@ -21,17 +21,17 @@ python evaluator/evaluate.py \
   --output /absolute/path/result.json
 ```
 
-## 当前指标
+## Current metrics
 
-下表 P 为各指标的纯物理分，范围为0–1。原始量与物理分分别保留；观测不足时原始量为 null，适用的未观察到现象规则可计物理分0。完整输出另含一致性判断。
+In the table below, P is the pure physics score for each metric, ranging from 0 to 1. Raw quantities and physics scores are retained separately. With insufficient observations, raw quantities are null; the applicable unobserved-phenomenon policy may assign a physics score of 0. Full outputs also include consistency assessment.
 
-| 指标 | 定义与公式 | 单位 |
+| Metric | Definition and formula | Units |
 | --- | --- | --- |
-| M1：融化后水位变化 | e=(y初−y末)/H初；P=1 当 e<0，否则 P=0。须先观察到融化，且水位变化大于测量分辨率。 | e 无量纲；y、H 为像素。 |
+| M1: Water-level change after melting | e=(y_initial-y_final)/H_initial; P=1 when e<0, otherwise P=0. Melting must first be observed and the level change must exceed measurement resolution. | e is dimensionless; y and H are in pixels. |
 
-当前公式依据：`v4/g5/P21b/evaluator/measure_backend.py:460`；`v4/g5/P21b/evaluator/measure_backend.py:558`；`v4/g5/P21b/evaluator/measure_backend.py:568`。
+Formula references: `v4/g5/P21b/evaluator/measure_backend.py:460`; `v4/g5/P21b/evaluator/measure_backend.py:558`; `v4/g5/P21b/evaluator/measure_backend.py:568`.
 
-## 生成提示词原文
+## Original generation prompt
 
 ```text
 Locked-off static camera, front view, matching the input first frame.

@@ -1,25 +1,25 @@
-# P25 · 浮冰融化液面变化
+# P25 · Ice melting: water level
 
-分类：6. 相变与融化（Phase Transitions and Melting）；原编号：`P21`。
+Category: 6. Phase Transitions and Melting; legacy ID: `P21`.
 
-难度：困难；本轮任务排名：38/40；平均最终综合分：0.142956。
+Difficulty: Hard; task rank: 38/40; mean final total score: 0.142956.
 
-任务 ID：`P25`。
+Task ID: `P25`.
 
-透明直壁杯内的一块淡水浮冰逐渐完全融化，始终浮在水面，末尾不再有固体冰。没有溢流、蒸发或液体增减，初末水位清楚可见，淡青色水和不透明白冰可区分。理想情况下浮冰融化前后水位不变。
+A piece of freshwater ice floating in a transparent straight-walled glass gradually melts completely. It remains at the surface, leaving no solid ice at the end. No overflow, evaporation, or liquid addition or removal occurs. Initial and final levels are clearly visible, with distinguishable light-cyan water and opaque white ice. Ideally, melting floating ice leaves the water level unchanged.
 
-## 输入
+## Inputs
 
-唯一参考首帧为题包根目录的 [first_frame.png](first_frame.png)。待评测视频由外部提供，不属于题包内容。
+The only reference first frame is [first_frame.png](first_frame.png) in the task root. Videos are supplied externally for evaluation and are not included in the task package.
 
-## 当前物理指标
+## Current physical metrics
 
-- M1：(融化后水位高度−融化前水位高度)/容器高度；无量纲。
-- M2：|末段容器宽度−初段容器宽度|/初段容器宽度，检查容器边界一致性；无量纲。
+- M1: (water-level height after melting - water-level height before melting)/vessel height; dimensionless.
+- M2: |final vessel width - initial vessel width|/initial vessel width, checking vessel-boundary consistency; dimensionless.
 
-以上为原始测量量；归一化后的物理分数取值为 0–1。
+These are raw measured quantities; normalized physics scores range from 0 to 1.
 
-## 生成提示词原文
+## Original generation prompt
 
 ```text
 Locked-off static camera, front view, matching the input first frame.
@@ -33,9 +33,9 @@ The camera does not move, pan, or zoom. Plain background, no unrelated objects.
 Throughout the clip the water keeps the same distinctly light cyan-blue tint it has in the first frame and the ice stays opaque white, so the waterline and the ice are never confusable. The wall behind the glass stays one flat tone, with no dark horizontal band appearing behind or across the beaker at any time. Nothing else in the scene takes on that blue.
 ```
 
-## 评测入口
+## Evaluation entrypoint
 
-在本题目录中执行，输入和输出视频路径均可放在题包外：
+Run from this task directory; input and output paths may reside outside the task package:
 
 ```sh
 python evaluator/evaluate.py \
@@ -45,4 +45,4 @@ python evaluator/evaluate.py \
   --output /absolute/path/to/result.json
 ```
 
-指标定义依据：`v4/g4/P21/evaluator/utils/physeval/tasks/p21.py:33`；`v4/unified_evaluators/contract.py:100`；`v4/g4/P21/evaluator/utils/physeval/tasks/p21.py:40`。
+Metric definition references: `v4/g4/P21/evaluator/utils/physeval/tasks/p21.py:33`; `v4/unified_evaluators/contract.py:100`; `v4/g4/P21/evaluator/utils/physeval/tasks/p21.py:40`.

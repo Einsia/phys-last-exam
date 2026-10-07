@@ -1,8 +1,8 @@
 {
   "P3": {
     "difficulty": "Medium",
-    "phenomenon": "互余角抛射",
-    "domain": "力学",
+    "phenomenon": "Projectiles launched at complementary angles",
+    "domain": "Mechanics",
     "original_group": "g3",
     "package_path": "../..",
     "difficulty_score": 0.22212525413810127,
@@ -10,7 +10,7 @@
     "legacy_id": "P3",
     "category_index": 1,
     "category": "Translational Motion and Collisions",
-    "category_zh": "平动与碰撞",
+    "category_zh": "Translation and Collisions",
     "title": "Complementary-angle throws"
   }
 }

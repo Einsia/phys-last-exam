@@ -1,8 +1,8 @@
 {
   "P32": {
     "difficulty": "Medium",
-    "phenomenon": "通电导线与指南针",
-    "domain": "电磁",
+    "phenomenon": "A current-carrying wire and compasses",
+    "domain": "Electromagnetism",
     "original_group": "g8",
     "package_path": "../..",
     "difficulty_score": 0.21020589270876186,
@@ -10,7 +10,7 @@
     "legacy_id": "P34",
     "category_index": 7,
     "category": "Electrostatics, Magnetism, and Electromagnetic Induction",
-    "category_zh": "静电、磁学与电磁感应",
+    "category_zh": "Electrostatics, Magnetism, and Electromagnetic Induction",
     "title": "Final compass orientations"
   }
 }

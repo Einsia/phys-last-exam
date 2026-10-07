@@ -1,25 +1,25 @@
-# P23 · 静止液面与重力方向垂直
+# P23 · Liquid-surface orientation
 
-分类：5. 流体静力学与浮力（Hydrostatics and Buoyancy）；原编号：`P18`。
+Category: 5. Hydrostatics and Buoyancy; legacy ID: `P18`.
 
-难度：中等；本轮任务排名：23/40；平均最终综合分：0.323625。
+Difficulty: Medium; task rank: 23/40; mean final total score: 0.323625.
 
-任务 ID：`P23`。
+Task ID: `P23`.
 
-透明容器内静止液面的旁边，一个无绳裸钢球从固定电磁支架释放并竖直下落。完整可测下落段与平液面同时可见，球触地前结束。重力加速度方向应垂直于液面，球轨迹应符合恒加速度运动。
+Beside a stationary liquid surface in a transparent vessel, a bare steel ball is released from a fixed electromagnetic support and falls vertically without a string. The full measurable fall and flat waterline remain visible, ending before ground contact. Gravitational acceleration should be perpendicular to the surface, with a constant-acceleration trajectory.
 
-## 输入
+## Inputs
 
-唯一参考首帧为题包根目录的 [first_frame.png](first_frame.png)。待评测视频由外部提供，不属于题包内容。
+The only reference first frame is [first_frame.png](first_frame.png) in the task root. Videos are supplied externally for evaluation and are not included in the task package.
 
-## 当前物理指标
+## Current physical metrics
 
-- M1：球加速度方向与液面切向夹角−90°，单位为度。
-- M2：组合液面直线拟合 RMS 与球轨迹恒加速度拟合 RMS；两项原始单位均为像素，分别归一化后的物理分数取几何均值。
+- M1: Angle between ball acceleration and the water-surface tangent minus 90 degrees; degrees.
+- M2: Combine waterline straight-fit RMS and ball-trajectory constant-acceleration-fit RMS. Both raw quantities are in pixels; normalized physics scores are combined by geometric mean.
 
-以上为原始测量量；归一化后的物理分数取值为 0–1。
+These are raw measured quantities; normalized physics scores range from 0 to 1.
 
-## 生成提示词原文
+## Original generation prompt
 
 ```text
 A single continuous real-time shot from a locked-off static side camera, matching the input first frame.
@@ -35,9 +35,9 @@ Keep the complete measured fall inside the frame and end before the ball reaches
 The container, liquid, release apparatus, background, and camera remain stationary. No camera movement, panning, zooming, cuts, slow motion, pauses, or time jumps. No hands or people. No additional balls, duplicated objects, motion trails, annotations, or newly appearing objects.
 ```
 
-## 评测入口
+## Evaluation entrypoint
 
-在本题目录中执行，输入和输出视频路径均可放在题包外：
+Run from this task directory; input and output paths may reside outside the task package:
 
 ```sh
 python evaluator/evaluate.py \
@@ -47,4 +47,4 @@ python evaluator/evaluate.py \
   --output /absolute/path/to/result.json
 ```
 
-指标定义依据：`v4/g4/P18/evaluator/utils/physeval/tasks/p18.py:33`；`v4/unified_evaluators/contract.py:100`；`v4/g4/P18/evaluator/utils/physeval/tasks/p18.py:40`。
+Metric definition references: `v4/g4/P18/evaluator/utils/physeval/tasks/p18.py:33`; `v4/unified_evaluators/contract.py:100`; `v4/g4/P18/evaluator/utils/physeval/tasks/p18.py:40`.

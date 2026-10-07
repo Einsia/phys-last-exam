@@ -1,8 +1,8 @@
 {
   "P28": {
     "difficulty": "Hard",
-    "phenomenon": "碎冰与整冰融化对比",
-    "domain": "热学",
+    "phenomenon": "Melting comparison of crushed and intact ice",
+    "domain": "Thermal physics",
     "original_group": "g7",
     "package_path": "../..",
     "difficulty_score": 0.19218749999999998,
@@ -10,7 +10,7 @@
     "legacy_id": "P27",
     "category_index": 6,
     "category": "Phase Transitions and Melting",
-    "category_zh": "相变与融化",
+    "category_zh": "Phase Transitions and Melting",
     "title": "Crushed vs. intact ice"
   }
 }

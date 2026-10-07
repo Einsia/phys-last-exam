@@ -1,8 +1,8 @@
 {
   "P12": {
     "difficulty": "Easy",
-    "phenomenon": "单摆周期与质量无关",
-    "domain": "力学",
+    "phenomenon": "Mass-independent pendulum period",
+    "domain": "Mechanics",
     "original_group": "g6",
     "package_path": "../..",
     "difficulty_score": 0.5308683034437426,
@@ -10,7 +10,7 @@
     "legacy_id": "P8b",
     "category_index": 3,
     "category": "Pendulum Motion and Oscillations",
-    "category_zh": "单摆运动与振荡",
+    "category_zh": "Pendulum Motion and Oscillations",
     "title": "Pendulum period vs. mass"
   }
 }

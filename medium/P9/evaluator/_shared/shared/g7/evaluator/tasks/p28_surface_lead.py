@@ -38,7 +38,7 @@ def compare_surface_lead(series, fps, melting):
     negative_required = max(3, math.ceil(MIN_NEGATIVE_OBSERVATION_SECONDS * fps) + 1)
     result = {
         'rule_version': RULE_VERSION, 'decision': 'unobservable',
-        'reason_zh': '无法判断：尚未获得两侧同时可读的真实液面。',
+        'reason_zh': "Indeterminate: no real liquid levels are simultaneously readable on both sides yet.",
         'usable': False, 'lead_observed': None,
         'normalization': '(observed_vessel_base_y - liquid_surface_y) / observed_vessel_height',
         'comparison': 'right_crushed_minus_left_block_at_the_same_frame',
@@ -51,11 +51,11 @@ def compare_surface_lead(series, fps, melting):
         'interpretation': 'Visible-liquid phase lead only; not melt completion or melted mass.',
     }
     if not all(melting.get(side, {}).get('melting_observed') for side in ('left', 'right')):
-        result['reason_zh'] = '无法判断：至少一侧尚未确认冰体持续缩小，不能仅凭液面变化判断融化领先。'
+        result['reason_zh'] = "Indeterminate: sustained ice shrinkage is unconfirmed on at least one side; level changes alone cannot establish a melting lead."
         return result
     starts = [(melting[s].get('melting_evidence') or {}).get('confirmed_frame') for s in ('left', 'right')]
     if any(frame is None for frame in starts):
-        result['reason_zh'] = '无法判断：缺少两侧持续融化证据的确认帧。'
+        result['reason_zh'] = "Indeterminate: frames confirming sustained melting on both sides are missing."
         return result
     start = int(max(starts))
     levels = {}; valid = {}; uncertainty = {}; side_summary = {}
@@ -66,7 +66,7 @@ def compare_surface_lead(series, fps, melting):
         height = float(item.get('vessel_height_px', 0))
         base = np.asarray(item.get('surface_floor_px', np.full(len(y), np.nan)), float)
         if height <= 0 or y.ndim != 1 or okay.shape != y.shape or base.shape != y.shape:
-            result['reason_zh'] = '无法判断：杯体几何或液面观测数组不完整。'
+            result['reason_zh'] = "Indeterminate: vessel geometry or liquid-level observation arrays are incomplete."
             return result
         okay = okay & np.isfinite(y) & np.isfinite(base)
         kinds = item.get('surface_observation_kind')
@@ -111,12 +111,12 @@ def compare_surface_lead(series, fps, melting):
     )
     if qualified:
         result.update(usable=True, decision='lead_observed', lead_observed=True,
-                      reason_zh='观察到领先：碎冰杯归一化液位超过整冰杯，差值超出定位误差并持续至少0.25秒。')
+                      reason_zh="Lead observed: the crushed-ice vessel has a higher normalized liquid level than the intact-ice vessel, beyond localization error for at least 0.25 seconds.")
     elif longest >= negative_required:
         result.update(usable=True, decision='no_lead_observed', lead_observed=False,
-                      reason_zh='未观察到领先：存在至少0.50秒两侧液面同时清晰的连续片段，但可见片段内没有持续0.25秒的可信领先；不推断缺失时段。')
+                      reason_zh="No lead observed: both liquid levels are continuously clear for at least 0.50 seconds, but no reliable lead persists for 0.25 seconds within the visible intervals; missing intervals are not inferred.")
     else:
-        result['reason_zh'] = '无法判断：两侧同时可读的液面连续片段不足，遮挡、歧义或跟踪缺失不能当作未领先。'
+        result['reason_zh'] = "Indeterminate: continuous intervals with both levels readable are insufficient; occlusion, ambiguity, or missing tracks cannot be treated as absence of a lead."
     curves = {'left_normalized_depth': levels['left'], 'right_normalized_depth': levels['right'],
               'left_valid': valid['left'], 'right_valid': valid['right'], 'joint_valid': joint,
               'normalized_difference': delta, 'lead_frame': joint & (delta > threshold)}

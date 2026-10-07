@@ -14,8 +14,8 @@ def visible_plate_center(mask):
     return np.asarray(cv2.minAreaRect(outline)[0],float)
 
 def p34(c):
-    c.m['principle']='共同观察窗口、共同角振幅门槛下，比较实心板与开槽板的有效完整周期数。'
-    c.m['score_details']={'version':'p34_directional_v1','formula':'1.0 if N_solid < N_slotted else 0.0; zero reference remains 0','range':[0,1],'equal_positive_counts_score':0.,'zero_reference_score':0.,'interpretation':'共同窗口内实心板完整周期数少于开槽板即支持目标关系；相等或更多不支持。分数不是物理成立概率。'}
+    c.m['principle']="Compare valid complete-cycle counts for solid and slotted plates using the same observation window and angular-amplitude threshold."
+    c.m['score_details']={'version':'p34_directional_v1','formula':'1.0 if N_solid < N_slotted else 0.0; zero reference remains 0','range':[0,1],'equal_positive_counts_score':0.,'zero_reference_score':0.,'interpretation':"Fewer complete cycles for the solid plate within the shared window support the target relationship; equal or greater counts do not. The score is not a probability that the physical relationship holds."}
     drift,res=camera_motion(c.xy,c.vis,c.groups);series=[];cal={};columns={'frame':np.arange(len(c.t)),'time_sec':c.t}
     for j,obj in enumerate(c.a['objects']):
         name=obj['name'];xy,valid=observed_track(c,j);source=xy[0]
@@ -49,7 +49,7 @@ def p34(c):
         if np.ptp(series[1])>cutoff and len([p for p in peaks['slotted_plate'] if p['accepted']])<3:raise ExtractionError('Slotted trajectory is truncated before an observable full cycle')
         c.m['reason']='zero_reference_count; observed continuous reference trajectory'
     else:
-        relation='实心板次数较少，支持目标关系。' if counts[0]<counts[1] else '两板次数相同或实心板次数更多，不支持目标关系。'
-        c.m['reason']='完整周期由固定极性边界配对；'+relation+'只计算共同窗口内次数，未计算 M2 衰减率。'
-    c.calculation=[f'W={c.m["measurements"]["observation_window_sec"]}; A_cut={cutoff:.6f} deg.',f'有效周期逐项时刻：{cycles}',f'N_solid={counts[0]}, N_slotted={counts[1]}, ratio={ratio}; scoring_version=p34_directional_v1.',f'score = 1.0 if {counts[0]} < {counts[1]} else 0.0 = {score:.8f}.' if counts[1]>0 else 'N_slotted=0: zero_reference_count，score=0；不将 0/0 记为中性分。','只按完整周期数的方向判定：实心板更少为 1，相等或更多为 0。']
+        relation="The solid plate has fewer cycles, supporting the target relationship." if counts[0]<counts[1] else "Cycle counts are equal or the solid plate has more cycles, so the target relationship is not supported."
+        c.m['reason']="Complete cycles pair boundaries of a fixed polarity; "+relation+"Count only within the shared window; the M2 decay rate is not computed."
+    c.calculation=[f'W={c.m["measurements"]["observation_window_sec"]}; A_cut={cutoff:.6f} deg.',f'Individual valid-cycle timestamps: {cycles}',f'N_solid={counts[0]}, N_slotted={counts[1]}, ratio={ratio}; scoring_version=p34_directional_v1.',f'score = 1.0 if {counts[0]} < {counts[1]} else 0.0 = {score:.8f}.' if counts[1]>0 else "N_slotted=0: zero_reference_count, score=0; 0/0 is not assigned a neutral score.","Assess only the direction of complete-cycle counts: 1 when the solid plate has fewer, otherwise 0."]
     return score

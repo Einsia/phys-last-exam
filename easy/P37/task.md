@@ -1,18 +1,18 @@
-# P37：毛细上升与管径
+# P37 · Capillary rise vs. diameter
 
-分类：9. 表面张力与黏性流（Surface Tension and Viscous Flow）；原编号：`P45`。
+Category: 9. Surface Tension and Viscous Flow; legacy ID: `P45`.
 
-难度：简单；本轮任务排名：12/40；平均最终综合分：0.511797。
+Difficulty: Easy; task rank: 12/40; mean final total score: 0.511797.
 
-## 场景与目标
+## Scene and objective
 
-两根不同内径的干燥玻璃毛细管最初悬在同一储液体上方，随后同时浅浸入液体。观察公共外液面与两个管内弯月面；目标行为是细管毛细上升高度大于粗管。当前评分检验高度方向，不检验严格反比幅值。
+Two dry glass capillary tubes of different inner diameters initially hang above the same reservoir, then are simultaneously dipped shallowly into the liquid. Observe the common external waterline and both internal menisci. The narrower tube should have a greater capillary rise. Scoring assesses the direction of the height difference rather than an exact inverse-diameter magnitude.
 
-## 输入与评测
+## Inputs and evaluation
 
-首帧：[first_frame.png](first_frame.png)。生成提示词：[prompt.txt](prompt.txt)。视频为外部评测输入，应与所用首帧和提示词对应。
+First frame: [first_frame.png](first_frame.png). Generation prompt: [prompt.txt](prompt.txt). Videos are external evaluation inputs and must correspond to the supplied first frame and prompt.
 
-在本题目录、已安装项目运行依赖的 Python 环境中执行：
+Run from this task directory using a Python environment with the project runtime dependencies installed:
 
 ```sh
 python evaluator/evaluate.py \
@@ -21,17 +21,17 @@ python evaluator/evaluate.py \
   --output /absolute/path/result.json
 ```
 
-## 当前指标
+## Current metrics
 
-下表 P 为各指标的纯物理分，范围为0–1。原始量与物理分分别保留；观测不足时原始量为 null，适用的未观察到现象规则可计物理分0。完整输出另含一致性判断。
+In the table below, P is the pure physics score for each metric, ranging from 0 to 1. Raw quantities and physics scores are retained separately. With insufficient observations, raw quantities are null; the applicable unobserved-phenomenon policy may assign a physics score of 0. Full outputs also include consistency assessment.
 
-| 指标 | 定义与公式 | 单位 |
+| Metric | Definition and formula | Units |
 | --- | --- | --- |
-| M1：毛细上升高度方向 | h=y公共液面−y管内液面；d=末段成对高度差 h细−h粗 的中位数。d 大于测量分辨率时 P=1，否则 P=0；两管及公共液面须可成对读取。 | h、d、分辨率均为像素；P 无量纲。 |
+| M1: Direction of capillary-rise difference | h=y_common_surface-y_tube_surface; d=median final paired difference h_narrow-h_wide. P=1 when d exceeds measurement resolution, otherwise P=0. Both tubes and the common surface must be jointly readable. | h, d, and resolution are in pixels; P is dimensionless. |
 
-当前公式依据：`v4/g6/P45/evaluator/utils/physeval/tasks/p45.py:141`；`v4/g6/P45/evaluator/utils/physeval/tasks/p45.py:230`。
+Formula references: `v4/g6/P45/evaluator/utils/physeval/tasks/p45.py:141`; `v4/g6/P45/evaluator/utils/physeval/tasks/p45.py:230`.
 
-## 生成提示词原文
+## Original generation prompt
 
 ```text
 Task: P37_capillary_rise_two_radii.

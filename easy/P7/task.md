@@ -1,18 +1,18 @@
-# P7：链条悬垂静态形状
+# P7 · Hanging-chain equilibrium
 
-分类：2. 滚动、摩擦与刚体静力学（Rolling, Friction, and Rigid-Body Statics）；原编号：`P44`。
+Category: 2. Rolling, Friction, and Rigid-Body Statics; legacy ID: `P44`.
 
-难度：简单；本轮任务排名：5/40；平均最终综合分：0.708567。
+Difficulty: Easy; task rank: 5/40; mean final total score: 0.708567.
 
-## 场景与目标
+## Scene and objective
 
-连续链条两端固定于等高支点，从首帧的非平衡形状释放。链条在重力下振动并逐渐静止，保持链节连续、总长度和支点不变；检验最终轮廓是否符合悬链线及支点等高关系。
+A continuous chain has both ends fixed at equal-height supports and is released from the nonequilibrium first-frame shape. It oscillates under gravity and gradually settles. Chain continuity, total length, and supports remain unchanged. Test whether the final outline follows a catenary and the supports remain at equal heights.
 
-## 输入与评测
+## Inputs and evaluation
 
-首帧：[first_frame.png](first_frame.png)。生成提示词：[prompt.txt](prompt.txt)。视频为外部评测输入，应与所用首帧和提示词对应。
+First frame: [first_frame.png](first_frame.png). Generation prompt: [prompt.txt](prompt.txt). Videos are external evaluation inputs and must correspond to the supplied first frame and prompt.
 
-在本题目录、已安装项目运行依赖的 Python 环境中执行：
+Run from this task directory using a Python environment with the project runtime dependencies installed:
 
 ```sh
 python evaluator/evaluate.py \
@@ -21,18 +21,18 @@ python evaluator/evaluate.py \
   --output /absolute/path/result.json
 ```
 
-## 当前指标
+## Current metrics
 
-下表 P 为各指标的纯物理分，范围为0–1。原始量与物理分分别保留；观测不足时原始量为 null，适用的未观察到现象规则可计物理分0。完整输出另含一致性判断。
+In the table below, P is the pure physics score for each metric, ranging from 0 to 1. Raw quantities and physics scores are retained separately. With insufficient observations, raw quantities are null; the applicable unobserved-phenomenon policy may assign a physics score of 0. Full outputs also include consistency assessment.
 
-| 指标 | 定义与公式 | 单位 |
+| Metric | Definition and formula | Units |
 | --- | --- | --- |
-| M1：悬链线拟合误差 | e=轮廓拟合RMSE/实测下垂尺度；P=1/(1+abs(e)/0.10)。 | e 无量纲；几何长度为像素。 |
-| M2：支点等高误差 | e=支点高度误差/水平跨度；P=1/(1+abs(e)/0.02)。 | e 无量纲；几何长度为像素。 |
+| M1: Catenary-fit error | e=outline-fit RMSE/measured sag; P=1/(1+abs(e)/0.10). | e is dimensionless; geometric lengths are in pixels. |
+| M2: Equal-support-height error | e=support-height error/horizontal span; P=1/(1+abs(e)/0.02). | e is dimensionless; geometric lengths are in pixels. |
 
-当前公式依据：`v4/g5/P44/evaluator/measure_backend.py:151`；`v4/g5/P44/evaluator/measure_backend.py:179`；`v4/g5/P44/evaluator/measure_backend.py:152`。
+Formula references: `v4/g5/P44/evaluator/measure_backend.py:151`; `v4/g5/P44/evaluator/measure_backend.py:179`; `v4/g5/P44/evaluator/measure_backend.py:152`.
 
-## 生成提示词原文
+## Original generation prompt
 
 ```text
 A single continuous real-time shot from a locked-off, exact front near-orthographic camera, matching the input first frame.

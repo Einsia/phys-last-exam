@@ -1,40 +1,40 @@
-# P30：磁铁进入线圈与指示灯发光
+# P30 · Coil-induced light emission
 
-分类：7. 静电、磁学与电磁感应（Electrostatics, Magnetism, and Electromagnetic Induction）；原编号：`P39`。
+Category: 7. Electrostatics, Magnetism, and Electromagnetic Induction; legacy ID: `P39`.
 
-难度：简单；本轮任务排名：13/40；平均最终综合分：0.503125。
+Difficulty: Easy; task rank: 13/40; mean final total score: 0.503125.
 
-## 场景与目标
+## Scene and objective
 
-固定镜头观察条形磁铁、固定线圈及连接的双向指示灯。磁铁由静止开始运动，进入并穿过线圈，从另一端离开后再静止；观察磁体运动与灯光响应，保持磁铁、线圈和灯清晰可见。
+A fixed camera observes a bar magnet, fixed coil, and connected bidirectional indicator lamp. The magnet starts from rest, enters and passes through the coil, exits the far end, and stops again. Observe magnet motion and the light response while keeping the magnet, coil, and lamp clearly visible.
 
-## 输入
+## Inputs
 
-- 首帧：[first_frame.png](first_frame.png)。
-- 视频生成提示词：[prompt.txt](prompt.txt)。
-- 待评视频：外部输入，通过 `--video` 指定。
+- First frame: [first_frame.png](first_frame.png).
+- Video generation prompt: [prompt.txt](prompt.txt).
+- Evaluation video: external input specified with `--video`.
 
-## 提示词原文
+## Original prompt
 
 ```text
 Locked-off static camera, front view. Continue from the supplied first frame. A bar magnet first remains completely stationary near a fixed coil connected to a small bidirectional indicator lamp. The magnet then moves into the coil, passes completely through it, moves out the other side, and finally becomes stationary again. The magnet, coil and lamp remain clearly visible throughout the entire sequence. The camera does not move, pan, or zoom. Plain background, no unrelated objects.
 ```
 
-## M1 物理指标
+## M1 physical metric
 
-当前 M1 由两个直接可观测事件组成：磁铁进入线圈，以及进入期间灯可确认发光。
+M1 consists of two directly observable events: magnet entry into the coil and confirmed lamp illumination during entry.
 
-`M1 = 0.5 × I(已观测到进入) + 0.5 × I(进入期间已确认灯亮)`
+`M1 = 0.5 * I(entry observed) + 0.5 * I(lamp confirmed lit during entry)`
 
-`I` 为事件成立时取 1、否则取 0 的指示量，M1 无量纲。灯在磁铁进入前已亮也可计入；默认事件匹配容差为 0.5 秒。已确认进入但灯状态无法判断时，M1=0.5 是证据下界，另报告 `[0.5, 1]` 的不确定范围，不将未知灯态认作熄灭。
+`I` is 1 when the event holds and 0 otherwise; M1 is dimensionless. A lamp already lit before magnet entry may count. The default event-matching tolerance is 0.5 seconds. If entry is confirmed but lamp state is indeterminate, M1=0.5 is an evidence lower bound and the uncertainty interval `[0.5, 1]` is reported; an unknown lamp state is not treated as unlit.
 
-完整穿过和再次静止属于视频任务描述；当前 M1 不测磁通、电流、电压或灯光时间重心。
+Complete passage and stopping again belong to the video task description. M1 does not measure magnetic flux, current, voltage, or the light temporal centroid.
 
-实现依据：[entry_light.py](evaluator/entry_light.py) 的 `evaluate`，版本 `p30_entry_light_v5`。
+Implementation: `evaluate` in [entry_light.py](evaluator/entry_light.py), version `p30_entry_light_v5`.
 
-## 评测入口
+## Evaluation entrypoint
 
-从本题目录运行：
+Run from this task directory:
 
 ```bash
 python evaluator/evaluate.py \

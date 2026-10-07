@@ -13,14 +13,14 @@ def write_scoring_calculation(result, debug_dir):
     terms = [f'{weight:g} × {result["metrics"][key]["proxy_score"]}'
              for key, weight in result['proxy']['weights'].items() if weight]
     score_path.write_text('\n\n'.join([
-        f'# {result["task_id"]} V2 测量与评分',
-        str(verbose.get('principle') or '详见 measurement_process 和提取失败原因。'),
-        '原始量与测量过程：\n```json\n' + json.dumps(verbose.get('measurements', {}), ensure_ascii=False, indent=2, default=str) + '\n```',
-        '归一化：\n```json\n' + json.dumps(verbose.get('normalization', {}), ensure_ascii=False, indent=2) + '\n```',
-        '指标分：\n```json\n' + json.dumps(result['metrics'], ensure_ascii=False, indent=2) + '\n```',
-        f'综合分 = {" + ".join(terms) or "0"} = {result["proxy"]["score"]}。',
-        '总分只对已定义指标等权平均。M2 未设置时，extract_success 和 metric 保留 null，且不计入分母，总分等于 M1 最终分。已定义但不可测的指标仍占权重，贡献为 0。',
-        f'测量状态：{verbose.get("status")}。原因：{verbose.get("reason")}',
+        f'# {result["task_id"]} V2 measurement and scoring',
+        str(verbose.get('principle') or "See measurement_process and the extraction failure reason."),
+        "Raw quantities and measurement process:\n```json\n" + json.dumps(verbose.get('measurements', {}), ensure_ascii=False, indent=2, default=str) + '\n```',
+        "Normalization:\n```json\n" + json.dumps(verbose.get('normalization', {}), ensure_ascii=False, indent=2) + '\n```',
+        "Metric scores:\n```json\n" + json.dumps(result['metrics'], ensure_ascii=False, indent=2) + '\n```',
+        f'Total score = {" + ".join(terms) or "0"} = {result["proxy"]["score"]}.',
+        "The total is the equal-weight mean of defined metrics only. When M2 is not defined, extract_success and metric remain null and M2 is excluded from the denominator; the total equals the final M1 score. Defined but unmeasurable metrics retain their weight and contribute zero.",
+        f'Measurement status: {verbose.get("status")}. Reason: {verbose.get("reason")}',
     ]) + '\n', encoding='utf-8')
     return score_path
 
@@ -36,10 +36,10 @@ def finalize(result, task_dir, debug_dir):
             artifacts.setdefault(path.stem, str(path))
     artifacts['scoring_calculation'] = str(write_scoring_calculation(result, debug_dir))
     verbose.setdefault('measurement_process', [
-        '解码原始视频，保存每帧 PTS；核验对应首帧和物体身份。',
-        '从实际图像分割区域、边缘或轨迹；测量窗口和可靠性检查保存在原始量与证据文件中。',
+        "Decode the original video, retain every frame PTS, and verify the corresponding first frame and object identities.",
+        "Segment regions, edges, or trajectories from observed images; retain measurement windows and reliability checks in the raw quantities and evidence files.",
         verbose.get('principle'),
-        '分别保存原始物理量、纯物理分和每项一次的识别奖励；总分仅对已定义指标等权平均。',
+        "Store raw physical quantities, pure physics scores, and one recognition reward per metric separately; average only defined metrics for the total.",
     ])
     result['path_base'] = 'task_directory'
     # CLI input paths are relative to the caller's cwd, while output paths are

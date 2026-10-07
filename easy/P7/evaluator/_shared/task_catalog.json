@@ -1,8 +1,8 @@
 {
   "P7": {
     "difficulty": "Easy",
-    "phenomenon": "链条悬垂静态形状",
-    "domain": "柔性结构",
+    "phenomenon": "Static shape of a hanging chain",
+    "domain": "Flexible structures",
     "original_group": "g5",
     "package_path": "../..",
     "difficulty_score": 0.7085666934825214,
@@ -10,7 +10,7 @@
     "legacy_id": "P44",
     "category_index": 2,
     "category": "Rolling, Friction, and Rigid-Body Statics",
-    "category_zh": "滚动、摩擦与刚体静力学",
+    "category_zh": "Rolling, Friction, and Rigid-Body Statics",
     "title": "Hanging-chain equilibrium"
   }
 }

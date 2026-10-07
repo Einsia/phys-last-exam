@@ -1,8 +1,8 @@
 {
   "P24": {
     "difficulty": "Easy",
-    "phenomenon": "水冻结体积膨胀",
-    "domain": "热学",
+    "phenomenon": "Volume expansion as water freezes",
+    "domain": "Thermal physics",
     "original_group": "g5",
     "package_path": "../..",
     "difficulty_score": 0.4384507020248576,
@@ -10,7 +10,7 @@
     "legacy_id": "P23",
     "category_index": 6,
     "category": "Phase Transitions and Melting",
-    "category_zh": "相变与融化",
+    "category_zh": "Phase Transitions and Melting",
     "title": "Freezing-induced expansion",
     "empirical_difficulty": "Medium",
     "difficulty_source": "manual_override"

@@ -1,8 +1,8 @@
 {
   "P23": {
     "difficulty": "Medium",
-    "phenomenon": "静止液面与重力方向垂直",
-    "domain": "流体静力学 / 力学",
+    "phenomenon": "A stationary liquid surface is perpendicular to gravity",
+    "domain": "Hydrostatics / Mechanics",
     "original_group": "g4",
     "package_path": "../..",
     "difficulty_score": 0.3236246511521217,
@@ -10,7 +10,7 @@
     "legacy_id": "P18",
     "category_index": 5,
     "category": "Hydrostatics and Buoyancy",
-    "category_zh": "流体静力学与浮力",
+    "category_zh": "Hydrostatics and Buoyancy",
     "title": "Liquid-surface orientation"
   }
 }

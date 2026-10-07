@@ -1,8 +1,8 @@
 {
   "P26": {
     "difficulty": "Hard",
-    "phenomenon": "含石浮冰融化",
-    "domain": "热学 / 浮力",
+    "phenomenon": "Melting floating ice containing a stone",
+    "domain": "Thermal physics / Buoyancy",
     "original_group": "g5",
     "package_path": "../..",
     "difficulty_score": 0.034453125,
@@ -10,7 +10,7 @@
     "legacy_id": "P21b",
     "category_index": 6,
     "category": "Phase Transitions and Melting",
-    "category_zh": "相变与融化",
+    "category_zh": "Phase Transitions and Melting",
     "title": "Ice with a stone: melting"
   }
 }

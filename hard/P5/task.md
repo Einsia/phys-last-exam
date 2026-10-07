@@ -1,33 +1,33 @@
-# P5 · 等质量钢球正碰
+# P5 · Equal-mass collision
 
-分类：1. 平动与碰撞（Translational Motion and Collisions）；原编号：`P5`。
+Category: 1. Translational Motion and Collisions; legacy ID: `P5`.
 
-难度：困难；本轮任务排名：34/40；平均最终综合分：0.157530。
+Difficulty: Hard; task rank: 34/40; mean final total score: 0.157530.
 
-任务 ID：`P5`。
+Task ID: `P5`.
 
-水平表面上两个等大小、等质量球正碰：左侧红球匀速向右撞击初始静止的蓝球。应呈现等质量弹性碰撞后的速度传递，运动始终保持水平。
+Two equal-size, equal-mass balls collide head-on on a horizontal surface. A red ball moves right at constant speed toward an initially stationary blue ball. Motion remains horizontal, with speed transfer expected after an equal-mass elastic collision.
 
-## 输入
+## Inputs
 
-唯一参考首帧为题包根目录的 [first_frame.png](first_frame.png)。待评测视频由外部提供，不属于题包内容。
+The only reference first frame is [first_frame.png](first_frame.png) in the task root. Videos are supplied externally for evaluation and are not included in the task package.
 
-## 当前物理指标
+## Current physical metrics
 
-- M1：(v₁碰后+v₂碰后)/v₁碰前−1，衡量等质量体系的动量关系；无量纲。
-- 本题只定义 M1。
+- M1: (v1_after+v2_after)/v1_before-1, assessing the equal-mass momentum relationship; dimensionless.
+- This task defines only M1.
 
-以上为原始测量量；归一化后的物理分数取值为 0–1。
+These are raw measured quantities; normalized physics scores range from 0 to 1.
 
-## 生成提示词原文
+## Original generation prompt
 
 ```text
 Locked-off static camera, side view. Two identical balls of equal size sit on a level horizontal surface. The left (red) ball slides to the right at a steady speed and strikes the right (blue) ball, which is initially at rest. After the head-on collision the balls behave as equal-mass elastic spheres. The motion is purely horizontal and stays inside the frame. The camera does not move, pan, or zoom. Plain flat background, only the two balls on the surface, nothing else enters the frame.
 ```
 
-## 评测入口
+## Evaluation entrypoint
 
-在本题目录中执行，输入和输出视频路径均可放在题包外：
+Run from this task directory; input and output paths may reside outside the task package:
 
 ```sh
 python evaluator/evaluate.py \
@@ -37,4 +37,4 @@ python evaluator/evaluate.py \
   --output /absolute/path/to/result.json
 ```
 
-指标定义依据：`v4/g1/P5/evaluator/utils/physeval/tasks/p5.py:49`；`v4/unified_evaluators/contract.py:100`；`v4/g1/P5/evaluator/utils/physeval/tasks/p5.py:58`。
+Metric definition references: `v4/g1/P5/evaluator/utils/physeval/tasks/p5.py:49`; `v4/unified_evaluators/contract.py:100`; `v4/g1/P5/evaluator/utils/physeval/tasks/p5.py:58`.

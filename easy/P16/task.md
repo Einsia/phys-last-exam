@@ -1,25 +1,25 @@
-# P16 · 刚体共线点交比
+# P16 · Collinear-point cross-ratio
 
-分类：4. 光学与投影几何（Optics and Projective Geometry）；原编号：`P16`。
+Category: 4. Optics and Projective Geometry; legacy ID: `P16`.
 
-难度：简单；本轮任务排名：4/40；平均最终综合分：0.710831。
+Difficulty: Easy; task rank: 4/40; mean final total score: 0.710831.
 
-任务 ID：`P16`。
+Task ID: `P16`.
 
-一根带四个不同颜色共线标记的刚直杆，上端接触竖墙、下端接触水平地面。杆从静止释放，上端沿墙下滑、下端沿地面外移，发生平移和转动；标记固定、杆保持直线。透视投影中的四点交比应保持不变。
+A straight rigid rod with four differently colored collinear markers rests against a vertical wall and horizontal floor. Released from rest, its upper end slides down the wall while its lower end moves outward along the floor, producing translation and rotation. Markers remain fixed and the rod stays straight. The four-point cross-ratio should remain invariant under perspective projection.
 
-## 输入
+## Inputs
 
-唯一参考首帧为题包根目录的 [first_frame.png](first_frame.png)。待评测视频由外部提供，不属于题包内容。
+The only reference first frame is [first_frame.png](first_frame.png) in the task root. Videos are supplied externally for evaluation and are not included in the task package.
 
-## 当前物理指标
+## Current physical metrics
 
-- M1：有效帧中四标记交比的变异系数 std(χ)/|mean(χ)|，无量纲。
-- M2：每帧四标记共线拟合残差/标记跨度，再跨有效帧取平均；无量纲。
+- M1: Coefficient of variation of the four-marker cross-ratio over valid frames, std(chi)/|mean(chi)|; dimensionless.
+- M2: Per-frame residual of the collinear four-marker fit divided by marker span, averaged over valid frames; dimensionless.
 
-以上为原始测量量；归一化后的物理分数取值为 0–1。
+These are raw measured quantities; normalized physics scores range from 0 to 1.
 
-## 生成提示词原文
+## Original generation prompt
 
 ```text
 A single continuous real-time shot from a locked-off static side camera, matching the input first frame.
@@ -35,9 +35,9 @@ Keep the complete rod, both endpoints, all four markers, and the wall-floor cont
 The wall, floor, background, and camera remain stationary. No camera movement, panning, zooming, cuts, slow motion, pauses, or time jumps. No hands or people. No new objects, trajectories, guide lines, arrows, measurements, labels, or annotations.
 ```
 
-## 评测入口
+## Evaluation entrypoint
 
-在本题目录中执行，输入和输出视频路径均可放在题包外：
+Run from this task directory; input and output paths may reside outside the task package:
 
 ```sh
 python evaluator/evaluate.py \
@@ -47,4 +47,4 @@ python evaluator/evaluate.py \
   --output /absolute/path/to/result.json
 ```
 
-指标定义依据：`v4/g4/P16/evaluator/utils/physeval/tasks/p16.py:48`；`v4/unified_evaluators/contract.py:100`；`v4/g4/P16/evaluator/utils/physeval/tasks/p16.py:55`。
+Metric definition references: `v4/g4/P16/evaluator/utils/physeval/tasks/p16.py:48`; `v4/unified_evaluators/contract.py:100`; `v4/g4/P16/evaluator/utils/physeval/tasks/p16.py:55`.

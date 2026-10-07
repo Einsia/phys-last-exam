@@ -30,7 +30,7 @@ def apply(data):
         original_reason = metric['reason'] or 'Required physical phenomenon was not resolved.'
         metric.update(status='not_observed', physics_score=0.0, raw_value=None,
                       evaluation_source='unobserved_zero_policy',
-                      reason='未获得该指标所需的可评分物理现象证据，按规则记0。提取诊断：' + original_reason)
+                      reason="No scoreable physical-phenomenon evidence was obtained for this metric; assign zero under the policy. Extraction diagnostics: " + original_reason)
         metric['normalization']['zero_policy'] = {
             'version': VERSION, 'assigned_score': 0.0,
             'extraction_reason': original_reason, 'raw_measurement_available': False,
@@ -47,7 +47,7 @@ def apply(data):
         status='scored_with_zero', score=physical_score,
         scored_metrics=len(defined), zero_policy_metrics=missing,
         missing_metric_policy=VERSION,
-        reason='评测完成；' + '、'.join(missing) + '未形成可评分的物理现象证据，按规则记0。')
+        reason="Evaluation completed; " + ", ".join(missing) + ": no scoreable physical-phenomenon evidence was obtained; assign zero under the policy.")
     data['score'].update(physics_contribution=.85*physical_score,
                          total=.15*data['consistency']['score']+.85*physical_score)
     return data

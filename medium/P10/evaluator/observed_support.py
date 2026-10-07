@@ -113,7 +113,7 @@ def measure(quads, times, offset, reference_residual, ground, config):
         'hidden_rotation_measured':False,
     }
     if not event_observed:
-        measurements['observed_event_zero_reason'] = '可见连续片段内没有达到5度的倾倒转动；保留实际位移和角点，物理分记0。未观测片段的运动未知。'
+        measurements['observed_event_zero_reason'] = "No toppling rotation of at least 5 degrees is observed in continuous visible intervals; retain measured displacement and corners and assign a physics score of 0. Motion during unobserved intervals is unknown."
     # Diagnostics preserve holes; no fabricated corner enters an overlay.
     diagnostic = {'valid':valid, 'theta':theta, 'displacement':displacement,
                   'contact':contact, 'rigid':rigid, 'support':support, 'noise':noise}
@@ -138,7 +138,7 @@ def evaluate(context):
     c.annotations['block'] = {'observed_quads':quads, 'trajectory_xy':quads.mean(1)}
     score, measurements, data = measure(quads, c.t, offset, residual, c.a['geometry']['ground_points'], c.cfg)
     c.m.update(
-        principle='在持续外力推动条件下，从实际可见角点检查支撑接触点、地面距离和刚体形状；隐藏片段保持未知。',
+        principle="Under continuous external pushing, use observed corners to check support contact, ground distance, and rigid-body shape; hidden intervals remain unknown.",
         measurements=measurements,
         score_details={'version':VERSION,
             'formula':'observed_rotation * 1/(1+max(resolved_pivot_drift, resolved_contact_error, rigid_shape_error)/geometry_error_half_score)',
@@ -149,7 +149,7 @@ def evaluate(context):
         applicability={'driving':'continuous external actuator as specified by the task',
             'free_instability_onset_required':False, 'ground_geometry':'observed static first-frame support line',
             'limitations':'checks observed support kinematics only; hidden motion, forces, friction and 3-D depth are not measured'},
-        reason=measurements.get('observed_event_zero_reason') or '从全部连续可见片段测量支撑与刚体关系；保留实际覆盖和缺失片段，不要求整段95%的角点覆盖。')
+        reason=measurements.get('observed_event_zero_reason') or "Measure support and rigid-body relationships across all continuous visible intervals; retain observed coverage and missing intervals without requiring 95% corner coverage over the whole clip.")
     csv_file(c.out/'pose_events.csv', {'frame':np.arange(len(c.t)), 'time_sec':c.t,
         'theta_deg':data['theta'], 'pivot_drift_px':data['displacement'],
         'contact_gap_px':data['contact'], 'rigid_shape_relative_change':data['rigid']})

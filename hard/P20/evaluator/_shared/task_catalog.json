@@ -1,8 +1,8 @@
 {
   "P20": {
     "difficulty": "Hard",
-    "phenomenon": "折射与全反射临界角",
-    "domain": "光学",
+    "phenomenon": "Refraction and the critical angle of total internal reflection",
+    "domain": "Optics",
     "original_group": "g7",
     "package_path": "../..",
     "difficulty_score": 0.1927736865878002,
@@ -10,7 +10,7 @@
     "legacy_id": "P12",
     "category_index": 4,
     "category": "Optics and Projective Geometry",
-    "category_zh": "光学与投影几何",
+    "category_zh": "Optics and Projective Geometry",
     "title": "Total-reflection critical angle"
   }
 }

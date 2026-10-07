@@ -4,11 +4,11 @@ from .contract import KEYS, clip, gm, measurement_block, metric, present, q
 
 G3_SCALES = {'P3':0.15, 'P1':0.18, 'P8':0.25, 'P14':0.20, 'P17':0.12}
 G3_LOGIC = {
-    'P3': ('分别测量两条完整抛物轨迹的射程，计算 R30/R60 - 1。', '分别拟合 30°、60° 轨迹，按球直径归一化残差，并比较初速度。'),
-    'P1': ('从独立观测的反弹高度与时间估计恢复系数；同时检查两种估计的一致性和被动碰撞恢复系数不超过1。', '用相邻反弹高度增加的相对幅度连续衡量无外部能量输入条件下的能量违例，并报告恢复系数变异。'),
-    'P8': ('测量球心累计位移、标记转角和球半径，计算积分形式的 v/(omega*R)-1。', '由球心速度与 omega*R 的差估计瞬时接触点速度残差。'),
-    'P14': ('跟踪两个摆锤与悬点，以峰值间隔估计周期，测量摆长，计算 abs((T1/T2)^2/(L1/L2)-1)。', '分别计算短摆和长摆周期的变异系数，再汇总纯物理分。'),
-    'P17': ('从时序亮度差分提取光束，独立拟合液面，测量光线与法线夹角，计算 sin(theta_i)/sin(theta_t)-n_water。', '计算入射光、折射光与液面交点的距离差，以冻结的容器宽度归一化。'),
+    'P3': ("Measure the ranges of both complete parabolic trajectories and compute R30/R60 - 1.", "Fit the 30-degree and 60-degree trajectories separately, normalize residuals by ball diameter, and compare initial speeds."),
+    'P1': ("Estimate restitution independently from bounce heights and timing; check agreement between estimates and that passive-collision restitution does not exceed 1.", "Continuously measure energy violations without external energy input using relative increases in successive bounce heights, and report restitution variability."),
+    'P8': ("Measure cumulative ball-center displacement, marker rotation, and ball radius to compute the integral form of v/(omega*R)-1.", "Estimate instantaneous contact-point velocity residual from the difference between ball-center speed and omega*R."),
+    'P14': ("Track both pendulum bobs and suspension points, estimate periods from peak intervals, measure lengths, and compute abs((T1/T2)^2/(L1/L2)-1).", "Compute period coefficients of variation for the short and long pendulums separately, then aggregate pure physics scores."),
+    'P17': ("Extract rays from temporal brightness differences, independently fit the waterline, measure ray angles relative to the normal, and compute sin(theta_i)/sin(theta_t)-n_water.", "Measure the separation between incident and refracted ray intersections with the waterline and normalize by the fixed vessel width."),
 }
 
 
@@ -40,7 +40,7 @@ def score_g3(task, values, validity, measurements=None, reason=None):
         physics = gm(c['physics_score'] for c in components[key].values())
         metrics[key] = metric(values[key], physics, validity.get(key, False))
         blocks[key] = measurement_block(G3_LOGIC[task][i], values[key],
-            steps=['解码该视频，并取得经过有效性检查的轨迹或几何。', '按本题冻结的事件选择、拟合和尺度定义重新计算物理量。', '残差归一化后，在指标层加入一次识别分。'],
+            steps=["Decode this video and obtain trajectories or geometry that pass validity checks.", "Recompute physical quantities using the fixed event selection, fitting, and scale definitions for the task.", "Normalize residuals and add the recognition reward once per metric."],
             measurements=measurements, normalization={'components':components[key], 'aggregation':'geometric mean' if len(components[key]) > 1 else 'single component'}, reason=reason)
     return metrics, blocks
 
@@ -81,19 +81,19 @@ def g3_result(raw):
     if task == 'P1' and measurements.get('single_motion_no_repeated_bounce') is True:
         metrics={key:metric({'observed_outcome':'single_motion_no_repeated_bounce'},.1,True) for key in KEYS}
         blocks={key:measurement_block(G3_LOGIC[task][i],metrics[key]['raw_value'] if 'raw_value' in metrics[key] else {'observed_outcome':'single_motion_no_repeated_bounce'},
-            measurements=measurements,steps=['持续跟踪确认只有单段运动，未形成可比较的多次回跳。'],
-            normalization={'policy':'opinion_v2_observed_single_motion','physics_score':.1},reason='已测得单段运动，按意见给物理分0.1。') for i,key in enumerate(KEYS)}
+            measurements=measurements,steps=["Continuous tracking confirms a single motion segment without multiple comparable bounces."],
+            normalization={'policy':'opinion_v2_observed_single_motion','physics_score':.1},reason="A single motion segment was measured; the evaluation specification assigns a physics score of 0.1.") for i,key in enumerate(KEYS)}
         return metrics,blocks
     return score_g3(task, values, valid, measurements,
         raw.get('failure_reason') or status.get('measurement_invalid_reasons') or raw.get('errors'))
 
 
 G7_LOGIC = {
-    'P9': ('由两物体轨迹估计共同运动方向，在多个虚拟参考位置比较相同路程的到达时间比与 sqrt(10/7)。', '按当前评测意见取消 M2；不测旋转或无滑动，不参与分母。'),
-    'P13': ('以转折点间隔估计两个摆的周期，比较周期比与已有有限振幅理论周期比。', '用 (T30/T15-1)/(r_theory-1) 的截断值衡量周期方向关系。'),
-    'P11': ('拟合斜板方向和上行、下行轨迹的加速度，比较实测加速度比与含摩擦理论值。', '按意见_v2取消M2，不参与评分分母。'),
-    'P20': ('独立拟合各透射光束和介质界面，用 Snell 几何估计折射率并计算变异系数；普通全反射仅提供下界，不视为临界角。', '按意见_v2取消M2，不参与评分分母。'),
-    'P28': ('先确认两侧冰持续缩小及液体形成；同帧比较以各自杯底为基准、按杯高归一化的液位。碎冰杯超过定位误差并持续至少0.25秒则记录液面阶段性领先；可见片段未领先与无法判断分开。本指标不等同完全融化时间或融化质量。', '二维投影面积不能辨识三维质量，面积比只保留为诊断；不纳入物理评分。'),
+    'P9': ("Estimate a shared motion direction from both trajectories and compare equal-distance travel-time ratios with sqrt(10/7) at multiple virtual reference positions.", "M2 is omitted under the current evaluation specification; rotation and no-slip behavior are not measured and do not enter the denominator."),
+    'P13': ("Estimate both pendulum periods from turning-point intervals and compare their ratio with the existing finite-amplitude theoretical ratio.", "Use the clipped value of (T30/T15-1)/(r_theory-1) to measure the direction of the period relationship."),
+    'P11': ("Fit the incline direction and accelerations along the ascending and descending trajectories; compare the measured acceleration ratio with friction-inclusive theory.", "M2 is omitted under evaluation specification v2 and excluded from the scoring denominator."),
+    'P20': ("Independently fit each transmitted ray and medium interface, estimate refractive indices using Snell geometry, and compute their coefficient of variation; ordinary total internal reflection supplies only a lower bound and is not treated as a critical angle.", "M2 is omitted under evaluation specification v2 and excluded from the scoring denominator."),
+    'P28': ("First confirm sustained ice shrinkage and liquid formation on both sides. Within the same frame, compare liquid levels relative to each vessel base and normalized by vessel height. Record a temporary lead when the crushed-ice vessel exceeds the localization error for at least 0.25 seconds. Distinguish an observed absence of a lead from insufficient evidence. This metric is not complete-melting time or melted mass.", "Two-dimensional projected area cannot identify three-dimensional mass; area ratios are retained only as diagnostics and excluded from physical scoring."),
 }
 
 
@@ -162,7 +162,7 @@ def g7_result(raw):
         if task == 'P28' and key == 'M2':
             metrics[key] = metric(defined=False)
             blocks[key] = {'defined':False,'principle':G7_LOGIC[task][i],
-                'measurement_steps':['保留投影面积诊断，但不从二维面积推断三维质量。'],
+                'measurement_steps':["Retain projected-area diagnostics without inferring three-dimensional mass from two-dimensional area."],
                 'measurements':{'projected_area_diagnostic':value,'equal_initial_mass':'declared task prerequisite; not identifiable from this view'},
                 'normalization':{'policy':'not_applicable; excluded from denominator'},'evidence':[]}
             continue
@@ -174,14 +174,14 @@ def g7_result(raw):
             normalization.update(coverage=coverage, aggregation='coverage * geometric mean of measured Snell ray scores')
         metrics[key] = metric(value,physics,base_ok)
         blocks[key] = measurement_block(G7_LOGIC[task][i],value,
-            steps=['逐帧解码并执行该题原有几何或运动提取。', '保留原有测量有效性检查；物理错误本身不取消识别分。', '使用冻结参数映射纯物理分，按指标计一次识别分。'],
-            measurements=measures,normalization=normalization,reason=('已识别但测量不稳定：可靠公共区间不足或轨迹不稳定。' if task=='P9' and measures.get('identification_status')=='identified_measurement_unstable' else raw.get('failure_reason')))
+            steps=["Decode frame by frame and apply the original geometry or motion extraction for this task.", "Retain the original measurement validity checks; physical errors alone do not remove the recognition reward.", "Map pure physics scores using fixed parameters and add the recognition reward once per metric."],
+            measurements=measures,normalization=normalization,reason=("Recognized but measurement is unstable: insufficient reliable shared intervals or unstable trajectories." if task=='P9' and measures.get('identification_status')=='identified_measurement_unstable' else raw.get('failure_reason')))
         if task == 'P28' and key == 'M1' and measures.get('surface_lead') is not None:
             blocks[key]['failure_reason'] = None
             blocks[key]['reason'] = measures['surface_lead']['reason_zh']
             blocks[key]['measurement_steps'] = [
-                '分别确认两侧冰持续缩小；仅比较形成可见液层的时段。',
-                '同帧以各自杯底为基准并按杯高归一化液位。',
-                '领先超出两侧定位误差之和并持续至少0.25秒，记录液面阶段性领先。',
-                '连续可读至少0.50秒却未观察到领先，与观测不足分开；缺口不插值。']
+                "Confirm sustained ice shrinkage on both sides separately; compare only intervals with a visible liquid layer.",
+                "Within the same frame, measure levels relative to each vessel base and normalize by vessel height.",
+                "Record a temporary liquid-level lead when it exceeds the sum of localization errors for at least 0.25 seconds.",
+                "Distinguish no observed lead during at least 0.50 seconds of continuous readable evidence from insufficient observations; do not interpolate gaps."]
     return metrics, blocks

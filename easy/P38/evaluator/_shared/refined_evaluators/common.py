@@ -96,7 +96,7 @@ def new_result(video, image=None, prompt=None, model=None, seed=None, thresholds
         'metrics': {'M1': {'extract_success': False, 'metric': None},
                     'M2': {'extract_success': None, 'metric': None}},
         'verbose': {'M1': {
-            'principle': '计算两根指南针相对于各自初始方向的有符号偏转，判断方向是否相反、幅度是否接近。',
+            'principle': "Measure the signed deflection of each compass from its own initial direction and assess whether directions are opposite and magnitudes are similar.",
             'status': 'extraction_failed', 'measurements': dict.fromkeys(keys),
             'thresholds': asdict(thresholds or Thresholds()), 'windows': {},
             'conditions': {}, 'evidence': [], 'reason': None}, 'M2': None}}

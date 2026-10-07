@@ -1,8 +1,8 @@
 {
   "P40": {
     "difficulty": "Medium",
-    "phenomenon": "液滴合并体积守恒",
-    "domain": "表面张力",
+    "phenomenon": "Volume conservation during droplet coalescence",
+    "domain": "Surface tension",
     "original_group": "g6",
     "package_path": "../..",
     "difficulty_score": 0.342852415753277,
@@ -10,7 +10,7 @@
     "legacy_id": "P48",
     "category_index": 9,
     "category": "Surface Tension and Viscous Flow",
-    "category_zh": "表面张力与黏性流",
+    "category_zh": "Surface Tension and Viscous Flow",
     "title": "Droplet volume conservation"
   }
 }

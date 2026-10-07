@@ -1,8 +1,8 @@
 {
   "P27": {
     "difficulty": "Hard",
-    "phenomenon": "淡水冰在盐水中融化",
-    "domain": "热学 / 浮力",
+    "phenomenon": "Freshwater ice melting in salt water",
+    "domain": "Thermal physics / Buoyancy",
     "original_group": "g5",
     "package_path": "../..",
     "difficulty_score": 0.1484375,
@@ -10,7 +10,7 @@
     "legacy_id": "P21c",
     "category_index": 6,
     "category": "Phase Transitions and Melting",
-    "category_zh": "相变与融化",
+    "category_zh": "Phase Transitions and Melting",
     "title": "Freshwater ice in saltwater"
   }
 }

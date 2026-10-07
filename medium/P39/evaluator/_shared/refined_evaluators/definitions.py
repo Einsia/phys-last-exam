@@ -1,12 +1,12 @@
 """Dependency-free public defaults, matching the task evaluator specifications."""
 PRINCIPLES={
-'P33':'由首帧缺口固定环身份，比较相对初始位置、固定初始外径归一化的最大升高量。',
-'P34':'在共同可见时间窗口和共同幅度门槛下，独立统计实心板与开槽板的完整摆动次数。',
-'P30':'比较可见磁体运动对应的感应活动时段与灯光时间重心，并检查静止期间的异常发光；模型与光度假设独立报告。',
-'P36':'由可见内腔及自由表面恢复轴对称体积，计算流量，独立拟合水与沙的 Q 对 h 指数。',
-'P10':'按持续外力推动任务测量支撑接触点漂移、离地距离与刚体形状变化；不使用自由失稳时序。',
-'P39':'独立拟合两泡外圆弧和有符号隔膜圆弧，按同帧三半径关系计算误差并进行 PTS 加权聚合。',
-'P38':'独立测量大小球外轮廓半径和触底前终端速度窗口，计算速度比相对半径平方比的误差。'}
+'P33':"Fix ring identities using the first-frame gap; compare maximum rises relative to initial positions, normalized by fixed initial outer diameters.",
+'P34':"Independently count complete oscillations of solid and slotted plates using a shared visibility window and amplitude threshold.",
+'P30':"Compare induction-active intervals associated with visible magnet motion against the light temporal centroid and check anomalous illumination while stationary; report model and photometric assumptions separately.",
+'P36':"Recover axisymmetric volume from the visible interior and free surface, compute flow rate, and independently fit the Q versus h exponents for water and sand.",
+'P10':"For the continuously forced task, measure support-contact drift, lift-off distance, and rigid-body shape changes; do not use free-instability timing.",
+'P39':"Independently fit both outer bubble arcs and the signed partition arc; compute the same-frame three-radius residual and aggregate with PTS weighting.",
+'P38':"Independently measure the outer radii of both balls and their pre-contact terminal-speed windows; compare the speed ratio with the squared-radius ratio."}
 DEFAULTS={
 'P39':dict(min_radius_ratio=1.03,min_partition_chord_small_diameter_ratio=.12,min_valid_duration_sec=.08,min_valid_frame_fraction=.10,max_relative_radius_uncertainty=.50,error_at_zero=1.,max_circle_relative_residual=.08,min_edge_coverage=.40,max_partition_band_chord_ratio=.08),
 'P33':dict(margin=.2,smooth_window_sec=.08,peak_window_sec=.12,height_noise_diameter=.01,min_height_snr=3.,max_track_gap_sec=.1,min_valid_track_fraction=.9),

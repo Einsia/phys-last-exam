@@ -1,33 +1,33 @@
-# P4 · 斜抛运动
+# P4 · Projectile motion
 
-分类：1. 平动与碰撞（Translational Motion and Collisions）；原编号：`P2`。
+Category: 1. Translational Motion and Collisions; legacy ID: `P2`.
 
-难度：困难；本轮任务排名：33/40；平均最终综合分：0.183322。
+Difficulty: Hard; task rank: 33/40; mean final total score: 0.183322.
 
-任务 ID：`P4`。
+Task ID: `P4`.
 
-固定侧视镜头中，一个红球从地面以 45° 方向起抛，连续上升、经过最高点并落回同一地面高度。应呈现完整抛物轨迹、近似恒定的水平速度和恒定的竖直加速度。
+A fixed side-view camera observes a red ball launched from ground level at 45 degrees. It continuously rises, passes its apex, and returns to the same ground height. The complete trajectory should be parabolic with approximately constant horizontal speed and vertical acceleration.
 
-## 输入
+## Inputs
 
-唯一参考首帧为题包根目录的 [first_frame.png](first_frame.png)。待评测视频由外部提供，不属于题包内容。
+The only reference first frame is [first_frame.png](first_frame.png) in the task root. Videos are supplied externally for evaluation and are not included in the task package.
 
-## 当前物理指标
+## Current physical metrics
 
-- M1：H/R−tan(θ)/4，其中 H 为最高点高度、R 为射程、θ=45°，无量纲。
-- M2：组合水平速度 CV(v_x)、竖直速度增量 CV(Δv_y) 和抛物线拟合 RMS/R；三项均无量纲，分别归一化后的物理分数取几何均值。
+- M1: H/R-tan(theta)/4, where H is apex height, R is range, and theta=45 degrees; dimensionless.
+- M2: Combine horizontal-speed CV(v_x), vertical-speed-increment CV(delta_v_y), and parabolic-fit RMS/R. All are dimensionless; normalized physics scores are combined by geometric mean.
 
-以上为原始测量量；归一化后的物理分数取值为 0–1。
+These are raw measured quantities; normalized physics scores range from 0 to 1.
 
-## 生成提示词原文
+## Original generation prompt
 
 ```text
 Locked-off static camera, side view. A red ball on the ground launches immediately at 45 degrees above the horizontal, rises smoothly to the top of its arc, and falls back to the same ground level in one continuous trajectory. The whole arc stays inside the frame. The camera does not move, pan, or zoom. Plain flat background, no other objects, nothing enters the frame.
 ```
 
-## 评测入口
+## Evaluation entrypoint
 
-在本题目录中执行，输入和输出视频路径均可放在题包外：
+Run from this task directory; input and output paths may reside outside the task package:
 
 ```sh
 python evaluator/evaluate.py \
@@ -37,4 +37,4 @@ python evaluator/evaluate.py \
   --output /absolute/path/to/result.json
 ```
 
-指标定义依据：`v4/g1/P2/evaluator/utils/physeval/tasks/p2.py:37`；`v4/unified_evaluators/contract.py:100`；`v4/g1/P2/evaluator/utils/physeval/tasks/p2.py:45`。
+Metric definition references: `v4/g1/P2/evaluator/utils/physeval/tasks/p2.py:37`; `v4/unified_evaluators/contract.py:100`; `v4/g1/P2/evaluator/utils/physeval/tasks/p2.py:45`.

@@ -123,7 +123,7 @@ def to_v4(result, *, task_root=None, runtime_error=None):
     data=apply(data)
     if task_id=='P9' and (metrics['M1'].get('measurements') or {}).get('identification_status')=='identified_measurement_unstable':
         data['physics']['observation_status']='identified_measurement_unstable'
-        data['physics']['reason']='已识别但测量不稳定；可靠公共区间不足，不归为完全未测。'
+        data['physics']['reason']="Recognized but measurement is unstable; reliable shared intervals are insufficient, so the result is not classified as entirely unmeasured."
     validate(data);return data
 
 

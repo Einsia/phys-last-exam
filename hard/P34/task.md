@@ -1,38 +1,38 @@
-# P34：实心板与开槽板的涡流阻尼
+# P34 · Solid vs. slotted plate damping
 
-分类：7. 静电、磁学与电磁感应（Electrostatics, Magnetism, and Electromagnetic Induction）；原编号：`P38`。
+Category: 7. Electrostatics, Magnetism, and Electromagnetic Induction; legacy ID: `P38`.
 
-难度：困难；本轮任务排名：39/40；平均最终综合分：0.142813。
+Difficulty: Hard; task rank: 39/40; mean final total score: 0.142813.
 
-## 场景与目标
+## Scene and objective
 
-固定镜头观察质量及转动惯量匹配的实心导体板和开槽导体板。两板从相同角度、零初速同时释放，经过等效磁场区域并持续摆动；比较同一观察窗口中的完整摆动次数，观察开槽对涡流阻尼的影响。
+A fixed camera observes solid and slotted conducting plates matched in mass and moment of inertia. Released simultaneously from the same angle with zero initial speed, both swing through equivalent magnetic-field regions. Compare complete oscillations within the same observation window to examine the effect of slots on eddy-current damping.
 
-## 输入
+## Inputs
 
-- 首帧：[first_frame.png](first_frame.png)。
-- 视频生成提示词：[prompt.txt](prompt.txt)。
-- 待评视频：外部输入，通过 `--video` 指定。
+- First frame: [first_frame.png](first_frame.png).
+- Video generation prompt: [prompt.txt](prompt.txt).
+- Evaluation video: external input specified with `--video`.
 
-## 提示词原文
+## Original prompt
 
 ```text
 Locked-off static camera, front view. Continue from the supplied first frame. A solid conducting plate and a slotted conducting plate, matched in total mass and rotational inertia, are released simultaneously from the same initial angle with zero initial speed and swing through equivalent magnetic-field regions. Both oscillations remain fully visible for multiple cycles. The camera does not move, pan, or zoom. Plain background.
 ```
 
-## M1 物理指标
+## M1 physical metric
 
-M1 在共同观察窗口、共同角振幅门槛下，分别统计实心板和开槽板的有效完整周期数 `N_solid`、`N_slotted`（整数）。
+M1 counts valid complete cycles `N_solid` and `N_slotted` (integers) within a shared observation window and using a shared angular-amplitude threshold.
 
-`M1 = 1，若 N_solid < N_slotted；否则为 0`
+`M1 = 1 if N_solid < N_slotted, otherwise 0`
 
-当 `N_slotted=0` 时记 0，次数比保持空值。默认观察窗口至少 2 秒，振幅门槛为 `max(1°, 0.1 × 两板初始绝对角度的平均值)`。完整周期由同一极性的边界配对；截断的部分周期不计数。当前指标不估计衰减率。
+When `N_slotted=0`, assign 0 and leave the count ratio null. The default minimum observation window is 2 seconds and the amplitude threshold is `max(1 degree, 0.1 * mean initial absolute angle of both plates)`. Complete cycles pair boundaries of the same polarity; truncated partial cycles are not counted. The metric does not estimate decay rate.
 
-实现依据：[measured_center.py](evaluator/measured_center.py) 的 `p34` 与 [observed_zero.py](evaluator/observed_zero.py)。
+Implementation: `p34` in [measured_center.py](evaluator/measured_center.py) and [observed_zero.py](evaluator/observed_zero.py).
 
-## 评测入口
+## Evaluation entrypoint
 
-从本题目录运行：
+Run from this task directory:
 
 ```bash
 python evaluator/evaluate.py \

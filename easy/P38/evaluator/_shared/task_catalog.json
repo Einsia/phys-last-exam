@@ -1,8 +1,8 @@
 {
   "P38": {
     "difficulty": "Easy",
-    "phenomenon": "黏性流体中小球终端速度",
-    "domain": "低 Reynolds 流体",
+    "phenomenon": "Terminal speed of spheres in a viscous fluid",
+    "domain": "Low-Reynolds-number fluids",
     "original_group": "g9",
     "package_path": "../..",
     "difficulty_score": 0.6425510377690191,
@@ -10,7 +10,7 @@
     "legacy_id": "P49",
     "category_index": 9,
     "category": "Surface Tension and Viscous Flow",
-    "category_zh": "表面张力与黏性流",
+    "category_zh": "Surface Tension and Viscous Flow",
     "title": "Viscous settling speed"
   }
 }

@@ -1,8 +1,8 @@
 {
   "P31": {
     "difficulty": "Medium",
-    "phenomenon": "带电小球对称平衡",
-    "domain": "静电",
+    "phenomenon": "Symmetric equilibrium of charged balls",
+    "domain": "Electrostatics",
     "original_group": "g2",
     "package_path": "../..",
     "difficulty_score": 0.35158162141088994,
@@ -10,7 +10,7 @@
     "legacy_id": "P28",
     "category_index": 7,
     "category": "Electrostatics, Magnetism, and Electromagnetic Induction",
-    "category_zh": "静电、磁学与电磁感应",
+    "category_zh": "Electrostatics, Magnetism, and Electromagnetic Induction",
     "title": "Charged-sphere equilibrium"
   }
 }

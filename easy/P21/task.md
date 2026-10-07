@@ -1,33 +1,33 @@
-# P21 · 连通器液面平衡
+# P21 · Communicating vessels
 
-分类：5. 流体静力学与浮力（Hydrostatics and Buoyancy）；原编号：`P19`。
+Category: 5. Hydrostatics and Buoyancy; legacy ID: `P19`.
 
-难度：简单；本轮任务排名：1/40；平均最终综合分：0.964831。
+Difficulty: Easy; task rank: 1/40; mean final total score: 0.964831.
 
-任务 ID：`P21`。
+Task ID: `P21`.
 
-透明 U 形连通管的两臂粗细不同，其中盛有同一种连续液体。液体从受扰动状态自由恢复到静止平衡，两侧液面始终可见，液体总量不变。平衡时两臂液面应等高。
+A transparent U-shaped communicating vessel has arms of different widths containing the same continuous liquid. The liquid returns freely from a disturbed state to static equilibrium. Both waterlines remain visible and total liquid quantity stays fixed. At equilibrium, both levels should be equal.
 
-## 输入
+## Inputs
 
-唯一参考首帧为题包根目录的 [first_frame.png](first_frame.png)。待评测视频由外部提供，不属于题包内容。
+The only reference first frame is [first_frame.png](first_frame.png) in the task root. Videos are supplied externally for evaluation and are not included in the task package.
 
-## 当前物理指标
+## Current physical metrics
 
-- M1：末段左右液面高度中位数之差，除以参考高度；无量纲。
-- M2：末段两侧液面线性变化速度绝对值的较大值，除以画面高度；单位为每帧，即 frame⁻¹。
+- M1: Difference between the median final left and right water levels, divided by reference height; dimensionless.
+- M2: Larger absolute linear water-level velocity in the final interval, divided by image height; units are inverse frames, frame^-1.
 
-以上为原始测量量；归一化后的物理分数取值为 0–1。
+These are raw measured quantities; normalized physics scores range from 0 to 1.
 
-## 生成提示词原文
+## Original generation prompt
 
 ```text
 Locked-off static camera, front view. A transparent U-shaped tube has two vertical arms with clearly different diameters and contains the same continuous liquid. The liquid is initially disturbed and then freely settles back to static equilibrium. You need to display how the liquid in the U-shaped tube reaches a state of equilibrium. The total amount of liquid remains constant throughout the entire process, with no liquid added, removed, appearing, or disappearing. Both liquid surfaces remain clearly visible throughout the process. The camera does not move, pan, or zoom. Plain background, no other objects.
 ```
 
-## 评测入口
+## Evaluation entrypoint
 
-在本题目录中执行，输入和输出视频路径均可放在题包外：
+Run from this task directory; input and output paths may reside outside the task package:
 
 ```sh
 python evaluator/evaluate.py \
@@ -37,4 +37,4 @@ python evaluator/evaluate.py \
   --output /absolute/path/to/result.json
 ```
 
-指标定义依据：`v4/g2/P19/evaluator/measure_backend.py:350`；`v4/unified_evaluators/contract.py:155`。
+Metric definition references: `v4/g2/P19/evaluator/measure_backend.py:350`; `v4/unified_evaluators/contract.py:155`.

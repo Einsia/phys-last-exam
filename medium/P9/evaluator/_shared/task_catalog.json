@@ -1,8 +1,8 @@
 {
   "P9": {
     "difficulty": "Medium",
-    "phenomenon": "实心球与圆环滚动对比",
-    "domain": "转动动力学",
+    "phenomenon": "Rolling comparison of a solid sphere and a hoop",
+    "domain": "Rotational dynamics",
     "original_group": "g7",
     "package_path": "../..",
     "difficulty_score": 0.28411415438886384,
@@ -10,7 +10,7 @@
     "legacy_id": "P7",
     "category_index": 2,
     "category": "Rolling, Friction, and Rigid-Body Statics",
-    "category_zh": "滚动、摩擦与刚体静力学",
+    "category_zh": "Rolling, Friction, and Rigid-Body Statics",
     "title": "Solid sphere vs. hoop"
   }
 }

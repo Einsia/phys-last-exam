@@ -1,18 +1,18 @@
-# P20：折射与全反射临界角
+# P20 · Total-reflection critical angle
 
-分类：4. 光学与投影几何（Optics and Projective Geometry）；原编号：`P12`。
+Category: 4. Optics and Projective Geometry; legacy ID: `P12`.
 
-难度：困难；本轮任务排名：31/40；平均最终综合分：0.192774。
+Difficulty: Hard; task rank: 31/40; mean final total score: 0.192774.
 
-## 场景与目标
+## Scene and objective
 
-固定水面上有四束可区分的有色光束及各自的界面交点。先补全穿过界面的光路，再保持交点固定地改变入射方向；目标行为是遵循折射定律及适用条件下的全反射。当前评分比较独立光束推得的折射率是否一致。
+Four distinguishable colored light beams meet a fixed water surface at separate interface points. First complete the paths through the interface, then change incident directions while holding intersection points fixed. The target behavior follows refraction and, when applicable, total internal reflection. Scoring compares refractive indices inferred independently from the beams.
 
-## 输入与评测
+## Inputs and evaluation
 
-首帧：[first_frame.png](first_frame.png)。生成提示词：[prompt.txt](prompt.txt)。视频为外部评测输入，应与所用首帧和提示词对应。
+First frame: [first_frame.png](first_frame.png). Generation prompt: [prompt.txt](prompt.txt). Videos are external evaluation inputs and must correspond to the supplied first frame and prompt.
 
-在本题目录、已安装项目运行依赖的 Python 环境中执行：
+Run from this task directory using a Python environment with the project runtime dependencies installed:
 
 ```sh
 python evaluator/evaluate.py \
@@ -21,17 +21,17 @@ python evaluator/evaluate.py \
   --output /absolute/path/result.json
 ```
 
-## 当前指标
+## Current metrics
 
-下表 P 为各指标的纯物理分，范围为0–1。原始量与物理分分别保留；观测不足时原始量为 null，适用的未观察到现象规则可计物理分0。完整输出另含一致性判断。
+In the table below, P is the pure physics score for each metric, ranging from 0 to 1. Raw quantities and physics scores are retained separately. With insufficient observations, raw quantities are null; the applicable unobserved-phenomenon policy may assign a physics score of 0. Full outputs also include consistency assessment.
 
-| 指标 | 定义与公式 | 单位 |
+| Metric | Definition and formula | Units |
 | --- | --- | --- |
-| M1：折射率估计一致性 | 各可测光束按 Snell 几何估计折射率 n；e=std(n)/mean(n)；P=1/(1+e/0.05)。普通全反射只提供下界，不冒充临界角等式。 | n、e 与 P 无量纲。 |
+| M1: Refractive-index consistency | Estimate n from each measurable beam using Snell geometry; e=std(n)/mean(n); P=1/(1+e/0.05). Ordinary total internal reflection supplies only a lower bound, not a critical-angle equality. | n, e, and P are dimensionless. |
 
-当前公式依据：`v4/g7/evaluator/tasks/p12_optics.py:1193`；`v4/unified_evaluators/physics.py:150`。
+Formula references: `v4/g7/evaluator/tasks/p12_optics.py:1193`; `v4/unified_evaluators/physics.py:150`.
 
-## 生成提示词原文
+## Original generation prompt
 
 ```text
 Locked-off exact front orthographic view. Continue the incident-only frame in two stages while keeping the horizontal water surface and all four surface hit points fixed. In stage one, complete each coloured beam across the interface with its physically correct Snell-law outcome. In stage two, smoothly swing each beam pair about its own fixed hit point, continuously preserving the refractive relationship between the air and water arms. Keep the tank, water level, dashed normals, colours, camera, scale and background fixed; do not slide a corner along the surface or add text or extra apparatus.

@@ -110,7 +110,7 @@ def physeval_result(raw):
         if ok and present(value):
             # Recompute from the original measurement/anchor, avoiding score rounding.
             rule = v.get('score_rule', '')
-            physics = clip(value) if v.get('non_residual', '比例/覆盖率/置信度' in rule) else q(float(value)-v.get('ideal', 0.0), v['error_scale_a'])
+            physics = clip(value) if v.get('non_residual', "ratio/coverage/confidence" in rule) else q(float(value)-v.get('ideal', 0.0), v['error_scale_a'])
         out = metric(value, physics, ok, defined=ok is not None)
         if key == 'M1':
             slots[key] = out
@@ -125,7 +125,7 @@ def physeval_result(raw):
         success = all(m['extract_success'] for _, m, _ in auxiliary)
         value = next(iter(values.values())) if len(values) == 1 else values
         slots['M2'] = metric(value, physics, success)
-        blocks['M2'] = measurement_block('；'.join(v.get('principle') or v.get('measures', k) for k, _, v in auxiliary),
+        blocks['M2'] = measurement_block("; ".join(v.get('principle') or v.get('measures', k) for k, _, v in auxiliary),
             value, steps=[step for _, _, v in auxiliary for step in v.get('measurement_steps', [])],
             measurements={k: v.get('quantities', {}) for k, _, v in auxiliary},
             normalization={'combination': 'geometric mean of all required auxiliary physics scores; recognition once',
@@ -134,21 +134,21 @@ def physeval_result(raw):
         blocks['M2']['submetrics'] = {k: {'metric':m, 'measurement':v} for k,m,v in auxiliary}
     else:
         slots['M2'] = metric(defined=False)
-        blocks['M2'] = {'defined':False, 'principle':'本题未定义 M2。', 'measurement_steps':[], 'evidence':[]}
+        blocks['M2'] = {'defined':False, 'principle':"This task defines no M2.", 'measurement_steps':[], 'evidence':[]}
     return slots, blocks
 
 
 CV_LOGIC = {
-    'P18': ('拟合入射光、反射光与镜面，沿法线计算两条光线夹角差。', '分别求两条光线与镜面的交点，以几何尺度归一化交点距离。'),
-    'P21': ('逐帧分割两臂液体，测量末段左右液面高度差并按容器高度归一化。', '对末段液面位置随时间的变化求速度，报告残余液面运动。'),
-    'P31': ('测量两条悬线相对竖直方向的角度，比较稳态角度差。', '比较两球相对装置中轴的水平位移，计算归一化对称误差。'),
-    'P35': ('分割大小沙堆轮廓，拟合左右坡面，比较两堆休止角之比。', '计算每堆左右坡面的角度差，取两堆中较大的不对称误差。'),
-    'P6': ('相对板面跟踪两物块，检测持续滑动起点，计算起滑帧差占视频帧数的比例。', '在各自起滑时刻拟合板面倾角，计算两物块临界角差。'),
-    'P26': ('确认可见融化后分割容器液面，比较初末液面高度的归一化变化及方向。', '按当前评测意见取消 M2，不参与分母。'),
-    'P27': ('分割容器液面，比较初末液面高度的归一化变化及方向。', '测量末帧固体证据比例，同时保留残余冰检测结果。'),
-    'P24': ('分割界面和液柱，按液柱高度关系估计密度比，计算与设定值的偏差。', '测量两侧截面几何，计算归一化截面一致性误差。'),
-    'P29': ('从两物体运动轨迹检测到达事件，比较运动时间比。', '由轨迹估计运动速度，计算对应速度比。'),
-    'P7': ('提取真实悬链轮廓，按实测下垂高度归一化拟合RMSE，10%相对误差对应半分。', '比较独立支点高度，按悬链水平跨度归一化，2%相对误差对应半分。'),
+    'P18': ("Fit the incident ray, reflected ray, and mirror; compare ray angles measured relative to the normal.", "Find each ray intersection with the mirror and normalize their separation by the geometric scale."),
+    'P21': ("Segment the liquid in both arms frame by frame; normalize the final left-right water-level difference by the vessel height.", "Estimate water-level velocity from its final temporal variation and report residual liquid motion."),
+    'P31': ("Measure both suspension-line angles relative to the vertical and compare their equilibrium values.", "Compare the horizontal displacements of both balls from the apparatus centerline and compute normalized asymmetry."),
+    'P35': ("Segment the small and large sand piles, fit both slope faces, and compare their angles of repose.", "Compute the left-right slope-angle difference for each pile and take the larger asymmetry."),
+    'P6': ("Track both blocks relative to the board, detect sustained sliding onset, and divide the onset-frame difference by the total frame count.", "Fit the board inclination at the sliding onset of each block and compare their critical angles."),
+    'P26': ("After confirming visible melting, segment the waterline and compare the normalized initial-final height change and its direction.", "M2 is omitted under the current evaluation specification and excluded from the denominator."),
+    'P27': ("Segment the waterline and compare the normalized initial-final height change and its direction.", "Measure the final solid-evidence fraction and retain the residual-ice detection result."),
+    'P24': ("Segment interfaces and liquid columns, estimate the density ratio from column heights, and compare it with the specified value.", "Measure cross-sectional geometry on both sides and compute normalized cross-section inconsistency."),
+    'P29': ("Detect arrival events from both trajectories and compare travel times.", "Estimate motion speeds from the trajectories and compute the corresponding speed ratio."),
+    'P7': ("Extract the observed chain outline and normalize its fit RMSE by measured sag; a 10% relative error gives a half score.", "Compare independently measured support heights and normalize by the horizontal chain span; a 2% relative error gives a half score."),
 }
 
 
@@ -174,7 +174,7 @@ def classical_result(raw):
         physics = scoring.get('physics_score')
         metrics[key] = metric(value, physics, original['extract_success'])
         blocks[key] = measurement_block(CV_LOGIC[raw['task_id']][i], value,
-            steps=['逐帧解码视频并提取任务所需几何。', '按原提取器的有效性检查选择可用测量。', '由测量值计算该指标，原误差尺度保持不变。'],
+            steps=["Decode the video frame by frame and extract the geometry required by the task.", "Select usable measurements using the original extractor validity checks.", "Compute the metric from measured values while retaining the original error scale."],
             measurements=measurements, normalization=scoring,
             reason=raw.get('verbose',{}).get('failure_reason'))
     return metrics, blocks
@@ -190,7 +190,7 @@ def already_scored_result(raw):
             blocks[key] = {}
         b = blocks[key]
         b.setdefault('defined', m['extract_success'] is not None)
-        b.setdefault('principle', b.get('measurement_principle') or b.get('logic') or ('本题未定义 M2。' if not b['defined'] else '从所列测量证据提取物理量并按冻结定义计算指标。'))
+        b.setdefault('principle', b.get('measurement_principle') or b.get('logic') or ("This task defines no M2." if not b['defined'] else "Extract physical quantities from the listed evidence and compute the metric using the fixed definition."))
         b.setdefault('measurement_steps', b.get('measurement_process') or [])
         b.setdefault('raw_measurement', m['metric'])
     return metrics, {k:blocks[k] for k in KEYS}
@@ -253,9 +253,9 @@ def _public_blocks(blocks, metrics, proxy, provenance, sample_id):
     out['M1']['_scoring_summary'] = deepcopy(proxy)
     out['M1']['_scoring_summary']['metric_semantics'] = 'normalized_final_score'
     out['M1']['_scoring_summary']['metric_definition'] = (
-        'metrics.M1/M2.metric = proxy_score（含识别奖励，范围 [0,1]）；'
-        'extract_success=false 或 null 时 metric=null。原始量保存在 verbose.M*.raw_metric，'
-        '完整测量与诊断保存在 verbose.M*.raw_measurement。'
+        "metrics.M1/M2.metric = proxy_score (including the recognition reward, range [0,1]); "
+        "metric=null when extract_success=false or null. Raw quantities are stored in verbose.M*.raw_metric; "
+        "full measurements and diagnostics are stored in verbose.M*.raw_measurement."
     )
     out['M1']['_provenance'] = deepcopy(provenance)
     out['M1']['_sample_id'] = sample_id
@@ -268,8 +268,8 @@ def add_proxy_formulas(result):
         flag = result['metrics'][key]['extract_success']
         scoring = result['verbose'][key]['scoring']
         scoring['proxy_formula'] = (
-            'proxy_score = 0.15 + 0.85 * physics_score（extract_success=true）；'
-            'extract_success=false 时为 0；extract_success=null 时为 null。'
+            "proxy_score = 0.15 + 0.85 * physics_score(extract_success=true); "
+            "Zero when extract_success=false; null when extract_success=null."
         )
         if flag is True:
             scoring['proxy_calculation'] = (
@@ -277,11 +277,11 @@ def add_proxy_formulas(result):
             )
         elif flag is False:
             scoring['proxy_calculation'] = (
-                'proxy_score = 0；extract_success=false，未通过测量有效性检查，不加识别分。'
+                "proxy_score = 0; extract_success=false: measurement validity checks failed, so no recognition reward is added."
             )
         else:
             scoring['proxy_calculation'] = (
-                'proxy_score = null；extract_success=null，指标未定义，不参与总分。'
+                "proxy_score = null; extract_success=null: the metric is undefined and excluded from the total score."
             )
     summary = result['verbose']['M1']['_scoring_summary']
     terms = [
@@ -307,7 +307,7 @@ def finalize(task_id, metadata, metrics, blocks, evidence, provenance, *, consis
         block = blocks.setdefault(key, {})
         block['evidence'] = evidence if block.get('defined', True) else []
         if block.get('defined', True) and not block.get('measurement_steps'):
-            block['measurement_steps'] = ['解码视频并按上述任务原理提取所需几何或轨迹。', '检查所需物理量是否可靠可测；失败细节与中间观测保存在原始结果和证据文件中。']
+            block['measurement_steps'] = ["Decode the video and extract the required geometry or trajectories using the task principles above.", "Check whether the required physical quantities are reliably measurable; failure details and intermediate observations are saved in the raw result and evidence files."]
         if metrics[key]['extract_success'] is False and not block.get('failure_reason'):
             block['failure_reason'] = 'Required physical quantities did not pass the existing measurement validity checks.'
     return add_proxy_formulas(finite({
@@ -437,7 +437,7 @@ def finalize_v3(task_id, metadata, metrics, blocks, evidence, provenance, consis
             block['measurement_status_reason'] = status_item[1]
         elif block.get('defined') is False:
             block['measurement_status'] = 'evidence_insufficient'
-            block['measurement_status_reason'] = '指标不适用于本题，不参与判断。'
+            block['measurement_status_reason'] = "The metric does not apply to this task and is excluded from assessment."
     out['M1'].update(_scoring_summary=summary, _consistency=consistency,
                      _reliability=reliability,
                      _provenance=deepcopy(provenance), _sample_id=metadata.get('sample_id'))

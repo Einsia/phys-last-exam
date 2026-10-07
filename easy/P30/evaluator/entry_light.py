@@ -38,7 +38,7 @@ def observe_entry(front, rear, aperture_overlap, valid, t, entry, exit_, hystere
 
 def evaluate(c):
     from refined_evaluators.tasks import csv_file, plot
-    c.m['principle'] = '只检查两个可见事件：磁铁进入线圈得0.5，进入期间灯可见亮着再得0.5；不要求穿出另一端。'
+    c.m['principle'] = "Check only two visible events: magnet entry into the coil earns 0.5, and a visibly lit lamp during entry earns another 0.5; exit from the other end is not required."
     c.m['score_details'] = {'version': VERSION, 'formula': '0.5 * magnet_entered + 0.5 * lamp_lit_during_entry',
         'range': [0, 1], 'component_weights': {'magnet_entered': .5, 'lamp_lit_during_entry': .5},
         'full_transit_required': False, 'field_model_used': False,
@@ -175,7 +175,7 @@ def evaluate(c):
         'not_measured': 'Magnetic flux, induced voltage/current, full passage and lamp time centroid.',
         'lamp_calibration': 'Same-frame luminous-core contrast/area relative to the bulb neighborhood, or observed background-corrected brightening. No new onset or initial dark state required. Unresolved brightness/reflections remain unknown.',
         'identity': 'Reviewed first-frame magnet identity propagated by the segmentation model; no trajectory inferred across missing masks.'}
-    c.m['reason'] = f'磁铁进入线圈：{entered}；进入期间可观测灯亮：{lamp_during_entry}；两个事件各占0.5。'
+    c.m['reason'] = f'Magnet entered the coil: {entered}; visibly lit lamp during entry: {lamp_during_entry}; each event contributes 0.5.'
     c.annotations['magnet'] = {'trajectory_xy': centers + drift}
     c.annotations['events'] = {'crossings': [{'id': 'enter', 'time_sec': e['inside_interval_sec'][0]} for e in entries]}
     csv_file(c.out/'motion_brightness.csv', {'frame': np.arange(len(t)), 'time_sec': t,

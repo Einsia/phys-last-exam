@@ -1,18 +1,18 @@
-# P40：液滴合并体积守恒
+# P40 · Droplet volume conservation
 
-分类：9. 表面张力与黏性流（Surface Tension and Viscous Flow）；原编号：`P48`。
+Category: 9. Surface Tension and Viscous Flow; legacy ID: `P48`.
 
-难度：中等；本轮任务排名：21/40；平均最终综合分：0.342852。
+Difficulty: Medium; task rank: 21/40; mean final total score: 0.342852.
 
-## 场景与目标
+## Scene and objective
 
-两个大小不同、轮廓完整的自由水滴在空中接近，接触并合为一个液滴。保持液体体积及完整边界可见；检验合并前后的体积守恒与圆度变化。
+Two free water droplets of different sizes with complete outlines approach in air, touch, and merge into one droplet. Liquid volume and complete boundaries remain observable. Test volume conservation and circularity changes across coalescence.
 
-## 输入与评测
+## Inputs and evaluation
 
-首帧：[first_frame.png](first_frame.png)。生成提示词：[prompt.txt](prompt.txt)。视频为外部评测输入，应与所用首帧和提示词对应。
+First frame: [first_frame.png](first_frame.png). Generation prompt: [prompt.txt](prompt.txt). Videos are external evaluation inputs and must correspond to the supplied first frame and prompt.
 
-在本题目录、已安装项目运行依赖的 Python 环境中执行：
+Run from this task directory using a Python environment with the project runtime dependencies installed:
 
 ```sh
 python evaluator/evaluate.py \
@@ -21,18 +21,18 @@ python evaluator/evaluate.py \
   --output /absolute/path/result.json
 ```
 
-## 当前指标
+## Current metrics
 
-下表 P 为各指标的纯物理分，范围为0–1。原始量与物理分分别保留；观测不足时原始量为 null，适用的未观察到现象规则可计物理分0。完整输出另含一致性判断。
+In the table below, P is the pure physics score for each metric, ranging from 0 to 1. Raw quantities and physics scores are retained separately. With insufficient observations, raw quantities are null; the applicable unobserved-phenomenon policy may assign a physics score of 0. Full outputs also include consistency assessment.
 
-| 指标 | 定义与公式 | 单位 |
+| Metric | Definition and formula | Units |
 | --- | --- | --- |
-| M1：液滴体积残差 | e=abs(r末³/(r1³+r2³)−1)；P=1/(1+e/0.10)。 | e 无量纲；半径 r 为像素。 |
-| M2：圆度变化 | 圆度=1−轮廓径向RMS误差/拟合半径；e=abs(末圆度−初两滴平均圆度)；P=1/(1+e/0.10)。 | 圆度、e 与 P 无量纲。 |
+| M1: Droplet-volume residual | e=abs(r_final^3/(r1^3+r2^3)-1); P=1/(1+e/0.10). | e is dimensionless; radii r are in pixels. |
+| M2: Circularity change | circularity=1-radial outline RMS error/fitted radius; e=abs(final circularity-mean initial circularity of both drops); P=1/(1+e/0.10). | Circularity, e, and P are dimensionless. |
 
-当前公式依据：`v4/g6/P48/evaluator/utils/physeval/tasks/p48.py:32`；`v4/g6/P48/evaluator/utils/physeval/tasks/p48.py:112`；`v4/g6/P48/evaluator/utils/physeval/tasks/p48.py:37`；`v4/g6/P48/evaluator/utils/physeval/tasks/p48.py:121`。
+Formula references: `v4/g6/P48/evaluator/utils/physeval/tasks/p48.py:32`; `v4/g6/P48/evaluator/utils/physeval/tasks/p48.py:112`; `v4/g6/P48/evaluator/utils/physeval/tasks/p48.py:37`; `v4/g6/P48/evaluator/utils/physeval/tasks/p48.py:121`.
 
-## 生成提示词原文
+## Original generation prompt
 
 ```text
 Task: P40_free_droplet_coalescence.
