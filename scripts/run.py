@@ -61,6 +61,19 @@ def generate_command(python, model, config, forwarded):
             '--config', config, '--output', 'videos', '--resume', *forwarded]
 
 
+def configured_backend(path, model):
+    if not path.is_file():
+        raise ValueError(f'Generator configuration not found: {path}')
+    try:
+        config = json.loads(path.read_text(encoding='utf-8'))
+    except (OSError, ValueError) as error:
+        raise ValueError(f'Cannot read generator configuration {path}: {error}') from error
+    definitions = config.get('models') if isinstance(config, dict) else None
+    if not isinstance(definitions, dict) or not isinstance(definitions.get(model), dict):
+        raise ValueError(f'Configuration must contain a models object with a profile for {model}')
+    return definitions[model].get('backend', model)
+
+
 def evaluation_input(value):
     path = Path(value).expanduser().resolve()
     if path.is_file() and path.suffix.lower() == '.json':
@@ -102,24 +115,24 @@ def main(argv=None):
     # Only the first argument after evaluate may be the optional input path.
     if len(argv) > 1 and argv[0] == 'evaluate' and not argv[1].startswith('-'):
         argv[1:2] = ['--input', argv[1]]
-    parser = argparse.ArgumentParser(description=__doc__, epilog=(
+    parser = argparse.ArgumentParser(description=__doc__, allow_abbrev=False, epilog=(
         'Extra flags are forwarded to generate.py or evaluate.py. '
         'Examples: --tasks P21 --seeds 42; --dry-run; --output PATH.'))
     commands = parser.add_subparsers(dest='action', required=True)
-    generation = commands.add_parser('generate', help='Generate with any built-in or configured custom model',
+    generation = commands.add_parser('generate', allow_abbrev=False, help='Generate with any built-in or configured custom model',
                                     epilog='Available models: ' + ', '.join(MODELS))
     generation.add_argument('model', help='Built-in model name, or custom name with --config')
     generation.add_argument('--config', type=Path, help='Use an existing or custom generator configuration')
     generation.add_argument('--model-root', type=Path, default=ROOT / 'models/generation')
     generation.add_argument('--devices', help='Physical GPU IDs for local generation, e.g. 1 or 0,1,2,3')
-    seedance = commands.add_parser('seedance', help='Generate using a Seedance Videos API')
+    seedance = commands.add_parser('seedance', allow_abbrev=False, help='Generate using a Seedance Videos API')
     seedance.add_argument('--config', type=Path, help='Optional existing generator configuration')
-    local = commands.add_parser('open', help='Install and run one open-source generator')
+    local = commands.add_parser('open', allow_abbrev=False, help='Install and run one open-source generator')
     local.add_argument('model', choices=LOCAL_MODELS)
     local.add_argument('--config', type=Path, help='Reuse an existing installation; skip provisioning')
     local.add_argument('--model-root', type=Path, default=ROOT / 'models/generation')
     local.add_argument('--devices', help='Visible physical GPU IDs, e.g. 1 or 0,1,2,3')
-    evaluation = commands.add_parser('evaluate', help='Evaluate every video in a directory or manifest')
+    evaluation = commands.add_parser('evaluate', allow_abbrev=False, help='Evaluate every video in a directory or manifest')
     evaluation.add_argument('--input', default='videos', help='Video directory or manifest (default: videos)')
     args, forwarded = parser.parse_known_args(argv)
     if args.action == 'generate':
@@ -136,6 +149,17 @@ def main(argv=None):
         command = [python, ROOT / 'evaluate.py', *inputs,
                    '--output', 'runs/evaluation', '--resume', *forwarded]
     else:
+        model = 'seedance-2.5' if args.action == 'seedance' else args.model
+        backend = configured_backend(args.config, model) if args.config else model
+        devices = getattr(args, 'devices', None)
+        if devices is not None:
+            ids = devices.split(',')
+            if not all(value.isascii() and value.isdecimal() for value in ids) or len(set(ids)) != len(ids):
+                raise ValueError('--devices must contain unique GPU IDs, e.g. 1 or 0,1,2,3')
+            if backend not in LOCAL_MODELS:
+                raise ValueError('--devices applies only to local model backends')
+            if args.config:
+                forwarded = ['--devices', devices, *forwarded]
         if args.action == 'seedance' and not args.config and '--dry-run' not in forwarded:
             if not os.environ.get('SEEDANCE_BASE_URL'):
                 if sys.stdin.isatty():

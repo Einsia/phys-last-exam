@@ -174,7 +174,8 @@ def main(argv=None):
     parser.add_argument('--seeds', nargs='+', type=int, default=[42, 43, 44, 45])
     parser.add_argument('--output', type=Path, default=ROOT / 'videos')
     parser.add_argument('--work-dir', type=Path, help='Raw videos and logs; default: runs/generation/OUTPUT_ID')
-    parser.add_argument('--config', type=Path, default=ROOT / 'generation.local.json')
+    parser.add_argument('--config', type=Path, help='Existing model configuration; defaults to generation.local.json if present')
+    parser.add_argument('--devices', help='Override physical GPU IDs for local backends, e.g. 1 or 0,1,2,3')
     parser.add_argument('--model-root', type=Path, default=ROOT / 'models/generation')
     parser.add_argument('--init-config', action='store_true', help='Write generation.local.json with paths inferred from --model-root')
     parser.add_argument('--list-models', action='store_true')
@@ -185,6 +186,8 @@ def main(argv=None):
     parser.add_argument('--timeout', type=float, default=3600, help='Seconds per video, including model startup')
     args = parser.parse_args(argv)
     try:
+        explicit_config = args.config is not None
+        args.config = args.config or ROOT / 'generation.local.json'
         defaults = default_config(args.model_root)
         if args.init_config:
             args.config.parent.mkdir(parents=True, exist_ok=True)
@@ -193,8 +196,10 @@ def main(argv=None):
                 stream.write('\n')
             print(f'Created {args.config}. Check the Python/source/checkpoint paths, then run --check.')
             return 0
+        if explicit_config and not args.config.is_file():
+            raise ValueError(f'Generator configuration not found: {args.config}')
         config = batch.read(args.config) if args.config.exists() else defaults
-        definitions = config['models']
+        definitions = config.get('models') if isinstance(config, dict) else None
         if not isinstance(definitions, dict):
             raise ValueError('The config must contain a models object')
         if args.list_models:
@@ -211,7 +216,7 @@ def main(argv=None):
         if not 0 < args.timeout < float('inf'):
             raise ValueError('Timeout must be finite and positive')
         base = args.config.resolve().parent
-        profiles = {name: resolve_profile(name, definitions[name], base) for name in models}
+        profiles = {name: resolve_profile(name, definitions[name], base, devices=args.devices) for name in models}
         if args.check or not args.dry_run:
             errors = []
             for name, profile in profiles.items():

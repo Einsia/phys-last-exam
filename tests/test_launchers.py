@@ -23,6 +23,7 @@ class LauncherTests(unittest.TestCase):
                     patch.object(launcher, 'run') as run:
                 # A configured installation works for both API and local models.
                 config = Path(directory) / 'existing configuration.json'
+                config.write_text(json.dumps({'models': {model: {'backend': model}}}))
                 flags = ['--tasks', 'P21', '--seeds', '42', '--dry-run']
                 launcher.main(['generate', model, '--config', str(config), *flags])
                 command = run.call_args.args[0]
@@ -31,13 +32,52 @@ class LauncherTests(unittest.TestCase):
                 self.assertEqual(command[-len(flags):], flags)
 
     def test_custom_generator_uses_config_without_automatic_provisioning(self):
-        with patch.object(launcher.sys, 'platform', 'linux'), patch.object(launcher.os, 'chdir'), \
+        with tempfile.TemporaryDirectory() as directory, \
+                patch.object(launcher.sys, 'platform', 'linux'), patch.object(launcher.os, 'chdir'), \
                 patch.object(launcher, 'environment', return_value='/ready/bin/python'), \
                 patch.object(launcher, 'run') as run:
-            launcher.main(['generate', 'my-model', '--config', 'custom-model.json', '--dry-run'])
+            config = Path(directory) / 'custom-model.json'
+            config.write_text(json.dumps({'models': {'my-model': {'backend': 'command'}}}))
+            launcher.main(['generate', 'my-model', '--config', str(config), '--dry-run'])
             command = run.call_args.args[0]
             self.assertEqual(command[command.index('--models') + 1], 'my-model')
-            self.assertEqual(command[command.index('--config') + 1], Path('custom-model.json'))
+            self.assertEqual(command[command.index('--config') + 1], config)
+
+    def test_invalid_config_fails_before_installing_or_launching(self):
+        with tempfile.TemporaryDirectory() as directory, \
+                patch.object(launcher.sys, 'platform', 'linux'), patch.object(launcher.os, 'chdir'), \
+                patch.object(launcher, 'environment') as provision, patch.object(launcher, 'run') as run:
+            config = Path(directory) / 'generator.json'
+            for contents in (None, '{broken', '[]', '{"models": {}}', '{"models": {"my-model": null}}'):
+                with self.subTest(contents=contents):
+                    if contents is not None:
+                        config.write_text(contents)
+                    with self.assertRaises(ValueError):
+                        launcher.main(['generate', 'my-model', '--config', str(config)])
+            provision.assert_not_called()
+            run.assert_not_called()
+
+    def test_existing_config_keeps_requested_gpu_override(self):
+        model = 'cogvideox1.5-5b-i2v'
+        with tempfile.TemporaryDirectory() as directory, \
+                patch.object(launcher.sys, 'platform', 'linux'), patch.object(launcher.os, 'chdir'), \
+                patch.object(launcher, 'environment', return_value='/ready/bin/python'), \
+                patch.object(launcher, 'run') as run:
+            config = Path(directory) / 'generator.json'
+            config.write_text(json.dumps({'models': {model: {'backend': model, 'options': {'devices': '0'}}}}))
+            launcher.main(['generate', model, '--config', str(config), '--devices', '3', '--dry-run'])
+            command = run.call_args.args[0]
+            self.assertEqual(command[command.index('--devices') + 1], '3')
+            self.assertEqual(json.loads(config.read_text())['models'][model]['options']['devices'], '0')
+
+    def test_invalid_gpu_override_fails_before_installation(self):
+        with patch.object(launcher.sys, 'platform', 'linux'), patch.object(launcher.os, 'chdir'), \
+                patch.object(launcher, 'environment') as provision:
+            for model, devices in [('cogvideox1.5-5b-i2v', '1,1'), ('cogvideox1.5-5b-i2v', 'a'),
+                                   ('cogvideox1.5-5b-i2v', ''), ('seedance-2.5', '1')]:
+                with self.subTest(model=model, devices=devices), self.assertRaises(ValueError):
+                    launcher.main(['generate', model, '--devices', devices])
+            provision.assert_not_called()
 
     def test_unknown_model_fails_before_environment_installation(self):
         with patch.object(launcher, 'environment') as provision, patch('sys.stderr'):

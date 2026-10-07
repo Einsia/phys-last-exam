@@ -79,6 +79,8 @@ bash scripts/evaluate_all.sh videos
 
 With `--config`, the launcher calls your model's Python environment directly and skips automatic generator installation and checkpoint downloads. If your model is exposed through an HTTP service instead, use a [custom inference command](#add-a-custom-model) that calls that service and saves the returned MP4.
 
+Add `--devices 1` to select GPU 1 for this run without editing the saved configuration. For LingBot, this also updates the distributed process count to match the selected GPUs. A missing or invalid configuration file stops the launcher before installation or generation.
+
 For the other built-in models, initialize an all-model path template and edit the entries you intend to use:
 
 ```bash

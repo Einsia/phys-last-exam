@@ -62,7 +62,7 @@ def default_config(root):
     return {'models': {name: {'backend': name, **definitions[name]} for name in MODELS}}
 
 
-def resolve_profile(name, profile, base):
+def resolve_profile(name, profile, base, *, devices=None):
     import copy
     from .backends import REGISTRY
     profile = copy.deepcopy(profile)
@@ -71,6 +71,19 @@ def resolve_profile(name, profile, base):
     backend = profile.setdefault('backend', name)
     if backend not in {*REGISTRY, 'command'}:
         raise ValueError(f'Unknown backend {backend}; use backend=command for a custom model')
+    if devices is not None:
+        ids = devices.split(',')
+        if not all(value.isascii() and value.isdecimal() for value in ids) or len(set(ids)) != len(ids):
+            raise ValueError('--devices must contain unique GPU IDs, e.g. 1 or 0,1,2,3')
+        if backend in ('seedance-2.5', 'command'):
+            raise ValueError('--devices applies only to local model backends')
+        options = profile.setdefault('options', {})
+        options['devices'] = devices
+        if backend == 'lingbot-video-moe-30b-a3b':
+            count = len(ids)
+            options.update(distributed=count > 1, nproc_per_node=count,
+                           context_parallel_degree=count,
+                           enable_fsdp_inference=count > 1, enable_vlm_fsdp_inference=count > 1)
     frames = profile.setdefault('num_frames', 81)
     if type(frames) is not int or frames < 2:
         raise ValueError(f'{name}: num_frames must be an integer >= 2')

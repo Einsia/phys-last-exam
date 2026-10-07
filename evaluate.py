@@ -368,7 +368,7 @@ def main(argv=None):
     parser.add_argument('--annotation-root', type=Path, help='Optional per-video overrides of bundled annotations: MODEL/TASK/SAMPLE_ID.json')
     parser.add_argument('--require-all-tasks', action='store_true', help='Require every selected task for every input model')
     parser.add_argument('--workers', type=int, default=1, help='Concurrent evaluator processes; default 1 to bound GPU use')
-    parser.add_argument('--timeout', type=float, default=1800, help='Maximum seconds per evaluator process and its children')
+    parser.add_argument('--timeout', type=float, default=1800.0, help='Maximum seconds per evaluator process and its children')
     parser.add_argument('--python', default=sys.executable, help='Python interpreter for the per-task entrypoints')
     parser.add_argument('--measurement-device', default='cuda:0', help='P3/P14/G8/G9 measurement device (default: cuda:0)')
     parser.add_argument('--resume', action='store_true', help='Reuse successful results only when input/code/settings signatures match')
