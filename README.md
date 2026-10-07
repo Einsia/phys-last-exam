@@ -1,185 +1,128 @@
-# PhysScope: A Multi-Domain Benchmark for Proxy-Based Evaluation of Video Physics
+# World Models’ Last Exam in Physics
+
+[Paper](https://arxiv.org/abs/2610.08791) · [Project page](https://lab.einsia.ai/phys-last-exam)
 
 ## Abstract
 
-Visually convincing videos can still violate basic physical laws, making reliable physical evaluation essential for assessing video generation models. Existing evaluations often rely on learned judgments or reference videos, while direct physical tests largely focus on mechanics. We introduce PhysScope, a measurement-based benchmark comprising 40 controlled tasks spanning mechanics, optics, fluids, thermal and phase-change phenomena, electromagnetism, and surface-tension effects. Each task pairs an initial image and a generation prompt with observable quantities and predefined physical criteria. Our evaluation first screens for temporal consistency, excluding videos whose unstable object identities or structures make physical measurements unreliable. Videos that pass are then assessed through task-specific measurements, such as oscillation periods, reflection angles, and liquid levels. We distinguish failures of physical tests from cases with insufficient measurement evidence. Our protocol evaluates eight video generation models on 40 tasks with four seeds per task: 160 planned videos per model and 1,280 in total. Among the evaluated videos, 98.36% pass the temporal-consistency check, but only 159 of the 716 videos with sufficient measurement evidence (22.21%) pass all required physical checks. These findings reveal a substantial gap between temporal coherence and physical consistency, highlighting the need to report measurement coverage alongside physical performance. PhysScope provides an interpretable framework for evaluating diverse physical phenomena while making the limitations of measurement explicit.
-
-## Task numbering
-
-Tasks use **P1–P40**, following the nine physical categories. Within each category, tasks are grouped **Easy → Medium → Hard**, retaining the original results-table order within each difficulty, then numbered continuously. Original **P23 is Easy** (current **P24**) and original **P11 is Medium** (current **P17**). First frames, physical prompt descriptions, scoring rules, and frozen evaluation scores/ranks are unchanged. Commands, explicit prompt task tags, and generated filenames use the current IDs; existing experiment artifacts retain their legacy IDs. Each `easy/P*/task.md`, `medium/P*/task.md`, or `hard/P*/task.md` identifies its original ID and describes the scene and metrics. Use the current task IDs with the commands below.
+Video world models can generate plausible scenes that violate physics, limiting their usefulness for prediction and planning in embodied AI. World Models’ Last Exam in Physics evaluates physical consistency through 40 controlled tasks covering mechanics, optics, fluids, thermal and phase-change phenomena, electromagnetism, and surface tension. Every task supplies an initial image, a generation prompt, and measurable physical criteria, allowing evaluation without reference videos. The evaluator screens task observability and temporal consistency, independently measures task-specific physical quantities, and uses the screening outcome to gate their contribution to the composite score. Across eight video generation models and 1,280 videos, results show persistent inconsistencies and substantial differences between tasks; the strongest model scores 57.76 out of 100. Tests on synthetic videos with known physical relationships support the measurement module under controlled conditions. The evaluator also agrees more closely with human judgments than direct VLM scoring in both within-task rankings and pairwise comparisons. Its measurements and explicit evidence limitations help diagnose model failures and track progress in physical consistency.
 
 ## Setup
 
-Use Linux and Bash with Python 3.12 and an NVIDIA GPU. The entrypoints use Linux file locking; native Windows is not supported. We recommend an 80 GB GPU for evaluation with the default [Qwen3.6-27B](https://huggingface.co/Qwen/Qwen3.6-27B) model and at least 100 GB of free disk space. Install [Conda](https://docs.conda.io/projects/conda/en/stable/user-guide/install/index.html) and Git first; the installer uses CUDA 12.8 PyTorch wheels, so a compatible NVIDIA driver is required. Video generators have separate environments and GPU requirements; some of the presets require four GPUs.
-
-Clone the repository and create the evaluation environment. After `cd phys-last-exam`, run subsequent commands from the repository root unless a task's own guide explicitly says to change directories. If you already have videos, complete Setup and go directly to [Evaluate videos](#evaluate-videos).
+Use **Linux, Bash, Python 3.12, Conda, Git, and an NVIDIA driver compatible with CUDA 12.8**. For the default Qwen3.6-27B evaluator, we recommend an **80 GB GPU** and **100 GB of free disk space**. Run all commands below from the repository root.
 
 ```bash
 git clone https://github.com/Einsia/phys-last-exam.git
 cd phys-last-exam
-conda create -n physscope python=3.12 -y
-conda activate physscope
-
-# Optional: check all 1,280 generation plans before installing models.
-python generate.py --models all --output videos --dry-run
-
+conda create -n phys-last-exam python=3.12 -y
+conda activate phys-last-exam
 bash setup.sh
 ```
 
-`setup.sh` installs the Python packages and downloads Qwen, Grounding DINO, SAM 2.1, and CoTracker into `models/`. The evaluator finds these models automatically. The first setup downloads about 60 GB; rerun the same command if a download is interrupted. In a new terminal, run `conda activate physscope` again before evaluating.
-
-The generation dry run checks the bundled task inputs and writes a plan under `runs/generation/`; it creates no videos or evaluation manifest and runs no inference. If evaluation weights are already provisioned, `bash setup.sh --skip-models` installs dependencies without downloading them, but still checks CUDA availability.
-
-To download or reuse evaluation weights outside the repository, set `FINAL_MODELS_DIR` before setup and keep it set when evaluating:
-
-```bash
-export FINAL_MODELS_DIR=/absolute/path/to/evaluation-models
-# Use bash setup.sh to download, or bash setup.sh --skip-models to reuse weights.
-```
-
-This directory must contain the same layout produced by `setup.sh`: `Qwen3.6-27B/`, `grounding-dino-tiny/`, `sam2.1-hiera-small/`, `sam2.1-hiera-small-transformers/`, `sam2.1-hiera-large-transformers/`, and `cotracker3/` (including `scaled_offline.pth` and the pinned `source/` checkout). `--skip-models` does not validate or create that layout. Generation checkpoints are configured separately with `--model-root` and `generation.local.json`.
+`setup.sh` installs evaluator dependencies and downloads about 60 GB of weights into `models/`. In a new terminal, activate the same environment again. To use another model directory, set `FINAL_MODELS_DIR` before setup and evaluation; see [evaluation configuration](docs/evaluation.md#evaluation-models).
 
 ## Prepare your videos
 
-The benchmark has **40 tasks: 15 easy, 15 medium, and 10 hard**. The unified generator reads their `first_frame.png` and `prompt.txt` automatically and supports the eight models in the results table, plus custom models.
+The benchmark contains **40 tasks: 15 Easy, 15 Medium, and 10 Hard**. `generate.py` loads each task’s bundled `first_frame.png` and `prompt.txt`. If you already have videos, go to [Evaluate videos](#evaluate-videos).
 
-Connect your generation model environments once:
-
-```bash
-python generate.py --init-config --model-root /path/to/checkpoints
-```
-
-Check the Python, source, and weight paths in `generation.local.json`; see the short [model setup and custom model guide](generation/README.md). Generation models use their own environments; `setup.sh` prepares the evaluator and generation controller.
-
-Replace `/path/to/checkpoints` with the root containing your generation weights and source checkouts. `--init-config` writes a path template; it does not install or download a generator, and refuses to overwrite an existing configuration. Edit that file directly when configuring an existing installation.
-
-Start with one configured model, one task, and one seed:
+Install your chosen video generator in its own environment, then create and edit `generation.local.json` with its Python, source, checkpoint, and GPU paths. See the [generation guide](generation/README.md) for the eight supported models and custom adapters.
 
 ```bash
+python generate.py --init-config --model-root /path/to/generation-checkpoints
+# Edit generation.local.json, then check and run one configured model.
 python generate.py --models cogvideox1.5-5b-i2v --check
 python generate.py --models cogvideox1.5-5b-i2v --tasks P21 --seeds 42 --output videos --resume
 ```
 
-`--check` verifies the selected model's paths and required client configuration without inference or API submission. It does not check upstream package compatibility or available GPU memory. `setup.sh` does not install the video generation models. Before selecting `--models all`, configure all eight adapters, including the Seedance API credentials and each local model's environment, weights, and devices.
-
-Once those environments are ready, generate all 40 tasks with all 8 models and seeds 42–45:
+`--init-config` creates a path template; it does not install generators. `--check` checks paths and client configuration without inference. Once all eight adapters are configured, including Seedance API credentials, generate the full benchmark:
 
 ```bash
 python generate.py --models all --output videos --resume
 ```
 
-Add `--dry-run` to either generation command to preview the jobs without loading weights or calling an API.
-
-Videos are written to `videos/MODEL/VIDEO_STEM.mp4`, with matching parameter records and an evaluation-ready `videos/manifest.json`. Special task filenames are handled automatically; P3/P14 receive the required 1344 × 768 evaluation copy while the native video and resize metadata are retained. Frozen images, prompts, and task annotations are stored in `videos/.inputs/`, so the manifest travels with the videos.
-
-The fixed first-frame annotations for P33/P34/P30/P36/P10/P38 are included in their task packages and loaded automatically. You do not need to create an `annotations/` directory for standard benchmark inputs.
-
-Generation returns a nonzero exit code if any sample fails. Check `runs/generation/OUTPUT_ID/summary.json` and the per-attempt logs before evaluating; failed samples remain in the manifest and are reported as input errors if their videos are missing.
-
-<details>
-<summary>Calibrated filenames and custom first frames</summary>
-
-The generator assigns these calibrated filenames. If you bring existing videos, use the same names, replacing `N` with the seed:
-
-```text
-P3_gpt_01_modern_seedN.mp4
-P8_gpt_01_modern_seedN.mp4
-P14_gpt_01_modern_seedN.mp4
-P17_gpt_01_30deg_seedN.mp4
-```
-
-P3/P14 require a 1344 × 768 video canvas. Follow each task's `task.md` for its scene geometry; renaming an incompatible video does not make it calibrated.
-
-P33/P34/P30/P36/P10/P38 use the bundled `first_frame_annotations.json`. The evaluator verifies the input-image hash, scales coordinates to the video resolution, and checks the actual first frame before tracking. A layout that fails this correspondence check is reported as an initialization failure.
-
-For a different input image or layout, use a manifest that explicitly supplies the actual `image` and `prompt` files, plus reviewed video annotations. `--annotation-root` selects an annotation override; it does not change the input image or prompt. These optional overrides use:
-
-```text
-annotations/MODEL/TASK/VIDEO_STEM.json
-# Example: annotations/my-model/P33/g8_P33_seed42.json
-```
-
-Custom video annotations must match their video's image/video hashes. Standard task templates are bound to the fixed input image and reused automatically across models and seeds.
-
-Generation copies supplied annotation overrides into `videos/.inputs/` and references those snapshots in the manifest. Move the complete `videos/` directory, including `.inputs/`, to keep the evaluation inputs together. When evaluating existing videos directly with `--annotation-root`, keep that external annotation directory available.
-
-For example, save this array as `videos/custom-manifest.json`, with all paths relative to that file and pointing to your actual inputs:
-
-```json
-[
-  {
-    "model": "my-model",
-    "task": "P33",
-    "seed": 42,
-    "sample_id": "g8_P33_seed42",
-    "video": "my-model/g8_P33_seed42.mp4",
-    "image": "inputs/P33/first_frame.png",
-    "prompt": "inputs/P33/prompt.txt",
-    "annotation": "inputs/P33/reviewed_annotations.json"
-  }
-]
-```
-
-Use `python evaluate.py --manifest videos/custom-manifest.json --tasks P33 --output runs/custom_input_check --dry-run` to check those paths before evaluating. The annotations must follow the task's annotation schema; the dry run checks file availability, not annotation geometry or hash correspondence with decoded video frames. Custom scenes must still satisfy the task's physical setup and calibration requirements.
-
-</details>
+Outputs are `videos/MODEL/VIDEO_STEM.mp4` and `videos/manifest.json`. Move the complete `videos/` directory, including `.inputs/`, to preserve its images, prompts, and annotations. Add `--dry-run` to preview generation jobs without inference or API calls.
 
 ## Evaluate videos
 
-For the single-task generation above, check its inputs before running the evaluator:
+Check and evaluate the single-task example first:
 
 ```bash
 python evaluate.py --manifest videos/manifest.json --tasks P21 --output runs/input_check --dry-run
 python evaluate.py --manifest videos/manifest.json --tasks P21 --output runs/quick_test --resume
 ```
 
-For the full benchmark, first validate the inventory, then evaluate (or use `--video-root videos` instead of `--manifest` for existing videos):
+After preparing the full benchmark:
 
 ```bash
-python evaluate.py --manifest videos/manifest.json \
-  --output runs/input_check_all --require-all-tasks --dry-run
-
-python evaluate.py --manifest videos/manifest.json \
-  --output runs/all_tasks --require-all-tasks --resume
+python evaluate.py --manifest videos/manifest.json --output runs/input_check_all --require-all-tasks --dry-run
+python evaluate.py --manifest videos/manifest.json --output runs/all_tasks --require-all-tasks --resume
 ```
 
-This evaluates the models present in the manifest, one video at a time, using the first visible GPU. It checks that every included model has all 40 tasks and resumes successful results whose inputs, code, and settings still match. Qwen runs locally; no separate model server is needed. For a different GPU, prefix the evaluation command with `CUDA_VISIBLE_DEVICES=1`.
-
-If you already have benchmark videos and no manifest, arrange them as `videos/MODEL/VIDEO_STEM.mp4` with the current task ID in each filename, then use:
+For existing videos without a manifest, arrange files as `videos/MODEL/VIDEO_STEM.mp4`, with the current task ID in each filename:
 
 ```bash
 python evaluate.py --video-root videos --output runs/existing_input_check --dry-run
 python evaluate.py --video-root videos --output runs/existing_videos --resume
 ```
 
-For a flat directory containing one model's videos, add `--model my-model`. Directory scanning uses the bundled task images and prompts, unless a matching generation parameter record supplies the prompt; use a manifest when specifying different inputs or filenames that do not identify a task. Check `input_errors: 0` and the expected video/model/task counts in the dry-run output, and inspect `runs/existing_input_check/input_manifest.json` for details.
+Confirm `input_errors: 0` and the expected counts in the dry run. `--require-all-tasks` checks 40-task coverage for each included model; verify the eight models and four samples per task separately for the full 1,280-video experiment.
 
-Results are saved under `runs/all_tasks/`: `by_model.csv` and `by_task.csv` contain summaries; `results.csv` and `results.json` contain per-video results. Per-video folders include the detailed result and debug evidence. Add `--dry-run` to check the input inventory without loading models. See `python evaluate.py --help` for other options.
-
-`--require-all-tasks` checks the selected task coverage for each included model; without `--tasks`, that means all 40. It does not enforce all eight models or four seeds per task. For the full eight-model experiment, verify 1,280 planned inputs separately. Dry runs validate file inventory, not model execution or physical correctness. A successful single-task run is a useful first check, but does not establish that all 40 evaluators or all eight generators work in a fresh environment.
-
-An evaluation command returns zero when the batch completes without execution/input errors; a low physics score or a failed consistency gate is still a valid evaluated result. Check the summaries and per-video evidence when interpreting performance. If the command returns a nonzero code, inspect `summary.json`, `results.json`, and the affected per-video logs before rerunning with `--resume`.
-
-The individual `task.md` commands run from the task directory. When using those entrypoints directly, also set `FINAL_MODELS_DIR` to the absolute evaluation-model root and `VLM_MODEL` to its `Qwen3.6-27B` directory, so they use the same models as the batch evaluator.
-
-Manifest portability regression checks can be run in the same Linux environment with `python -m unittest discover -s tests -v`. They use temporary fixtures and do not load models.
+Evaluation runs one video at a time on the first visible GPU, with Qwen loaded locally. Results include `by_model.csv`, `by_task.csv`, `results.csv`, `results.json`, and per-video evidence under the selected output directory. `--resume` reuses matching successful results. If a command fails, inspect its `summary.json` and per-video logs before rerunning. See [evaluation details](docs/evaluation.md) for GPU selection, calibrated filenames, custom inputs, and score interpretation.
 
 ## Video generation model results
 
-Original-prompt experiment, **2026-10-04**. The planned budget is **160 videos per model** (40 tasks × 4 seeds), or **1,280 videos across 8 models**. Scores range from 0 to 1; higher is better. This table uses the updated observability gate and evidence review, while the abstract retains the earlier paper snapshot. Enhanced-prompt videos are excluded.
+The following reproduces the full task-level results in [the paper’s Table 2](https://arxiv.org/pdf/2610.08791v1#page=8). Scores use a **0–100** scale; higher is better. **Bold** marks each row’s highest score, including ties.
 
-**Physics** is the independent physical measurement score over the available evaluated videos; **coverage** is the mean fraction of defined metrics that were measured. The **automatic** score is `0.15 × consistency + 0.85 × physics` when the consistency gate passes (threshold 0.8), and `0.15 × consistency` otherwise. **Reviewed** uses the frozen evidence-review gate decisions. A fresh run produces automatic scores; it does not apply the historical review decisions.
+For each video, `S = 0.15 × C + 0.85 × P × 1[C ≥ 80]`, where `C` is automatic consistency/observability and `P` is the independently measured physical score. Scores are averaged after applying the gate to each video. **✓** means every available video in that model–task pair has `C ≥ 80`; **✗** means at least one falls below 80. **E/M/H** denote the paper’s empirical Easy/Medium/Hard groups.
 
-**Direct VLM** is the Qwen3.6-27B visual physics baseline; its one unassessable sample is counted as zero in the available-video mean. Scores use completed evaluations, with unavailable samples and execution errors excluded from evaluator means. The **Planned videos** column shows the fixed benchmark budget.
-
-| Video generation model | Planned videos | Gate pass rate | Coverage | Physics | Automatic | Reviewed | Direct VLM |
-| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| seedance-2.5 | 160 | 98.12% | 88.44% | 0.5111 | 0.5776 | 0.5790 | 0.6228 |
-| minimax-h3 | 160 | 91.25% | 88.12% | 0.4912 | 0.5489 | 0.5489 | 0.5259 |
-| cosmos3-super-image2video | 160 | 91.14% | 66.77% | 0.3570 | 0.4290 | 0.4290 | 0.4978 |
-| vbvr-wan2.2 | 160 | 70.00% | 74.69% | 0.3753 | 0.3779 | 0.3835 | 0.3441 |
-| wan2.2-i2v-a14b | 160 | 76.25% | 63.12% | 0.3311 | 0.3566 | 0.3656 | 0.4003 |
-| lingbot-video-moe-30b-a3b | 160 | 78.12% | 53.12% | 0.2584 | 0.3225 | 0.3297 | 0.4072 |
-| hunyuan-video-1.5-i2v | 160 | 75.62% | 53.44% | 0.2825 | 0.3197 | 0.3159 | 0.4153 |
-| cogvideox1.5-5b-i2v | 160 | 51.25% | 38.44% | 0.1781 | 0.1881 | 0.1902 | 0.1541 |
-| **Overall** | 1280 | 78.95% | 65.77% | 0.3480 | 0.3900 | 0.3927 | 0.4208 |
+| ID | Task | Level | Seedance 2.5 | MiniMax H3 | Cosmos 3 Super | VBVR Wan2.2 | Wan 2.2-A14B | LingBot 30B-A3B | Hunyuan 1.5 | CogVideoX 1.5-5B |
+| --- | --- | :---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| | **1. Translational Motion and Collisions** |  |  |  |  |  |  |  |  |  |
+| [P1](easy/P1/task.md) | Bounce-height decay | E | **90.76** ✓ | 88.19 ✓ | 57.46 ✓ | 0.00 ✗ | 85.66 ✓ | 48.67 ✓ | 83.03 ✓ | 3.75 ✗ |
+| [P2](medium/P2/task.md) | Free fall | M | 29.50 ✓ | 25.84 ✓ | **34.54** ✓ | 24.27 ✓ | 22.72 ✓ | 34.41 ✓ | 23.60 ✓ | 18.03 ✓ |
+| [P3](medium/P3/task.md) | Complementary-angle throws | M | 53.96 ✓ | **57.66** ✓ | 20.97 ✓ | 10.88 ✗ | 0.00 ✗ | 30.87 ✗ | 3.38 ✗ | 0.00 ✗ |
+| [P4](hard/P4/task.md) | Projectile motion | H | 29.13 ✓ | **39.01** ✓ | 17.25 ✗ | 22.33 ✗ | 10.36 ✗ | 15.43 ✗ | 7.83 ✗ | 0.00 ✗ |
+| [P5](hard/P5/task.md) | Equal-mass collision | H | 25.37 ✓ | **26.06** ✓ | 14.50 ✓ | 17.05 ✗ | 14.79 ✗ | 4.97 ✗ | 11.25 ✗ | 7.50 ✗ |
+| | **2. Rolling, Friction, and Rigid-Body Statics** |  |  |  |  |  |  |  |  |  |
+| [P6](easy/P6/task.md) | Mass-independent sliding | E | 66.00 ✓ | 97.89 ✓ | **98.46** ✓ | 51.12 ✓ | 50.98 ✓ | 57.50 ✓ | 36.06 ✓ | 43.62 ✗ |
+| [P7](easy/P7/task.md) | Hanging-chain equilibrium | E | 68.85 ✓ | 70.29 ✓ | 71.09 ✓ | 69.71 ✓ | 71.26 ✓ | 69.11 ✓ | **76.95** ✓ | 69.60 ✓ |
+| [P8](medium/P8/task.md) | Solid-sphere rolling | M | **75.56** ✓ | 45.82 ✓ | 28.79 ✓ | 31.53 ✓ | 35.39 ✓ | 18.77 ✓ | 37.11 ✓ | 14.78 ✗ |
+| [P9](medium/P9/task.md) | Solid sphere vs. hoop | M | 32.01 ✓ | 40.83 ✓ | 30.36 ✓ | **41.63** ✓ | 17.28 ✓ | 22.08 ✓ | 39.36 ✓ | 3.75 ✗ |
+| [P10](medium/P10/task.md) | Edge-pivot toppling | M | 34.27 ✓ | **66.53** ✓ | 34.03 ✓ | 4.76 ✗ | 43.23 ✓ | 14.38 ✗ | 18.99 ✓ | 0.00 ✗ |
+| [P11](hard/P11/task.md) | Rough-incline round trip | H | 24.43 ✓ | **28.84** ✓ | 8.10 ✗ | 12.36 ✗ | 16.53 ✗ | 19.18 ✗ | 10.10 ✗ | 0.00 ✗ |
+| | **3. Pendulum Motion and Oscillations** |  |  |  |  |  |  |  |  |  |
+| [P12](easy/P12/task.md) | Pendulum period vs. mass | E | **80.41** ✓ | 72.58 ✓ | 68.16 ✓ | 56.28 ✗ | 35.56 ✓ | 19.25 ✗ | 52.08 ✓ | 40.38 ✓ |
+| [P13](easy/P13/task.md) | Large-angle pendulum | E | 57.76 ✓ | **79.88** ✓ | 62.81 ✓ | 43.59 ✗ | 53.77 ✓ | 46.92 ✓ | 73.52 ✓ | 48.41 ✗ |
+| [P14](easy/P14/task.md) | Pendulum period vs. length | E | 66.15 ✓ | 65.41 ✓ | 61.93 ✓ | 55.83 ✓ | **67.11** ✓ | 25.36 ✓ | 16.00 ✗ | 26.03 ✗ |
+| [P15](medium/P15/task.md) | Small-angle isochronism | M | **82.60** ✓ | 51.35 ✓ | 66.77 ✓ | 21.90 ✗ | 29.69 ✓ | 23.40 ✗ | 32.52 ✗ | 25.64 ✓ |
+| | **4. Optics and Projective Geometry** |  |  |  |  |  |  |  |  |  |
+| [P16](easy/P16/task.md) | Collinear-point cross-ratio | E | 81.10 ✓ | 82.97 ✓ | 82.39 ✓ | 83.92 ✓ | 68.12 ✓ | 43.56 ✗ | **88.34** ✓ | 3.75 ✗ |
+| [P17](medium/P17/task.md) | Light refraction | M | 65.59 ✓ | 65.68 ✓ | 56.38 ✓ | **66.18** ✓ | 57.94 ✓ | 14.62 ✓ | 15.00 ✓ | 15.00 ✓ |
+| [P18](medium/P18/task.md) | Light reflection | M | **96.15** ✓ | 49.82 ✗ | 0.00 ✗ | 95.75 ✓ | 0.00 ✗ | 3.38 ✗ | 24.73 ✗ | 0.00 ✗ |
+| [P19](medium/P19/task.md) | Projection concurrency | M | 67.14 ✓ | 45.62 ✗ | 48.69 ✓ | **69.64** ✓ | 32.45 ✓ | 11.62 ✗ | 7.12 ✗ | 3.38 ✗ |
+| [P20](hard/P20/task.md) | Refraction and reflection | H | 9.09 ✗ | 31.67 ✓ | 13.69 ✗ | 22.86 ✗ | 14.50 ✗ | 14.88 ✗ | **39.66** ✓ | 7.87 ✗ |
+| | **5. Hydrostatics and Buoyancy** |  |  |  |  |  |  |  |  |  |
+| [P21](easy/P21/task.md) | Communicating vessels | E | 97.01 ✓ | 98.16 ✓ | 97.70 ✓ | **99.01** ✓ | 93.09 ✓ | 97.40 ✓ | 95.44 ✓ | 94.05 ✓ |
+| [P22](easy/P22/task.md) | Floating-ice immersion | E | 66.56 ✓ | 83.22 ✓ | 78.82 ✓ | 85.29 ✓ | **85.86** ✓ | 68.96 ✓ | 67.32 ✓ | 73.38 ✓ |
+| [P23](medium/P23/task.md) | Liquid-surface orientation | M | 57.52 ✗ | **72.68** ✓ | 8.32 ✗ | 0.00 ✗ | 21.06 ✗ | 48.36 ✗ | 34.72 ✗ | 0.00 ✗ |
+| | **6. Phase Transitions and Melting** |  |  |  |  |  |  |  |  |  |
+| [P24](easy/P24/task.md) | Freezing-induced expansion | E | 94.30 ✓ | **96.21** ✓ | 66.69 ✗ | 24.38 ✗ | 0.00 ✗ | 86.43 ✓ | 23.71 ✗ | 0.00 ✗ |
+| [P25](hard/P25/task.md) | Ice melting: water level | H | **95.61** ✓ | 0.00 ✗ | 15.00 ✓ | 0.00 ✗ | 0.00 ✗ | 3.75 ✗ | 0.00 ✗ | 0.00 ✗ |
+| [P26](hard/P26/task.md) | Ice with a stone: melting | H | **15.00** ✓ | 0.00 ✗ | 3.75 ✗ | 0.00 ✗ | 0.00 ✗ | 8.81 ✗ | 0.00 ✗ | 0.00 ✗ |
+| [P27](hard/P27/task.md) | Freshwater ice in saltwater | H | 46.87 ✓ | 0.00 ✗ | **57.50** ✓ | 0.00 ✗ | 0.00 ✗ | 0.00 ✗ | 0.00 ✗ | 3.75 ✗ |
+| [P28](hard/P28/task.md) | Crushed vs. intact ice | H | **57.50** ✓ | 36.25 ✓ | 15.00 ✓ | 15.00 ✓ | 15.00 ✓ | 7.50 ✗ | 7.50 ✗ | 0.00 ✗ |
+| | **7. Electrostatics, Magnetism, and Electromagnetic Induction** |  |  |  |  |  |  |  |  |  |
+| [P29](easy/P29/task.md) | Eddy-current braking | E | 36.25 ✓ | **89.38** ✓ | 78.75 ✓ | 39.38 ✗ | 53.75 ✗ | 57.50 ✓ | 32.50 ✗ | 3.75 ✗ |
+| [P30](easy/P30/task.md) | Coil-induced light emission | E | 57.50 ✓ | 57.50 ✓ | **68.12** ✓ | 57.50 ✓ | 57.50 ✓ | **68.12** ✓ | 32.50 ✗ | 3.75 ✗ |
+| [P31](medium/P31/task.md) | Charged-sphere equilibrium | M | **98.34** ✓ | 97.24 ✓ | 15.00 ✓ | 15.00 ✓ | 15.00 ✓ | 10.88 ✗ | 14.81 ✓ | 15.00 ✓ |
+| [P32](medium/P32/task.md) | Final compass orientations | M | **36.43** ✓ | 15.05 ✓ | 15.00 ✓ | 18.01 ✓ | 36.32 ✓ | 16.41 ✓ | 15.00 ✓ | 15.95 ✓ |
+| [P33](medium/P33/task.md) | Closed vs. open jumping rings | M | 23.00 ✓ | 20.84 ✓ | 15.00 ✓ | 15.00 ✓ | 36.25 ✓ | **57.50** ✓ | 15.00 ✓ | 15.00 ✓ |
+| [P34](hard/P34/task.md) | Solid vs. slotted plate damping | H | **36.25** ✓ | 15.00 ✓ | 15.00 ✓ | 0.00 ✗ | 15.00 ✓ | 7.50 ✗ | 15.00 ✓ | 10.50 ✗ |
+| | **8. Granular Media and Discharge Flow** |  |  |  |  |  |  |  |  |  |
+| [P35](easy/P35/task.md) | Sandpile angle scaling | E | **99.08** ✓ | 94.21 ✓ | 73.64 ✓ | 98.55 ✓ | 98.08 ✓ | 30.11 ✓ | 97.18 ✓ | 93.18 ✓ |
+| [P36](hard/P36/task.md) | Sand vs. water discharge | H | **38.39** ✓ | 21.89 ✓ | 15.25 ✓ | 7.12 ✗ | 16.44 ✗ | 10.69 ✗ | 7.88 ✗ | 7.81 ✗ |
+| | **9. Surface Tension and Viscous Flow** |  |  |  |  |  |  |  |  |  |
+| [P37](easy/P37/task.md) | Capillary rise vs. diameter | E | 78.75 ✓ | **100.00** ✓ | 57.12 ✓ | **100.00** ✓ | 36.25 ✓ | 11.44 ✗ | 15.00 ✓ | 10.88 ✗ |
+| [P38](easy/P38/task.md) | Viscous settling speed | E | 66.88 ✓ | 67.25 ✓ | 68.50 ✓ | **69.85** ✓ | 50.86 ✗ | 65.91 ✓ | 51.39 ✗ | 58.97 ✓ |
+| [P39](medium/P39/task.md) | Bubble-film curvature | M | 15.00 ✓ | **55.08** ✓ | 25.30 ✓ | 28.79 ✓ | 42.26 ✓ | 32.41 ✓ | 42.62 ✓ | 15.00 ✓ |
+| [P40](medium/P40/task.md) | Droplet volume conservation | M | 58.30 ✓ | 43.52 ✓ | 32.46 ✓ | 37.07 ✗ | 26.31 ✗ | **62.00** ✓ | 14.62 ✓ | 0.00 ✗ |
+| | **Average score** | | **57.76** | 54.89 | 42.46 | 37.79 | 35.66 | 32.25 | 31.97 | 18.81 |
